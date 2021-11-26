@@ -87,11 +87,11 @@
             columnsL="1" columnsM="1">
                 <form:content>
                   <Label text="Cantidad" />
-                  <Text text="{/CANTIDAD} {/UNIDAD_MEDIDA}" />
+                  <Text text="{/CANTIDAD_PROGRAMADA} {/UNIDA_MEDIDA}" />
                   <Label text="Fecha inicio" />
-                  <Text text="{/FECHA_INICIO}" />
+                  <Text text="{/INICIO_PLANEADO}" />
                   <Label text="Fecha fin" />
-                  <Text text="{/FECHA_FIN}" />
+                  <Text text="{/FIN_PLANEADO}" />
                 </form:content>
               </form:SimpleForm>
             </uxap:blocks>

@@ -41,7 +41,12 @@ sap.ui.define([
             console.log("NEW", newModel);
             this.getView().setModel(newModel);
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/header", "Cabecera");
+
+            for(var i = 0; i < 3; i++){
+                this.getOwnerComponent().getModel("fasesModel").setProperty("/ITEMS/" + i.toString() + "/orden", newModel.getProperty("/NUM_ORDEN"));
+            }
             this.byId("PMOperationList").setModel(this.getOwnerComponent().getModel("fasesModel"));
+
             //this._base_onloadTable('PMOperationList', aData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/Operaciones_componentes_RESPALDO_', "Operaciones", "");
         },
 
