@@ -32,7 +32,8 @@ sap.ui.define([
             oArgs = oEvent.getParameter("arguments");
 
             plant_gb = 'PLANTA';
-            //this.PPOrders_view();            
+            //this.PPOrders_view();  
+            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));          
 
             var columns = {
                 columns: [
