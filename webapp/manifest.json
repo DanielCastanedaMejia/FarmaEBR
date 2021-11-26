@@ -13,6 +13,10 @@
       "ordersModel": {
         "uri": "model/ordersModel.json",
         "type": "JSON"
+      },
+      "masterModel": {
+        "uri": "model/masterModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -46,6 +50,10 @@
       },
       "ordersModel": {
         "dataSource": "ordersModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "masterModel": {
+        "dataSource": "masterModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },

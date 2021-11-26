@@ -24,7 +24,6 @@ sap.ui.define([
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("viewPPOrders").attachMatched(this._onRouteMatched, this);
-            console.log(this.getOwnerComponent().getModel("ordersModel").getProperty("/ITEMS"));
         },
 
         _onRouteMatched: function (oEvent) {  
@@ -910,9 +909,11 @@ console.log(bueno,proximo);
         },
 
         onDetal_view: function (oEvent) {
-            var oItem, oCtx,estatus;
+            var oItem, oCtx,estatus, sPath;
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
+            sPath = oCtx.getPath();
+            this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder");
             estatus=oCtx.getProperty("ESTATUS_MII");
             if(estatus!=="INICIADA"){
             this.getOwnerComponent().openHelloDialog("Seleccione una orden iniciada");
