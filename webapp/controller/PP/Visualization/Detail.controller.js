@@ -37,8 +37,9 @@ sap.ui.define([
             var sPath = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
 
             var orderModel = this.getOwnerComponent().getModel("ordersModel").getProperty(sPath);
-
-            this.getView().setModel(orderModel);
+            var newModel = new JSONModel(orderModel);
+            console.log("NEW", newModel);
+            this.getView().setModel(newModel);
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/header", "Cabecera");
             this.byId("PMOperationList").setModel(this.getOwnerComponent().getModel("fasesModel"));
             //this._base_onloadTable('PMOperationList', aData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/Operaciones_componentes_RESPALDO_', "Operaciones", "");
