@@ -1,0 +1,25 @@
+﻿<mvc:View
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m">
+  <ObjectHeader
+		id="oh1"
+		responsive="true"
+		showMarkers="true"
+		numberState="Success"
+		backgroundDesign="Translucent">
+    <!--<attributes>
+      <ObjectAttribute
+				title="Negocio"
+				text="Sello Rojo"/>
+    </attributes>-->
+    <statuses>
+      <ObjectStatus
+				title="Proyecto"
+				text="DEMO"
+				state="Warning"/>
+    </statuses>
+    <headerContainer>
+    </headerContainer>
+  </ObjectHeader>
+</mvc:View>

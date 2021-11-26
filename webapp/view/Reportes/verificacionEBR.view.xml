@@ -1,0 +1,85 @@
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Reportes.verificacionEBR"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns="sap.m">
+	<NavContainer id="wizardNavContainer">
+		<pages>
+			<Page
+				id="cueroPdf"
+				showHeader="false"
+				backgroundDesign="Solid">
+				<Toolbar class="toolbar_default">
+					<Button 
+						icon="sap-icon://nav-back" 
+						type="Transparent" 
+						class="sapUiMediumMarginBegin" 
+						press="onNavBack">
+					</Button>
+					<Image src="images/SAP_Logo.png">
+					</Image>
+					<core:Icon
+						src="sap-icon://grid"
+						class="toolbar_title sapUiSmallMarginBegin">
+						<core:layoutData>
+							<FlexItemData growFactor="1" />
+						</core:layoutData>
+					</core:Icon>
+					<Label 
+						labelFor="myColumn"
+						class="toolbar_title"
+						text="Plastic Trends: Etiqueta"
+						wrapping="true"/>
+					<ToolbarSpacer/>
+					<Label
+						id ="username"
+						text=""
+						class="toolbar_color">
+					</Label>
+					<Button 
+						icon="sap-icon://person-placeholder" 
+						type="Transparent" 
+						class="sapUiLargeMarginEnd">
+					</Button>
+				</Toolbar>
+				
+				<fb:FilterBar 
+					header="Operación" 
+					useToolbar="false" 
+					showGoOnFB="false" 
+					showFilterConfiguration="false" 
+                   				 reset="onReset" 
+					clear="onClear" 
+					showRestoreButton="true" 
+					showClearButton="true" >
+            
+					<fb:filterItems>
+						<fb:FilterItem 
+							name="B1" 
+							label="Etiqueta" 
+							labelTooltip="Tooltip Example" 
+							mandatory="false" >
+							<fb:control>
+								<Button 
+									type="Emphasized"
+									id="Imprimir"
+									text="Imprimir"
+									press="onImprimirEtiqueta"
+									enabled="true"
+									icon="sap-icon://print"
+									ariaDescribedBy="acceptButtonDescription genericButtonDescription"/>
+							</fb:control>
+						</fb:FilterItem>
+					</fb:filterItems>
+					
+					
+				</fb:FilterBar>
+		
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

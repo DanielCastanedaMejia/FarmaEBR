@@ -1,0 +1,75 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Reports.PPViewNotification"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>PPNotification.tittle}"
+      showNavButton="true"
+		 navButtonPress="onNavBack">
+        <content>
+          <Table
+            id="PPNotificationList"
+            class="sapUiResponsiveMargin"
+            width="auto"
+            items="{
+			path : '/ITEMS',
+			sorter : {
+				path : 'CONFIR_CONT',
+				group : true
+			}
+		}">
+            <columns>
+              <Column>
+                <Label text="{i18n>column.confNumber}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.confCont}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.date}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.startDate}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.endDate}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.quantity}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.scrap}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{CONFIR_NUMBER}"/>
+                  <Text text="{CONFIR_CONT}"/>
+                  <Text text="{FECHA_INS}"/>
+                  <Text text="{FECHA_INICIO}"/>
+                  <Text text="{FECHA_FIN}"/>
+                  <Text text="{PIEZAS_BUENAS}"/>
+                  <Text text="{SCRAP}"/>                
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

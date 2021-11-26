@@ -1,0 +1,259 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Visualization.Orders"
+   xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="ViewPMOrders"
+      showHeader="false"
+      backgroundDesign="Solid">
+        <Toolbar
+        class="toolbar_default">
+          <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+          <Image src="FARMA/WEB/POS/images/SAP_Logo.png">
+          </Image>
+          <core:Icon
+          src="sap-icon://grid"
+          class="toolbar_title sapUiSmallMarginBegin">
+            <core:layoutData>
+              <FlexItemData growFactor="1" />
+            </core:layoutData>
+          </core:Icon>
+          <Label labelFor="myColumn"
+            class="toolbar_title"
+            text="Órdenes de Produccion"
+            wrapping="true"
+        />
+          <ToolbarSpacer/>
+          <Label
+            id ="username"
+            text=""
+            class="toolbar_color"></Label>
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+          </Button>
+        </Toolbar>
+        <fb:FilterBar header="Órdenes"
+                      reset="onReset" search="PPOrders_view" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+
+          <fb:filterItems>
+
+            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+              <fb:control>
+                <ComboBox id="planta">
+                  <items>
+                    <core:Item key="1710" text="Planta 1710"/>
+                  </items>
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="A" label="{i18n>StartDate}">
+              <fb:control>
+                <DatePicker
+                  id="start_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="B" label="{i18n>EndDate}">
+              <fb:control>
+                <DatePicker
+                  id="end_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+            
+          </fb:filterItems>          
+
+        </fb:FilterBar>
+        <content>   
+          
+          <IconTabBar
+            id="IconTabBar_Orders"
+            select="handleIconTabBarSelect"
+            class="sapUiResponsiveContentPadding">
+            <items>
+              <IconTabFilter
+                showAll="true"
+                count="{/TOTAL}"
+                text="TOTAL"
+                key="All" />
+              <IconTabSeparator />
+              <IconTabFilter
+                icon="sap-icon://begin"
+                iconColor="Positive"
+                count="{/LIB}"
+                text="{i18n>Released}"
+                key="LIB" />
+              <IconTabFilter
+                icon="sap-icon://create-entry-time"
+                iconColor="Critical"
+                count="{/PEND}"
+                text="{i18n>Pending}"
+                key="PEND" />
+              <IconTabFilter
+                icon="sap-icon://complete"
+                iconColor="Negative"
+                count="{/CERR}"
+                text="{i18n>Finished}"
+                key="CERR" />
+              <IconTabFilter
+                icon="sap-icon://connected"
+                iconColor="Neutral"
+                count="{/ABIE}"
+                text="{i18n>Open}"
+                key="ABIE" />              
+            </items>
+          </IconTabBar>
+
+          <Toolbar>
+            <ToggleButton id="linea" text="Línea"  press="callOpenDialogStep0"/>
+            <ToggleButton id="equipo" text="Equípo"  press="callOpenDialogStep1"/>
+            <ToggleButton id="mdc" text="M_DC1"  press="callOpenDialogStep2"/>
+            <ToggleButton id="operacion" text="Operaciónes"  press="callOpenDialogStep3"/>
+            <ToggleButton id="componente" text="Componentes"  press="callOpenDialogValida"/>
+          <ToolbarSpacer/>
+          <ToggleButton id="startOrder" text="Iniciar"  press="viewStartOrder"/>
+          <ToggleButton id="stopOrder" text="Finalizar"   press="viewStopOrder"/>
+          </Toolbar>
+          <Table
+  id="PPOrders_list"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  mode="SingleSelectLeft"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Orden"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Codigo Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Planta"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Fecha Inicio"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="Fecha Fin"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Tipo"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false"
+                  visible="false">
+                <Label text="Lote Prod"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Lote Inspec"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Cant Prog"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="{i18n>column.status}"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="ESTATUS MII"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="USUARIO PRIM"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="USUARIO SEC"/>
+              </Column>
+            </columns>
+
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                press="onDetal_view">
+                <cells>
+                  <Text text="{NUM_ORDEN}"/>
+                  <Text text="{MATERIAL}"/>
+                  <Text text="{DESC_MATERIAL}"/>
+                  <Text text="{PLANTA}"/>
+                  <ObjectStatus text="{
+                    path: 'INICIO_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <ObjectStatus text="{
+                    path: 'FIN_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <Text text="{TIPO}"/>
+                  <Text text="{LOTE}"/>
+                  <Text text="{LOTE_INSPECCION}"/>
+                  <Text text="{CANTIDAD_PROGRAMADA}"/>
+                  <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderState'
+                          }"
+                    state="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderStateColor'
+                    }"
+                    />
+                    <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS_MII'
+                          }"
+                    state="{
+                            path: 'ESTATUS_MII',
+                            formatter: '.formatter.miiStateColor'
+                    }"
+                    />
+                    <Text text="{USUARIO_PRIM}"/>
+                    <Text text="{USUARIO_SEC}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

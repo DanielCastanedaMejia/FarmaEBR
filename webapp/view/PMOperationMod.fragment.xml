@@ -1,0 +1,48 @@
+﻿<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+  <Dialog
+     id="AddOperationDialog"
+     title="{i18n>AddOperation}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="{i18n>DescOperation}"  labelFor="filterDateRangeSelection"/>
+        <Input
+        id="inputDescOperation"
+				class="sapUiSmallMarginBottom" />
+        <!-- Filter by plan name(s) -->
+        <Label text="{i18n>EstimatedWorkOperation}" labelFor="filterPlanNames"/>
+        <Input
+        id="inputWorkOperation"
+				class="sapUiSmallMarginBottom" />
+        <Label text="{i18n>PMWorkCenter}" labelFor="work_center"/>
+        <Select
+                    id="workCenter_list"
+                    items="{
+					             path: '/',
+					             sorter: { path: 'desc' }
+			              }">
+          <core:Item key="{id}" text="{desc}" />
+        </Select>
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>AddOperation}"
+         press="onCloseDialogAddOperationConfirm"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>LabelCancel}"
+         press="onCloseDialogAddOperation"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

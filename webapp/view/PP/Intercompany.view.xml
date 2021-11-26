@@ -1,0 +1,179 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.Intercompany"
+  xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Toolbar
+        class="toolbar_default">
+    <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+    <Image src="images/SAP_Logo.png">
+    </Image>
+    <core:Icon
+    src="sap-icon://cause"
+    class="toolbar_title sapUiSmallMarginBegin">
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <MenuButton text="Intercompañia" class="customtitle">
+      <menu>
+        <Menu>
+          <items>
+            <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+          </items>
+        </Menu>
+      </menu>
+    </MenuButton>
+    <ToolbarSpacer/>
+    <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+    <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+    </Button>
+  </Toolbar>
+  <uxap:ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+     
+        </uxap:expandedHeading>
+
+        <uxap:snappedHeading>
+          <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+            <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+              
+            </FlexBox>
+          </FlexBox>
+        </uxap:snappedHeading>
+
+        <uxap:actions>
+          <Button
+            text="Guardar"
+            icon="sap-icon://save"
+            press="onIntercompany"
+            type="Emphasized"/>
+          <Button
+           text="Contabilizar entrega"
+           icon="sap-icon://search"
+           type="Transparent"
+           tooltip="Consumir materiales"
+           press="onContabilizar"/>
+        </uxap:actions>
+
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+
+    <uxap:headerContent>
+      <FlexBox  >
+        <items>
+          
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Lote :"></Label>
+                          <Input
+                            id="input_batch"
+                            type="Text"
+                            placeholder="lote"
+                            showSuggestion="true"
+                            showValueHelp="true"
+                            valueHelpRequest="handleValueHelp"
+                            suggestionItems="{path:'/componentes/lotes', templateShareable:false}" width="100%" value="TEST_IC">
+                            <suggestionItems>
+                              <core:Item text="{Batch}" />
+                            </suggestionItems>
+                          </Input>
+
+
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Material :"></Label>
+          <Input placeholder="N° Lote" id="material" class="sapUiTinyMarginBegin" value="PHARMA_R03" width="100%"/>
+
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Cantidad :"></Label>
+          <Input placeholder="Cantidad" id="cantidad" class="sapUiTinyMarginBegin sapUiSmallMarginEnd" width="100%"/>
+           <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Almacén :"></Label>
+          <Input placeholder="Cantidad" id="almacen" class="sapUiTinyMarginBegin sapUiSmallMarginEnd" value="171C" width="100%"/>
+        </items>
+      </FlexBox>
+    </uxap:headerContent>
+
+    <uxap:sections>      
+
+      <uxap:ObjectPageSection title="Pedidos /Entregas  generadas.">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <Table
+                 id="intercompany_tabla"
+                 class="sapUiResponsiveMargin"
+                 mode="SingleSelectLeft"
+                 width="auto"
+                 items="{/ITEMS}">
+                <columns>
+                  <Column>
+                    <Label text="Almacén"/>
+                  </Column>
+                  <Column>
+                    <Label text="Ctd"/>
+                  </Column>
+                  <Column>
+                    <Label text="Centro emisor"/>
+                  </Column>
+                  <Column>
+                    <Label text="Centro receptor"/>
+                  </Column>
+                  <Column>
+                    <Label text="Lote"/>
+                  </Column>
+                  <Column>
+                    <Label text="Material"/>
+                  </Column>
+                  <Column>
+                    <Label text="UM"/>
+                  </Column>
+                   <Column>
+                    <Label text="Pedido"/>
+                  </Column>
+                   <Column>
+                    <Label text="Entrega"/>
+                  </Column>
+                   <Column>
+                    <Label text="Fecha"/>
+                  </Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{ALMACEN}"/>
+                      <Text text="{CANTIDAD}"/>
+                      <Text text="{CENTRO_EMISORA}"/>
+                      <Text text="{CENTRO_RECEPTOR}"/>
+                      <Text text="{LOTE}"/>
+                      <Text text="{MATERIAL}"/>
+                      <Text text="{UM}"/>
+                      <Text text="{PEDIDO}"/>
+                      <Text text="{ENTREGA}"/>
+                      <Text text="{FECHA_INS}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

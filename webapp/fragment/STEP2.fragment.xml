@@ -1,0 +1,65 @@
+<core:FragmentDefinition id ="dataCollectionEntryFragment"  xmlns="sap.m" xmlns:table="sap.ui.table"  xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Entrada de Datos" id="oDialogStep2" contentHeight="50%" contentWidth="70%" afterClose="onCloseDialogStep2">
+        <VBox width="100%" height="100%">
+
+	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+	       <items>
+			<table:Table
+			id="oTableDataCollection"
+  			class="sapUiResponsiveMargin"
+  			width="auto"
+			rows="{/Row}">
+				<table:columns>
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="ID" />
+						<table:template> <Text  text="{ID}" /></table:template>
+					</table:Column>
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Parametro" />
+						<table:template> <Text  text="{PARAMETER}" /></table:template>
+					</table:Column>
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Valor" />
+					        	<table:template> <Input  liveChange="onChangeValue" width="100%"  value="{VALUE}"   /></table:template>
+					</table:Column>
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Mínimo" />
+						<table:template> <Text  text="{MIN_VALUE}" /></table:template>
+					</table:Column> 
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Máximo" />
+						<table:template> <Text  text="{MAX_VALUE}" /></table:template>
+					</table:Column>  
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Tipo de Dato" />
+						<table:template> <Text  text="{DATA_TYPE}" /></table:template>
+					</table:Column>  
+					<table:Column hAlign="Center" visible="true" width="100px">
+						<Text  text="Unidad de Medida" />
+						<table:template> <Text  text="{UOM}" /></table:template>
+					</table:Column>  
+					<table:Column hAlign="Center" visible="true" width="80px">
+						<Text  text="Indicador" />
+						<table:template> <core:Icon src = "sap-icon://circle-task-2" size="1.2em"  color="{COLOR}"/></table:template>
+					</table:Column>
+         
+				</table:columns>
+			</table:Table>
+	       </items>
+	</VBox> 
+
+
+
+            <HBox justifyContent="Center" alignContent="Center" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+            </HBox>
+
+        </VBox>
+            <beginButton>
+      <Button
+       type="Accept"
+         text="Validar"
+         icon="sap-icon://add-product"
+         press="onCloseDialogStep2"/>
+    </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

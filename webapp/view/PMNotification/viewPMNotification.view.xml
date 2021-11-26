@@ -1,0 +1,225 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PMNotification.viewPMNotification"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>pageViewPMNotification}"
+      showNavButton="true"
+		 navButtonPress="onNavBack">
+        <content>
+          <Panel>
+            <l:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+              <l:content>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="{i18n>Process}"></Label>
+                  <ComboBox
+                    id="listPMProceso"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                    selectionChange="onChangePMProceso">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+                  
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>StartDate}"></Label>
+                  <DatePicker
+			              id="start_date"
+			              valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+			              change="handleChange"
+			              class="sapUiTinyMarginBegin"/>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>SubProcess}"></Label>
+                    <ComboBox
+                      id="listPMSubProceso"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangePMSubProceso">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+                   <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>EndDate}"></Label>
+                  <DatePicker
+			              id="end_date"
+			              valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+			              change="handleChange"
+			              class="sapUiTinyMarginBegin"/>
+                  </items>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+                    
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>Function}"></Label>
+                    <ComboBox
+                      id="listPMFunction"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+                  </items>
+                  <CheckBox class="sapUiMediumMarginTop" text="{i18n>Stop}" valueState="Error" id="PMStop"/>
+                </FlexBox>
+
+              </l:content>
+            </l:Grid>
+          </Panel>
+  <IconTabBar
+		id="IconTabBar_Notifications"
+		select="handleIconTabBarSelect"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				showAll="true"
+				count="{/total}"
+				text="{i18n>PMAvisos}"
+				key="All" />
+			<IconTabSeparator />
+			<IconTabFilter
+				icon="sap-icon://begin"
+				iconColor="Positive"
+				count="{/METR}"
+				text="{i18n>InTreatment}"
+				key="METR" />
+			<IconTabFilter
+				icon="sap-icon://create-entry-time"
+				iconColor="Critical"
+				count="{/MEAB}"
+				text="{i18n>Pending}"
+				key="MEAB" />
+			<IconTabFilter
+				icon="sap-icon://complete"
+				iconColor="Negative"
+				count="{/CERR}"
+				text="{i18n>Finished}"
+				key="CERR" />
+      <IconTabFilter
+				icon="sap-icon://connected"
+				iconColor="Neutral"
+				count="{/ORAS}"
+				text="{i18n>OrderAssigned}"
+				key="ORAS" />
+      <IconTabFilter
+				icon="sap-icon://cancel-share"
+				iconColor="Default"
+				count="{/NORAS}"
+				text="{i18n>NotOrderAssigned}"
+				key="NORAS" />
+		</items>
+	</IconTabBar>
+          <Table
+  id="PMNotificationList"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="8em">
+                <Label text="{i18n>columnID}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="{i18n>columnType}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnDesc}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnCreatedby}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnReportedby}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnDate}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>Status}"/>
+              </Column>
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="false"
+                width="4em">
+                <Label text="{i18n>Stop}"/>
+              </Column>
+            </columns>
+            
+            <items>
+              <ColumnListItem
+                type="Navigation"
+				        press="onPMNotificationDetail">
+                <cells>
+                  <ObjectIdentifier title="{id}" emphasized="false"/>
+                  <Text text="{type}"/>
+                  <Text text="{description}"/>
+                  <Text text="{createdby}"/>
+                  <Text text="{reportedby}"/>
+                  <Text text="{date}"/>
+                  <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
+                  <Text text="{status}"/>
+                  <Text text="{stop}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+              <Button text="Crear Aviso" type="Accept" press="onDisplayCreatePMNotification"/>
+              <Button text="{i18n>View}" press="onShowView" icon="sap-icon://activity-items"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

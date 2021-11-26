@@ -1,0 +1,95 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Reports.MAFDesgaste"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>MAF}"
+      showNavButton="true"
+		 navButtonPress="onNavBack">
+        <content>
+          <Panel
+				id="PMMAF_Report"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+
+            <OverflowToolbar>
+              <Title text="{i18n>PPOperationDetail.maf}" level="H2"/>
+            </OverflowToolbar>
+
+            <content>
+              <Table
+                     id="PMMAFList_Report"
+                     class="sapUiResponsiveMargin"
+                     width="auto"
+                     items="{
+			                  path : '/ITEMS',
+			                  sorter : {
+				                  path : 'CONDICION',
+				                  group : true
+			                  }
+		                   }">
+                <columns>
+                  <Column>
+                    <Label text="{i18n>column.codigoMaterial}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.description}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.point}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.counter}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.nextMtto}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.totalCount}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column.condition}"/>
+                  </Column>
+                </columns>
+
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{MAF_NO}"/>
+                      <Text text="{MAF_DESC}"/>
+                      <Text text="{PUNTO}"/>
+                      <Text text="{VALOR_ACTUAL}"/>
+                      <Text text="{VALOR_MAXIMO}"/>
+                      <Text text="{VALOR_TOTAL}"/>
+                      <ObjectStatus
+                        class="stat"
+                        text="{CONDICION}"
+                        state="{
+				                    path: 'ESTATUS',
+				                    formatter: '.formatter.conditionColor'
+			                    }"
+                        />
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </content>
+          </Panel>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

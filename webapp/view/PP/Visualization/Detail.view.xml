@@ -1,0 +1,184 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.Visualization.Detail"
+  xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Toolbar
+        class="toolbar_default">
+    <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+    <Image src="images/SAP_Logo.png">
+    </Image>
+    <core:Icon
+    src="sap-icon://show-edit"
+    class="toolbar_title sapUiSmallMarginBegin">
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <MenuButton text="Detalle de Orden" class="customtitle">
+      <menu>
+        <Menu>
+          <items>
+            <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+          </items>
+        </Menu>
+      </menu>
+    </MenuButton>
+    <ToolbarSpacer/>
+    <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+    <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+    </Button>
+  </Toolbar>
+  <uxap:ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+          <Title text="Orden {/NUM_ORDEN}" wrapping="true" class="sapUiSmallMarginEnd"/>
+        </uxap:expandedHeading>
+
+        <uxap:snappedHeading>
+          <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+            <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+              <Title text="Orden {/NUM_ORDEN}" wrapping="true"/>
+            </FlexBox>
+          </FlexBox>
+        </uxap:snappedHeading>
+
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+
+    <uxap:headerContent>
+      <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+
+        <layout:VerticalLayout >
+          <ObjectStatus text="{/MATERIAL}"/>
+          <ObjectStatus text="{/DESC_MATERIAL}"/>
+          <ObjectIdentifier title="{/ESTATUS}"/>
+        </layout:VerticalLayout>
+
+      </FlexBox>
+
+    </uxap:headerContent>
+
+    <uxap:sections>
+      <uxap:ObjectPageSection title="Información General">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <form:SimpleForm
+            minWidth="1024"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+            columnsL="1" columnsM="1">
+                <form:content>
+                  <Label text="Cantidad" />
+                  <Text text="{/CANTIDAD} {/UNIDAD_MEDIDA}" />
+                  <Label text="Fecha inicio" />
+                  <Text text="{/FECHA_INICIO}" />
+                  <Label text="Fecha fin" />
+                  <Text text="{/FECHA_FIN}" />
+                </form:content>
+              </form:SimpleForm>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>      
+
+      <uxap:ObjectPageSection title="Fases">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+          <Table
+                 id="PMOperationList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column
+                hAlign="End"
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="7em">
+                <Label text="Orden"/>
+              </Column>
+              <Column>
+                <Label text="Operación"/>
+              </Column>
+              <Column>
+                <Label text="Recurso"/>
+              </Column>
+              <Column>
+                <Label text="Clv Control"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Descripción"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Cant Prog"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="No Conf"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false"
+                width="4em">
+                <Label text="UM"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false"
+                width="7em">
+                <Label text="Avance"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                press="onPPOrderOperation">
+                <cells>
+                  <Text text="{orden}"/>
+                  <Text text="{Ope}"/>
+                  <Text text="{Recur}"/>
+                  <Text text="{ClaveContr}"/>
+                  <Text text="{textbrev}"/>
+                  <Text text="{ctdopera}"/>
+                  <Text text="{confNumb}"/>
+                  <Text text="{umope}"/> 
+                  <ProgressIndicator
+                        percentValue="{avance}"
+                        displayValue="{avance}%"
+                        showValue="true"
+                        state="None"/>                 
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,344 @@
+﻿<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.Mantenimiento.Avisos.crearAviso"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+   xmlns:layout="sap.ui.layout"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+        showHeader="false"
+        id="wizardContentPage"
+        enableScrolling="false">
+        <content>
+          <Toolbar
+          class="toolbar_default">
+            <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+            <Image src="images/SAP_Logo.png">
+            </Image>
+            <core:Icon
+            src="sap-icon://add-document"
+            class="toolbar_title sapUiSmallMarginBegin">
+              <core:layoutData>
+                <FlexItemData growFactor="1" />
+              </core:layoutData>
+            </core:Icon>
+            <Label labelFor="myColumn"
+              class="toolbar_title"
+              text="Crear Aviso"
+              wrapping="true"
+            />
+            <ToolbarSpacer/>
+            <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+            <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+            </Button>
+          </Toolbar>
+          <Toolbar
+            class="toolbar_default2">
+            <layout:VerticalLayout class="sapUiTinyMarginTop">
+              <Title level="H3" text="Crear Aviso de Mantenimiento" class="sapUiMediumMarginBegin"/>
+              <Label text="Seleccione los campos necesarios para genera un aviso" class="sapUiMediumMarginBegin"/>
+            </layout:VerticalLayout>
+            
+            <ToolbarSpacer />
+            <Button
+              text="Crear"
+              type="Emphasized"
+               icon="sap-icon://add-document"
+              press="validateInfo"/>
+            <Button
+              class="sapUiMediumMarginEnd"
+              text="Cancelar"
+              type="Transparent"
+              press="discardNoti" />
+          </Toolbar>
+          <Wizard id="CreateNotificationWizard"
+                  complete="wizardCompletedHandler" >
+            <WizardStep id="TecnicalLocationStep"
+                  title="{i18n>PMNotificationStep1}"
+                  validated="true"
+                  activate="validateStep1"
+                  icon="sap-icon://cart">
+              <MessageStrip class="sapUiSmallMarginBottom"
+                                text="{i18n>PMNotificationStep1Desc}"
+                                showIcon="true"/>
+              <l:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+                <l:content>
+
+                  <FlexBox
+                    direction="Column"
+					          alignItems="Start">
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                       text="{i18n>Plant}"
+                       ></Label>
+                    <Select
+                      id="listPMPlanta"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	      }"                       
+                       change="onChangePMPlant"
+                       enabled="false">
+                      <core:Item key="{id}" text="{desc}" />
+                    </Select>
+                    
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>Function}"></Label>
+                    <ComboBox
+                      id="listPMFunction"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangePMFunction">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+                  </FlexBox>
+                    
+                  <FlexBox
+                    direction="Column"
+					          alignItems="Start">
+                    <items>
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>Process}"></Label>
+                      <ComboBox
+                        id="listPMProceso"                        
+                        class="sapUiTinyMarginBegin"
+                        showSecondaryValues= "true"
+                        items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                        enabled="false"
+                        selectionChange="onChangePMProceso">
+                        <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                      </ComboBox>
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>Equipment}"></Label>
+                      <ComboBox
+                        id="listPMEquipment"
+                        class="sapUiTinyMarginBegin"
+                        showSecondaryValues= "true"
+                        items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+                        }"
+                        selectionChange="onChangePMEquipment">
+                        <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                      </ComboBox>
+                    </items>
+                  </FlexBox>
+
+                  <FlexBox
+                    direction="Column"
+					          alignItems="Start">
+                    <items>
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>SubProcess}"></Label>
+                      <ComboBox
+                        id="listPMSubProceso"
+                        class="sapUiTinyMarginBegin"
+                        items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                        selectionChange="onChangePMSubProceso">
+                        <core:Item key="{id}" text="{desc}" />
+                      </ComboBox>
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>SubEquipment}"></Label>
+                      <ComboBox
+                        id="listPMSubEquipment"
+                        class="sapUiTinyMarginBegin"
+                        showSecondaryValues= "true"
+                        items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                         change="onchangeModules"
+                        selectionChange="onselectionChangeModules">
+                        <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                      </ComboBox>
+                    </items>
+                  </FlexBox>                 
+                  
+                </l:content>
+              </l:Grid>                                                                                                                                                                   
+              
+            </WizardStep>
+            <WizardStep id="DescriptionStep"
+                  validated="true"
+                  title="{i18n>PMNotiStep2}"
+                  activate="descValidation">
+              <MessageStrip class="sapUiSmallMarginBottom"
+                  text="{i18n>PMNotificationStep2Desc}"
+                  showIcon="true"/>
+
+              <form:SimpleForm
+                editable="true">
+                <Label text="{i18n>PMNotiStep1Desc}" required="true"/>
+                <Input valueStateText="{i18n>statePMNotiDesc}"
+                    valueState="{/NotiDescState}" id="PMNotiDesc" liveChange="descValidation"
+                    placeholder="{i18n>holderPMNotiDesc}" value="{/PMNotiDesc}"/>
+
+                      <Label class="sapMTitleStyleH6 sapUiSmallMarginTop"
+                          text="{i18n>Priority}"></Label>
+                <Select
+                    id="priority"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+					             path: '/',
+					             sorter: { path: 'desc' }
+			              }">
+                  <core:Item key="{id}" text="{desc}" />
+                </Select>                
+
+                <Label text="{i18n>Author}" required="true"/>
+                <Input valueStateText="{i18n>statePMNotiAuthor}"
+                    valueState="{/NotiAuthorState}" id="PMNotiAuthor" liveChange="descValidation"
+                    placeholder="{i18n>holderPMNotiAuthor}" value="{/PMNotiAuthor}"/>
+
+                      <CheckBox text="{i18n>Stop}" valueState="Error" id="PMStop"/>
+
+                   <Label class="sapMTitleStyleH6 sapUiTinyMarginEnd sapUiSmallMarginTop"
+                        text="{i18n>ExplainedText}"></Label>
+                    <TextArea value="{/productDescription}" id="PMLargeText" />
+                  </form:SimpleForm>
+              
+            </WizardStep>
+            <WizardStep id="CauseStep"
+                  validated="false"
+                  activate="causeActivation"
+                  title="{i18n>PMNotiStep3}">
+              <MessageStrip class="sapUiSmallMarginBottom"
+                  text="{i18n>PMNotificationStep3Desc}"
+                  showIcon="true"/>
+              <l:Grid defaultSpan="L4 M12 S12" class="sapUiSmallMarginTop">
+                <l:content>
+                  <FlexBox
+                    direction="Column">
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>ObjectPartCategory}"></Label>
+                    <ComboBox
+                      id="listPMCategoriaParteObjeto"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangeObjectCategory">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+                  </FlexBox>
+                  <FlexBox
+                    direction="Column">
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>ObjectPart}"></Label>
+                    <ComboBox
+                      id="listPMParteObjeto"
+                      showSecondaryValues= "true"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                    </ComboBox>
+                  </FlexBox>
+                </l:content>
+              </l:Grid>
+              <l:Grid defaultSpan="L4 M6 S6" class="sapUiTinyMarginTop">
+                <l:content>
+                  <FlexBox
+                    direction="Column">
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>DamageCategory}"></Label>
+                    <ComboBox
+                      id="listPMCatSintoma"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangeSintCategory">
+                      <core:Item key="{id}" text="{desc}"/>
+                    </ComboBox>
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>CauseCategory}"></Label>
+                    <ComboBox
+                      id="listPMCatCausa"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangeCauseCategory">
+                      <core:Item key="{id}" text="{desc}"/>
+                    </ComboBox>
+                    
+                  </FlexBox>
+
+                  <FlexBox
+                    direction="Column">
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>Damage}"></Label>
+                    <ComboBox
+                      id="listPMAveria"
+                      class="sapUiTinyMarginBegin"
+                      showSecondaryValues= "true"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                    </ComboBox>
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                        text="{i18n>Cause}"></Label>
+                    <ComboBox
+                      id="listPMCausa"
+                      class="sapUiTinyMarginBegin" 
+                      showSecondaryValues= "true"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                    </ComboBox>
+                  </FlexBox>
+
+                  <FlexBox
+                    direction="Column">
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom" text="{i18n>TextDamage}"/>
+                    <Input valueStateText="{i18n>statePMNotiDesc}"
+                        id="PMSintomaText"/>
+                  
+
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom" text="{i18n>TextCause}"/>
+                    <Input valueStateText="{i18n>statePMNotiDesc}"
+                        id="PMCauseText"/>
+                  </FlexBox>
+                  
+                </l:content>                
+              </l:Grid>
+              
+            </WizardStep>
+          </Wizard>
+        </content>       
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

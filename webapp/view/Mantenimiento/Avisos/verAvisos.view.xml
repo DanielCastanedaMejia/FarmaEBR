@@ -1,0 +1,250 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+    xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>pageViewPMNotification}"
+      backgroundDesign="Solid"
+      showHeader="false">
+        <Toolbar
+        class="toolbar_default">
+          <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+          <Image src="images/SAP_Logo.png">
+          </Image>
+          <core:Icon
+          src="sap-icon://grid"
+          class="toolbar_title sapUiSmallMarginBegin">
+            <core:layoutData>
+              <FlexItemData growFactor="1" />
+            </core:layoutData>
+          </core:Icon>
+          <Label labelFor="myColumn"
+            class="toolbar_title"
+            text="Avisos de Mantenimiento"
+            wrapping="true"
+        />
+          <ToolbarSpacer/>
+          <Label
+              id ="username"
+              text=""
+              class="toolbar_color"></Label>
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+          </Button>
+        </Toolbar>
+        <fb:FilterBar header="Avisos"
+                      reset="onReset" search="onFilterSearch" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+          <fb:filterItems>
+
+            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+              <fb:control>
+                <ComboBox id="planta">
+                  <items>
+                    <core:Item key="1710" text="Planta 1710"/>
+                  </items>
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="A" label="{i18n>StartDate}">
+              <fb:control>
+                <DatePicker
+                  id="start_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="B" label="{i18n>EndDate}">
+              <fb:control>
+                <DatePicker
+                  id="end_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="C" label="Parada">
+              <fb:control>
+                <CheckBox valueState="Error" id="PMStop"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="D" label="Proceso">
+              <fb:control>
+                <ComboBox
+                    id="listPMProceso"
+                    items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                    enabled="false"
+                    selectionChange="onChangePMProceso">
+                  <core:Item key="{id}" text="{desc}" />
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="E" label="SubProceso">
+              <fb:control>
+                <ComboBox
+                      id="listPMSubProceso"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                      selectionChange="onChangePMSubProceso">
+                  <core:Item key="{id}" text="{desc}" />
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="F" label="Funcion">
+              <fb:control>
+                <ComboBox
+                      id="listPMFunction"
+                      items="{
+					                path: '/',
+					                sorter: { path: 'desc' }
+			        	        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                  <core:Item key="{id}" text="{desc}" />
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+            
+          </fb:filterItems>
+         
+        </fb:FilterBar>
+        <content>
+          
+  <IconTabBar
+		id="IconTabBar_Notifications"
+		select="handleIconTabBarSelect"
+		class="sapUiResponsiveContentPadding">
+		<items>
+			<IconTabFilter
+				showAll="true"
+				count="{/total}"
+				text="{i18n>PMAvisos}"
+				key="All" />
+			<IconTabSeparator />
+			<IconTabFilter
+				icon="sap-icon://begin"
+				iconColor="Positive"
+				count="{/METR}"
+				text="{i18n>InTreatment}"
+				key="METR" />
+			<IconTabFilter
+				icon="sap-icon://create-entry-time"
+				iconColor="Critical"
+				count="{/MEAB}"
+				text="{i18n>Pending}"
+				key="MEAB" />
+			<IconTabFilter
+				icon="sap-icon://complete"
+				iconColor="Negative"
+				count="{/CERR}"
+				text="{i18n>Finished}"
+				key="CERR" />
+      <IconTabFilter
+				icon="sap-icon://connected"
+				iconColor="Neutral"
+				count="{/ORAS}"
+				text="{i18n>OrderAssigned}"
+				key="ORAS" />
+      <IconTabFilter
+				icon="sap-icon://cancel-share"
+				iconColor="Default"
+				count="{/NORAS}"
+				text="{i18n>NotOrderAssigned}"
+				key="NORAS" />
+		</items>
+	</IconTabBar>
+          <Table
+  id="PMNotificationList"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="8em">
+                <Label text="{i18n>columnID}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="{i18n>columnType}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnDesc}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnCreatedby}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnReportedby}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnDate}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>Status}"/>
+              </Column>
+            <Column
+                minScreenWidth="Tablet"
+                demandPopin="false"
+                width="4em">
+                <Label text="{i18n>Stop}"/>
+              </Column>
+            </columns>
+            
+            <items>
+              <ColumnListItem
+                type="Navigation"
+				        press="onPMNotificationDetail">
+                <cells>
+                  <ObjectIdentifier title="{id}"/>
+                  <Text text="{type}"/>
+                  <Text text="{description}"/>
+                  <Text text="{createdby}"/>
+                  <Text text="{reportedby}"/>
+                  <Text text="{date}"/>
+                  <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
+                  <Text text="{status}"/>
+                  <Text text="{stop}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

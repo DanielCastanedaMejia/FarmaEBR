@@ -1,0 +1,47 @@
+﻿<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+  <Dialog
+     id="AddComponentDialog"
+     title="{i18n>AddComponent}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="{i18n>Material}"/>
+        <ComboBox
+                    id="material_addOperation"
+                    showSecondaryValues="true"
+                    items="{
+					             path: '/',
+                       sorter: { path: 'id' }
+			              }">
+          <core:ListItem key="{id}" text="{desc}" additionalText="{id}"/>
+        </ComboBox>
+        <!-- Filter by plan name(s) -->
+        <Label text="{i18n>Quantity}"/>
+        <Input
+        id="inputQuantity"
+				class="sapUiSmallMarginBottom" />        
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>AddComponent}"
+         icon="sap-icon://add-product"
+         press="onCloseDialogAddComponentConfirm"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>LabelCancel}"
+         icon="sap-icon://cancel"
+         press="onCloseDialogAddComponentCancel"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

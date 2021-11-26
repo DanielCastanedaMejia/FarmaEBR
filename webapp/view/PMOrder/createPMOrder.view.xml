@@ -1,0 +1,132 @@
+﻿<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PMOrder.createPMOrder"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="createPM_Order"
+      title="{i18n>pageCreatePMOrder}"
+      showNavButton="true"
+		 navButtonPress="onNavBack">
+        <content>
+          <Panel
+				id="PMOrderHeader"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+            <headerToolbar>
+              <Toolbar>
+                <Title text="{i18n>PMNotificationHeader}" level="H2"/>
+                <ToolbarSpacer />
+              </Toolbar>
+            </headerToolbar>
+            <content>
+              <form:SimpleForm
+                 editable="true">
+                <Label class="sapMTitleStyleH6 sapUiTinyMarginEnd"
+                  text="{i18n>PMOrderType}"></Label>
+                <Select
+                  id="PMType">
+                  <items>
+                    <core:ListItem key="ZOMC" text="ORDEN MANTENIMIENTO CORRECTIVO"/>
+                    <core:ListItem key="ZOCF" text="PLAN	ORDEN/AVISO DE MANTENIMIENTO"/>
+                  </items>
+                </Select>
+
+                <Label text="{i18n>PMNotiStep1Desc}" required="true"/>
+                <Input id="PM_orderDesc"/>
+
+                <Label class="sapMTitleStyleH6"
+                    text="{i18n>Priority}"></Label>
+                <Select
+                  id="priority"
+                  items="{
+					             path: '/',
+					             sorter: { path: 'desc' }
+			         }">
+                  <core:Item key="{id}" text="{desc}" />
+                </Select>
+                <Label text="{i18n>EstimatedWorkOperation}" required="true"/>
+                <Input id="Work_planned"/>
+              </form:SimpleForm>
+            </content>
+          </Panel>
+
+          <Panel
+				id="PMOrderOperation"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+            <headerToolbar>
+              <Toolbar>
+                <Title text="{i18n>PMOrderOperation}" level="H2"/>
+                <ToolbarSpacer />
+              </Toolbar>
+            </headerToolbar>
+            <content>
+              <Table
+                  id="PMOperationList"
+                  class="sapUiResponsiveMargin"
+                  width="auto"
+                  items="{/ITEMS}">
+                <columns>
+                  <Column
+                    hAlign="End"
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                    width="5em">
+                    <Label text="{i18n>columnIDOp}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>columnPlant}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>PMWorkCenter}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnControlKey}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnDesc}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="false">
+                    <Label text="{i18n>columnWork}"/>
+                  </Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{operation}"/>
+                      <Text text="{plant}"/>
+                      <Text text="{work_center}"/>
+                      <Text text="{control_key}"/>
+                      <Text text="{description}"/>
+                      <Text text="{work}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </content>
+          </Panel>
+        </content>
+        
+        <footer>
+          <OverflowToolbar>
+            <ToolbarSpacer/>
+            <Button id="createButton" text="Crear orden" type="Accept" press="onCreatePMOrder"/>
+            <Button id="viewButton" text="Visualizar orden" type="Emphasized" press="onViewPMOrder"/>
+          </OverflowToolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

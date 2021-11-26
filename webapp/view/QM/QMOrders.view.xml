@@ -1,0 +1,216 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.QM.QMOrders"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      showNavButton="true"
+      title="Ordenes Activas"
+      navButtonPress="onNavBack"
+      class="sapUiResponsiveContentPadding">
+        <content>
+          <Panel>
+            <l:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+              <l:content>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>StartDate}"></Label>
+                  <DatePicker
+                    id="start_date"
+                    valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                    change="handleChange"
+                    class="sapUiTinyMarginBegin"/>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                       text="{i18n>EndDate}"></Label>
+                    <DatePicker
+                      id="end_date"
+                      valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                      change="handleChange"
+                      class="sapUiTinyMarginBegin"/>
+                  </items>
+                </FlexBox>
+
+              </l:content>
+            </l:Grid>
+          </Panel>
+          
+          <OverflowToolbar>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://action-settings" type="Transparent" press="_openModalColumn"/>
+          </OverflowToolbar>
+          
+          <IconTabBar
+            id="IconTabBar_Orders"
+            select="handleIconTabBarSelect"
+            class="sapUiResponsiveContentPadding"
+            visible="false">
+            <items>
+              <IconTabFilter
+                showAll="true"
+                count="{/TOTAL}"
+                text="TOTAL"
+                key="All" />
+              <IconTabSeparator />
+              <IconTabFilter
+                icon="sap-icon://begin"
+                iconColor="Positive"
+                count="{/LIB}"
+                text="{i18n>Released}"
+                key="LIB" />
+              <IconTabFilter
+                icon="sap-icon://create-entry-time"
+                iconColor="Critical"
+                count="{/PEND}"
+                text="{i18n>Pending}"
+                key="PEND" />
+              <IconTabFilter
+                icon="sap-icon://complete"
+                iconColor="Negative"
+                count="{/CERR}"
+                text="{i18n>Finished}"
+                key="CERR" />
+              <IconTabFilter
+                icon="sap-icon://connected"
+                iconColor="Neutral"
+                count="{/ABIE}"
+                text="{i18n>Open}"
+                key="ABIE" />              
+            </items>
+          </IconTabBar>
+          <Table
+  id="PPOrders_list"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Orden"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Codigo Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Planta"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Fecha Inicio"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="Fecha Fin"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Tipo"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Lote Inspección"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Cant Prog"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="{i18n>column.status}"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="ESTATUS MII"/>
+              </Column>
+            </columns>
+
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                press="onRecordCapture_view">
+                <cells>
+                  <ObjectIdentifier title="{NUM_ORDEN}" emphasized="false"/>
+                  <Text text="{MATERIAL}"/>
+                  <Text text="{DESC_MATERIAL}"/>
+                  <Text text="{PLANTA}"/>
+                  <ObjectStatus text="{
+                    path: 'INICIO_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <ObjectStatus text="{
+                    path: 'FIN_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <Text text="{TIPO}"/>
+                  <Text text="{LOTE}"/>
+                  <Text text="{CANTIDAD_PROGRAMADA}"/>
+                  <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderState'
+                          }"
+                    state="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderStateColor'
+                    }"
+                    />
+                    <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS_MII'
+                          }"
+                    state="{
+                            path: 'ESTATUS_MII',
+                            formatter: '.formatter.miiStateColor'
+                    }"
+                    />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+        <footer>
+          <OverflowToolbar>
+            <ToolbarSpacer/>
+            <Button text="{i18n>ButtonView}" press="QMOrders_view" icon="sap-icon://activity-items"/>
+          </OverflowToolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

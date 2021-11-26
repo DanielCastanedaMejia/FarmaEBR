@@ -1,0 +1,203 @@
+﻿<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Mantenimiento.Ordenes.detalleOperacion"
+	xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+	xmlns:form="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+  <Toolbar
+        class="toolbar_default">
+    <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+    <Image src="images/SAP_Logo.png">
+    </Image>
+    <core:Icon
+    src="sap-icon://show-edit"
+    class="toolbar_title sapUiSmallMarginBegin">
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <MenuButton text="Detalle Operación" class="customtitle">
+      <menu>
+        <Menu>
+          <items>
+            <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+          </items>
+        </Menu>
+      </menu>
+    </MenuButton>
+    <ToolbarSpacer/>
+    <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+    <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+    </Button>
+  </Toolbar>
+  <uxap:ObjectPageLayout
+		id="ObjectPageLayout"
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+          <Title text="Operación {/activity}" wrapping="true" class="sapUiSmallMarginEnd"/>
+        </uxap:expandedHeading>
+
+        <uxap:snappedHeading>
+          <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+            <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+              <Title text="Operación {/activity}" wrapping="true"/>
+            </FlexBox>
+          </FlexBox>
+        </uxap:snappedHeading>
+
+        <uxap:actions>
+          <Button
+						text="Componente"
+            icon="sap-icon://add"
+            press="onOpenDialogAddComponent"
+						type="Emphasized"/>
+          <Button
+           icon="sap-icon://product"
+           type="Transparent"
+           tooltip="Consumir materiales"
+           press="onOpenDialogAddConsumption"/>
+          <Button
+           icon="sap-icon://time-entry-request"
+           type="Transparent"
+           tooltip="Notificar tiempos"
+           press="onOpenDialogAddNotification"/>
+        </uxap:actions>
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+
+    <uxap:headerContent>
+      <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+        <layout:VerticalLayout >
+          <ObjectStatus text="{/description}"/>
+          <ProgressIndicator
+					percentValue="{/percentage}"
+					displayValue="{/percentage}%"
+					showValue="true"
+					state="None"/>
+          <ObjectIdentifier title="{/system_status}"/>
+        </layout:VerticalLayout>
+        <layout:VerticalLayout class="sapUiLargeMarginBegin">
+          <ObjectStatus text="Trabajo Planeado: {/work_activity} {/un_work}"/>
+          <ObjectStatus text="Trabajo Realizado: {/work_actual} {/un_work}"/>
+        </layout:VerticalLayout>
+      </FlexBox>
+    </uxap:headerContent>
+
+    <uxap:ObjectPageSection title="Información General">
+      <uxap:subSections>
+        <uxap:ObjectPageSubSection>
+          <uxap:blocks>
+            <form:SimpleForm
+          minWidth="1024"
+          editable="false"
+          layout="ResponsiveGridLayout"
+          labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+          columnsL="1" columnsM="1">
+              <form:content>
+                <Label text="{i18n>PMWorkCenter}" />
+                <Text text="{/work_center} {/descWorkCenter}" />
+                <Label text="Planta" />
+                <Text text="{/plant}" />
+                <Label text="Clase de Actividad" />
+                <Text text="{/acttype}" />
+                <Label text="Orden" />
+                <Text text="{/order}" />
+              </form:content>
+            </form:SimpleForm>
+          </uxap:blocks>
+        </uxap:ObjectPageSubSection>
+      </uxap:subSections>
+    </uxap:ObjectPageSection>
+    
+    <uxap:sections>
+      <uxap:ObjectPageSection title="Componentes">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <Table
+                 id="PMComponentList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+                <columns>
+                  <Column>
+                    <Label text="{i18n>columnReservNo}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>columnResItem}"/>
+                  </Column>
+                  <Column
+                    hAlign="End"
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                    width="5em">
+                    <Label text="{i18n>columnIDPos}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>columnMaterial}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column_descMaterial}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column_quantity}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnUN}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column_stage}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnPlant}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column_quantityConsumption}"/>
+                  </Column>
+                  <Column>
+                    <Label text="{i18n>column_quantityConsumption_order}"/>
+                  </Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{reserv_no}"/>
+                      <Text text="{res_item}"/>
+                      <Text text="{item_number}"/>
+                      <Text text="{material}"/>
+                      <Text text="{matl_desc}"/>
+                      <Text text="{quantity}"/>
+                      <Text text="{unit}"/>
+                      <Text text="{stage}"/>
+                      <Text text="{plant}"/>
+                      <Input type="Number" value="{quantity_consumption}" placeholder="cantidad"/>
+                      <Text text="{consumption}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

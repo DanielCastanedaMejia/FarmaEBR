@@ -1,0 +1,25 @@
+﻿<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.Home"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc">
+    <Page
+      id="page"
+      title="DEMO FARMA">
+      <content>        
+        <mvc:XMLView viewName="sap.ui.demo.webapp.view.Header"/>
+        <mvc:XMLView viewName="sap.ui.demo.webapp.view.BlockLayout"/>        
+        <!--
+        <Button
+						icon="sap-icon://hello-world"
+						press="onOpenDialog"/>
+        -->        
+      </content>
+      <footer>
+        <Toolbar>
+          <ToolbarSpacer/>
+          <Label
+            class="sapUiSmallMarginEnd"></Label>
+        </Toolbar>
+      </footer>
+    </Page>
+</mvc:View>

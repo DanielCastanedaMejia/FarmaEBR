@@ -1,0 +1,1207 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>GIM Plan de Producción </title>
+
+
+    <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../../css/navBar.css" rel="stylesheet">
+    <link href="../../../css/bootstrapSelect/bootstrap-select.min.css" rel="stylesheet">
+    <link href="../../../css/gim.css" rel="stylesheet">
+
+    <!-- Include fusioncharts core library -->
+    <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+    <!-- Include fusion theme -->
+   <script type="text/javascript" src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
+
+   <script type="text/javascript" src="../../../js/jquery-1.12.0.min.js"></script>
+   <script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+
+
+</head>
+<body>
+     <div class="chart">
+	 <div id="chart-container" >FusionCharts XT will load here!</div>
+     </div>
+	
+    <div class="col-md-3 col-sm-3 col-xs-12">
+            <button id="mostrarDetalle" type="button" class="btn btn-default input-sm" style="width:80%"><i class="fa fa-table" aria-hidden="true" style="color:#6190FF"></i> <small>Consultar Detalle</small></button>
+     </div>
+
+    <!--Modal Confirmar Reservas -->
+    <div class="modal fade bs-example-modal-md" id="modalgantdetail" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="background: #6190FF;color:white;">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel"><i class="fa fa-bookmark"></i> Detalle de Operacion</h4>
+                </div>
+                <!-- modal-header-->
+                <div class="modal-body">
+                    <div class="panel-body">
+                        <div class="row">
+                        		<div class="col-sm-12">
+                               		<div class="form-group col-xs-12 col-sm-12">
+                                    			<label class="control-label col-md-3 col-sm-3 col-xs-3"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800  font-weight:bold"></i> Orden:</label>
+		                                    <label class="control-label col-md-2 col-sm-2 col-xs-2"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> 1000503</label>
+                        			            <label class="control-label col-md-2 col-sm-2 col-xs-2"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i> Estatus:</label>
+		                                    <label class="control-label col-md-4 col-sm-4 col-xs-4"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> En Proceso</label>
+				</div>
+			</div>
+                                <!-- col-sm-11-->
+                        </div><!-- row-->
+
+                        <div class="row">
+                        		<div class="col-sm-12">
+                              		 <div class="form-group col-xs-12 col-sm-12">
+                                    			<label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i> Puesto de Trabajo:</label>
+		                                    <label class="control-label col-md-6 col-sm-6 col-xs-6"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> 1101 Rolado</label>
+                        		        	</div>
+			</div>
+                                <!-- col-sm-11-->
+                        	</div><!-- row-->
+
+
+                        <div class="row">
+                        		<div class="col-sm-12">
+                               		<div class="form-group col-xs-12 col-sm-12">
+                                    			<label class="control-label col-md-3 col-sm-3 col-xs-3"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800  font-weight:bold"></i> Cantidad Programada:</label>
+		                                    <label class="control-label col-md-2 col-sm-2 col-xs-2"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> 100</label>
+                        			            <label class="control-label col-md-4 col-sm-4 col-xs-4"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i> Cantidad Producida:</label>
+		                                    <label class="control-label col-md-2 col-sm-2 col-xs-2"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> 10</label>
+				</div>
+			</div>
+                                <!-- col-sm-11-->
+                        </div><!-- row-->
+
+                        <div class="row">
+                        		<div class="col-sm-12">
+                              		<div class="form-group col-xs-12 col-sm-12">
+                                    			<label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i> Porcentaje:</label>
+		                                    <label class="control-label col-md-6 col-sm-6 col-xs-6"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> 10%</label>
+                        		        	</div>
+			</div>
+                                <!-- col-sm-11-->
+                        </div><!-- row-->
+
+                        <div class="row">
+                        		<div class="col-sm-12">
+                              		 <div class="form-group col-xs-12 col-sm-12">
+                                    			<label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i> Fecha Inicial:</label>
+					<label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i>01/05/2019 00:01:</label>
+                       		       	</div>
+			</div>
+                                <!-- col-sm-11-->
+                        </div><!-- row-->
+
+                        <div class="row">
+                        		<div class="col-sm-12">
+                              		 <div class="form-group col-xs-12 col-sm-12">
+		                                    <label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800"></i> Fecha FInal:</label>
+					<label class="control-label col-md-5 col-sm-5 col-xs-5"><i class="fa fa-exclamation-circle" style="font-size:26px;color:#ffd800 font-weight:bold"></i>01/05/2019 23:59:</label>
+                       		        	</div>
+			</div>
+                                <!-- col-sm-11-->
+                        	</div><!-- row-->
+
+                      </div><!-- /.panel-body -->
+                    </div><!-- modal-body-->
+                    <div class="modal-footer">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+			<button type="button" onclick="window.location.replace('Gant.html')" id="btncambiarorden" class="btn btn-info" data-dismiss="modal">Detener<i class="fa fa-remove" aria-hidden="true"></i></button>			
+
+ 			<select id="idordennueva" class="form-control col-md-3 col-sm-3 col-xs-3" >
+				  <option value="1000562">1000562</option>
+				  <option value="1000561">1000561</option>
+				  <option value="1000560">1000560</option>
+				  <option value="1000559">1000559</option>
+				  <option value="1000558">1000558</option>
+				  <option value="1000557">1000557</option>
+				<option value="1000556">1000556</option>
+				<option value="1000555">1000555</option>
+			</select>
+                            <button type="button" onclick="window.location.replace('Gant.html')" id="btndetener" class="btn btn-danger" data-dismiss="modal">Detener<i class="fa fa-remove" aria-hidden="true"></i></button>
+
+                        </div><!-- modal-footer-->
+                    </div><!-- modal-footer-->
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+    </div><!-- modal-->
+
+</body>
+
+
+   <script type="text/javascript">
+	const dataSource = {
+	  chart: {
+	    caption: "Programación de Ordenes por Puesto de Trabajo GIM",
+	    subcaption: "GIM Plant",
+	    theme: "ocean",
+	    dateformat: "dd/mm/yyyy",
+	    plottooltext: "Orden: <b>$label</b>  Periodo: <b>$start - $end</b>  Producido: 10/100"
+	  },
+	  legend: {
+	    item: [
+	     {	
+ //Estatus 2
+	        label: "En Proceso",
+	        color: "#F2726F"
+	      },
+	      {
+ //Estatus 3
+	        label: "En Pausa",
+	        color: "#FFC533"
+	      },
+	      {
+ //Estatus 1
+	        label: "Finalizada",
+	        color: "#62B58D"
+	      },
+	      {
+ //Estatus 4
+	        label: "Pendiente",
+	        color: "#50BDF3"
+	      }
+    ]
+  },
+  tasks: {
+    task: [
+      {
+        label: "1000558",
+        processid: "A",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "1"
+      },
+      {
+        label: "1000559",
+        processid: "A",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "2"
+      },
+      {
+        label: "1000560",
+        processid: "A",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "3"
+      },
+      {
+        label: "1000561",
+        processid: "A",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "4"
+      },
+      {
+        label: "1000562",
+        processid: "A",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "5"
+      },
+      {
+        label: "1000563",
+        processid: "A",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "6"
+      },
+      {
+        label: "1000564",
+        processid: "A",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "7"
+      },
+
+      {
+        label: "1000557",
+        processid: "B",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "8"
+      },
+      {
+        label: "1000558",
+        processid: "B",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "9"
+      },
+      {
+        label: "1000559",
+        processid: "B",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "10"
+      },
+      {
+        label: "1000560",
+        processid: "B",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "11"
+      },
+      {
+        label: "1000561",
+        processid: "B",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "12"
+      },
+      {
+        label: "1000562",
+        processid: "B",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "13"
+      },
+      {
+        label: "1000563",
+        processid: "B",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "14"
+      },
+
+      {
+        label: "1000556",
+        processid: "C",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "15"
+      },
+      {
+        label: "1000557",
+        processid: "C",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "16"
+      },
+      {
+        label: "1000558",
+        processid: "C",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "17"
+      },
+      {
+        label: "1000559",
+        processid: "C",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "18"
+      },
+      {
+        label: "1000560",
+        processid: "C",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "19"
+      },
+      {
+        label: "1000561",
+        processid: "C",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "20"
+      },
+      {
+        label: "1000562",
+        processid: "C",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "21"
+      },
+
+      {
+        label: "1000555",
+        processid: "D",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "22"
+      },
+      {
+        label: "1000556",
+        processid: "D",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "23"
+      },
+      {
+        label: "1000557",
+        processid: "D",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "24"
+      },
+      {
+        label: "1000558",
+        processid: "D",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "25"
+      },
+      {
+        label: "1000559",
+        processid: "D",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "26"
+      },
+      {
+        label: "1000560",
+        processid: "D",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "27"
+      },
+      {
+        label: "1000561",
+        processid: "D",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "28"
+      },
+
+      {
+        label: "1000554",
+        processid: "E",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "29"
+      },
+      {
+        label: "1000555",
+        processid: "E",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "30"
+      },
+      {
+        label: "1000556",
+        processid: "E",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "31"
+      },
+      {
+        label: "1000557",
+        processid: "E",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "32"
+      },
+      {
+        label: "1000558",
+        processid: "E",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "33"
+      },
+      {
+        label: "1000559",
+        processid: "E",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "34"
+      },
+      {
+        label: "1000560",
+        processid: "E",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "35"
+      },
+
+      {
+        label: "1000553",
+        processid: "F",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "36"
+      },
+      {
+        label: "1000554",
+        processid: "F",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "37"
+      },
+      {
+        label: "1000555",
+        processid: "F",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "38"
+      },
+      {
+        label: "1000556",
+        processid: "F",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "39"
+      },
+      {
+        label: "1000557",
+        processid: "F",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "40"
+      },
+      {
+        label: "1000558",
+        processid: "F",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "41"
+      },
+      {
+        label: "1000559",
+        processid: "F",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "42"
+      },
+
+      {
+        label: "1000552",
+        processid: "G",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "43"
+      },
+      {
+        label: "1000553",
+        processid: "G",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "44"
+      },
+      {
+        label: "1000554",
+        processid: "G",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "45"
+      },
+      {
+        label: "1000555",
+        processid: "G",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "46"
+      },
+      {
+        label: "1000556",
+        processid: "G",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "47"
+      },
+      {
+        label: "1000557",
+        processid: "G",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "48"
+      },
+      {
+        label: "1000558",
+        processid: "G",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "49"
+      },
+
+      {
+        label: "1000551",
+        processid: "H",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "50"
+      },
+      {
+        label: "1000552",
+        processid: "H",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "51"
+      },
+      {
+        label: "1000553",
+        processid: "H",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "52"
+      },
+      {
+        label: "1000554",
+        processid: "H",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "53"
+      },
+      {
+        label: "1000555",
+        processid: "H",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "54"
+      },
+      {
+        label: "1000556",
+        processid: "H",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "55"
+      },
+      {
+        label: "1000557",
+        processid: "H",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "56"
+      },
+
+      {
+        label: "1000550",
+        processid: "I",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "57"
+      },
+      {
+        label: "1000551",
+        processid: "I",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "58"
+      },
+      {
+        label: "1000552",
+        processid: "I",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "59"
+      },
+      {
+        label: "1000553",
+        processid: "I",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "60"
+      },
+      {
+        label: "1000554",
+        processid: "I",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "61"
+      },
+      {
+        label: "1000555",
+        processid: "I",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "62"
+      },
+      {
+        label: "1000556",
+        processid: "I",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "63"
+      },
+
+      {
+        label: "1000549",
+        processid: "J",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "64"
+      },
+      {
+        label: "1000550",
+        processid: "J",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "65"
+      },
+      {
+        label: "1000551",
+        processid: "J",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "66"
+      },
+      {
+        label: "1000552",
+        processid: "J",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "67"
+      },
+      {
+        label: "1000553",
+        processid: "J",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "68"
+      },
+      {
+        label: "1000554",
+        processid: "J",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "69"
+      },
+      {
+        label: "1000555",
+        processid: "J",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "70"
+      },
+
+      {
+        label: "1000548",
+        processid: "K",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "71"
+      },
+      {
+        label: "1000549",
+        processid: "K",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "72"
+      },
+      {
+        label: "1000550",
+        processid: "K",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "73"
+      },
+      {
+        label: "1000551",
+        processid: "K",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "74"
+      },
+      {
+        label: "1000552",
+        processid: "K",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "75"
+      },
+      {
+        label: "1000553",
+        processid: "K",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "76"
+      },
+      {
+        label: "1000554",
+        processid: "K",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "77"
+      },
+
+      {
+        label: "1000547",
+        processid: "L",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "78"
+      },
+      {
+        label: "1000548",
+        processid: "L",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "79"
+      },
+      {
+        label: "1000549",
+        processid: "L",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "80"
+      },
+      {
+        label: "1000550",
+        processid: "L",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "81"
+      },
+      {
+        label: "1000551",
+        processid: "L",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "82"
+      },
+      {
+        label: "1000552",
+        processid: "L",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "83"
+      },
+      {
+        label: "1000553",
+        processid: "L",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "84"
+      },
+
+      {
+        label: "1000546",
+        processid: "M",
+        start: "2/6/2019",
+        end: "3/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        producido: "5",
+        producir: "100",
+        id: "85"
+      },
+      {
+        label: "1000547",
+        processid: "M",
+        start: "3/6/2019",
+        end: "4/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "86"
+      },
+      {
+        label: "1000548",
+        processid: "M",
+        start: "4/6/2019",
+        end: "5/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#62B58D",
+        id: "87"
+      },
+      {
+        label: "1000549",
+        processid: "M",
+        start: "5/6/2019",
+        end: "6/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#F2726F",
+        id: "88"
+      },
+      {
+        label: "1000550",
+        processid: "M",
+        start: "6/6/2019",
+        end: "7/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "89"
+      },
+      {
+        label: "1000551",
+        processid: "M",
+        start: "7/6/2019",
+        end: "8/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "90"
+      },
+      {
+        label: "1000552",
+        processid: "M",
+        start: "8/6/2019",
+        end: "9/6/2019",
+        bordercolor: "#FFFFFF",
+        color: "#50BDF3",
+        id: "91"
+      }
+    ]
+  },
+  processes: {
+
+    isbold: "1",
+    headertext: "OPERACIONES (Puestos de Trabajo)",
+    process: [
+      {
+        label: "10 CORTE Y DOBLADO",
+        id: "A"
+      },
+      {
+        label: "20 ROLADO DE TUBO",
+        id: "B"
+      },
+      {
+        label: "30 ROLADO DE TUBO",
+        id: "C"
+      },
+      {
+        label: "40 SOLDADURA INTRNA",
+        id: "D"
+      },
+      {
+        label: "50 FRESA NUMERO 2",
+        id: "E"
+      },
+      {
+        label: "60 PUNTEADORA",
+        id: "F"
+      },
+      {
+        label: "70 SOLDADURA EXTERNA",
+        id: "G"
+      },
+      {
+        label: "80 PULIDO Y ACABADO",
+        id: "H"
+      },
+      {
+        label: "90 TUNEL DE PINTURA",
+        id: "I"
+      },
+      {
+        label: "100 ACABADO",
+        id: "J"
+      },
+      {
+        label: "110 ACABADO",
+        id: "K"
+      },
+      {
+        label: "120 ESTIRADO DE TUBO",
+        id: "L"
+      },
+      {
+        label: "130 ENSAMBLE  FINAL",
+        id: "M"
+      }
+    ]
+  },
+  categories: [
+    {
+      category: [
+        {
+          start: "2/6/2019",
+          end: "9/6/2019",
+          name: "Junio 2019"
+        }
+      ]
+    },
+    {
+      bgalpha: "0",
+      category: [
+        {
+          start: "2/6/2019",
+          end: "3/6/2019",
+          label: "Domingo"
+        },
+        {
+          start: "3/6/2019",
+          end: "4/6/2019",
+          label: "Lunes"
+        },
+        {
+          start: "4/6/2019",
+          end: "5/6/2019",
+          label: "Martes"
+        },
+        {
+          start: "5/6/2019",
+          end: "6/6/2019",
+          label: "Miercoles"
+        },
+        {
+          start: "6/6/2019",
+          end: "7/6/2019",
+          label: "Jueves"
+        },
+        {
+          start: "7/6/2019",
+          end: "8/6/2019",
+          label: "Viernes"
+        },
+        {
+          start: "8/6/2019",
+          end: "9/6/2019",
+          label: "Sabado"
+        }
+      ]
+    }
+  ]
+};
+
+
+FusionCharts.ready(function() {
+  var myChart = new FusionCharts({
+    type: "gantt",
+    renderAt: "chart-container",
+    width: "100%",
+    height: "100%",
+    dataFormat: "json",
+    dataSource
+  }).render();
+
+});
+
+   function cargarGant(){
+      jQuery.ajax({
+         type: "GET",
+         url: "http://" + server + "/XMII/Illuminator?QueryTemplate=GIM/DatosMaestros/Orden/Transaction/getConsumosWC&IsTesting=T&Content-Type=text%2Fxml",
+         dataType: "xml",
+         cache: false,
+         data: {
+             "Param.1" : idOpOrd
+         },
+        success: function (xml) { // results ready from lookup of current status details in CCstatus
+            var listaMatReserva = "<option value='0'>selecciona</option>\n";
+            var i = 0;
+            var MatReserva = new Array('');
+            var descMatReserva = new Array('');
+            $(xml).find('Row').each(function () {
+                // Show the data
+                MatReserva[i] = $(this).find('CODIGO_MATERIAL').text();
+                descMatReserva[i] = $(this).find('DESC_BREVE_MATERIAL').text();
+                almacenCon = $(this).find('NUM_ALMACEN').text();
+                
+                listaMatReserva += "<option value='" + MatReserva[i] + '$' + almacenCon + "'>" + parseInt(MatReserva[i]) + '  ' + descMatReserva[i] + "</option>\n";
+                i++;
+            });
+            $('#materialentrada').html(listaMatReserva);
+            $('#loadMatEntrada').hide();
+            $('#materialentrada').on('change', function () {
+                var almacen = $('#materialentrada').val();
+                $('#almacenentrada').val(almacen.split('$')[1])
+            })
+        }
+    });
+}
+
+
+$('#mostrarDetalle').click(function () {                     //cuando se da click en el boton Cargar Entrada
+    $('#modalgantdetail').modal({ backdrop: 'static' });
+    $('#modalgantdetail').show();
+});
+
+$('#mostrarDetalle').click(function () {                     //cuando se da click en el boton Cargar Entrada
+    $('#modalgantdetail').modal({ backdrop: 'static' });
+    $('#modalgantdetail').show();
+});
+
+
+
+</script>
+</html>

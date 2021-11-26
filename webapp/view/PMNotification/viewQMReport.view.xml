@@ -1,0 +1,330 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PMNotification.viewQMReport"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+    
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="REPORTE DEFECTOS"
+      showNavButton="true"
+     navButtonPress="onNavBack">
+        <content>
+          <Panel>
+            <l:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+              <l:content>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  
+                  
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Fecha Inicio"></Label>
+                  <DatePicker
+                          id="start_date"
+                          valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                          change="handleChange"
+                          class="sapUiTinyMarginBegin"/>
+
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="Material"></Label>
+                  <ComboBox
+                    id="listPMProceso"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                    selectionChange="onChangePMProceso">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="Grupo"></Label>
+                  <ComboBox
+                    id="listPMProces"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                    selectionChange="onChangePMProceso">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+                    
+                   <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>EndDate}"></Label>
+                  <DatePicker
+                          id="end_date"
+                          valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                          change="handleChange"
+                          class="sapUiTinyMarginBegin"/>
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Centro"></Label>
+                    <ComboBox
+                      id="listPMSubProceso"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                      selectionChange="onChangePMSubProceso">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="Criticidad"></Label>
+                  <ComboBox
+                    id="istPMProceso"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                    selectionChange="onChangePMProceso">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+                  </items>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+                    
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Semana"></Label>
+                    <ComboBox
+                      id="listPMFunction"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+                  </items>
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Puesto Trabajo"></Label>
+                    <ComboBox
+                      id="listPMFunctio"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Clasificacion"></Label>
+                    <ComboBox
+                      id="istPMFunctio"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                                    path: '/',
+                                    sorter: { path: 'desc' }
+                                }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+
+                </FlexBox>
+
+              </l:content>
+            </l:Grid>
+          </Panel>
+  <!--<IconTabBar
+        id="IconTabBar_Notifications"
+        select="handleIconTabBarSelect"
+        class="sapUiResponsiveContentPadding">
+        <items>
+            <IconTabFilter
+                showAll="true"
+                count="{/total}"
+                text="{i18n>PMAvisos}"
+                key="All" />
+            <IconTabSeparator />
+            <IconTabFilter
+                icon="sap-icon://begin"
+                iconColor="Positive"
+                count="{/METR}"
+                text="{i18n>InTreatment}"
+                key="METR" />
+            <IconTabFilter
+                icon="sap-icon://create-entry-time"
+                iconColor="Critical"
+                count="{/MEAB}"
+                text="{i18n>Pending}"
+                key="MEAB" />
+            <IconTabFilter
+                icon="sap-icon://complete"
+                iconColor="Negative"
+                count="{/CERR}"
+                text="{i18n>Finished}"
+                key="CERR" />
+      <IconTabFilter
+                icon="sap-icon://connected"
+                iconColor="Neutral"
+                count="{/ORAS}"
+                text="{i18n>OrderAssigned}"
+                key="ORAS" />
+      <IconTabFilter
+                icon="sap-icon://cancel-share"
+                iconColor="Default"
+                count="{/NORAS}"
+                text="{i18n>NotOrderAssigned}"
+                key="NORAS" />
+        </items>
+    </IconTabBar>-->
+    <ScrollContainer
+        height="100%"
+        width="100%"
+        horizontal="true"
+        vertical="true"
+        focusable="true">
+          <Table
+  id="PMNotificationList"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Fecha"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Centro"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Orden Prod"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Puesto Trabajo"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Lot Insp"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Des Mat"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Turno"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Defecto"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Ubicacion"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Criticidad"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Grupos"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Semana"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Clasificacion"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="KPI"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="4em">
+                <Label text="Observaciones"/>
+              </Column>
+            </columns>
+            
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                        press="onOpenDialogNewUser">
+                <cells>
+                  <ObjectIdentifier title="{id}" emphasized="false"/>
+                  <Text text="{type}"/>
+                  <Text text="{description}"/>
+                  <Text text="{createdby}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+          </ScrollContainer>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+              <Button text="{i18n>CreateUser}" type="Accept" press="onOpenDialogNewUser"/>
+              <Button text="{i18n>DeleteUser}" type="Reject" press="onOpenDialogDeleteUser"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+    
+  </NavContainer>
+
+</mvc:View>

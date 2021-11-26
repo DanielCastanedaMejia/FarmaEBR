@@ -1,0 +1,180 @@
+﻿<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PMOrder.viewPMOrdersAGRO"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="ViewPMOrders_AGRO"
+      title="{i18n>pageViewPMOrder}"
+      showNavButton="true"
+		  navButtonPress="onNavBack">
+        <content>
+          <Panel>
+            <l:Grid defaultSpan="L3 M4 S4" class="sapUiSmallMarginTop">
+              <l:content>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">                  
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>StartDate}"></Label>
+                  <DatePicker
+			              id="start_date"
+			              valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+			              change="handleChange"
+			              class="sapUiTinyMarginBegin"/>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>                    
+                    <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                       text="{i18n>EndDate}"></Label>
+                    <DatePicker
+                      id="end_date"
+                      valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                      change="handleChange"
+                      class="sapUiTinyMarginBegin"/>                    
+                  </items>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column">                  
+                  <CheckBox text="{i18n>Prevent}" valueState="Error" id="PMPrevent"/>
+                  <CheckBox text="{i18n>Agro}" valueState="Error" id="PMAgro"/>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column">
+                  <CheckBox text="{i18n>Corrective}" valueState="Error" id="PMCorrective"/>
+                  <CheckBox text="{i18n>CorrectivePrevent}" valueState="Error" id="PMCorrectivePre"/>
+                </FlexBox>
+
+              </l:content>
+            </l:Grid>
+          </Panel>
+          <IconTabBar
+          id="IconTabBar_Orders"
+          select="handleIconTabBarSelect"
+          class="sapUiResponsiveContentPadding">
+            <items>
+              <IconTabFilter
+                showAll="true"
+                count="{/total}"
+                text="{i18n>PMOrders}"
+                key="All" />
+              <IconTabSeparator />
+              <IconTabFilter
+                icon="sap-icon://begin"
+                iconColor="Positive"
+                count="{/LIB}"
+                text="{i18n>InTreatment}"
+                key="LIB" />
+              <IconTabFilter
+                icon="sap-icon://course-book"
+                iconColor="Critical"
+                count="{/NOTI}"
+                text="{i18n>Notified}"
+                key="NOTI" />
+            </items>
+          </IconTabBar>
+          <Table
+  id="PMOrdersList"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  growing="true"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                hAlign="End"
+                width="3em">
+                <Label text="{i18n>PMTable}"/>
+              </Column>
+              <Column                
+                minScreenWidth="Small"
+                demandPopin="true"
+                >
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnOrderType}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnActivityKey}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>Priority}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>Status}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnDescription}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnDescEquipment}"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="{i18n>columnDescFunLoc}"/>
+              </Column>
+              <Column
+            minScreenWidth="Tablet"
+            demandPopin="false">
+                <Label text="{i18n>columnStartDate}"/>
+              </Column>
+              <Column
+  minScreenWidth="Tablet"
+  demandPopin="false">
+                <Label text="{i18n>columnID}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem
+                type="Navigation"
+				        press="onPMOrderDetail">
+                <cells>
+                  <Text text="{table}"/>
+                  <ObjectIdentifier title="{order}" emphasized="false"/>                  
+                  <Text text="{order_type}"/>
+                  <Text text="{activity_type}"/>
+                  <Text text="{priority}"/>
+                  <Text text="{status}"/>
+                  <Text text="{description}"/>
+                  <Text text="{desc_equipo}"/>
+                  <Text text="{desc_funcLoc}"/>
+                  <Text text="{start_date}"/>
+                  <Link text="{notification}" tooltip="{i18n>PMOrderDetail.tooltipToNoti}" press="onShowNoti" />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+            <Button text="{i18n>View}" type="Accept" icon="sap-icon://show" press="onShowView"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

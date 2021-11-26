@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+	<head>
+             	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<META http-equiv="X-UA-Compatible" content="IE=edge">
+		<META http-equiv='cache-control' content='no-cache'>
+		<META http-equiv='expires' content='0'>
+		<META http-equiv='pragma' content='no-cache'>
+	          
+		<title>GIM | BAYCO</title>     
+ 		<link rel="stylesheet" type="text/css" href="" />
+
+	         <SCRIPT type="text/javascript" src="/XMII/JavaScript/bootstrap.js" data-libs="i5Chart,i5Grid,i5SPCChart,i5Command,m"></SCRIPT>
+
+
+	</head>
+	<body class="sapUiBody" role="application" style="overflow-y: auto" onload="">
+
+		<input type="hidden" id="orden" value="">
+		<input type="hidden" id="wc" value="">
+		<input type="hidden" id="cantidadProgramada" value="">
+		<input type="hidden" id="cantidadProducida" value="">
+		<input type="hidden" id="status" value="">
+		<table>
+			DETALLE
+				 Orden: 100513
+				  Puesto de Trabajo : 1001 ROLADO
+			 
+				   Hora Inicial: 00:00
+				   Hora Final:	 12:00
+				   
+				Status: En Proceso
+				 Cantidad Programada: 100
+				 Cantidad Producida:        10
+				Porcentaje:                           10%  		
+		
+		</table>
+
+	
+			<div class="formHeader">
+		
+			</div>
+	</body>
+
+	 <script  type="text/javascript">
+
+
+	</script>
+
+         	<script type="text/javascript" src=""></script>
+</html

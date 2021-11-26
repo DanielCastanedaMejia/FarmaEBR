@@ -1,0 +1,19 @@
+<core:FragmentDefinition id ="dataStartOrderScanSFCFragment"  xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Preparación de la Línea" id="oDialogStep0">
+
+
+	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+	       <items>
+		<core:HTML id="PDFSTEP0"/>	
+	       </items>
+	</VBox> 
+
+            <beginButton>
+      <Button
+       type="Accept"
+         text="Validar"
+         icon="sap-icon://add-product"
+         press="executeStep0"/>
+    </beginButton>
+    </Dialog>
+</core:FragmentDefinition> 

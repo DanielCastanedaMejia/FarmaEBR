@@ -1,0 +1,65 @@
+﻿<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+  <Dialog
+     id="PMNotificationDialog"
+     title="{i18n>AddNotification}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="{i18n>DescOperation}"  labelFor="filterDateRangeSelection"/>
+        <Input
+        id="inputDescOperation"
+				class="sapUiSmallMarginBottom" />
+        <Label text="{i18n>StartDate}"  labelFor="start_date"/>
+        <DateTimePicker
+			    id="start_date"
+          displayFormat="dd-MM-yyyy HH:mm"
+			    valueFormat="dd-MM-yyyy HH:mm"/>
+        <Label text="{i18n>EndDate}"  labelFor="start_date"/>
+        <DateTimePicker
+			    id="end_date"
+			    displayFormat="dd-MM-yyyy HH:mm"
+			    valueFormat="dd-MM-yyyy HH:mm"
+			    change="handleChange"/>
+        <!-- Filter by plan name(s) -->
+        <Label text="{i18n>Cuadrilla}" labelFor="dev_reason"/>
+        <ComboBox
+              id="listPMCuadrillas"
+                  items="{
+					            path: '/',
+					            sorter: { path: 'desc' }
+			        	  }">
+              <core:Item key="{id}" text="{desc}" />
+        </ComboBox>
+        <Label text="{i18n>Users}" labelFor="dev_reason"/>
+        <MultiComboBox
+              id="listPMUsers"
+              width="500px"
+                  items="{
+					             path: '/',
+					             sorter: { path: 'desc' }
+			        	  }">
+          <core:Item key="{id}" text="{nombre} {apellido}" />
+        </MultiComboBox>
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>AddNotification}"
+         press="onCloseDialogAddNotificationConfirm"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>LabelCancel}"
+         press="onCloseDialogAddNotification"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

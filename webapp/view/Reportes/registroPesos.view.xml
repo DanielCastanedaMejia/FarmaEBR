@@ -1,0 +1,277 @@
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Reportes.registroPesos"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+    xmlns="sap.m">
+	<NavContainer id="wizardNavContainer">
+		<pages>
+			<Page
+				id="resgistroPesos"
+				showHeader="false"
+				backgroundDesign="Solid">
+				<Toolbar class="toolbar_default">
+					<Button 
+						icon="sap-icon://nav-back" 
+						type="Transparent" 
+						class="sapUiMediumMarginBegin" 
+						press="onNavBack">
+					</Button>
+					<Image src="images/SAP_Logo.png">
+					</Image>
+					<core:Icon
+						src="sap-icon://grid"
+						class="toolbar_title sapUiSmallMarginBegin">
+						<core:layoutData>
+							<FlexItemData growFactor="1" />
+						</core:layoutData>
+					</core:Icon>
+					<Label 
+						labelFor="myColumn"
+						class="toolbar_title"
+						text="Registro de Pesos"
+						wrapping="true"/>
+					<ToolbarSpacer/>
+					<Label
+						id ="username"
+						text=""
+						class="toolbar_color">
+					</Label>
+					<Button 
+						icon="sap-icon://person-placeholder" 
+						type="Transparent" 
+						class="sapUiLargeMarginEnd">
+					</Button>
+				</Toolbar>
+        
+				<fb:FilterBar 
+					header="Operación" 
+					useToolbar="false" 
+					showGoOnFB="false" 
+					showFilterConfiguration="false" 
+                   				 reset="onReset" 
+					clear="onClear" 
+					showRestoreButton="true" 
+					showClearButton="true" >
+            
+					<fb:filterItems>
+						<fb:FilterItem 
+							name="A1" 
+							label="Máquina" 
+							labelTooltip="Tooltip Example" 
+							mandatory="true">
+							<fb:control>
+								<ComboBox
+									id="maquina"
+									class="sapUiTinyMarginBegin"
+									items="{
+											path: '/',
+											sorter: { path: 'id' }
+											}"
+									selectionChange="onChangeComboMaquina">
+									<core:Item 
+										key="{id}" 
+										text="{desc}" />
+								</ComboBox>
+							</fb:control>
+						</fb:FilterItem>
+
+						<fb:FilterItem 
+							name="A2" 
+							label="Operador" 
+							labelTooltip="Tooltip Example" 
+							mandatory="true">
+							<fb:control>
+								<Input
+									id="operadorReal" 
+									enabled="false"
+									width="60%"/>
+							</fb:control>
+						</fb:FilterItem>
+
+						<fb:FilterItem 
+							name="A3" 
+							label="Supervisor" 
+							labelTooltip="Tooltip Example" 
+							mandatory="true">
+							<fb:control>
+								<ComboBox
+									id="supervisor"
+									width="100%"
+									class="sapUiTinyMarginBegin"
+									items="{
+											path: '/',
+											sorter: { path: 'id' }
+											}"
+									selectionChange="onChangeComboSupervisor">
+									<core:Item 
+										key="{id}" 
+										text="{desc}" />
+								</ComboBox>
+							</fb:control>
+						</fb:FilterItem>
+
+						<fb:FilterItem 
+							name="A4" 
+							label="Tripulación" 
+							labelTooltip="Tooltip Example" 
+							mandatory="true" >
+							<fb:control>
+								<ComboBox
+									id="tripulacion"
+									class="sapUiTinyMarginBegin"
+									items="{
+											path: '/',
+											sorter: { path: 'id' }
+											}">
+									<core:Item 
+										key="{id}" 
+										text="{desc}" />
+								</ComboBox>
+							</fb:control>
+						</fb:FilterItem>
+
+						<fb:FilterItem 
+							name="B1" 
+							label="Confirmación" 
+							labelTooltip="Tooltip Example" 
+							mandatory="false" 
+							hiddenFilter="true">
+							<fb:control>
+								<Button 
+									type="Emphasized"
+									id="InicioButton"
+									text="Iniciar Sesión"
+									press="onIniciar"
+									icon="sap-icon://log"
+									ariaDescribedBy="acceptButtonDescription genericButtonDescription"/>
+							</fb:control>
+						</fb:FilterItem>   
+					</fb:filterItems>
+				</fb:FilterBar>
+
+				<Panel  
+					headerText="Datos para la generación del reporte de registro de pesos" 
+					class="sapUiResponsiveMargin">
+					<content>
+						<l:Grid defaultSpan="L2 M2 S6">
+							<Label
+								id="peso1Label"
+								text="Cavidad 1 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso1"
+								placeholder="Cavidad 1..."      
+								valueLiveUpdate="true"
+								width="60%" value="110"/>
+							<Label 
+								id="peso2Label"
+								text="Cavidad 2 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso2"
+								placeholder="Cavidad 2..."       
+								valueLiveUpdate="true"
+								width="60%" value="80"/>
+							<Label 
+								id="peso3Label"
+								text="Cavidad 3 [g]" 
+								class="sapUiSmallMargin"/>
+						    <Input
+								id="peso3"
+								placeholder="Cavidad 3..."       
+								valueLiveUpdate="true"
+								width="60%" value="79"/>
+						</l:Grid>
+
+						<l:Grid defaultSpan="L2 M2 S6">
+							<Label
+								id="peso4Label"
+								text="Cavidad 4 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso4"
+								placeholder="Cavidad 4..."      
+								valueLiveUpdate="true"
+								width="60%" value="110"/>
+							<Label 
+								id="peso5Label"
+								text="Cavidad 5 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso5"
+								placeholder="Cavidad 5..."       
+								valueLiveUpdate="true"
+								width="60%" value="80"/>
+							<Label 
+								id="pes6Label"
+								text="Cavidad 6 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso6"
+								placeholder="Cavidad 6..."       
+								valueLiveUpdate="true"
+								width="60%" value="80"/>
+						</l:Grid>
+
+						<l:Grid defaultSpan="L2 M2 S6">
+							<Label
+								id="peso7Label"
+								text="Cavidad 7 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso7"
+								placeholder="Cavidad 7..."      
+								valueLiveUpdate="true"
+								width="60%" value="110"/>
+							<Label 
+								id="peso8Label"
+								text="Cavidad 8 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso8"
+								placeholder="Cavidad 8..."       
+								valueLiveUpdate="true"
+								width="60%" value="81"/>
+							<Label 
+								id="pes9Label"
+								text="Cavidad 9 [g]" 
+								class="sapUiSmallMargin"/>
+						    	<Input
+								id="peso9"
+								placeholder="Cavidad 9..."       
+								valueLiveUpdate="true"
+								width="60%" value="80"/>
+						</l:Grid>
+
+						<l:Grid defaultSpan="L2 M2 S6">
+							<Label 
+								id="pes10Label"
+								text="Cavidad 10 [g]" 
+								class="sapUiSmallMargin"/>
+							<Input
+								id="peso10"
+								placeholder="Cavidad 10..."       
+								valueLiveUpdate="true"
+								width="60%" value="109"/>
+						</l:Grid>
+
+						<l:Grid defaultSpan="L12 M3 S6">
+							<Button 
+								type="Emphasized"
+								id="Imprimir"
+								text="Imprimir Documento"
+								press="onRegistroPesos"
+								enabled="true"
+								icon="sap-icon://print"
+								ariaDescribedBy="acceptButtonDescription genericButtonDescription"/>
+						</l:Grid>
+					</content>
+				</Panel>
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

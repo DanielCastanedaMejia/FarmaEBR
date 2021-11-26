@@ -1,0 +1,85 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core" >
+  <Dialog
+     id="installMAF"
+     title="{i18n>dialog.MAF}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <Table
+                    id="List_MafAvailable"
+                    mode="MultiSelect"
+                    class="sapUiResponsiveMargin"
+                    width="auto"
+                    items="{
+			                  path : '/ITEMS',
+			                  sorter : {
+				                  path : 'CONDICION',
+				                  group : true
+			                  }
+		                   }">
+          <columns>
+            <Column>
+              <Label text="{i18n>column.codigoMaterial}"/>
+            </Column>
+            <Column>
+              <Label text="{i18n>column.description}"/>
+            </Column>
+            <Column>
+              <Label text="{i18n>column.counter}"/>
+            </Column>
+            <Column>
+              <Label text="{i18n>column.nextMtto}"/>
+            </Column>
+            <Column>
+              <Label text="{i18n>column.totalCount}"/>
+            </Column>
+            <Column>
+              <Label text="{i18n>column.condition}"/>
+            </Column>
+          </columns>
+
+          <items>
+            <ColumnListItem>
+              <cells>
+                <Text text="{MAF_NO}"/>
+                <Text text="{MAF_DESC}"/>
+                <Text text="{VALOR_ACTUAL}"/>
+                <Text text="{VALOR_MAXIMO}"/>
+                <Text text="{VALOR_TOTAL}"/>
+                <ObjectStatus
+                  class="stat"
+                  text="{CONDICION}"
+                  state="{
+				                    path: 'ESTATUS',
+				                    formatter: '.formatter.conditionColor'
+			                    }"
+                        />
+              </cells>
+            </ColumnListItem>
+          </items>
+        </Table>
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>ButtonSend}"
+         icon="sap-icon://add-product"
+         press="onInstallMaf"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>ButtonClose}"
+         icon="sap-icon://cancel"
+         press="onCloseDialogInstallMaf"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

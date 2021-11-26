@@ -1,0 +1,134 @@
+﻿<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.PMNotification.PMNotificationDetail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+  <Page
+		id="PMNotificationDetail"
+		title="{i18n>viewPMNotification}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+    <headerContent>
+      <Button
+        icon="sap-icon://home"
+        press="goToHome"/>
+    </headerContent>
+    <ObjectHeader        
+        title="{i18n>headerPMNotiDetail}"
+        number="{/id}">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/status}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute text="{/short_text}" />
+        <ObjectAttribute text="{/large_text}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+      <Panel
+				id="PMObjectReference"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMObjectReference}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>Equipment}" />
+              <Text text="{/equipment} {/descEquipment}" />
+              <Label text="{i18n>PMFunctionalLocation}" />
+              <Text text="{/functionalLocation} {/descFunctionalLocation}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+      </Panel>
+      <Panel
+				id="PMResponsabilities"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMResponsabilities}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>columnUser}" />
+              <Text text="{/createdby}" />
+              <Label text="{i18n>columnDate}" />
+              <Text text="{/createdDate}" />
+              <Label text="{i18n>columnOrder}" />
+              <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
+              <Label text="{i18n>PMReportedBy}" />
+              <Text text="{/reportedby}" />
+              <Label text="{i18n>PMWorkCenter}" />
+              <Text text="{/workCenter} {/plant} {/descPuesto}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+      </Panel>
+      <Panel
+  id="PMPosition"
+  width="auto"
+  class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMPosition}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>ObjectPart}" />
+              <Text text="{/catObjectPart} {/objectPart} {/descObjectPart}" />
+              <Label text="{i18n>Damage}" />
+              <Text text="{/catDamage} {/damage} {/descDamage}" />
+              <Label text="{i18n>TextDamage}" />
+              <Text text="{/textDamage}" />
+              <Label text="{i18n>Cause}" />
+              <Text text="{/catCause} {/cause} {/descCause}" />
+              <Label text="{i18n>TextCause}" />
+              <Text text="{/textCause}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+        <ToolbarSpacer/>
+        <Button text="Crear Orden" type="Emphasized" press="onShowCreatePMOrder"/>
+        <Button text="{i18n>ReleaseNotification}" type="Accept" press="onRelease"/>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

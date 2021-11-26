@@ -1,0 +1,125 @@
+<mvc:View 
+    controllerName="sap.ui.demo.webapp.controller.PMReport.viewPMGraficoTiempo" 
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:core="sap.ui.core" 
+    xmlns:viz.data="sap.viz.ui5.data" 
+    height="100%">
+    <Page
+      id="wizardContentPage"
+      title="REPORTE TIPOS DE ACTIVIDAD"
+      showNavButton="true"
+      navButtonPress="onNavBack"
+      enableScrolling="true"
+      class="sapUiContentPadding">
+    
+
+
+    <layout:FixFlex id='chartFixFlex'>
+        <layout:flexContent fixfirst="true">
+            <viz:Popover id="idPopOver"></viz:Popover>
+            <viz:VizFrame id="idVizFrame" uiConfig="{applicationSet:'fiori'}"
+                 width="100%" vizType='vertical_bullet'>
+                <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/Row}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{Cost}" />
+                            <viz.data:MeasureDefinition name="Budget"
+                                value="{Budget}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id="feedActualValues" uid="actualValues" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem id="feedTargetValues" uid="targetValues" type="Measure"
+                        values="Budget" />
+                    <viz.feeds:FeedItem id="feedCategoryAxis" uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+            </viz:VizFrame>
+        </layout:flexContent>
+    </layout:FixFlex>        
+
+
+
+
+<layout:FixFlex id='chartFixFlex-1'>
+        <layout:fixContent>
+             <viz:Popover id="idPopOver-1"></viz:Popover>
+            <viz:VizFrame id="idVizFrame-1" uiConfig="{applicationSet:'fiori'}"
+                 vizType='vertical_bullet' width="100%">
+                 <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/Row}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id="feedActualValues-1" uid="actualValues" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem id="feedCategoryAxis-1" uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                 </viz:VizFrame>
+        </layout:fixContent>
+    </layout:FixFlex>  
+
+
+
+
+<layout:FixFlex id='chartFixFlex-2'>
+        <layout:fixContent>
+             <viz:Popover id="idPopOver-2"></viz:Popover>
+            <viz:VizFrame id="idVizFrame-2" uiConfig="{applicationSet:'fiori'}"
+                 vizType='vertical_bullet' width="100%">
+                 <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/Row}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id="feedActualValues-2" uid="actualValues" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem id="feedCategoryAxis-2" uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                 </viz:VizFrame>
+        </layout:fixContent>
+    </layout:FixFlex>
+
+
+
+
+
+
+
+
+
+
+</Page>
+</mvc:View>

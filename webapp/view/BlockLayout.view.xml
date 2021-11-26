@@ -1,0 +1,194 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.BlockLayout"
+  xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns:form="sap.ui.layout.form"
+  xmlns="sap.m">
+  <Panel>
+    <content>
+      <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiTinyMarginTopBottom"
+            text="Planta"
+             ></Label>
+      <Select
+            id="listPMPlantaBlock"
+            class="sapUiTinyMarginBegin"
+        items="{
+          path: '/',
+          sorter: { path: 'desc' }
+        }"
+        change="onchangeModules"
+        selectionChange="charge_combo">
+        <core:Item key="{id}" text="{desc}" />
+        <items>
+          <core:ListItem key="PLANTA" text="PLANTA"/>
+        </items>
+      </Select>
+    </content>
+  </Panel>
+  <l:VerticalLayout id="containerLayout" width="100%" >
+    <l:BlockLayout id="BlockLayout" background="Light">
+      <l:BlockLayoutRow accentCells="Accent1">
+        <l:BlockLayoutCell
+          id="Accent01"
+          width="2">
+          <core:Icon src="sap-icon://list" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="PRODUCCION"
+            width="100%"></Label>
+          <Text text="Visualiza y gestiona Ordenes de Produccion" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver" 
+              press="onDisplayOrder" 
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+        
+        <l:BlockLayoutCell
+           id="Accent02"
+           width="2">
+          <core:Icon src="sap-icon://add-activity-2" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="MANTENIMIENTO"
+            width="100%"></Label>
+          <Text text="Visualiza y gestiona Ordenes y Avisos de Mantenimiento" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default"
+              text="Ver"
+              press="onDisplayViewPMNotification"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+         
+        <l:BlockLayoutCell
+           id="Accent03"
+           width="2">
+          <core:Icon src="sap-icon://activity-items" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="CALIDAD"
+            width="100%"></Label>
+          <Text text="Visualiza y gestiona pruebas de Calidad" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default"
+              text="Ver"
+              press="onDisplayViewQMOrders"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+         <l:BlockLayoutCell
+          id="Accent04"
+          width="2">
+          <core:Icon src="sap-icon://collaborate" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="REPORTES"
+            width="100%"></Label>
+          <Text text="Visualiza reportes de Produccion" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver" 
+              press="onDisplayViewPMUser"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+        <l:BlockLayoutCell
+          id="Accent05"
+          width="2">
+          <core:Icon src="sap-icon://delete" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="Mermas"
+            width="100%"></Label>
+          <Text text="Registro de mermas" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Mandar a SAP" 
+              press="onMermas"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+      </l:BlockLayoutRow>
+      <!--REPORTE QM-->
+      <!--<l:BlockLayoutRow>
+        <l:BlockLayoutCell
+          id="Accent05"
+          width="2">
+          <core:Icon src="sap-icon://activities" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="BITACORA PM"
+            width="100%"></Label>
+          <Text text="Visualizar y gestionar Documentos de Medicion" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver Documentos" 
+              press="onDisplayViewPMDocumentos"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+        <l:BlockLayoutCell
+          id="Accent06"
+          width="2">
+          <core:Icon src="sap-icon://activity-assigned-to-goal" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="REPORTE TIEMPO"
+            width="100%"></Label>
+          <Text text="Visualiza reporte de horas invertidas en Ordenes"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver Reporte" 
+              press="onDisplayViewPMReporteTiempo"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>
+        <l:BlockLayoutCell
+          id="Accent07"
+          width="2">
+          <core:Icon src="sap-icon://crm-service-manager" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="REPORTE ACTIVIDADES"
+            width="100%"></Label>
+          <Text text="Visualiza reporte por tipos de actividad"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver Reporte" 
+              press="onDisplayViewPMReporteActividades"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell> 
+        <l:BlockLayoutCell
+          id="Accent08"
+          width="2">
+          <core:Icon src="sap-icon://manager-insight" class="sapUiVlt sapUiSmallMarginBeginEnd sapUiSmallMarginBottom blockTittle"/>
+          <Label class="sapMTitle sapMTitleMaxWidth sapMTitleNoWrap sapMTitleStyleH2 sapUiSelectable sapUiSmallMarginBeginEnd"
+            text="REPORTE FALLOS"
+            width="100%"></Label>
+          <Text text="Visualiza reporte por clasificacion de fallos"/>
+          <l:content>
+            <Link
+              type="Default" 
+              text="Ver Reporte" 
+              press="onDisplayViewPMReporteFallos"
+              emphasized="true"
+              class="sapUiSmallMarginBeginEnd sapUiSmallMarginTop"/>
+          </l:content>
+        </l:BlockLayoutCell>      
+        </l:BlockLayoutRow>-->
+    </l:BlockLayout>
+  </l:VerticalLayout>
+</mvc:View>
+

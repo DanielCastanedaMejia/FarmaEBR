@@ -1,0 +1,35 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Reports.PPViewInventory"
+		xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page      
+      id="wizardContentPage"
+      title="{i18n>PPGant.tittle}"
+      showNavButton="true"
+		  navButtonPress="onNavBack">
+        <content>
+
+
+          <Panel>
+ 
+            
+
+          </Panel>
+          
+        </content>
+        <footer>
+          <Toolbar class="noPrintable">
+            <ToolbarSpacer/>
+             <Button text="{i18n>ButtonGenerateLabel}" press="print_noti" icon="sap-icon://documents"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

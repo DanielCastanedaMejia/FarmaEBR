@@ -1,0 +1,205 @@
+<mvc:View
+   controllerName="WebContent.controller.ShowVinReportXML"
+   xmlns="sap.m"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:layout="sap.ui.layout"
+   xmlns:unif="sap.ui.unified"
+   xmlns:tnt="sap.tnt"
+   xmlns:core="sap.ui.core"
+   displayBlock="true">
+	<App>
+		<pages>
+			<Page showHeader="false" floatingFooter="true">
+				<tnt:ToolHeader class="heading">
+					<Image 
+						src="/XMII/CM/Default/BAYCO/Reports/WebContent/images/logoitk.png" 
+						height= "40px"/>
+					<ToolbarSpacer 
+						width=""/>
+					<Label 
+						id="tittleLabel" 
+						class="sapUiSmallMargin"/>
+					<ToolbarSpacer 
+						width=""/>
+					<Label 
+						id="usrTittleLabel" 
+						class="sapUiSmallMargin"/>
+				</tnt:ToolHeader>
+				
+				<content>
+					<Panel
+						width="auto">
+						<content>
+							<layout:Grid defaultSpan="L2 M2 S6">
+								<Label
+								    id="vinLabel" 
+									class="sapUiSmallMargin"/>
+								<Input
+                    			    					id="vin"
+									placeholder="Introducir Vin ..."       
+                       			    					valueLiveUpdate="true"
+                       			    					width="100%"/>
+								<Label 
+									id="shopLabel"
+									class="sapUiSmallMargin"/>
+								<Input
+									id="shopOrder"
+									placeholder="Introducir Orden ..."       
+									valueLiveUpdate="true"
+									width="100%"/>
+								<Label 
+									id="materialLabel" 
+									class="sapUiSmallMargin"/>
+								<Input
+									id="material"
+									placeholder="Introducir Material..."       
+									valueLiveUpdate="true"
+									width="100%"/>
+							</layout:Grid>
+
+							<layout:Grid defaultSpan="L2 M2 S6">
+								<Label 
+									id="userLabel" 
+									class="sapUiSmallMargin"/>
+								<Input
+                    			    					id="usr"
+									placeholder="Introducir Usuario ..."              			
+                       			    					valueLiveUpdate="true"
+                       			    					width="100%"/>
+								<Label 
+									id="fromLabel" 
+									class="sapUiSmallMargin"/>
+								<DateTimePicker
+									id = "fromDatepicker"
+									valueFormat="yyyy-MM-dd hh:mm:ss"
+									displayFormat="yyyy-MM-dd hh:mm:ss"
+									placeholder= "Introducir Fecha Inicial ..."/>
+								<Label 
+									id="toLabel" 
+									class="sapUiSmallMargin"/>
+								<DateTimePicker
+									id = "toDatepicker"
+									valueFormat="yyyy-MM-dd hh:mm:ss"
+									displayFormat="yyyy-MM-dd hh:mm:ss"
+									placeholder= "Introducir Fecha Final ..."
+									/>
+							</layout:Grid>
+
+							<layout:Grid defaultSpan="L2 M6 S6" defaultIndent="L3" >
+								<Button
+									id="searchReportButton"
+									type="Emphasized"
+									icon="sap-icon://search"
+								            press="showVINHistory"
+									class="sapUiSmallMargin"/>
+								<Button
+									id="invalidVin"
+									type="Emphasized"
+									icon="sap-icon://action"
+								            press="unusedVINHistory"
+									class="sapUiSmallMargin"/>
+							</layout:Grid>
+						</content>
+					</Panel>
+					
+					<Panel 
+						width="auto">
+						<content>
+							<layout:Grid defaultSpan="L2 M4 S4">
+								<layout:content>
+									<Label 
+										id="printLabel"
+										class="sapUiSmallMargin">
+										<layoutData>
+											<layout:GridData span="L2" />
+										 </layoutData>
+									</Label>
+
+									<Input
+										id="vinPrint"
+										enabled="false"
+										valueLiveUpdate="true"
+										width="100%">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									</Input>
+
+									<Label 
+										text="%"
+										class="sapUiSmallMargin">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									</Label>
+
+									<Label 
+										id="rePrintLabel"
+										class="sapUiSmallMargin">
+										<layoutData>
+										<layout:GridData span="L2" />
+										</layoutData>
+									</Label>
+
+									<Input
+										id="vinRePrint"
+										enabled="false"
+										valueLiveUpdate="true"
+										width="100%">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									</Input>
+
+									<Label 
+										text="%"
+										class="sapUiSmallMargin">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									</Label>
+
+									<Label 
+										id="noPrintLabel"
+										class="sapUiSmallMargin">
+										<layoutData>
+										<layout:GridData span="L2" />
+										</layoutData>
+									</Label>
+
+									<Input
+										id="vinNoPrint"
+										enabled="false"
+										valueLiveUpdate="true"
+										width="100%">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									</Input>
+
+									<Label 
+										text="%"
+										class="sapUiSmallMargin">
+										<layoutData>
+										<layout:GridData span="L1" />
+										</layoutData>
+									 </Label>
+								</layout:content>						
+							</layout:Grid>
+						</content>
+					</Panel>
+
+					<Panel>
+						<content>
+
+							<core:HTML
+								           content="&lt;div id='gridDiv'&gt;&lt;span&gt;&lt;/span&gt;&lt;/div&gt;" > 
+							</core:HTML>
+						</content>
+					</Panel>
+
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>

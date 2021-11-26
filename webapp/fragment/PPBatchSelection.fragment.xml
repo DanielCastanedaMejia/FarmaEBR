@@ -1,0 +1,17 @@
+﻿<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+  <SelectDialog
+		title="{i18n>Batch}"
+		class="sapUiPopupWithPadding"
+		items="{/componentes/lotes}"
+		confirm="_handleValueHelpClose"
+		cancel="_handleValueHelpClose">
+    <StandardListItem
+			icon="{ProductPicUrl}"
+			iconDensityAware="false"
+			iconInset="false"
+			title="{batch}"
+			description="{quantity}" />
+  </SelectDialog>
+</core:FragmentDefinition>

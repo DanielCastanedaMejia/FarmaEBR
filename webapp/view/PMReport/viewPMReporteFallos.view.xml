@@ -1,0 +1,306 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PMReport.viewPMReporteFallos"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data">
+    
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="CLASIFICACION DE FALLOS"
+      showNavButton="true"
+      navButtonPress="onNavBack"
+      enableScrolling="true"
+      class="sapUiContentPadding">
+     <headerContent> 
+      <Button
+        icon="sap-icon://home"
+        press="goToHome"
+        width="100%"/>
+    </headerContent>
+        <content>
+          <Panel>
+
+            <l:Grid defaultSpan="L4 M6 S6" class="sapUiSmallMarginTop">
+              <l:content>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  
+                      <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                       text="{i18n>Plant}"
+                       ></Label>
+                      <Select
+                      id="listPMPlantaBlock"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                      }"                       
+                       change="onChangePMPlant"
+                       enabled="false">
+                      <core:Item key="{id}" text="{desc}" />
+                      <items>
+                        <core:ListItem key="PL003" text="PLANTA 3"/>
+                      </items>
+                    </Select>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="{i18n>Process}"></Label>
+                  <ComboBox
+                    id="listPMProceso"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                    selectionChange="onChangePMProceso">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                                      text="Equipo"></Label>
+                  <ComboBox
+                    id="listPMEquipo"
+                    class="sapUiTinyMarginBegin"
+                    items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                    selectionChange="onChangePMEquipo">
+                    <core:Item key="{id}" text="{desc}" />
+                  </ComboBox>
+                  
+                  
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>StartDate}"></Label>
+                  <DatePicker
+                    id="start_date"
+                    valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                    change="handleChange"
+                    class="sapUiTinyMarginBegin"/>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>SubProcess}"></Label>
+                    <ComboBox
+                      id="listPMSubProceso"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                      selectionChange="onChangePMSubProceso">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox> 
+                
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Grpo Planificador"></Label>
+                    <ComboBox
+                      id="listPMPlanificador"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                      selectionChange="onChangePMPlan">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+                    
+
+                  </items>
+                </FlexBox>
+
+                <FlexBox
+                  direction="Column"
+                  alignItems="Start">
+                  <items>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>EndDate}"></Label>
+                  <DatePicker
+                    id="end_date"
+                    valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy"
+                    change="handleChange"
+                    class="sapUiTinyMarginBegin"/>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="{i18n>Function}"></Label>
+                    <ComboBox
+                      id="listPMFunction"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeModules">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+                  <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+                      text="Falla 1er Nivel"></Label>
+                    <ComboBox
+                      id="listPMFalla"
+                      class="sapUiTinyMarginBegin"
+                      items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+                       change="onchangeModules"
+                      selectionChange="onselectionChangeFalla">
+                      <core:Item key="{id}" text="{desc}" />
+                    </ComboBox>
+
+                  </items>
+                </FlexBox>
+
+              </l:content>
+            </l:Grid>
+          </Panel>
+      <IconTabBar
+        id="IconTabBar_Notifications"
+        select="handleIconTabBarSelect"
+        class="sapUiResponsiveContentPadding">
+        <items>
+            <IconTabFilter
+                showAll="true"
+                count="{/total}"
+                text="Operaciones"
+                key="All"
+                width="100%"/>
+            <IconTabSeparator />
+            <IconTabFilter
+                showAll="true"
+                count="{/total}"
+                text="Fallos"
+                key="All"
+                width="100%"/>
+            <IconTabSeparator />
+            <IconTabFilter
+              icon="sap-icon://wrench"
+              iconColor="Default"
+              count="{/MEAB}"
+              text="1er Nivel"
+              key="MEAB" />
+            <IconTabFilter
+              icon="sap-icon://wrench"
+              iconColor="Default"
+              count="{/MEAB}"
+              text="2do Nivel"
+              key="MEAB" />
+            <IconTabFilter
+              icon="sap-icon://wrench"
+              iconColor="Default"
+              count="{/MEAB}"
+              text="3er Nivel"
+              key="MEAB" />
+        </items>
+    </IconTabBar>
+    <smartTable:SmartTable id="LineItemsSmartTable" entitySet="LineItemsSet" 
+        tableType="Table" useExportToExcel="true" beforeExport="onBeforeExport" 
+        enableAutoBinding="true" showFullScreenButton="true" class="sapUiResponsiveContentPadding">
+          <Table
+            id="PMTiemposList"
+            class="sapUiResponsiveMargin"
+            width="auto"
+            items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5rem">
+                <Label text="Concluido"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="6rem">
+                <Label text="Fecha"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5rem">
+                <Label text="Centro"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="6rem">
+                <Label text="Ubicacion"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="6rem">
+                <Label text="Equipo"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="6rem">
+                <Label text="Falla"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5rem">
+                <Label text="Cantidad"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="3rem">
+                <Label text="%"/>
+              </Column>
+            </columns>
+            
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                        press="onOpenDialogNewUser">
+                <cells>
+                  <Text text="{operation}"/>
+                  <Text text="{entered_date}"/>
+                  <Text text="{description}"/>
+                  <Text text="{num_conf}"/>
+                  <Text text="{author}"/>
+                  <Text text="{puest}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+     </smartTable:SmartTable>
+
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+              <Button text="Buscar" type="Accept" press="onLoadTable"/>
+              <Button id="searchGraphic" text="{i18n>searchPMGraphic}" type="Ghost" press="onShowGraphic" icon="sap-icon://bar-chart" enabled="false"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+    
+  </NavContainer>
+
+
+</mvc:View>

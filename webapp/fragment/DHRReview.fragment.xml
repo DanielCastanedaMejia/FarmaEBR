@@ -1,0 +1,51 @@
+<core:FragmentDefinition id ="dataDHRREviewFragment"  xmlns="sap.m" xmlns:l="sap.ui.layout"  xmlns:table="sap.ui.table"  xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="DHR Review" id="oDialogDHRReview" contentHeight="70%" contentWidth="65%" afterClose="onCloseDHRReview">
+        <VBox width="100%" height="100%">
+
+	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+	       <items>
+		<Label text="Please ensure all the following requirements are satisfied:"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>	
+	       </items>
+	</VBox> 
+
+
+
+			<table:Table
+			id="oTableDHR"
+			selectionMode="None"
+			visibleRowCount="8" 
+			threshold="10"
+			navigationMode="Paginator"
+			editable = "false"
+			enableBusyIndicator = "false"
+			enableColumnReordering = "false"
+			enableGrouping = "false"
+			enableSelectAll = "false"
+			showColumnVisibilityMenu = "false"
+			showNoData = "true"
+			enableCellFilter="false"
+			class="sap.table.view"
+			rows="{/Row}">
+				<table:columns>
+					<table:Column hAlign="Center" visible="true" width="80px">
+						<Text  text="" />
+						<table:template> <core:Icon src = "sap-icon://complete" size="1.2em"  color="#298A08"/></table:template>
+					</table:Column>
+
+					<table:Column hAlign="Left" visible="true" width="600px">
+						<Text  text="Requirement" />
+						<table:template> <Text  text="{TEXT}" /></table:template>
+					</table:Column>
+
+				</table:columns>
+			</table:Table>	
+
+        </VBox>
+    <beginButton>
+      <Button
+       type="Accept"
+         text="Aceptar"
+         press="onCloseDHRReview"/>
+    </beginButton>
+    </Dialog>
+</core:FragmentDefinition>

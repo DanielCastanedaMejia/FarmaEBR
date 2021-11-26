@@ -1,0 +1,243 @@
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.PMOrder.PMOrderDetail"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+  <Page
+		id="PMNotificationDetail"
+		title="{i18n>viewPMOrder}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+    <headerContent> 
+      <Button
+        icon="sap-icon://home"
+        press="goToHome"/>
+    </headerContent>
+    <ObjectHeader
+        title="{i18n>headerPMDetail}"
+        number="{/order}">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/status}"
+          state="Success" />
+      <ObjectStatus
+          text="{/user_status}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute text="{/short_text}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+
+<IconTabBar class="">
+<!--<items>-->
+<!--<IconTabFilter text="INFO">-->
+<!--<f:SimpleForm layout="ResponsiveGridLayout" >-->
+<!--<f:title>-->
+<!--<core:Title text="A Form" />-->
+<!--</f:title>-->
+<!--</f:SimpleForm>-->
+<!--</IconTabFilter>-->
+<!--</items>-->
+
+<items>
+<IconTabFilter text="RESPONSABLE">
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>PlanifGroup}" />
+              <Text text="{/plant} {/descPlant}" />
+              <Label text="{i18n>PMWorkCenter}" />
+              <Text text="{/work_center} {/descWorkCenter}" />
+              <Label text="{i18n>PMNotification}" />
+              <Link text="{notification}" tooltip="{i18n>PMOrderDetail.tooltipToNoti}" press="onShowNoti" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+</IconTabFilter>
+
+<IconTabFilter text="REFERENCIA">
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>Equipment}" />
+              <Text text="{/equipment} {/desc_Equipment}" />
+              <Label text="{i18n>PMFunctionalLocation}" />
+              <Text text="{/functional_Location} {/desc_functionalLocation}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+</IconTabFilter>
+
+
+
+      <!--DATOS PARA COSTOS-->
+
+
+<IconTabFilter text="COSTOS">
+        <content>
+          <f:SimpleForm
+            minWidth="1024"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+            columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="Costo Estimado" />
+              <Text text="{/est_cost}" />
+              <Label text="Costo Planeado" />
+              <Text text="{/cost_plan}" />
+              <Label text="Costo Real" />
+              <Text text="{/cost_rl}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+</IconTabFilter>
+
+      <!--******************-->
+      <!--DATOS PARA EMPLAZAMIENTO-->
+
+
+<IconTabFilter text="EMPLAZAMIENTO">
+        <content>
+          <f:SimpleForm
+            minWidth="1024"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+            columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="Ce Emplaz" />
+              <Text text="{/ce_empl}" />
+              <Label text="Emplazamiento" />
+              <Text text="{/empl}" />
+              <Label text="Sociedad" />
+              <Text text="{/society}" />
+              <Label text="Centro Cost" />
+              <Text text="{/cent_cost}" />
+              <Label text="Sociedad CO" />
+              <Text text="{/society_co}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+</IconTabFilter>
+
+      <!--******************-->
+</items>
+</IconTabBar>
+
+      <Panel
+				id="PMObjectOperations"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMOrderOperation}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <Table
+                 id="PMOperationList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column>
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+              <Column
+                hAlign="End"
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5em">
+                <Label text="{i18n>columnIDOp}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnPlant}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>PMWorkCenter}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnControlKey}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnActKey}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnDesc}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnWork}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>column_realWork}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem
+                type="Navigation"
+				        press="onPMOrderOperation">
+                <cells>
+                  <Text text="{order}"/>
+                  <Text text="{operation}"/>
+                  <Text text="{plant}"/>
+                  <Text text="{work_center}"/>
+                  <Text text="{control_key}"/>
+                  <Text text="{acttype}"/>
+                  <Text text="{description}"/>
+                  <Text text="{work}"/>
+                  <Text text="{real_work}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+        <ToolbarSpacer/>
+        <Button text="{i18n>CloseOrder}" icon="sap-icon://decline" type="Reject" press="onOpenDialogCloseOrder"/>
+        <Button text="{i18n>AddOperation}" icon="sap-icon://add-activity" type="Accept" press="onOpenDialogAddOperation"/>
+        <Button text="{i18n>ReleaseOrder}" icon="sap-icon://flag" type="Emphasized" press="onOpenDialogRelease"/>
+      <!--<MenuButton text="{i18n>More}">
+          <menu>
+            <Menu itemSelected="onMenuAction">
+              <items>                
+                <MenuItem text="{i18n>AcceptWork}" icon="sap-icon://accept" press="onOpenDialogAcceptWork"/>              
+              </items>
+            </Menu>
+          </menu>
+        </MenuButton>-->
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

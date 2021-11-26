@@ -1,0 +1,72 @@
+html[dir="ltr"] .myAppDemoWT .myCustomButton.sapMBtn {
+ 	margin-right: 0.125rem
+}
+
+html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
+ 	margin-left: 0.125rem
+}
+
+.myAppDemoWT .myCustomText {
+	display: inline-block;
+	font-weight: bold;
+}
+
+.sapMTile {
+    width: 13rem;
+    height: 13rem;
+}
+
+.sapMTileContent {
+    width: 13rem;
+    height: 13rem;
+}
+
+.toolbar_title {
+    font-size:large;
+    color:#16517b !important;
+    font-weight:bold !important
+}
+
+.toolbar_color {
+    color: #16517b !important
+}
+
+.toolbar_background {
+    background-color: transparent !important;
+    border-bottom-color: transparent
+}
+
+.toolbar_default {
+    background-color: #EFF4F9 !important;
+    border-bottom-color: #D1E0EE
+}
+
+.toolbar_default2 {
+    background-color: #EFF4F9 !important;
+    border-bottom: 0 !important;
+}
+
+.customtitle .sapMBtnInner {
+    vertical-align: top;
+    -webkit-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    box-sizing: border-box;
+    font-family: "72","72full",Arial,Helvetica,sans-serif;
+    font-size: 1.16rem;
+    font-weight: bold;
+    height: 2.500rem;
+    min-width: 2.500rem;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    position: relative;
+    background-color: transparent;
+    border: none !important;
+    border-radius: 0.2rem;
+    color: #16517b;
+    text-shadow: 0 0 0.125rem #ffffff;
+}

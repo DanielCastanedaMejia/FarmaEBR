@@ -1,0 +1,144 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.RegistroMermas"
+  xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+  <Toolbar
+        class="toolbar_default">
+    <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+    <Image src="images/SAP_Logo.png">
+    </Image>
+    <core:Icon
+    src="sap-icon://cause"
+    class="toolbar_title sapUiSmallMarginBegin">
+      <core:layoutData>
+        <FlexItemData growFactor="1" />
+      </core:layoutData>
+    </core:Icon>
+    <MenuButton text="Registrar merma" class="customtitle">
+      <menu>
+        <Menu>
+          <items>
+            <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+          </items>
+        </Menu>
+      </menu>
+    </MenuButton>
+    <ToolbarSpacer/>
+    <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+    </Button>
+  </Toolbar>
+  <uxap:ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageDynamicHeaderTitle>
+        <uxap:expandedHeading>
+     
+        </uxap:expandedHeading>
+
+        <uxap:snappedHeading>
+          <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+            <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+              
+            </FlexBox>
+          </FlexBox>
+        </uxap:snappedHeading>
+
+        <uxap:actions>
+        </uxap:actions>
+
+      </uxap:ObjectPageDynamicHeaderTitle>
+    </uxap:headerTitle>
+
+    <uxap:headerContent>
+      <FlexBox  >
+        <items>
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop"
+            text="Orden Activa"></Label>
+          <ComboBox
+            id="ordenActiva"
+            class="sapUiTinyMarginBegin"
+            items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }"
+            selectionChange="onChangeOrden">
+            <core:Item key="{mat}" text="{desc}" />
+          </ComboBox>
+          
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Merma :"></Label>
+          <Input placeholder="N° Material" id="material" class="sapUiTinyMarginBegin"/>
+
+          <Label class="sapMTitleStyleH6 sapUiSmallMarginTop sapUiSmallMarginBegin"
+            text="Ctd :"></Label>
+          <Input placeholder="Cantidad" id="cantidad" class="sapUiTinyMarginBegin sapUiSmallMarginEnd"/>
+          
+      
+  <Button
+            text="Registrar merma"
+            icon="sap-icon://save"
+            press="onGuardarMermas"
+            type="Emphasized"/>
+        </items>
+      </FlexBox>
+    </uxap:headerContent>
+
+    <uxap:sections>      
+
+      <uxap:ObjectPageSection title="Listado de merma registrada">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <Table
+                 id="Tabla_mermas"
+                 class="sapUiResponsiveMargin"
+                 mode="SingleSelectLeft"
+                 width="auto"
+                 items="{/ITEMS}">
+                <columns>
+                  <Column>
+                    <Label text="Orden"/>
+                  </Column>
+                  <Column>
+                    <Label text="Merma"/>
+                  </Column>
+                  <Column>
+                    <Label text="Cantidad (kg)"/>
+                  </Column>
+                  <Column>
+                    <Label text="Fecha"/>
+                  </Column>
+                  <Column>
+                    <Label text="Documento"/>
+                  </Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{NUM_ORDEN}"/>
+                      <Text text="{MERMA}"/>
+                      <Text text="{CTD}"/>
+                      <Text text="{FECHA}"/>
+                      <Text text="{DOCUMENTO}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+</mvc:View>

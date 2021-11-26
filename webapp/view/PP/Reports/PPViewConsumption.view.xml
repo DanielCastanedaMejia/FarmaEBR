@@ -1,0 +1,86 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Reports.PPViewConsumption"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>PPConsumption.tittle}"
+      showNavButton="true"
+		 navButtonPress="onNavBack">
+        <content>
+          <Table
+		id="PPConsumptionList"
+		class="sapUiResponsiveMargin"
+		width="auto"
+		items="{
+			path : '/ITEMS',
+			sorter : {
+				path : 'DOCUMENTO',
+				group : true
+			}
+		}">
+            <headerToolbar>
+              <Toolbar>
+                <Title text="{i18n>PPConsumption.table}"/>
+                <ToolbarSpacer/>
+              </Toolbar>
+            </headerToolbar>
+            <columns>
+              <Column>
+                <Label text="{i18n>column.codigoMaterial}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.material}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.quantity}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.UM}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.lote}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.storage}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.date}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.documento}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{MATERIAL}"/>
+                  <Text text="{DESC_MATERIAL}"/>
+                  <Text text="{CANTIDAD}"/>
+                  <Text text="{UM}"/>
+                  <Text text="{LOTE}"/>
+                  <Text text="{ALMACEN}"/>
+                  <Text text="{FECHA_INS}"/>
+                  <Text text="{DOCUMENTO}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+
+        </content>
+        <footer>
+          <Toolbar>
+            <ToolbarSpacer/>
+
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

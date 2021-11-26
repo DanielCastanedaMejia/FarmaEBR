@@ -1,0 +1,171 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.Mantenimiento.MAF.verMAF"
+		xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+    xmlns:fb="sap.ui.comp.filterbar"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="wizardContentPage"
+      title="{i18n>pageViewPMNotification}"
+      backgroundDesign="Solid"
+      showHeader="false">
+        <Toolbar
+        class="toolbar_default">
+          <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+          <Image src="images/SAP_Logo.png">
+          </Image>
+          <core:Icon
+          src="sap-icon://grid"
+          class="toolbar_title sapUiSmallMarginBegin">
+            <core:layoutData>
+              <FlexItemData growFactor="1" />
+            </core:layoutData>
+          </core:Icon>
+          <Label labelFor="myColumn"
+            class="toolbar_title"
+            text="Medios Auxiliares de Fabricación"
+            wrapping="true"
+        />
+          <ToolbarSpacer/>
+          <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+          </Button>
+        </Toolbar>
+        <fb:FilterBar header="MAF"
+                      reset="onReset" search="onFilterSearch" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+          <fb:filterItems>
+
+            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+              <fb:control>
+                <ComboBox>
+                  <items>
+                    <core:Item key="PA00-4010" text="Planta 1"/>
+                  </items>
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="A" label="{i18n>StartDate}">
+              <fb:control>
+                <DatePicker
+                  id="start_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="B" label="{i18n>EndDate}">
+              <fb:control>
+                <DatePicker
+                  id="end_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+          </fb:filterItems>
+
+        </fb:FilterBar>
+        <content>
+
+          <IconTabBar
+            id="IconTabBar_Notifications"
+            select="handleIconTabBarSelect"
+            class="sapUiResponsiveContentPadding">
+            <items>
+              <IconTabFilter
+                showAll="true"
+                count="{/total}"
+                text="MAF"
+                key="All" />
+              <IconTabSeparator />
+              <IconTabFilter
+                icon="sap-icon://begin"
+                iconColor="Positive"
+                count="{/METR}"
+                text="C. Buena"
+                key="METR" />
+              <IconTabFilter
+                icon="sap-icon://create-entry-time"
+                iconColor="Critical"
+                count="{/MEAB}"
+                text="C. Regular"
+                key="MEAB" />
+              <IconTabFilter
+                icon="sap-icon://complete"
+                iconColor="Negative"
+                count="{/CERR}"
+                text="C. Mala"
+                key="CERR" />
+              
+            </items>
+          </IconTabBar>
+          <Table
+                     id="PMMAFList_Report"
+                     class="sapUiResponsiveMargin"
+                     width="auto"
+                     items="{
+			                  path : '/ITEMS',
+			                  sorter : {
+				                  path : 'CONDICION',
+				                  group : true
+			                  }
+		                   }">
+            <columns>
+              <Column>
+                <Label text="{i18n>column.codigoMaterial}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.description}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.point}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.counter}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.nextMtto}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.totalCount}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.condition}"/>
+              </Column>
+            </columns>
+
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{MAF_NO}"/>
+                  <Text text="{MAF_DESC}"/>
+                  <Text text="{PUNTO}"/>
+                  <Text text="{VALOR_ACTUAL}"/>
+                  <Text text="{VALOR_MAXIMO}"/>
+                  <Text text="{VALOR_TOTAL}"/>
+                  <ObjectStatus
+                    class="stat"
+                    text="{CONDICION}"
+                    state="{
+				                    path: 'ESTATUS',
+				                    formatter: '.formatter.conditionColor'
+			                    }"
+                        />
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

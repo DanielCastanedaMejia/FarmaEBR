@@ -1,0 +1,108 @@
+﻿<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.PMOrder.PMOrderOperationAGRO"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+  <Page
+		id="PMNOrderOperation"
+		title="{i18n>viewPMOrderOperation}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+    <ObjectHeader
+        title="{i18n>headerPMOperation}"
+        number="{/activity}">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/system_status}"
+          state="Success" />
+        <ObjectStatus
+          text="Trabajo realizado"
+          state="Error" />
+        <ObjectStatus
+          text="{/work_actual} {/un_work}"
+          state="Success" />
+        <ObjectStatus
+          text="{/complete}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute text="{/description}" />
+        <ObjectAttribute text="Puesto de trabajo: {/work_center} / {/plant}" />
+        <ObjectAttribute text="Trabajo Planeado: {/work_activity} {/un_work}" />
+        <ObjectAttribute text="Clase Actividad: {/acttype}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+      <Panel
+				id="PMObjectComponents"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMWorkNotification}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <Table
+                 id="PMNotificationList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column>
+                <Label text="{i18n>columnConfirm}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnCont}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnMotive}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnWorkCenter}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_realWork}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnDate}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnDescOperation}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{conf_number}"/>
+                  <Text text="{conf_cont}"/>
+                  <Text text="{order}"/>
+                  <Text text="{descripcion}"/>
+                  <Text text="{puesto_trabajo}"/>
+                  <Text text="{trabajo}"/>
+                  <Text text="{fecha_ins}"/>
+                  <Text text="{desc_operation}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+        <ToolbarSpacer/>
+        <Button text="{i18n>AddNotification}" type="Emphasized" icon="sap-icon://add-document" press="onOpenDialogAddNotification"/>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

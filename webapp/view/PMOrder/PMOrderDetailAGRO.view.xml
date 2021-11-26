@@ -1,0 +1,138 @@
+﻿<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.PMOrder.PMOrderDetailAGRO"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+  <Page
+		id="PMNotificationDetail_AGRO"
+		title="{i18n>viewPMOrder}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+    <ObjectHeader
+        title="{i18n>headerPMDetail}"
+        number="{/order}">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/status}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute text="{/short_text}" />
+        <ObjectAttribute text="{/desc_table}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+      <Panel
+				id="PMObjectResponsable"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMOrderResponsable}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <f:SimpleForm
+						minWidth="1024"
+						editable="false"
+						layout="ResponsiveGridLayout"
+						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+						columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="{i18n>PlanifGroup}" />
+              <Text text="{/plant} {/descPlant}" />
+              <Label text="{i18n>PMWorkCenter}" />
+              <Text text="{/work_center} {/descWorkCenter}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+      </Panel>
+      <Panel
+				id="PMObjectOperations"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMOrderOperation}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <Table
+                 id="PMOperationList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column>
+                <Label text="{i18n>columnOrder}"/>
+              </Column>
+              <Column
+                hAlign="End"
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5em">
+                <Label text="{i18n>columnIDOp}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnPlant}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>PMWorkCenter}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnControlKey}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnDesc}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>columnWork}"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="{i18n>column_realWork}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem
+                type="Navigation"
+				        press="onPMOrderOperation">
+                <cells>
+                  <Text text="{order}"/>
+                  <Text text="{operation}"/>
+                  <Text text="{plant}"/>
+                  <Text text="{work_center}"/>
+                  <Text text="{control_key}"/>
+                  <Text text="{description}"/>
+                  <Text text="{work}"/>
+                  <Text text="{real_work}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+        <ToolbarSpacer/>
+        <Button text="{i18n>AddOperation}" icon="sap-icon://add-activity" type="Accept" press="onOpenDialogAddOperation"/>
+        <Button text="{i18n>ReleaseOrder}" icon="sap-icon://flag" type="Emphasized" press="onOpenDialogRelease"/>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

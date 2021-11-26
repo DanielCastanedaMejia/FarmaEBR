@@ -1,0 +1,164 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.Reportes.verParos"
+	xmlns:form="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+    xmlns:fb="sap.ui.comp.filterbar"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page
+      id="ViewPMOrders"
+      showHeader="false"
+      backgroundDesign="Solid">
+        <Toolbar
+        class="toolbar_default">
+          <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+          <Image src="images/SAP_Logo.png">
+          </Image>
+          <core:Icon
+          src="sap-icon://flag"
+          class="toolbar_title sapUiSmallMarginBegin">
+            <core:layoutData>
+              <FlexItemData growFactor="1" />
+            </core:layoutData>
+          </core:Icon>
+          <Label labelFor="myColumn"
+            class="toolbar_title"
+            text="Paros"
+            wrapping="true"
+        />
+          <ToolbarSpacer/>
+          <Label
+            id ="username"
+            text=""
+            class="toolbar_color"></Label>
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+          </Button>
+        </Toolbar>
+
+        <Toolbar
+        class="toolbar_icons">          
+          <ToolbarSpacer/>          
+          <Button 
+            icon="sap-icon://future" 
+            text="Justificar"
+            type="Emphasized"             
+            press="onRevisarSeleccion"
+            >
+          </Button>
+
+          <Button
+            text="Revertir"
+            icon="sap-icon://reset" 
+            type="Default"
+            class="sapUiMediumMarginEnd"
+            press="onReversarParo">
+          </Button>
+        </Toolbar>
+
+        <fb:FilterBar header="Buscar Paros"
+                      reset="onReset" search="verParos" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+          <fb:filterItems>
+
+            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+              <fb:control>
+                <ComboBox id="planta">
+                  <items>
+                    <core:Item key="1710" text="Planta 1710"/>
+                  </items>
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="A" label="{i18n>StartDate}">
+              <fb:control>
+                <DatePicker
+                  id="start_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="B" label="{i18n>EndDate}">
+              <fb:control>
+                <DatePicker
+                  id="end_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"/>
+              </fb:control>
+            </fb:FilterItem>
+
+          </fb:filterItems>
+
+        </fb:FilterBar>
+        <content>          
+
+          <Toolbar>
+            <ToolbarSpacer />
+            <Button icon="sap-icon://action-settings" type="Transparent" press="_openModalColumn"/>
+          </Toolbar>
+
+          <Table
+            id="Paros_list"
+            class="sapUiResponsiveMargin"
+            width="auto"
+            mode="SingleSelectLeft"
+            items="{/ITEMS}">
+
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="ID"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Fecha Inicio"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Fecha Fin"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Duración"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Causa"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Agrupador"/>
+              </Column>
+            </columns>
+
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{ID_PARO}"/>
+                  <Text text="{FECHA_INICIO}"/>
+                  <Text text="{FECHA_FIN}"/>
+                  <Text text="{DURACION}"/>
+                  <ObjectStatus text="{
+						        path: 'DESC_CAUSA',
+						        formatter: '.formatter.causaParo'
+					        }"/>                 
+                  <Text text="{AGRUPADOR}"/>                  
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

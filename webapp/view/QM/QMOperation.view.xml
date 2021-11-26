@@ -1,0 +1,145 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.QM.QMOperation"
+  xmlns="sap.m"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form"
+  busyIndicatorDelay="0">
+  <Page id="wizardContentPage"
+      showNavButton="true"
+      title="Operaciones"
+      navButtonPress="onNavBack">
+    <headerContent>
+      <Button
+        icon="sap-icon://home"
+        press="goToHome"/>
+    </headerContent>
+    <ObjectHeader
+        title="ORDEN"
+        number="{/NUM_ORDEN}"
+        responsive="true"
+        backgroundDesign="Translucent">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/ESTATUS}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute title="LOTE " text="{/LOTE}" />
+        <ObjectAttribute text="{/MATERIAL}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+      <Panel
+        id="PMObjectResponsable"
+        width="auto"
+        class="sapUiResponsiveMargin sapUiNoContentPadding"
+        visible="false" >
+        <headerToolbar>
+          <Toolbar>
+            <Title text="General" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <f:SimpleForm
+            minWidth="1024"
+            editable="false"
+            layout="ResponsiveGridLayout"
+            labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+            columnsL="1" columnsM="1">
+            <f:content>
+              <Label text="Estatus MII" />
+              <Text text="{ESTATUS_MII}"/>
+              <Label text="Cantidad Programada" />
+              <Text text="{/CANTIDAD} {/UNIDAD_MEDIDA}" />
+              <Label text="Fecha Inicio" />
+              <Text text="{/FECHA_INICIO}" />
+              <Label text="Fecha Fin" />
+              <Text text="{/FECHA_FIN}" />
+            </f:content>
+          </f:SimpleForm>
+        </content>
+      </Panel>
+      
+      <Panel
+        id="PMObjectOperations"
+        width="auto"
+        class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <!--<headerToolbar>
+          <Toolbar>
+            <Title text="Operaciones" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>-->
+        <content>
+          <Table
+                 id="PMOperationList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column>
+                <Label text="Operación"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="6em">
+                <Label text="Orden"/>
+              </Column>
+              <Column>
+                <Label text="Planta"/>
+              </Column>
+              <Column>
+                <Label text="Descripcion"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="No Conf"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Clv Control"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Cant Prog"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="UM"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem
+                type="Navigation"
+                press="onQMOrderOperation">
+                <cells>
+                  <ObjectIdentifier title="{OPERACION}" emphasized="false"/>
+                  <Text text="{NUM_ORDEN}"/>
+                  <Text text="{PLANTA}"/>
+                  <Text text="{DESCRIPCION}"/>
+                  <Text text="{CONF_NO}"/>
+                  <Text text="{CLAVE_CONTROL}"/>
+                  <Text text="{CANTIDAD}"/>
+                  <Text text="{UM}"/>                  
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

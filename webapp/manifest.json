@@ -1,0 +1,726 @@
+{
+  "_version": "1.8.0",
+  "sap.app": {
+    "id": "sap.ui.demo.walkthrough",
+    "type": "application",
+    "i18n": "i18n/i18n.properties",
+    "title": "{{appTitle}}",
+    "description": "{{appDescription}}",
+    "applicationVersion": {
+      "version": "1.0.0"
+    }
+  },
+  "sap.ui": {
+    "technology": "UI5",
+    "deviceTypes": {
+      "desktop": true,
+      "tablet": true,
+      "phone": true
+    }
+  },
+  "sap.ui5": {
+    "rootView": {
+      "viewName": "sap.ui.demo.webapp.view.App",
+      "type": "XML",
+      "async": true,
+      "id": "app"
+    },
+    "dependencies": {
+      "minUI5Version": "1.30",
+      "libs": {
+        "sap.m": {}
+      }
+    },
+    "models": {
+      "i18n": {
+        "type": "sap.ui.model.resource.ResourceModel",
+        "settings": {
+          "bundleName": "sap.ui.demo.webapp.i18n.i18n"
+        }
+      }
+    },
+    "resources": {
+      "css": [
+        {
+          "uri": "css/style.css"
+        }
+      ]
+    },
+    "initData": {
+      "server": "localhost:8010/proxy"
+    },
+    "routing": {
+      "config": {
+        "routerClass": "sap.m.routing.Router",
+        "viewType": "XML",
+        "viewPath": "sap.ui.demo.webapp.view",
+        "controlId": "app",
+        "controlAggregation": "pages",
+        "transition": "slide",
+        "bypassed": {
+          "target": "notFound"
+        },
+        "async": true
+      },
+      "routes": [
+        {
+          "pattern": "",
+          "name": "appHome",
+          "target": "home"
+        },
+        {
+          "pattern": "Calidad/{plant}",
+          "name": "viewQMOrders",
+          "target": "viewQMOrders"
+        },
+
+
+
+
+        {
+          "pattern": "verAvisos",
+          "name": "verAvisos",
+          "target": "verAvisos"
+        },
+        {
+          "pattern": "detalleAviso/{id}",
+          "name": "avisoDetalle",
+          "target": "avisoDetalle"
+        },
+        {
+          "pattern": "crearAviso",
+          "name": "crearAviso",
+          "target": "crearAviso"
+        },
+        {
+          "pattern": "verOrdenes",
+          "name": "verOrdenes",
+          "target": "verOrdenes"
+        },
+        {
+          "pattern": "crearOrdenPM/{id}",
+          "name": "crearOrdenPM",
+          "target": "crearOrdenPM"
+        },
+        {
+          "pattern": "detalleOrden/{id}",
+          "name": "detalleOrdenPM",
+          "target": "detalleOrdenPM"
+
+        },
+        {
+          "pattern": "detalleOperacionPM/{order}/{activity}/{plant}",
+          "name": "detalleOperacionPM",
+          "target": "detalleOperacionPM"
+
+        },
+        {
+          "pattern": "verMAF",
+          "name": "verMAF",
+          "target": "verMAF"
+        },
+        {
+          "pattern": "verReportes",
+          "name": "verReportes",
+          "target": "verReportes"
+        },
+        {
+          "pattern": "parosProceso",
+          "name": "verParos",
+          "target": "verParos"
+        },
+
+
+
+
+
+        {
+          "pattern": "Ordenes_PP/{plant}",
+          "name": "viewPPOrders",
+          "target": "viewPPOrders"
+        },
+        {
+          "pattern": "Detalle/{orden}",
+          "name": "orderDetail",
+          "target": "orderDetail"
+        },
+        {
+          "pattern": "Operaciones/{orden}",
+          "name": "QMOperation",
+          "target": "QMOperation"
+        },
+        {
+          "pattern": "Registro/{orden}/{operacion}/{lote}",
+          "name": "QMRecordCapture",
+          "target": "QMRecordCapture"
+        },
+        {
+          "pattern": "Operacion/{orden}/{operacion}",
+          "name": "operationDetail",
+          "target": "operationDetail"
+        },
+        {
+          "pattern": "Operacion/{orden}/{operacion}/Notificaciones",
+          "name": "viewInventory",
+          "target": "viewInventory"
+        },
+        {
+          "pattern": "Operacion/{orden}/{operacion}/Consumos",
+          "name": "operationConsumption",
+          "target": "operationConsumption"
+        },
+        {
+          "pattern": "Operacion/{orden}/{operacion}/Tiempos",
+          "name": "operationNotification",
+          "target": "operationNotification"
+        },
+        {
+          "pattern": "createPMNotification/{Plant}",
+          "name": "createPMNotification",
+          "target": "createPMNotification"
+        },
+        {
+          "pattern": "viewPMNotification/{Plant}",
+          "name": "viewPMNotification",
+          "target": "viewPMNotification"
+        },
+        {
+          "pattern": "viewPMUser",
+          "name": "viewPMUser",
+          "target": "viewPMUser"
+        },
+
+        {
+          "pattern": "viewPMReporteActividades/{Plant}",
+          "name": "viewPMReporteActividades",
+          "target": "viewPMReporteActividades"
+        },
+        {
+          "pattern": "viewPMGraficoActividades",
+          "name": "viewPMGraficoActividades",
+          "target": "viewPMGraficoActividades"
+        },
+        {
+          "pattern": "viewPMGraficoFallos",
+          "name": "viewPMGraficoFallos",
+          "target": "viewPMGraficoFallos"
+        },
+        {
+          "pattern": "viewPMGraficoTiempo",
+          "name": "viewPMGraficoTiempo",
+          "target": "viewPMGraficoTiempo"
+        },
+        {
+          "pattern": "viewPMReporteFallos/{Plant}",
+          "name": "viewPMReporteFallos",
+          "target": "viewPMReporteFallos"
+        },
+        {
+          "pattern": "viewPMReporteTiempo/{Plant}",
+          "name": "viewPMReporteTiempo",
+          "target": "viewPMReporteTiempo"
+        },
+        {
+          "pattern": "viewOrdersOil/{Plant}",
+          "name": "ViewOrdersOil",
+          "target": "ViewOrdersOil"
+        },
+        {
+          "pattern": "OrderOILDetail/{order}",
+          "name": "viewOrderDetailOIL",
+          "target": "viewOrderDetailOIL"
+        },
+        {
+          "pattern": "ViewNotification/{order}/{stage}",
+          "name": "PPViewNotification",
+          "target": "PPViewNotification"
+        },
+        {
+          "pattern": "ViewConsumption/{order}/{stage}",
+          "name": "PPViewConsumption",
+          "target": "PPViewConsumption"
+        },
+        {
+          "pattern": "viewPMOrders/{Plant}",
+          "name": "viewPMOrders",
+          "target": "viewPMOrders"
+        },
+        {
+          "pattern": "viewPMOrdersAGRO/{Plant}",
+          "name": "viewPMOrdersAGRO",
+          "target": "viewPMOrdersAGRO"
+        },
+        {
+          "pattern": "NotificationDetail/{id}",
+          "name": "PMNotificationDetail",
+          "target": "PMNotificationDetail"
+        },
+        {
+          "pattern": "createPMOrder/{id}/{short_text}/{priority}",
+          "name": "createPMOrder",
+          "target": "createPMOrder"
+        },
+        {
+          "pattern": "createPMOrderAGRO/{plant}",
+          "name": "createPMOrderAGRO",
+          "target": "createPMOrderAGRO"
+        },
+        {
+          "pattern": "OrderDetail/{id}",
+          "name": "PMOrderDetail",
+          "target": "PMOrderDetail"
+        },
+        {
+          "pattern": "OrderDetailAGRO/{plant}/{id}",
+          "name": "PMOrderDetailAGRO",
+          "target": "PMOrderDetailAGRO"
+        },
+        {
+          "pattern": "OrderDetail/{order}/Plant/{plant}/Operation/{activity}",
+          "name": "PMOrderOperation",
+          "target": "PMOrderOperation"
+        },
+        {
+          "pattern": "OrderDetailAGRO/{order}/Operation/{activity}",
+          "name": "PMOrderOperationAGRO",
+          "target": "PMOrderOperationAGRO"
+        },
+        {
+          "pattern": "PPNotification/{Plant}",
+          "name": "PPNotificationVIN",
+          "target": "PPNotificationVIN"
+        },
+        {
+          "pattern": "PPOrderDetail/{plant}/{stage}",
+          "name": "PPOrderDetailVIN",
+          "target": "PPOrderDetailVIN"
+        },
+        {
+          "pattern": "OperationDetail/{order}/{activity}",
+          "name": "PPOperationDetailVIN",
+          "target": "PPOperationDetailVIN"
+        },
+        {
+          "pattern": "Reservations/{order}",
+          "name": "PPViewReservation",
+          "target": "PPViewReservation"
+        },
+        {
+          "pattern": "Barricas/{plant}",
+          "name": "PPBarricas",
+          "target": "PPBarricas"
+        },
+        {
+          "pattern": "Desembarricado/{plant}",
+          "name": "PPDesembarricado",
+          "target": "PPDesembarricado"
+        },
+        {
+          "pattern": "DesembarricadoDetail/{order}",
+          "name": "PPDesembarricadoDetail",
+          "target": "PPDesembarricadoDetail"
+        },
+        {
+          "pattern": "StagesOIL/{plant}",
+          "name": "PPStageOIL",
+          "target": "PPStageOIL"
+        },
+        {
+          "pattern": "OrderStageDetailOIL/{plant}/{container}",
+          "name": "OrderStageDetailOIL",
+          "target": "OrderStageDetailOIL"
+        },
+        {
+          "pattern": "PPContainers/{plant}",
+          "name": "PPContainers",
+          "target": "PPContainers"
+        },
+  {
+          "pattern": "generarEBR",
+          "name": "generarEBR",
+          "target": "generarEBR"
+        },
+      {
+          "pattern": "verificacionEBR",
+          "name": "verificacionEBR",
+          "target": "verificacionEBR"
+        },
+      {
+          "pattern": "registroPesos",
+          "name": "registroPesos",
+          "target": "registroPesos"
+        },
+        {
+          "pattern": "RegistroMermas",
+          "name": "RegistroMermas",
+          "target": "RegistroMermas"
+        },
+        {
+          "pattern": "Intercompany",
+          "name": "Intercompany",
+          "target": "Intercompany"
+        }
+      ],
+      "targets": {
+        "home": {
+          "viewId": "home",
+          "viewName": "Home",
+          "viewLevel": 1
+        },
+        "notFound": {
+          "viewId": "notFound",
+          "viewName": "NotFound",
+          "transition": "show"
+        },
+        "viewQMOrders": {
+          "viewId": "QMOrders",
+          "viewName": "QMOrders",
+          "viewPath": "sap.ui.demo.webapp.view.QM",
+          "viewLevel": 2
+        },
+        "viewPPOrders": {
+          "viewId": "Orders",
+          "viewName": "Orders",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization",
+          "viewLevel": 2
+        },
+        "operationDetail": {
+          "viewId": "Operation",
+          "viewName": "Operation",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization",
+          "viewLevel": 3
+        },
+        "viewInventory": {
+          "viewId": "PPViewInventory",
+          "viewName": "PPViewInventory",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Reports",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "operationConsumption": {
+          "viewId": "PPViewConsumption",
+          "viewName": "PPViewConsumption",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Reports",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "operationNotification": {
+          "viewId": "PPViewNotification",
+          "viewName": "PPViewNotification",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Reports",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "createPMNotification": {
+          "viewId": "createPMNotification",
+          "viewName": "createPMNotification",
+          "viewPath": "sap.ui.demo.webapp.view.PMNotification",
+          "viewLevel": 2
+        },
+        "PPBarricas": {
+          "viewId": "PPBarricas",
+          "viewName": "PPBarricas",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 2
+        },
+        "PPContainers": {
+          "viewId": "PPContainers",
+          "viewName": "PPContainers",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 2
+        },
+        "PPDesembarricado": {
+          "viewId": "PPDesembarricado",
+          "viewName": "PPDesembarricado",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 2
+        },
+        "createPMOrderAGRO": {
+          "viewId": "createPMOrderAGRO",
+          "viewName": "createPMOrderAGRO",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 2,
+          "transition": "flip"
+        },
+        "viewPMNotification": {
+          "viewId": "viewPMNotification",
+          "viewName": "viewPMNotification",
+          "viewPath": "sap.ui.demo.webapp.view.PMNotification",
+          "viewLevel": 2
+        },
+        "viewPMUser": {
+          "viewId": "viewPMUser",
+          "viewName": "viewPMUser",
+          "viewPath": "sap.ui.demo.webapp.view.PMNotification",
+          "viewLevel": 2
+        },
+
+        "viewPMReporteActividades": {
+          "viewId": "viewPMReporteActividades",
+          "viewName": "viewPMReporteActividades",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMGraficoActividades": {
+          "viewId": "viewPMGraficoActividades",
+          "viewName": "viewPMGraficoActividades",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMGraficoFallos": {
+          "viewId": "viewPMGraficoFallos",
+          "viewName": "viewPMGraficoFallos",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMGraficoTiempo": {
+          "viewId": "viewPMGraficoTiempo",
+          "viewName": "viewPMGraficoTiempo",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMReporteFallos": {
+          "viewId": "viewPMReporteFallos",
+          "viewName": "viewPMReporteFallos",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMReporteTiempo": {
+          "viewId": "viewPMReporteTiempo",
+          "viewName": "viewPMReporteTiempo",
+          "viewPath": "sap.ui.demo.webapp.view.PMReport",
+          "viewLevel": 2
+        },
+        "viewPMOrders": {
+          "viewId": "viewPMOrders",
+          "viewName": "viewPMOrders",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 2
+        },
+        "orderDetail": {
+          "viewId": "Detail",
+          "viewName": "Detail",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization",
+          "viewLevel": 2
+        },
+        "QMOperation": {
+          "viewId": "QMOperation",
+          "viewName": "QMOperation",
+          "viewPath": "sap.ui.demo.webapp.view.QM",
+          "viewLevel": 2
+        },
+        "QMRecordCapture": {
+          "viewId": "QMRecordCapture",
+          "viewName": "QMRecordCapture",
+          "viewPath": "sap.ui.demo.webapp.view.QM",
+          "viewLevel": 2
+        },
+        "ViewOrdersOil": {
+          "viewId": "ViewOrdersOil",
+          "viewName": "ViewOrdersOil",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationOIL",
+          "viewLevel": 2
+        },
+        "viewPMOrdersAGRO": {
+          "viewId": "viewPMOrdersAGRO",
+          "viewName": "viewPMOrdersAGRO",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 2
+        },
+        "PPStageOIL": {
+          "viewId": "PPStageOIL",
+          "viewName": "PPStageOIL",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationOIL",
+          "viewLevel": 2
+        },
+        "PPNotificationVIN": {
+          "viewId": "PPNotificationVIN",
+          "viewName": "PPNotificationVIN",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 2
+        },
+        "PMNotificationDetail": {
+          "viewId": "PMNotificationDetail",
+          "viewName": "PMNotificationDetail",
+          "viewPath": "sap.ui.demo.webapp.view.PMNotification",
+          "viewLevel": 3
+        },
+        "OrderStageDetailOIL": {
+          "viewId": "PPOrderContainerACE",
+          "viewName": "PPOrderContainerACE",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationOIL",
+          "viewLevel": 3
+        },
+        "viewOrderDetailOIL": {
+          "viewId": "PPOrderDetailOIL",
+          "viewName": "PPOrderDetailOIL",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationOIL",
+          "viewLevel": 3
+        },
+        "PPDesembarricadoDetail": {
+          "viewId": "PPDesembarricadoDetail",
+          "viewName": "PPDesembarricadoDetail",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 3
+        },
+        "createPMOrder": {
+          "viewId": "createPMOrder",
+          "viewName": "createPMOrder",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "PMOrderDetail": {
+          "viewId": "PMOrderDetail",
+          "viewName": "PMOrderDetail",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 3
+        },
+        "PMOrderDetailAGRO": {
+          "viewId": "PMOrderDetailAGRO",
+          "viewName": "PMOrderDetailAGRO",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 3
+        },
+        "PPOrderDetailVIN": {
+          "viewId": "PPOrderDetailVIN",
+          "viewName": "PPOrderDetailVIN",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 3
+        },
+        "PPOperationDetailVIN": {
+          "viewId": "PPOperationDetailVIN",
+          "viewName": "PPOperationDetailVIN",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 4
+        },
+        "PPViewConsumption": {
+          "viewId": "PPViewConsumption",
+          "viewName": "PPViewConsumption",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "PPViewNotification": {
+          "viewId": "PPViewNotification",
+          "viewName": "PPViewNotification",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 4,
+          "transition": "flip"
+        },
+        "PPViewReservation": {
+          "viewId": "PPViewReservation",
+          "viewName": "PPViewReservation",
+          "viewPath": "sap.ui.demo.webapp.view.PPNotificationVIN",
+          "viewLevel": 5,
+          "transition": "flip"
+        },
+        "PMOrderOperation": {
+          "viewId": "PMOrderOperation",
+          "viewName": "PMOrderOperation",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 4
+        },
+        "PMOrderOperationAGRO": {
+          "viewId": "PMOrderOperationAGRO",
+          "viewName": "PMOrderOperationAGRO",
+          "viewPath": "sap.ui.demo.webapp.view.PMOrder",
+          "viewLevel": 4
+        },
+        "generarEBR": {
+          "viewId": "generarEBR",
+          "viewName": "generarEBR",
+          "viewPath": "sap.ui.demo.webapp.view.Reportes",
+          "viewLevel": 2
+        },
+        "verificacionEBR": {
+          "viewId": "verificacionEBR",
+          "viewName": "verificacionEBR",
+          "viewPath": "sap.ui.demo.webapp.view.Reportes",
+          "viewLevel": 2
+        },
+        "registroPesos": {
+          "viewId": "registroPesos",
+          "viewName": "registroPesos",
+          "viewPath": "sap.ui.demo.webapp.view.Reportes",
+          "viewLevel": 2
+        },
+        "RegistroMermas": {
+          "viewId": "RegistroMermas",
+          "viewName": "RegistroMermas",
+          "viewPath": "sap.ui.demo.webapp.view.PP",
+          "viewLevel": 4
+        }, 
+        "Intercompany": {
+          "viewId": "Intercompany",
+          "viewName": "Intercompany",
+          "viewPath": "sap.ui.demo.webapp.view.PP",
+          "viewLevel": 5
+        },
+
+
+
+        "verParos": {
+          "viewId": "verParos",
+          "viewName": "verParos",
+          "viewPath": "sap.ui.demo.webapp.view.Reportes",
+          "viewLevel": 2
+        },
+        "verAvisos": {
+          "viewId": "verAvisos",
+          "viewName": "verAvisos",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Avisos",
+          "viewLevel": 2
+        },
+        "avisoDetalle": {
+          "viewId": "avisoDetalle",
+          "viewName": "avisoDetalle",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Avisos",
+          "viewLevel": 3
+        },
+        "crearAviso": {
+          "viewId": "crearAviso",
+          "viewName": "crearAviso",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Avisos",
+          "viewLevel": 2
+        },
+        "verOrdenes": {
+          "viewId": "verOrdenesPM",
+          "viewName": "verOrdenes",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Ordenes",
+          "viewLevel": 2
+        },
+        "crearOrdenPM": {
+          "viewId": "crearOrden",
+          "viewName": "crearOrden",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Ordenes",
+          "viewLevel": 3
+        },
+        "detalleOrdenPM": {
+          "viewId": "detalleOrdenPM",
+          "viewName": "detalleOrden",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Ordenes",
+          "viewLevel": 3
+        },
+        "detalleOperacionPM": {
+          "viewId": "detalleOperacion",
+          "viewName": "detalleOperacion",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.Ordenes",
+          "viewLevel": 4
+        },
+        "verMAF": {
+          "viewId": "verMAF",
+          "viewName": "verMAF",
+          "viewPath": "sap.ui.demo.webapp.view.Mantenimiento.MAF",
+          "viewLevel": 2
+        },
+        "verReportes": {
+          "viewId": "verReportes",
+          "viewName": "verReportes",
+          "viewPath": "sap.ui.demo.webapp.view.Reportes",
+          "viewLevel": 2
+        }
+      }
+    }
+  }
+}

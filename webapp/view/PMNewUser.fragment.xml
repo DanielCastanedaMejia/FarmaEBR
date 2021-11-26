@@ -1,0 +1,41 @@
+﻿<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core" >
+  <Dialog
+     id="PMNewUserDialog"
+     title="{i18n>AddUser}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="{i18n>columnUser}"  labelFor="inputUser"/>
+        <Input
+        id="inputUser"
+				class="sapUiSmallMarginBottom" />
+        <Label text="{i18n>columnEmail}"  labelFor="inputMail"/>
+        <Input
+        id="inputMail"
+        class="sapUiSmallMarginBottom" />
+        <Label text="{i18n>columnPhone}"  labelFor="inputPhone"/>
+        <Input
+        id="inputPhone"
+        class="sapUiSmallMarginBottom" />
+      </l:content>
+    </l:VerticalLayout>
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>Accept}"
+         press="onCloseDialogCreateUser"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>LabelCancel}"
+         press="onCloseDialogNewUser"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,82 @@
+<mvc:View
+        controllerName="sap.ui.demo.webapp.controller.Reportes.verReportes"
+        xmlns="sap.m"
+        xmlns:mvc="sap.ui.core.mvc"
+        xmlns:f="sap.f"
+        xmlns:core="sap.ui.core"
+        xmlns:w="sap.ui.integration.widgets">
+  <Page>
+    <customHeader>
+      <Toolbar
+        class="toolbar_background">
+        <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+      <Image src="images/SAP_Logo.png">
+      </Image>
+      <core:Icon
+			src="sap-icon://business-by-design"
+			class="toolbar_title sapUiSmallMarginBegin">
+        <core:layoutData>
+          <FlexItemData growFactor="1" />
+        </core:layoutData>
+      </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Reportes"
+        wrapping="true"
+        />
+      <ToolbarSpacer/>
+        <Label
+                id ="username"
+                text=""
+                class="toolbar_color"></Label>
+      <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+      </Button>
+    </Toolbar>
+    </customHeader>
+    <content>
+      <f:GridContainer class="sapUiLargeMargin">
+    <w:Card height="21rem" manifest="{manifests>/table1}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData columns="3" />
+      </w:layoutData>
+    </w:Card>
+         <w:Card manifest="{manifests>/oee}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData columns="4" />
+      </w:layoutData>
+    </w:Card>
+    <w:Card manifest="{manifests>/donutMerma}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData rows="5" columns="4" />
+      </w:layoutData>
+    </w:Card>
+    <w:Card manifest="{manifests>/table2}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData rows="3" columns="4" />
+      </w:layoutData>
+    </w:Card>
+   <w:Card manifest="{manifests>/stackedBar}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData rows="5" columns="4" />
+      </w:layoutData>
+    </w:Card>
+  <w:Card manifest="{manifests>/donut}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData rows="5" columns="3" />
+      </w:layoutData>
+    </w:Card>
+      <w:Card manifest="{manifests>/stackedColumn}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData columns="4" />
+      </w:layoutData>
+    </w:Card>
+      <w:Card manifest="{manifests>/line}">
+      <w:layoutData>
+        <f:GridContainerItemLayoutData rows="5" columns="4" />
+      </w:layoutData>
+    </w:Card>
+  </f:GridContainer>     
+    </content>
+  </Page>
+  
+</mvc:View>

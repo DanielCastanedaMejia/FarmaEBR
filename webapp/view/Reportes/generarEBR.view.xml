@@ -1,0 +1,78 @@
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Reportes.generarEBR"
+	xmlns:core="sap.ui.core"
+	xmlns:fb="sap.ui.comp.filterbar"
+   	xmlns:form="sap.ui.layout.form"
+    	xmlns:l="sap.ui.layout"
+   	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:u="sap.ui.unified"
+   	xmlns="sap.m">
+
+	<NavContainer id="wizardNavContainer">
+		<pages>
+			<Page
+				id="generarEBR"
+				showHeader="false"
+				backgroundDesign="Solid">
+				<Toolbar
+					class="toolbar_default">
+					<Button 
+						icon="sap-icon://nav-back" 
+						type="Transparent" 
+						class="sapUiMediumMarginBegin" 
+						press="onNavBack">
+					</Button>
+					<Image 
+						src="images/SAP_Logo.png">
+					</Image>
+					<core:Icon
+						src="sap-icon://grid"
+						class="toolbar_title sapUiSmallMarginBegin">
+						<core:layoutData>
+							<FlexItemData growFactor="1" />
+						</core:layoutData>
+					</core:Icon>
+					<Label 
+						labelFor="myColumn"
+						class="toolbar_title"
+						text="Generación de EBR"
+						wrapping="true"/>
+					<ToolbarSpacer/>
+					<Label
+						id ="username"
+						text=""
+						class="toolbar_color">
+					</Label>
+					<Button 
+						icon="sap-icon://person-placeholder" 
+						type="Transparent" 
+						class="sapUiLargeMarginEnd">
+					</Button>
+				</Toolbar>
+        
+	
+				<ScrollContainer
+					height="100%"
+					width="100%"
+					horizontal="true"
+					vertical="true">
+					<FlexBox 
+						direction="Column" 
+						renderType="Div" 
+						class="sapUiSmallMargin">
+						<PDFViewer 
+							source="{/Source}" 
+							title="{/Title}" 
+							height="{/Height}">
+							<layoutData>
+								<FlexItemData growFactor="1" />
+							</layoutData>
+						</PDFViewer>
+					</FlexBox>
+				</ScrollContainer>
+
+
+			</Page>
+		</pages>
+	</NavContainer>
+</mvc:View>

@@ -1,0 +1,54 @@
+﻿<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core" >
+  <Dialog
+     id="PPTimeDialog"
+     title="{i18n>PPOperationDetail.sendTime}">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="{i18n>StartDate}"  labelFor="start_date"/>
+        <DateTimePicker
+			    id="start_date"
+          displayFormat="dd-MM-yyyy HH:mm"
+			    valueFormat="dd-MM-yyyy HH:mm"/>
+        <Label text="{i18n>EndDate}"  labelFor="start_date"/>
+        <DateTimePicker
+			    id="end_date"
+			    displayFormat="dd-MM-yyyy HH:mm"
+			    valueFormat="dd-MM-yyyy HH:mm"
+			    change="handleChange"/>
+        
+        <Label text="{i18n>PPOperationDetail.yield}"  labelFor="filterDateRangeSelection"/>
+        <Input
+        id="yield"
+				class="sapUiSmallMarginBottom" />
+        
+        <Label text="{i18n>PPOperationDetail.scrap}"  labelFor="filterDateRangeSelection"/>
+        <Input
+        id="scrap"
+				class="sapUiSmallMarginBottom" />
+
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>ButtonSend}"
+       icon="sap-icon://time-entry-request"
+         press="onCloseDialogSendTimeConfirm"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>ButtonClose}"
+         icon="sap-icon://cancel"
+         press="onCloseDialogSendTime"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

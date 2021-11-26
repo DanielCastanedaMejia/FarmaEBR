@@ -1,0 +1,367 @@
+<mvc:View
+   controllerName="sap.ui.demo.webapp.controller.PP.Reports.PPViewInventory"
+		xmlns:f="sap.ui.layout.form"
+    xmlns:l="sap.ui.layout"
+		xmlns:core="sap.ui.core"
+		xmlns:u="sap.ui.unified"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns="sap.m">
+  <NavContainer id="wizardNavContainer">
+    <pages>
+      <Page      
+      id="wizardContentPage"
+      title="{i18n>PPNotification.tittle}"
+      showNavButton="true"
+		  navButtonPress="onNavBack">
+        <content>
+          <Table
+            mode="SingleSelectLeft"
+		id="PPInventoryList"
+		class="sapUiResponsiveMargin noPrintable"
+		width="auto"
+		items="{
+			path : '/ITEMS',
+			sorter : {
+				path : 'SERIAL',
+				group : true
+			}
+		}">
+            <headerToolbar>
+              <Toolbar>
+                <Title text="{i18n>PPConsumption.table}"/>
+                <ToolbarSpacer/>
+              </Toolbar>
+            </headerToolbar>
+            <columns>
+              <Column>
+                <Label text="{i18n>column.codigoMaterial}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.material}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.quantity}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.UM}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.lote}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.storage}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.date}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.documento}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column.serial}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{MATERIAL}"/>
+                  <Text text="{DESC_MATERIAL}"/>
+                  <Text text="{CANTIDAD}"/>
+                  <Text text="{UM}"/>
+                  <Text text="{LOTE}"/>
+                  <Text text="{ALMACEN}"/>
+                  <Text text="{FECHA_INS}"/>
+                  <Text text="{DOCUMENTO}"/>
+                  <Text text="{SERIAL}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+
+          <Panel>
+            <VBox
+              fitContainer="true"
+              width="50%"
+              class="cls_001 printable noShowInPage" 
+              id="etiqueta">
+              <HBox
+				    fitContainer="true"
+				    alignItems="Stretch"
+            class="cls_001">
+                <items>
+
+                  <VBox
+                    fitContainer="true">
+                    <HBox
+                        fitContainer="true"
+                        alignItems="Stretch">
+                      <layoutData>
+                        <FlexItemData growFactor="3" />
+                      </layoutData>
+                      <items>
+                        <Text text="CKMX Number \n (P)" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                          <layoutData>
+                            <FlexItemData growFactor="1" />
+                          </layoutData>
+                        </Text>
+                        <Text text="8981882470" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                          <layoutData>
+                            <FlexItemData growFactor="1" />
+                          </layoutData>
+                        </Text>
+                      </items>
+                    </HBox>
+                    <layoutData>
+                      <FlexItemData growFactor="7" />
+                    </layoutData>
+                    <items>
+                      <Image class="barcode" />
+                    </items>
+                  </VBox>
+                  <Text text="INDIVIDUAL \nLABEL" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_003" >
+                    <layoutData>
+                      <FlexItemData growFactor="5" />
+                    </layoutData>
+                  </Text>
+                </items>
+              </HBox>
+              <HBox
+				        fitContainer="true"
+				        alignItems="Stretch"
+                class="cls_001">
+                <items>
+                  <VBox
+						        fitContainer="true"
+                    class="cls_001">
+                    <layoutData>
+                      <FlexItemData growFactor="10" />
+                    </layoutData>
+                    <items>                      
+                      <HBox
+                        fitContainer="true"
+                        alignItems="Stretch"
+                        >
+                        <layoutData>
+                          <FlexItemData growFactor="5" />
+                        </layoutData>
+                        <items>
+                          <Text text="QUANTITY (Q)" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="{/CANTIDAD}" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                       </items>
+                    </HBox>
+                      <Image class="quantity" />
+                    </items>
+                  </VBox>
+                  <VBox
+                    fitContainer="true">
+                    <layoutData>
+                      <FlexItemData growFactor="7" />
+                    </layoutData>
+                    <items>
+                      <HBox
+                        class="cls_001">
+                        <items>
+                          <Text text="DESC. {/CODIGO}" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+                      
+                      <HBox
+                        fitContainer="true"
+                        alignItems="Stretch">
+                        <layoutData>
+                          <FlexItemData growFactor="3" />
+                        </layoutData>
+                        <items>
+                          <Text text="PO # (A)" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="112213222" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+                      
+                      <Image class="PO" />
+                    </items>
+                  </VBox>                  
+                </items>
+              </HBox>
+              <HBox
+				        fitContainer="true"
+				        alignItems="Stretch"
+                class="cls_001">
+                <items>
+                  <VBox
+						        fitContainer="true"
+                    class="cls_001">
+                    <layoutData>
+                      <FlexItemData growFactor="10" />
+                    </layoutData>
+                    <items>
+                      <HBox
+                        fitContainer="true"
+                        alignItems="Stretch"
+                        >
+                        <layoutData>
+                          <FlexItemData growFactor="5" />
+                        </layoutData>
+                        <items>
+                          <Text text="Supplier Code \n(V)" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="5374" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="2" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+                      <Image class="supplier" />
+                    </items>
+                  </VBox>
+                  <VBox
+                    fitContainer="true">
+                    <layoutData>
+                      <FlexItemData growFactor="7" />
+                    </layoutData>
+                    <items>
+                      <HBox>
+                        <items>
+                          <Text text="CALSONIC KANSEI MEXICANA" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="CM-4083" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+
+                      <HBox
+                        fitContainer="true"
+                        alignItems="Stretch">
+                        <layoutData>
+                          <FlexItemData growFactor="3" />
+                        </layoutData>
+                        <items>
+                          <Text text="PLANT  SF" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="1" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+                      <HBox
+                        fitContainer="true"
+                        alignItems="Stretch">
+                        <layoutData>
+                          <FlexItemData growFactor="3" />
+                        </layoutData>
+                        <items>
+                          <Text text="MFG DATE 03/15/2019" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                          <Text text="625155C008" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                            <layoutData>
+                              <FlexItemData growFactor="1" />
+                            </layoutData>
+                          </Text>
+                        </items>
+                      </HBox>
+
+                      <Image class="PO" />
+                    </items>
+                  </VBox>
+                </items>
+              </HBox>
+
+              <HBox
+				    fitContainer="true"
+				    alignItems="Stretch"
+            class="cls_001">
+                <items>
+
+                  <VBox
+                    fitContainer="true">
+                    <HBox
+                        fitContainer="true"
+                        alignItems="Stretch">
+                      <layoutData>
+                        <FlexItemData growFactor="3" />
+                      </layoutData>
+                      <items>
+                        <Text text="SERIAL \n (S)" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                          <layoutData>
+                            <FlexItemData growFactor="1" />
+                          </layoutData>
+                        </Text>
+                        <Text text="{/SERIAL}" width="100%" type="Emphasized" class="sapUiSmallMarginEnd cls_002" >
+                          <layoutData>
+                            <FlexItemData growFactor="1" />
+                          </layoutData>
+                        </Text>
+                      </items>
+                    </HBox>
+                    <layoutData>
+                      <FlexItemData growFactor="5" />
+                    </layoutData>
+                    <items>
+                      <Image class="serial" />
+                    </items>
+                  </VBox>
+                  <Text text="DELIVERY DATE \n03/15/2019" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                    <layoutData>
+                      <FlexItemData growFactor="5" />
+                    </layoutData>
+                  </Text>
+                </items>
+              </HBox>
+              <Text text="PEASA AUTOPARTES, S.A DE C.V. PTE 134 #854, CDMX" width="100%" type="Emphasized" class="sapUiSmallMarginEnd" >
+                <layoutData>
+                  <FlexItemData growFactor="1" />
+                </layoutData>
+              </Text>
+            </VBox>
+            
+
+          </Panel>
+          
+        </content>
+        <footer>
+          <Toolbar class="noPrintable">
+            <ToolbarSpacer/>
+             <Button text="{i18n>ButtonGenerateLabel}" press="print_noti" icon="sap-icon://documents"/>
+          </Toolbar>
+        </footer>
+      </Page>
+    </pages>
+  </NavContainer>
+</mvc:View>

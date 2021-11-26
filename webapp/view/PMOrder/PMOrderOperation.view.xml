@@ -1,0 +1,136 @@
+﻿<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.PMOrder.PMOrderOperation"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.ui.layout.form"
+	busyIndicatorDelay="0">
+  <Page
+		id="PMNOrderOperation"
+		title="{i18n>viewPMOrderOperation}"
+		showNavButton="true"
+		navButtonPress="onNavBack"
+		class="sapUiResponsiveContentPadding">
+    <headerContent>
+      <Button
+        icon="sap-icon://home"
+        press="goToHome"/>
+    </headerContent>
+    <ObjectHeader
+        title="{i18n>headerPMOperation}"
+        number="{/activity}">
+      <statuses>
+        <ObjectStatus
+          text="Estatus"
+          state="Error" />
+        <ObjectStatus
+          text="{/system_status}"
+          state="Success" />
+        <ObjectStatus
+          text="Trabajo realizado"
+          state="Error" />
+        <ObjectStatus
+          text="{/work_actual} {/un_work}"
+          state="Success" />
+        <ObjectStatus
+          text="{/complete}"
+          state="Success" />
+      </statuses>
+      <attributes>
+        <ObjectAttribute text="{/description}" />
+        <ObjectAttribute text="Puesto de trabajo: {/work_center} / {/plant}" />
+        <ObjectAttribute text="Trabajo Planeado: {/work_activity} {/un_work}" />
+        <ObjectAttribute text="Clase Actividad: {/acttype}" />
+        <ObjectAttribute text="Orden: {/order}" />
+      </attributes>
+    </ObjectHeader>
+    <content>
+      <Panel
+				id="PMObjectComponents"
+				width="auto"
+				class="sapUiResponsiveMargin sapUiNoContentPadding">
+        <headerToolbar>
+          <Toolbar>
+            <Title text="{i18n>PMOrderComponents}" level="H2"/>
+            <ToolbarSpacer />
+          </Toolbar>
+        </headerToolbar>
+        <content>
+          <Table
+                 id="PMComponentList"
+                 class="sapUiResponsiveMargin"
+                 width="auto"
+                 items="{/ITEMS}">
+            <columns>
+              <Column>
+                <Label text="{i18n>columnReservNo}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnResItem}"/>
+              </Column>
+              <Column
+                hAlign="End"
+                minScreenWidth="Small"
+                demandPopin="true"
+                width="5em">
+                <Label text="{i18n>columnIDPos}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>columnMaterial}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_descMaterial}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_quantity}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnUN}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_stage}"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="{i18n>columnPlant}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_quantityConsumption}"/>
+              </Column>
+              <Column>
+                <Label text="{i18n>column_quantityConsumption_order}"/>
+              </Column>
+            </columns>
+            <items>
+              <ColumnListItem>
+                <cells>
+                  <Text text="{reserv_no}"/>
+                  <Text text="{res_item}"/>
+                  <Text text="{item_number}"/>
+                  <Text text="{material}"/>
+                  <Text text="{matl_desc}"/>
+                  <Text text="{quantity}"/>
+                  <Text text="{unit}"/>
+                  <Text text="{stage}"/>
+                  <Text text="{plant}"/>
+                  <Input type="Number" value="{quantity_consumption}" placeholder="cantidad"/>
+                  <Text text="{consumption}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
+      </Panel>
+    </content>
+    <footer>
+      <OverflowToolbar>
+        <ToolbarSpacer/>
+        <Button id="buttonConsumption" text="{i18n>AddConsumption}" icon="sap-icon://product" type="Emphasized" press="onOpenDialogAddConsumption"/>
+        <Button id="addComponent" text="{i18n>AddComponent}" icon="sap-icon://add-product" type="Accept" press="onOpenDialogAddComponent"/>
+        <Button text="{i18n>AddNotification}" icon="sap-icon://begin" type="Emphasized" press="onOpenDialogAddNotification"/>
+      </OverflowToolbar>
+    </footer>
+  </Page>
+</mvc:View>

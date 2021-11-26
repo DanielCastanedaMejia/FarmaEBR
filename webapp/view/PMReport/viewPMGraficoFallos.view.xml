@@ -1,0 +1,50 @@
+<mvc:View 
+    controllerName="sap.ui.demo.webapp.controller.PMReport.viewPMGraficoFallos" 
+    xmlns="sap.m"
+    xmlns:viz="sap.viz.ui5.controls" 
+    xmlns:layout="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:core="sap.ui.core" 
+    xmlns:viz.data="sap.viz.ui5.data" 
+    height="100%">
+    <Page
+      id="wizardContentPage"
+      title="CLASIFICACION DE FALLOS"
+      showNavButton="true"
+      navButtonPress="onNavBack"
+      enableScrolling="true"
+      class="sapUiContentPadding">
+    
+
+
+<layout:FixFlex id='chartFixFlex-1'>
+        <layout:fixContent>
+             <viz:Popover id="idPopOver-1"></viz:Popover>
+            <viz:VizFrame id="idVizFrame-1" uiConfig="{applicationSet:'fiori'}"
+                 vizType='vertical_bullet' width="100%">
+                 <viz:dataset>
+                    <viz.data:FlattenedDataset data="{/Row}">
+                        <viz.data:dimensions>
+                            <viz.data:DimensionDefinition name="Week"
+                                value="{Week}" />
+                        </viz.data:dimensions>
+                        <viz.data:measures>
+                            <viz.data:MeasureDefinition name="Cost"
+                                value="{Cost}" />
+                        </viz.data:measures>
+                    </viz.data:FlattenedDataset>
+                </viz:dataset>
+
+                <viz:feeds>
+                    <viz.feeds:FeedItem id="feedActualValues-1" uid="actualValues" type="Measure"
+                        values="Cost" />
+                    <viz.feeds:FeedItem id="feedCategoryAxis-1" uid="categoryAxis" type="Dimension"
+                        values="Week" />
+                </viz:feeds>
+                 </viz:VizFrame>
+        </layout:fixContent>
+    </layout:FixFlex>  
+          
+</Page>
+</mvc:View>

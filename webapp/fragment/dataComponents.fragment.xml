@@ -1,0 +1,124 @@
+<core:FragmentDefinition
+  xmlns="sap.m"
+  xmlns:l="sap.ui.layout"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core" >
+  <Dialog
+     afterClose="onCloseSaveMaterial"
+     id="dataComponents"
+     title="Validar Componentes">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+                    <Table
+  id="PPComponents"
+  class="sapUiResponsiveMargin"
+  mode="SingleSelectLeft"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+                    <Column visible="false">
+                      <Label text="Orden"/>
+                    </Column>
+                    <Column visible="false">
+                      <Label text="RES_NUMBER"/>
+                    </Column>
+                    <Column visible="false">
+                      <Label text="RES_ITEM"/>
+                    </Column>
+                    <Column>
+                      <Label text="Código"/>
+                    </Column>
+                    <Column
+                      minScreenWidth="Small"
+                      demandPopin="true"
+                      width="4em">
+                      <Label text="UM"/>
+                    </Column>
+                    <Column
+                      minScreenWidth="Small"
+                      demandPopin="true"
+                      width="12em">
+                      <Label text="Lote"/>
+                    </Column>
+                    <Column>
+                      <Label text="Etiqueta"/>
+                    </Column>
+                    <Column
+                      hAlign="End"
+                      minScreenWidth="Small"
+                      demandPopin="true"
+                      width="5em">
+                      <Label text="Bueno"/>
+                    </Column>
+                    <Column
+                      hAlign="End"
+                      minScreenWidth="Small"
+                      demandPopin="true"
+                      width="5em">
+                      <Label text="Prx Ven"/>
+                    </Column>
+                    <Column
+                      visible="false">
+                      <Label text="Desc Material"/>
+                    </Column>
+                    <Column visible="false">
+                      <Label text="operacion"/>
+                    </Column>
+                  </columns>
+
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text="{LOTE}"/>
+                        <Text text="{RES_NUMBER}"/>
+                        <Text text="{RES_ITEM}"/>
+                        <Text text="{MATERIAL}"/>
+                        <Text text="{UM}"/>
+                        <Input
+                          id="input_batch"
+                          type="Text"
+                          placeholder="lote"
+                          showSuggestion="true"
+                          showValueHelp="true"
+                          valueHelpRequest="handleValueHelp"
+                          suggestionItems="{path:'/componentes/lotes', templateShareable:false}">
+                          <suggestionItems>
+                            <core:Item text="{Batch}" />
+                          </suggestionItems>
+                        </Input>
+                        <Input
+                          id="input_etiqueta"
+                          placeholder="etiqueta"
+                          type="Number"
+                          value="1000001551">
+                        </Input>
+                        <Switch  customTextOff="NO" customTextOn="SI" state="true"/>
+                        <Switch  customTextOff="NO" customTextOn="NO" state="false"/>
+                        <Text text="{DESC_MATERIAL}"/>
+                        <Text text="{OPERATION}"/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="{i18n>ButtonSend}"
+         icon="sap-icon://add-product"
+         press="onSaveMaterial"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="{i18n>ButtonClose}"
+         icon="sap-icon://cancel"
+         press="onCloseSaveMaterial"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

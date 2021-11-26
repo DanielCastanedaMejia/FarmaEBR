@@ -1,0 +1,182 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.Home"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:tnt="sap.tnt"
+  xmlns:microchart="sap.suite.ui.microchart">
+  <Page
+    showHeader="false">
+
+    <Toolbar
+        class="toolbar_background">
+     <Button icon="sap-icon://home-share"
+         text="Menú Demos"
+        type="Emphasized"
+         press="onGotoHome"
+         class="sapUiLargeMarginBegin" />
+      <Image id="logo" src="images/SAP_Logo.png">
+      </Image>
+      <core:Icon
+      src="sap-icon://home"
+      class="toolbar_title sapUiSmallMarginBegin">
+        <core:layoutData>
+          <FlexItemData growFactor="1" />
+        </core:layoutData>
+      </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Página inicial"
+        wrapping="true"
+        />
+      <ToolbarSpacer/>
+      <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+      <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+      </Button>
+    </Toolbar>
+
+<layout:VerticalLayout class="sapUiResponsiveMargin">
+
+
+
+
+<Title
+    titleStyle="H4"
+    text="Produccion"
+    class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop" />
+  <layout:HorizontalLayout allowWrapping="true">
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Producción"
+                 subheader="Iniciar y notificar"
+       press="onDisplayOrder">
+      <TileContent>
+        <ImageContent src="sap-icon://machine" />
+      </TileContent>
+    </GenericTile>
+
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+               header="Ver Paros"
+               subheader="Producción"
+     press="onVerParos">
+    <TileContent>
+      <ImageContent src="sap-icon://flag" />
+    </TileContent>
+  </GenericTile>
+
+  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Agregar Merma"
+                 subheader="Merma"
+       press="onMermas">
+      <TileContent>
+        <ImageContent src="sap-icon://program-triangles-2" />
+      </TileContent>
+    </GenericTile>
+      <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Intercompany"
+                 subheader="Crear pedido/entrega"
+       press="onIntercompany">
+      <TileContent>
+        <ImageContent src="sap-icon://addresses" />
+      </TileContent>
+    </GenericTile>
+  </layout:HorizontalLayout>
+
+
+
+
+
+      <Title
+        titleStyle="H4"
+        text="Mantenimiento"
+        class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop" />
+      <layout:HorizontalLayout allowWrapping="true">
+        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+                     header="Ver Avisos"
+                     subheader="Mantenimiento"
+           press="onVerAvisos">
+          <TileContent>
+            <ImageContent src="sap-icon://alert" />
+          </TileContent>
+        </GenericTile>
+        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+                     header="Crear Aviso"
+                     subheader="Mantenimiento"
+           press="onCrearAviso">
+          <TileContent>
+            <ImageContent src="sap-icon://add-document" />
+          </TileContent>
+        </GenericTile>
+        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                     header="Ver Órdenes"
+                     subheader="Mantenimiento"
+           press="onVerOrdenes">
+          <TileContent>
+            <ImageContent src="sap-icon://key-user-settings" />
+          </TileContent>
+        </GenericTile>
+        <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                     header="Herramentales"
+                     subheader="Mantenimiento"
+           press="onVerMAF">
+          <TileContent>
+            <ImageContent src="sap-icon://action-settings" />
+          </TileContent>
+        </GenericTile>
+      </layout:HorizontalLayout>
+
+
+
+  
+
+  <Title
+    titleStyle="H4"
+    text="Reportes EBR"
+    class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop" />
+  <layout:HorizontalLayout allowWrapping="true">
+    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Generar Formato EBR"
+                 subheader="Reportes EBR"
+       press="onGenerarEBR">
+      <TileContent>
+        <ImageContent src="sap-icon://document" />
+      </TileContent>
+    </GenericTile>
+    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Verificación de proceso"
+                 subheader="Reportes EBR"
+       press="onVerificacionEBR">
+      <TileContent>
+        <ImageContent src="sap-icon://activities" />
+      </TileContent>
+    </GenericTile>
+    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+                 header="Registro de Pesos"
+                 subheader="Reportes EBR"
+                 press="onRegistroPesos">
+      <TileContent>
+        <ImageContent src="sap-icon://compare" />
+      </TileContent>
+    </GenericTile>
+    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+                 header="Dashboards"
+                 subheader="Reportes"
+                 press="onVerReportes"
+                 visible="false">
+      <TileContent>
+        <ImageContent src="sap-icon://business-objects-experience" />
+      </TileContent>
+    </GenericTile>
+  </layout:HorizontalLayout>
+  
+
+
+
+
+</layout:VerticalLayout>
+  
+  </Page>
+</mvc:View>

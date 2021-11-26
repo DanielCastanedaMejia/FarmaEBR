@@ -1,0 +1,60 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+  <Dialog
+     id="startOrderDialog"
+     title="INICIAR ORDEN">
+    <l:VerticalLayout
+      class="sapUiContentPadding"
+      width="100%">
+      <l:content>
+        <!-- Filter by date range -->
+        <Label text="Orden"/>
+        <Input
+        id="inputOrder"
+        class="sapUiSmallMarginBottom" />
+        <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+            text="Usuario Primario"></Label>
+        <ComboBox
+          id="listPrimario"
+          class="sapUiTinyMarginBegin"
+          items="{
+                path: '/',
+                sorter: { path: 'desc' }
+              }"
+          selectionChange="onChangePrimario">
+          <core:Item key="{id}" text="{desc}" />
+        </ComboBox>
+        <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
+        text="Usuario Secundario"></Label>
+        <ComboBox
+          id="listSecundario"
+          class="sapUiTinyMarginBegin"
+          items="{
+                path: '/',
+                sorter: { path: 'desc' }
+              }"
+          selectionChange="onChangeSecundario">
+          <core:Item key="{id}" text="{desc}" />
+        </ComboBox>
+      </l:content>
+    </l:VerticalLayout>
+
+    <beginButton>
+      <Button
+       type="Accept"
+         text="Aceptar"
+         icon="sap-icon://add-product"
+         press="onChangeStatusStart"/>
+    </beginButton>
+    <endButton>
+      <Button
+         type="Reject"
+         text="Cancelar"
+         icon="sap-icon://cancel"
+         press="onCloseDialogAddNotification"/>
+    </endButton>
+
+  </Dialog>
+</core:FragmentDefinition>

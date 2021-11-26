@@ -1,0 +1,358 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.Visualization.Operation"
+  xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <Page
+    enableScrolling="false">
+    <customHeader>
+      <Toolbar
+  class="toolbar_default">
+        <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+        <Image src="images/SAP_Logo.png">
+        </Image>
+        <core:Icon
+        src="sap-icon://show-edit"
+        class="toolbar_title sapUiSmallMarginBegin">
+          <core:layoutData>
+            <FlexItemData growFactor="1" />
+          </core:layoutData>
+        </core:Icon>
+        <MenuButton text="Detalle Operación" class="customtitle">
+          <menu>
+            <Menu>
+              <items>
+                <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+              </items>
+            </Menu>
+          </menu>
+        </MenuButton>
+        <ToolbarSpacer/>
+        <Label
+          text=""
+          class="toolbar_color"></Label>
+        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+        </Button>
+      </Toolbar>
+    </customHeader>
+    <content>
+      <uxap:ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+          <uxap:ObjectPageDynamicHeaderTitle>
+            <uxap:expandedHeading>
+              <Title text="LOTE {/OPERACION}" wrapping="true" class="sapUiSmallMarginEnd"/>
+            </uxap:expandedHeading>
+
+            <uxap:snappedHeading>
+              <FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
+
+                <FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
+                  <Title text="Operación {/OPERACION}" wrapping="true"/>
+                </FlexBox>
+
+
+                <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+                  <layout:VerticalLayout >
+                    <ProgressIndicator
+                    percentValue="{/AVANCE}"
+                    displayValue="{/AVANCE}%"
+                    showValue="true"
+                    state="None"/>
+                  </layout:VerticalLayout>
+                </FlexBox>
+
+
+              </FlexBox>
+            </uxap:snappedHeading>
+
+            <uxap:actions>
+              <Button
+               icon="sap-icon://employee-lookup"
+               type="Emphasized"
+               text="Inspección"
+               press="onInspeccion"
+               visible="false"/>
+              <Button id="addRows"
+                type="Transparent" 
+                tooltip="Agregar materiales" 
+                icon="sap-icon://add-activity-2" 
+                press="onOpenDialogAdd"/>
+                <Button id="deleteRows"
+                type="Transparent" 
+                tooltip="Eliminar Materiales" 
+                icon="sap-icon://survey" 
+                press="onDeleteRow"/>
+              <Button
+               icon="sap-icon://product"
+               type="Transparent"
+               tooltip="Consumir materiales"
+               press="onAddConsumption"/>
+              <Button
+               icon="sap-icon://time-entry-request"
+               type="Transparent"
+               tooltip="Notificar tiempos"
+               press="onOpenDialogSendTime"/>
+              <Button
+               icon="sap-icon://add-product"
+               type="Transparent"
+               tooltip="Notificar producción"
+               press="onOpenDialogAddNotification"/>
+              <Button
+               icon="sap-icon://add"
+               type="Transparent"
+               text="MAF"
+               press="onOpenModalInstall"/>
+              <Button
+               type="Transparent"
+               text="Quitar MAF"
+               press="onCheckMAFInstall"/>
+            </uxap:actions>
+          </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+
+        <uxap:headerContent>
+          <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+            <layout:VerticalLayout >
+              <ObjectIdentifier title="{/LOTE_INSPECCION}"/>
+              <ObjectStatus text="{/DESCRIPCION}"/>
+              <ObjectIdentifier title="{/STATUS}"/>
+            </layout:VerticalLayout>
+          </FlexBox>
+
+      
+
+
+      <TileContent unit="" footer="Producido">
+        <content>
+          <NumericContent  truncateValueTo="7" value="{/PRODUCIDO}" valueColor="Error" indicator="" press="press"/>
+        </content>
+      </TileContent>
+      <TileContent footer="Faltante">
+        <content>
+          <NumericContent value="{/FALTANTE}" icon=""/>
+        </content>
+      </TileContent>
+      <TileContent footer="Programado">
+        <content>
+          <NumericContent value="{/PROGRAMADO}" icon=""/>
+        </content>
+      </TileContent>
+      <TileContent unit="" footer="Avance">
+        <content>
+          <NumericContent  truncateValueTo="7" value="{/AVANCE}" valueColor="Good"  scale="%"/>
+        </content>
+      </TileContent> 
+
+
+
+        </uxap:headerContent>
+
+        <uxap:sections>
+
+          <uxap:ObjectPageSection title="Información General">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <uxap:blocks>
+                  <form:SimpleForm
+                    maxContainerCols="2"
+                    editable="false"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="12"
+                    labelSpanM="12"
+                    emptySpanL="0"
+                    emptySpanM="0"
+                    columnsL="1"
+                    columnsM="1">
+                    <form:content>
+                      <Label text="Puesto de trabajo"/>
+                      <Text text="{/WORK_CENTER} / {/DESC_WORK_CENTER}"/>
+                      <Label text="Clave de control"/>
+                      <Text text="{/CLAVE_CONTROL}"/>
+                      <Label text="Orden"/>
+                      <Text text="{/ORDEN}"/>
+                    </form:content>
+                  </form:SimpleForm>
+                </uxap:blocks>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+
+          <uxap:ObjectPageSection title="Componentes">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <uxap:blocks>
+                <Table
+                       id="PMComponentList"
+                       mode="SingleSelectLeft"
+                       class="sapUiResponsiveMargin"
+                       width="auto"
+growing="true"
+                       items="{/}">
+                  <columns>
+                    <Column>
+                      <Label text="Res No"/>
+                    </Column>
+                    <Column>
+                      <Label text="Res Item"/>
+                    </Column>
+                    <Column>
+                      <Label text="Código"/>
+                    </Column>
+                    <Column>
+                      <Label text="Material"/>
+                    </Column>
+                    <Column>
+                      <Label text="Planta"/>
+                    </Column>
+                    <Column>
+                      <Label text="Almacén"/>
+                    </Column>
+                    <Column>
+                      <Label text="Lote"/>
+                    </Column>
+                    <Column>
+                      <Label text="Etiqueta"/>
+                    </Column>
+                    <Column>
+                      <Label text="Cantidad"/>
+                    </Column>
+                    <Column>
+                      <Label text="UM"/>
+                    </Column>
+                    <Column>
+                      <Label text="Estado Mat"/>
+                    </Column>
+                  </columns>
+
+                  <items>
+                    <ColumnListItem>
+                      <cells>
+                        <Text text="{RES_NUMBER}"/>
+                        <Text text="{RES_ITEM}"/>
+                        <Text text="{MATERIAL}"/>
+                        <Text text="{DESC_MATERIAL}"/>
+                        <Text text="{PLANTA}"/>
+                        <Text text="{ALMACEN}"/>
+                        <Input type="Number" value="{LOTE}"  placeholder = "lote"/>
+                        <Input type="Number" value="{ETIQUETA}" placeholder="etiqueta"/>
+                        <!--<Input
+                          id="input_batch"
+                          type="Text"
+                          placeholder="lote"
+                          showSuggestion="true"
+                          showValueHelp="true"
+                          valueHelpRequest="handleValueHelp"
+                          suggestionItems="{path:'/componentes/lotes', templateShareable:false}">
+                          <suggestionItems>
+                            <core:Item text="{Batch}" />
+                          </suggestionItems>
+                        </Input>-->
+                        <Input type="Number" value="{CANTIDAD}" placeholder="cantidad"/>
+                        <Text text="{UM}"/>
+                        <ObjectStatus
+                    class="stat"
+                    text="{
+                            path: 'MOVE_TYPE',
+                            formatter: '.formatter.conditionState'
+                          }"
+                    state="{
+                            path: 'MOVE_TYPE',
+                            formatter: '.formatter.orderStateColor'
+                    }"
+                        />
+                        <Text text=""/>
+                      </cells>
+                    </ColumnListItem>
+                  </items>
+                </Table>
+                </uxap:blocks>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+
+          <uxap:ObjectPageSection title="MAF">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <uxap:blocks>
+                  <Table
+                           id="PMMAFList"
+                           class="sapUiResponsiveMargin"
+                           mode="SingleSelectLeft"
+                           width="auto"
+                           items="{
+                        path : '/ITEMS',
+                        sorter : {
+                          path : 'CONDICION',
+                          group : true
+                        }
+                       }">
+                    <columns>
+                      <Column>
+                        <Label text="{i18n>column.codigoMaterial}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.description}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.point}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.counter}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.nextMtto}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.totalCount}"/>
+                      </Column>
+                      <Column>
+                        <Label text="{i18n>column.condition}"/>
+                      </Column>
+                    </columns>
+
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{MAF_NO}"/>
+                          <Text text="{MAF_DESC}"/>
+                          <Text text="{PUNTO}"/>
+                          <Text text="{VALOR_ACTUAL}"/>
+                          <Text text="{VALOR_MAXIMO}"/>
+                          <Text text="{VALOR_TOTAL}"/>
+                          <ObjectStatus
+                            class="stat"
+                            text="{CONDICION}"
+                            state="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.conditionColor'
+                          }"
+                        />
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+                </uxap:blocks>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+
+        </uxap:sections>
+      </uxap:ObjectPageLayout>
+    </content>
+
+  </Page>
+
+
+</mvc:View>
