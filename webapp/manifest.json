@@ -8,6 +8,12 @@
     "description": "{{appDescription}}",
     "applicationVersion": {
       "version": "1.0.0"
+    },
+    "dataSources": {
+      "ordersModel": {
+        "uri": "model/ordersModel.json",
+        "type": "JSON"
+      }
     }
   },
   "sap.ui": {
@@ -37,6 +43,10 @@
         "settings": {
           "bundleName": "sap.ui.demo.webapp.i18n.i18n"
         }
+      },
+      "ordersModel": {
+        "dataSource": "ordersModel",
+        "type": "sap.ui.model.json.JSONModel"
       }
     },
     "resources": {

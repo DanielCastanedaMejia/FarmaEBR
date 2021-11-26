@@ -24,7 +24,7 @@ sap.ui.define([
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("viewPPOrders").attachMatched(this._onRouteMatched, this);
-
+            console.log(this.getOwnerComponent().getModel("ordersModel").getProperty("/ITEMS"));
         },
 
         _onRouteMatched: function (oEvent) {  
@@ -32,7 +32,7 @@ sap.ui.define([
             oArgs = oEvent.getParameter("arguments");
 
             plant_gb = 'PLANTA';
-            this.PPOrders_view();            
+            //this.PPOrders_view();            
 
             var columns = {
                 columns: [
