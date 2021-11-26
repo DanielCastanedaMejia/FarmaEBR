@@ -38,7 +38,6 @@ sap.ui.define([
 
             var orderModel = this.getOwnerComponent().getModel("ordersModel").getProperty(sPath);
             var newModel = new JSONModel(orderModel);
-            console.log("NEW", newModel);
             this.getView().setModel(newModel);
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/header", "Cabecera");
 
@@ -98,10 +97,11 @@ sap.ui.define([
         },
 
         onPPOrderOperation: function (oEvent) {
-            var oItem, oCtx;
+            var oItem, oCtx, sPath;
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
-
+            sPath = oCtx.getPath();
+            this.getOwnerComponent().getModel("masterModel").setProperty("/selectedFase", sPath);
             this.getRouter().navTo("operationDetail", {
                 orden: oCtx.getProperty("orden"),
                 operacion: oCtx.getProperty("Ope"),

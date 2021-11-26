@@ -29,8 +29,8 @@ sap.ui.define([
                 "NUM_ORDEN": oArgs.orden,
                 "OPERACION": oArgs.operacion
             };
-
-            this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
+            this.byId("PMComponentList").setModel(this.getOwnerComponent().getModel("componentsModel"));
+            //this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
             this._base_onloadTable("PMMAFList", aData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
             this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 

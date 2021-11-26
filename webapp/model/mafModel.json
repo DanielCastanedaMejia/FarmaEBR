@@ -1,0 +1,18 @@
+{
+  "ITEMS": [
+    {
+        "MAF_NO": "TQ-118",
+        "MAF_DESC": "Troquel 118",
+        "PUNTO": "000000000003",
+       "VALOR_ACTUAL": "120",
+        "VALOR_MAXIMO": "150"
+,
+        "VALOR_TOTAL": "870"
+,
+        "CONDICION": "CONDICION REGULAR"
+,
+        "ESTATUS": "1"
+     }
+      ]
+}
+    

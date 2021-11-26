@@ -21,6 +21,10 @@
       "fasesModel": {
         "uri": "model/fasesModel.json",
         "type": "JSON"
+      },
+      "componentsModel": {
+        "uri": "model/componentsModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -62,6 +66,10 @@
       },
       "fasesModel": {
         "dataSource": "fasesModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "componentsModel": {
+        "dataSource": "componentsModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
