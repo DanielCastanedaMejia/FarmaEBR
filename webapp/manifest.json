@@ -17,6 +17,10 @@
       "masterModel": {
         "uri": "model/masterModel.json",
         "type": "JSON"
+      },
+      "fasesModel": {
+        "uri": "model/fasesModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -54,6 +58,10 @@
       },
       "masterModel": {
         "dataSource": "masterModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "fasesModel": {
+        "dataSource": "fasesModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },

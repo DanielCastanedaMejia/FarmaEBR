@@ -913,7 +913,7 @@ console.log(bueno,proximo);
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             sPath = oCtx.getPath();
-            this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder");
+            this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
             estatus=oCtx.getProperty("ESTATUS_MII");
             if(estatus!=="INICIADA"){
             this.getOwnerComponent().openHelloDialog("Seleccione una orden iniciada");

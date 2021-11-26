@@ -1,0 +1,46 @@
+{
+    "ITEMS": [
+        {
+            "planta": "1710",
+            "Ope": "0020",
+            "OpeSup": "0010",
+            "Recur": "LLNDO_L1",
+            "ClaveContr": "PI01",
+            "textbrev": "Setup",
+            "satussis": "NOTP LIB.",
+            "ctdopera": "400.000",
+            "confNumb": "0000002902",
+            "umope": "PZA",
+            "orden": "1000720",
+            "avance": "22.75"
+        },
+        {
+            "planta": "1710",
+            "Ope": "0030",
+            "OpeSup": "0010",
+            "Recur": "LLNDO_L1",
+            "ClaveContr": "PI01",
+            "textbrev": "TermoFormado",
+            "satussis": "LIB.",
+            "ctdopera": "400.000",
+            "confNumb": "0000002905",
+            "umope": "PZA",
+            "orden": "1000720",
+            "avance": "NA"
+        },
+        {
+            "planta": "1710",
+            "Ope": "0040",
+            "OpeSup": "0010",
+            "Recur": "LLNDO_L1",
+            "ClaveContr": "PI01",
+            "textbrev": "Llenado",
+            "satussis": "LIB.",
+            "ctdopera": "400.000",
+            "confNumb": "0000002903",
+            "umope": "PZA",
+            "orden": "1000720",
+            "avance": "NA"
+        }
+    ]
+}
