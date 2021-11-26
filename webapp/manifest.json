@@ -25,6 +25,10 @@
       "componentsModel": {
         "uri": "model/componentsModel.json",
         "type": "JSON"
+      },
+      "mafModel": {
+        "uri": "model/mafModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -70,6 +74,10 @@
       },
       "componentsModel": {
         "dataSource": "componentsModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "mafModel": {
+        "dataSource": "mafModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
