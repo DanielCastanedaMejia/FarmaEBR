@@ -33,7 +33,16 @@ sap.ui.define([
             //this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
             this.byId("PMMAFList").setModel(this.getOwnerComponent().getModel("mafModel"));
             //this._base_onloadTable("PMMAFList", aData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
-            this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
+            var sProp = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
+            // sProp = this.getOwnerComponent().getModel("ordersModel").getProperty(sProp + "/NUM_ORDEN");
+            // this.getOwnerComponent().getModel("headModel").setProperty("/ORDEN", sProp);
+            sProp = this.getOwnerComponent().getModel("fasesModel").getProperty(sProp + "/Ope");
+            this.getOwnerComponent().getModel("headModel").setProperty("/OPERACION", sProp);
+
+            var newModel = new JSONModel(this.getOwnerComponent().getModel("headModel").getProperty("/"));
+
+            this.getView().setModel(newModel);
+            //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 
             var columns = {
                 columns: [

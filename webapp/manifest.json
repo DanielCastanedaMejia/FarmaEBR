@@ -29,6 +29,10 @@
       "mafModel": {
         "uri": "model/mafModel.json",
         "type": "JSON"
+      },
+      "headModel": {
+        "uri": "model/productHeadModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -78,6 +82,10 @@
       },
       "mafModel": {
         "dataSource": "mafModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "headModel": {
+        "dataSource": "headModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
