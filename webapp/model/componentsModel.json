@@ -1,0 +1,80 @@
+      [{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "1",
+        "MATERIAL": "PHARMA_R01",
+        "DESC_MATERIAL": "POLIETILENO",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "KG",
+       "LOTE": "0000000073",
+        "ETIQUETA": "1000001231",
+        "MOVE_TYPE": "1"
+}
+      ,{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "2",
+        "MATERIAL": "PHARMA_R02",
+        "DESC_MATERIAL": "DEXTROSA",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "L",
+       "LOTE": "0000000074",
+        "ETIQUETA": "1000001232",
+        "MOVE_TYPE": "3"
+}
+      ,{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "6",
+        "MATERIAL": "PHARMA_R02",
+        "DESC_MATERIAL": "DEXTROSA",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "L",
+       "LOTE": "0000000076",
+        "ETIQUETA": "1000001233",
+        "MOVE_TYPE": "1"
+}
+      ,{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "3",
+        "MATERIAL": "PHARMA_R03",
+        "DESC_MATERIAL": "TAPA GRIS",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "PZA",
+       "LOTE": "0000000080",
+        "ETIQUETA": "1000001234",
+        "MOVE_TYPE": "3"
+}
+      ,{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "4",
+        "MATERIAL": "PHARMA_M01",
+        "DESC_MATERIAL": "MOLDE A430",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "PZA",
+       "LOTE": "0000000082",
+        "ETIQUETA": "1000001235",
+        "MOVE_TYPE": "2"
+}
+      ,{
+        "RES_NUMBER": "1319",
+        "RES_ITEM": "2",
+        "MATERIAL": "PHARMA_R02",
+        "DESC_MATERIAL": "DEXTROSA",
+        "PLANTA": "1710",
+        "ALMACEN": "171C",
+        "CANTIDAD": "",
+        "UM": "L",
+       "LOTE": "0000000076",
+        "ETIQUETA": "100001231",
+        "MOVE_TYPE": "1"
+}
+      ]
+    

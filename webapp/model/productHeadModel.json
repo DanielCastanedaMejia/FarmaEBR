@@ -1,0 +1,17 @@
+{
+    "ORDEN": "1000720",
+    "OPERACION": "0020",
+    "CONF_NO": "0000002902",
+    "CLAVE_CONTROL": "PI01",
+    "DESCRIPCION": "Setup",
+    "CANTIDAD": "400.000",
+    "UM": "PZA",
+    "WORK_CENTER": "LLNDO_L1",
+    "DESC_WORK_CENTER": "LLENADO LINEA 1",
+    "STATUS": "NOTP LIB.",
+    "LOTE_INSPECCION": "030000000100",
+    "AVANCE": "22.75",
+    "PROGRAMADO": "400.000",
+    "FALTANTE": "309",
+    "PRODUCIDO": "91"
+}

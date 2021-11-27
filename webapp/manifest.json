@@ -21,6 +21,18 @@
       "fasesModel": {
         "uri": "model/fasesModel.json",
         "type": "JSON"
+      },
+      "componentsModel": {
+        "uri": "model/componentsModel.json",
+        "type": "JSON"
+      },
+      "mafModel": {
+        "uri": "model/mafModel.json",
+        "type": "JSON"
+      },
+      "headModel": {
+        "uri": "model/productHeadModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -62,6 +74,18 @@
       },
       "fasesModel": {
         "dataSource": "fasesModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "componentsModel": {
+        "dataSource": "componentsModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "mafModel": {
+        "dataSource": "mafModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "headModel": {
+        "dataSource": "headModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
