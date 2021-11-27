@@ -86,7 +86,9 @@ console.log(oData);
         },
 
         onGotoHome() {
-          window.location.href="http://localhost:8010/proxy/XMII/CM/MenuTiles/index.html";
+            // Mantener como IP remoto 
+          // window.location.href="http://localhost:8010/proxy/XMII/CM/MenuTiles/index.html"; 
+          window.location.href="http://187.189.27.245:50000/XMII/CM/MenuTilesP/index.html";
         },
 
    onDisplayViewQMOrders: function () {
