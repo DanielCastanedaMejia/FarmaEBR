@@ -34,8 +34,8 @@ sap.ui.define([
             this.byId("PMMAFList").setModel(this.getOwnerComponent().getModel("mafModel"));
             //this._base_onloadTable("PMMAFList", aData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
             var sProp = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
-            // sProp = this.getOwnerComponent().getModel("ordersModel").getProperty(sProp + "/NUM_ORDEN");
-            // this.getOwnerComponent().getModel("headModel").setProperty("/ORDEN", sProp);
+            sProp = this.getOwnerComponent().getModel("ordersModel").getProperty(sProp + "/NUM_ORDEN");
+            this.getOwnerComponent().getModel("headModel").setProperty("/ORDEN", sProp);
             sProp = this.getOwnerComponent().getModel("fasesModel").getProperty(sProp + "/Ope");
             this.getOwnerComponent().getModel("headModel").setProperty("/OPERACION", sProp);
 
