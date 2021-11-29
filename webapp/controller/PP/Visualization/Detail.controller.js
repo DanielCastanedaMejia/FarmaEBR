@@ -176,6 +176,14 @@ sap.ui.define([
         },
         onOpenStartOrderConfirmation: function () {
             var oThis = this;
+
+            if(this._getMasterModel("/view/startedOrder")) {
+                const i18n = this.getView().getModel("i18n").getResourceBundle();
+
+                MessageToast.show(i18n.getText("alreadyStartedOrderMsg"));
+                return;
+            }
+
             if(!this.startOrderConfirmationDialog) {
                 this.startOrderConfirmationDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.startOrderConfirmation"
@@ -215,29 +223,14 @@ sap.ui.define([
             });
         },
         onStartOrder: function () {
-            // var oSelected = this.byId("selectStartOrder").getSelectedItem();
-            // if (oSelected == null) {
-            //     MessageToast.show("Seleccione la orden a iniciar");
-            //     return;
-            // }
-            // var oContext = oSelected.getBindingContext(),
-            //     sPath = oContext.getPath(),
-            //     oModel = this.getView().getModel();
+            const sOrderPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
+                sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN");
 
-            // oModel.setProperty(sPath + "/Status", "1");
+            oOrderModel.setProperty(sOrderPath + "/ESTATUS_MII", "INICIADA");
+            this._setMasterModel("/view/startedOrder", sOrder);
 
-            // this.byId("orderListDialog").close();
-            // this.getOwnerComponent().getModel("masterModel").setProperty("/view/startedOrder", true);
-
-            var oSelected = this.byId("PPOrders_list").getSelectedItem(),
-                oContext = oSelected.getBindingContext(),
-                sPath = oContext.getPath();
-
-            this.getView().getModel().setProperty(sPath + "/ESTATUS", "1");
-            this.getView().getModel().refresh(true);
-            this._setMasterModel("/view/startedOrder", sPath);
             this.onCloseStartOrderConfirmation();
-            this.onOpenProcessDialog();
         },
         onOpenProcessDialog: function () {
             if (!this.prepProcessDialog) {
@@ -251,6 +244,12 @@ sap.ui.define([
         },
         onCloseStartOrderConfirmation: function () {
             this.byId("startOrderConfirmationDialog").close();
+        },
+        onOpenFinishOrderConfirmation: function() {
+
+        },
+        onCloseFinishOrderConfirmation: function() {
+
         },
         onCloseProcessDialog: function () {
             this.byId("prepProcessDialog").close();
@@ -273,15 +272,12 @@ sap.ui.define([
             this.byId("step2Dialog").close();
         },
         onAcceptStep3Dialog: function () {
-            var sPath = this._getMasterModel("/view/startedOrder");
-
             this._setMasterModel("/validations/vStep3", true);
             this._setMasterModel("/view/prepProcessFinished", true);
             this.onCloseStep3Dialog();
             this.onCloseProcessDialog();
 
-            this.getView().getModel().setProperty(sPath + "/ESTATUS", "2");
-            MessageToast.show("Puede comenzar la produción");
+            MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
         },
         onCloseStep3Dialog: function () {
             this.byId("step3Dialog").close();

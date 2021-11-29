@@ -116,14 +116,20 @@
                   'Reject' : 'Accept'               
                 }"
                 press="onOpenProcessDialog" />
-
               <Button
                 class="sapUiSmallMargin"
-                text="{= !${masterModel>/view/startedOrder} ? ${i18n>startOrderButton} : ${i18n>closeOrderButton}}"
-                icon="{= !${masterModel>/view/startedOrder} ? 'sap-icon://begin' : 'sap-icon://decline'}"
-                type="{= !${masterModel>/view/startedOrder} ? 'Accept' : 'Reject'}"
-                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
+                text="{i18n>startOrderButton}"
+                icon="sap-icon://begin"
+                type="Accept"
+                enabled="true"
                 press="onOpenStartOrderConfirmation" />
+              <!-- <Button
+                class="sapUiSmallMargin"
+                text="{= ${masterModel>/view/startedOrder} != ${/NUM_ORDEN} ? ${i18n>startOrderButton} : ${i18n>closeOrderButton}}"
+                icon="{= ${masterModel>/view/startedOrder} != ${/NUM_ORDEN} ? 'sap-icon://begin' : 'sap-icon://decline'}"
+                type="{= ${masterModel>/view/startedOrder} != ${/NUM_ORDEN} ? 'Accept' : 'Reject'}"
+                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
+                press="{= ${masterModel>/view/startedOrder} != ${/NUM_ORDEN} ? onOpenStartOrderConfirmation : onOpenFinishOrderConfirmation}" /> -->
             </FlexBox>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
