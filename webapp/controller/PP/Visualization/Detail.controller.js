@@ -196,7 +196,7 @@ sap.ui.define([
 
             if (!this.startOrderConfirmationDialog) {
                 this.startOrderConfirmationDialog = this.loadFragment({
-                    name: "sap.ui.demo.webapp.fragment.startOrderConfirmation"
+                    name: "sap.ui.demo.webapp.fragment.StartOrderConfirmation"
                 });
             }
             this.startOrderConfirmationDialog.then(function (oDialog) {
@@ -255,7 +255,7 @@ sap.ui.define([
         onOpenFinishOrderConfirmation: function () {
             if (!this.closeOrderConfirmationDialog) {
                 this.closeOrderConfirmationDialog = this.loadFragment({
-                    name: "sap.ui.demo.webapp.fragment.closeOrderConfirmation"
+                    name: "sap.ui.demo.webapp.fragment.CloseOrderConfirmation"
                 });
             }
             this.closeOrderConfirmationDialog.then(function (oDialog) {
