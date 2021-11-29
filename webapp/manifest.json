@@ -37,6 +37,10 @@
       "headModel": {
         "uri": "model/productHeadModel.json",
         "type": "JSON"
+      },
+      "usersModel": {
+        "uri": "model/usersModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -94,6 +98,10 @@
       },
       "headModel": {
         "dataSource": "headModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "usersModel": {
+        "dataSource": "usersModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
@@ -417,7 +425,14 @@
           "pattern": "Intercompany",
           "name": "Intercompany",
           "target": "Intercompany"
+        },
+
+        {
+          "pattern": "loginUserPP",
+          "name": "loginUserPP",
+          "target": "loginUserPP"
         }
+        
       ],
       "targets": {
         "home": {
@@ -430,6 +445,14 @@
           "viewName": "NotFound",
           "transition": "show"
         },
+
+        "loginUserPP": {
+          "viewId": "login",
+          "viewName": "Login",
+          "transition": "flip",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization"
+        },
+        
         "viewQMOrders": {
           "viewId": "QMOrders",
           "viewName": "QMOrders",

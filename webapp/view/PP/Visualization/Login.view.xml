@@ -1,0 +1,63 @@
+<mvc:View
+    controllerName="sap.ui.demo.webapp.controller.PP.Visualization.Login"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:layout="sap.ui.layout" >
+    <Toolbar
+        class="toolbar_background">
+     <Button type="Back" press="onNavBack"/>
+      <Image id="logo" src="images/SAP_Logo.png">
+      </Image>
+      <core:Icon
+      src="sap-icon://customer-and-contacts"
+      class="toolbar_title sapUiSmallMarginBegin">
+        <core:layoutData>
+          <FlexItemData growFactor="1" />
+        </core:layoutData>
+      </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Iniciar sesión"
+        wrapping="true"
+        />
+      <ToolbarSpacer/>
+      <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+      <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+      </Button>
+    </Toolbar>
+    <ScrollContainer
+        id="login"
+        horizontal="false" >
+        
+            <VBox class="sapUiLargeMarginTop" alignItems="Center">
+                <Text
+                    class="sapUiSmallMarginTopBottom"
+                    text="{i18n>loginUsernameLabel}" />
+                <Input
+                    id="userInput"
+                    class="sapUiSmallMarginTopBottom"
+                    placeholder="{i18n>loginUsernameInputPlaceholder}"
+                    value="{masterModel>/view/login/username}"
+                    valueLiveUpdate="true" />
+                <Text
+                    class="sapUiSmallMarginTopBottom"
+                    text="{i18n>loginPasswordLabel}" />
+                <Input
+                    id="passInput"
+                    class="sapUiSmallMarginTopBottom"
+                    placeholder="{i18n>loginPasswordInputPlaceholder}"
+                    value="{masterModel>/view/login/password}"
+                    type="Password"
+                    valueLiveUpdate="true" />
+                <Button
+                    class="sapUiSmallMarginTopBottom"
+                    text="{i18n>loginSubmitButton}"
+                    press="onLogin"
+                    type="Accept" />
+            </VBox>
+    </ScrollContainer>
+</mvc:View>
