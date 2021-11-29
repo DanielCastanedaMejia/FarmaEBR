@@ -6,7 +6,7 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
     "sap/ui/demo/webapp/model/formatter"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel,formatter) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter) {
     "use strict";
 
     var plant_gb = '';
@@ -29,7 +29,7 @@ sap.ui.define([
                 "NUM_ORDEN": oArgs.orden,
                 "OPERACION": oArgs.operacion
             };
-            
+
             this.byId("PMComponentList").setModel(this.getOwnerComponent().getModel("componentsModel"));
             //this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
             this.byId("PMMAFList").setModel(this.getOwnerComponent().getModel("mafModel"));
@@ -48,7 +48,7 @@ sap.ui.define([
                 iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
                 sOpe = oOpeModel.getProperty(sOpePath + "/Ope");
 
-            if(fDone == "NA") {
+            if (fDone == "NA") {
                 iDone = 0;
             } else {
                 iDone = Math.floor(iQty * (fDone / 100));
@@ -147,66 +147,71 @@ sap.ui.define([
         },
 
         onOpenDialogAdd: function (oEvent) {
-var
-oItem = oEvent.getSource(),
-oCtx = oItem.getBindingContext(),
-oView = this.getView(),
-oDialogAdd = oView.byId("addRowsMaterials");
-if (!oDialogAdd) {
-oDialogAdd = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.addMaterials", this);
-oView.addDependent(oDialogAdd);
-}
+            var
+                oItem = oEvent.getSource(),
+                oCtx = oItem.getBindingContext(),
+                oView = this.getView(),
+                oDialogAdd = oView.byId("addRowsMaterials");
 
-oDialogAdd.open();
-this._base_onloadCOMBO("Material_select", "", "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/materiales_sel", " ", "Materiales agregar");
+            const oMatModel = this.getOwnerComponent().getModel("materialModel"),
+                oNewModel = new JSONModel(oMatModel.getProperty("/items"));
 
-},
-addMaterials: function(oEvent){
-var oTableConsumo = this.byId("PMComponentList");
-var Json_Rows;
-Json_Rows={
-"RES_NUMBER":"",
-"RES_ITEM":"",
-"MATERIAL":this.getView().byId("Material_select").getSelectedKey(),
-"DESC_MATERIAL":this.getView().byId("Material_select").getSelectedItem().getText(),
-"PLANTA":'1710',
-"ALMACEN":'171C',
-"LOTE":"",
-"ETIQUETA":"",
-"CANTIDAD":"",
-"UM":this.getView().byId("Material_select").getSelectedItem().getAdditionalText(),
-"MOVE_TYPE":'261'
-}
-
-var oModel = oTableConsumo.getModel();
-var oModelData = oModel.getProperty("/");
-oModelData.push(Json_Rows);
-console.log(oModelData);
-oModel.setProperty("/", oModelData);
-this.onCloseOpenDialogAdd();
-
-},
-onCloseOpenDialogAdd: function () {
-this.getView().byId("addRowsMaterials").close();
-},
-onDeleteRow:   function(oEvent){
-        var oTableConsumo = this.byId("PMComponentList");
-
-      var oTableData = oTableConsumo.getModel().getData();   
-      var aContexts = oTableConsumo.getSelectedContexts();
-      for (var i=aContexts.length -1; i>=0; i--) {
-        var oThisObj = aContexts[i].getObject();
-        var index = $.map(oTableData, function(obj, index) {
-            if(obj === oThisObj) {
-                return index;
+            if (!oDialogAdd) {
+                oDialogAdd = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.addMaterials", this);
+                oView.addDependent(oDialogAdd);
             }
-        })
-        oTableData.splice(index, 1);
-      }
-    
-      oTableConsumo.getModel().setData(oTableData); 
-      oTableConsumo.removeSelections(true);
-},
+
+            oDialogAdd.open();
+            this.byId("Material_select").setModel(oNewModel);
+            //this._base_onloadCOMBO("Material_select", "", "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/materiales_sel", " ", "Materiales agregar");
+
+        },
+        addMaterials: function (oEvent) {
+            var oTableConsumo = this.byId("PMComponentList");
+            var Json_Rows;
+            Json_Rows = {
+                "RES_NUMBER": "",
+                "RES_ITEM": "",
+                "MATERIAL": this.getView().byId("Material_select").getSelectedKey(),
+                "DESC_MATERIAL": this.getView().byId("Material_select").getSelectedItem().getText(),
+                "PLANTA": '1710',
+                "ALMACEN": '171C',
+                "LOTE": "",
+                "ETIQUETA": "",
+                "CANTIDAD": "",
+                "UM": this.getView().byId("Material_select").getSelectedItem().getAdditionalText(),
+                "MOVE_TYPE": '261'
+            }
+
+            var oModel = oTableConsumo.getModel();
+            var oModelData = oModel.getProperty("/");
+            oModelData.push(Json_Rows);
+            console.log(oModelData);
+            oModel.setProperty("/", oModelData);
+            this.onCloseOpenDialogAdd();
+
+        },
+        onCloseOpenDialogAdd: function () {
+            this.getView().byId("addRowsMaterials").close();
+        },
+        onDeleteRow: function (oEvent) {
+            var oTableConsumo = this.byId("PMComponentList");
+
+            var oTableData = oTableConsumo.getModel().getData();
+            var aContexts = oTableConsumo.getSelectedContexts();
+            for (var i = aContexts.length - 1; i >= 0; i--) {
+                var oThisObj = aContexts[i].getObject();
+                var index = $.map(oTableData, function (obj, index) {
+                    if (obj === oThisObj) {
+                        return index;
+                    }
+                })
+                oTableData.splice(index, 1);
+            }
+
+            oTableConsumo.getModel().setData(oTableData);
+            oTableConsumo.removeSelections(true);
+        },
 
         onCloseDialogAddNotification: function () {
             this.getView().byId("addNotificationDialog").close();
@@ -230,14 +235,14 @@ onDeleteRow:   function(oEvent){
                 cantidad = this.byId("inputQuantity"),
                 lote = this.byId("inputBatch"),
                 oView = this.getView();
-  
+
 
             if (material.getSelectedKey() === " ")
                 this.getOwnerComponent().openHelloDialog("Selecciona un material");
             else if (cantidad.getValue() === '0' || cantidad.getValue() === '')
                 this.getOwnerComponent().openHelloDialog("Ingresa una cantidad");
             else {
-                
+
                 var oData = {
                     "MATERIAL": material.getSelectedKey(),
                     "MOV": material.getSelectedItem().getAdditionalText(),
@@ -250,7 +255,7 @@ onDeleteRow:   function(oEvent){
                 this.createNotification(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_101');
                 this.onCloseDialogAddNotification();
             }
-            
+
         },
 
         createNotification: function (oData, path) {
@@ -278,7 +283,7 @@ onDeleteRow:   function(oEvent){
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
                         }
                         else {
-                            oThis.getOwnerComponent().openHelloDialog(aData[0].message);                            
+                            oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                         }
 
                     }
@@ -414,7 +419,7 @@ onDeleteRow:   function(oEvent){
 
         onAddConsumption: function (oEvent) {
 
-            var 
+            var
                 oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
@@ -783,7 +788,7 @@ onDeleteRow:   function(oEvent){
                 fecha_fin = this.byId('end_date').getValue(),
                 piezas_buenas = this.byId('yield').getValue(),
                 piezas_malas = this.byId('scrap').getValue(),
-orden,operacion,
+                orden, operacion,
                 oView = this.getView();
 
             if (fecha_inicio === '')
@@ -803,11 +808,11 @@ orden,operacion,
                 };
 
                 this.sendTime(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/tiempos');
-            var aData = {
+                var aData = {
                     "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
                     "OPERACION": oView.getModel().getProperty('/OPERACION')
-            };
-            this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
+                };
+                this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 
                 this.onCloseDialogSendTime();
             }
