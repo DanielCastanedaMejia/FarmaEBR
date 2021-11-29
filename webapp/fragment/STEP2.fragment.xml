@@ -31,6 +31,21 @@
                 <Column vAlign="Middle" width="11rem">
                     <!--<Text text="{i18n>step2Column4Text}" />-->
                 </Column>
+                <Column vAlign="Middle">
+                    <Text text="{i18n>step2Column1Text}"/>
+                </Column>
+                <Column vAlign="Middle" width="5rem">
+                    <!-- <Text text="{i18n>step2Column2Text}" /> -->
+                </Column>
+                <Column vAlign="Middle" width="5rem">
+                    <Text text="{i18n>step2Column2Text}"/>
+                </Column>
+                <Column vAlign="Middle" width="5rem">
+                    <Text text="{i18n>step2Column3Text}" />
+                </Column>
+                <Column vAlign="Middle" width="11rem">
+                    <!--<Text text="{i18n>step2Column4Text}" />-->
+                </Column>
             </columns>
             <items>
             <ColumnListItem>
@@ -46,10 +61,6 @@
                         press="onPressTimer"
                         enabled="{ path: 'masterModel&gt;/buttonTimer/1/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t1}" placeholder="Tiempo (minutos)" />-->
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
                     <Text text="{i18n>step2Validation2Text}" />
                     <Button icon="sap-icon://show" press="onVideoDetailsDialog" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
@@ -76,10 +87,6 @@
                         press="onPressTimer"
                         enabled="{ path: 'masterModel&gt;/buttonTimer/3/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t3}" placeholder="Tiempo (minutos)" />-->
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
                     <Text text="{i18n>step2Validation4Text}" />
                     <Text />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
@@ -106,10 +113,6 @@
                         press="onPressTimer"
                         enabled="{ path: 'masterModel&gt;/buttonTimer/5/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t5}" placeholder="Tiempo (minutos)" />-->
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
                     <Text text="{i18n>step2Validation6Text}" />
                     <Text />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v6}" />
