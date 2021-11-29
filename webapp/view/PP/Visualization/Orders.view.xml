@@ -39,9 +39,9 @@
           <ToolbarSpacer/>
           <Label
             id ="username"
-            text=""
+            text="{masterModel>/view/login/username}"
             class="toolbar_color"></Label>
-          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">
           </Button>
         </Toolbar>
         <fb:FilterBar header="Órdenes"
