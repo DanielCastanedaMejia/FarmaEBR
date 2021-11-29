@@ -49,12 +49,12 @@ sap.ui.define([
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_enabled") == "1") {                    
                     this.navToOrdersPP();
-                } else {
-                    console.log("Fragment supervisor");
+                } else {                    
+                    this.onOpenDialog();
                 }
             } else {
                 MessageToast.show("Usuario y/o contraseña incorrectos. Intente de nuevo");
-                this._setMasterModel("/view/login/username", "");
+                this._setMasterModel("/view/login/password", "");
                 //this._setMasterModel("/view/login/password", "");
             }
         },
@@ -120,6 +120,35 @@ sap.ui.define([
             //var path="/XMII/Runner?Transaction=Pharma_Prefabricado_Modular/DatosMaestros/Produccion/User/Transaction/select_UsersPhPM_Login&OutputParameter=JsonOutput&Content-Type=text/xml";
             //this._base_loadSuperv(oData, server, path);
             //this.byId("supervisorLogDialog").close();
+
+            var oModel = new JSONModel();
+            var aData = this.getOwnerComponent().getModel("usersModel");
+            oModel.setData(aData);
+            var nModel = oModel.oData.getProperty("/user").length;
+            var userModel, passModel;
+            var validIndex, validUser = false;
+            for (var i = 0; i < nModel; i++) {
+                userModel = aData.getProperty("/user/" + i + "/username");
+                passModel = aData.getProperty("/user/" + i + "/password");
+                if (userModel == sUsername && sPassword == passModel) {
+                    validUser = true;
+                    validIndex = i;
+                    break;
+                } 
+            }
+            if (validUser) {
+                if (aData.getProperty("/user/" + validIndex + "/is_supervisor") == "1") {                    
+                    this.navToOrdersPP();
+                } else {
+                    MessageToast.show("Es necesario el inicio de sesión de un supervisor. Intente de nuevo");
+                    this._setMasterModel("/view/supervisorLogin/password", "");
+                    
+                }
+            } else {
+                MessageToast.show("Usuario y/o contraseña incorrectos. Intente de nuevo");
+                this._setMasterModel("/view/supervisorLogin/password", "");
+                //this._setMasterModel("/view/login/password", "");
+            }
         },
 
         onTestNav: function () {
