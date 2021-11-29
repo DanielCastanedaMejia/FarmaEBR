@@ -15,7 +15,6 @@ sap.ui.define([
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("orderDetail").attachMatched(this._onRouteMatched, this);
-            this.onOpenProcessDialog();
         },
 
         _onRouteMatched: function (oEvent) {
