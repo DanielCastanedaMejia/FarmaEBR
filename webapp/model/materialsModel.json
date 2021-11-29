@@ -1,0 +1,29 @@
+{
+    "items": [
+        {
+            "id": "PHARMA_R01",
+            "desc": "POLIETILENO",
+            "um": "KG"
+        },
+        {
+            "id": "PHARMA_R02",
+            "desc": "DEXTROSA",
+            "um": "KG"
+        },
+        {
+            "id": "PHARMA_R02",
+            "desc": "DEXTROSA",
+            "um": "KG"
+        },
+        {
+            "id": "PHARMA_R03",
+            "desc": "TAPA GRIS",
+            "um": "KG"
+        },
+        {
+            "id": "PHARMA_M01",
+            "desc": "MOLDE A430",
+            "um": "KG"
+        }
+    ]
+}

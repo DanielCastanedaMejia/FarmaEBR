@@ -41,6 +41,10 @@
       "usersModel": {
         "uri": "model/usersModel.json",
         "type": "JSON"
+      },
+      "materialModel": {
+        "uri": "model/materialsModel.json",
+        "type": "JSON"
       }
     }
   },
@@ -102,6 +106,10 @@
       },
       "usersModel": {
         "dataSource": "usersModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "materialModel": {
+        "dataSource": "materialModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },
