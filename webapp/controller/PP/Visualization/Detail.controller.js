@@ -188,19 +188,19 @@ sap.ui.define([
         onOpenStartOrderConfirmation: function () {
             var oThis = this;
 
-            if(this._getMasterModel("/view/startedOrder")) {
+            if (this._getMasterModel("/view/startedOrder")) {
                 const i18n = this.getView().getModel("i18n").getResourceBundle();
 
                 MessageToast.show(i18n.getText("alreadyStartedOrderMsg"));
                 return;
             }
 
-            if(!this.startOrderConfirmationDialog) {
+            if (!this.startOrderConfirmationDialog) {
                 this.startOrderConfirmationDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.startOrderConfirmation"
                 });
             }
-            this.startOrderConfirmationDialog.then(function(oDialog) {
+            this.startOrderConfirmationDialog.then(function (oDialog) {
                 const sPath = oThis._getMasterModel("/selectedOrder"),
                     oOrderModel = oThis.getOwnerComponent().getModel("ordersModel"),
                     NUM_ORDEN = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
@@ -407,8 +407,6 @@ sap.ui.define([
                     second = Math.floor((cTime % (1000 * 60)) / 1000);
                     this.minStatic = String(minutes);
                     this.secStatic = second.toString();
-                    //console.log(this.minStatic);
-                    //console.log(this.secStatic);
                     if (second.toString().length == 1)
                         time.setText(minutes + ":" + "0" + second);
                     else
@@ -417,10 +415,10 @@ sap.ui.define([
             } else {
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/started", "0");
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/complete", "1");
-
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + (parseInt(nId) + 1) + "/complete", "0");
+                this.getOwnerComponent().getModel("masterModel").setProperty("/validations/step2/values/t" + nId, true);
+
                 clearInterval(this.x);
-                console.log(this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + nId + "/timeValue"));
             }
         }
 

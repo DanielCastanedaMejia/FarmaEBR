@@ -16,7 +16,7 @@
         <Toolbar
         class="toolbar_default">
           <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
-          <Image src="FARMA/WEB/POS/images/SAP_Logo.png">
+          <Image src="images/SAP_Logo.png">
           </Image>
           <core:Icon
           src="sap-icon://grid"
