@@ -122,7 +122,8 @@
                 text="{= !${masterModel>/view/startedOrder} ? ${i18n>startOrderButton} : ${i18n>closeOrderButton}}"
                 icon="{= !${masterModel>/view/startedOrder} ? 'sap-icon://begin' : 'sap-icon://decline'}"
                 type="{= !${masterModel>/view/startedOrder} ? 'Accept' : 'Reject'}"
-                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}" />
+                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
+                press="onOpenStartOrderConfirmation" />
             </FlexBox>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
