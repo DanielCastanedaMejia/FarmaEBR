@@ -369,7 +369,7 @@ sap.ui.define([
             this._setMasterModel("/validations/vStep3", true);
             this._setMasterModel("/view/prepProcessFinished", true);
             this.closeDialog("step3Dialog");
-            this.closeDialog("prepProcess");
+            this.closeDialog("prepProcessDialog");
 
             MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
         },
