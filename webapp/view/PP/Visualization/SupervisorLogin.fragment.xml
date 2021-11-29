@@ -1,0 +1,52 @@
+<core:FragmentDefinition
+xmlns="sap.m"
+xmlns:core="sap.ui.core" >
+<Dialog
+    state="Information"
+    id="supervisorLogDialog"
+    title="{i18n>loginSuperTitle}"
+    icon="sap-icon://company-view"
+    contentWidth="25%"
+    titleAlignment="Center" >
+    <content>
+        <VBox 
+             
+            alignItems="Center" >
+            <Text
+                class="sapUiSmallMarginTopBottom"
+                text="{i18n>loginUsernameLabel}" />
+            <Input
+                id="superVInput"
+                class="sapUiSmallMarginTopBottom"
+                placeholder="{i18n>loginUsernameInputPlaceholder}"
+                value="{masterModel>/view/supervisorLogin/username}"
+                valueLiveUpdate="true" />
+            <Text
+                class="sapUiSmallMarginTopBottom"
+                text="{i18n>loginPasswordLabel}" />
+            <Input
+                id="passVInput"
+                class="sapUiSmallMarginTopBottom"
+                placeholder="{i18n>loginPasswordInputPlaceholder}"
+                value="{masterModel>/view/supervisorLogin/password}"
+                type="Password"
+                valueLiveUpdate="true" />
+        </VBox>
+   </content>
+   <beginButton>
+        <Button
+            class="sapUiSmallMarginTopBottom"
+            icon="sap-icon://accept"
+            text="{i18n>loginSubmitButton}"
+            press=".onAcceptDialog"
+            type="Accept" />        
+   </beginButton>
+   <endButton>
+       <Button
+            text="{i18n>dialogCloseButtonText}"
+            icon="sap-icon://decline"
+            press=".onCloseDialog"
+            type="Reject"/>
+   </endButton>
+</Dialog>
+</core:FragmentDefinition>
