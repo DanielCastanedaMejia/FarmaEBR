@@ -25,6 +25,12 @@
               <FlexItemData growFactor="1" />
             </core:layoutData>
           </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Estación de trabajo X "
+        wrapping="true"
+        />
+      <core:Icon src="sap-icon://arrow-right" />
           <Label labelFor="myColumn"
             class="toolbar_title"
             text="Órdenes de Produccion"

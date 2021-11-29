@@ -27,6 +27,12 @@
       </core:Icon>
       <Label labelFor="myColumn"
         class="toolbar_title"
+        text="Estación de trabajo X "
+        wrapping="true"
+        />
+      <core:Icon src="sap-icon://arrow-right" />
+      <Label labelFor="myColumn"
+        class="toolbar_title"
         text="Página inicial"
         wrapping="true"
         />
