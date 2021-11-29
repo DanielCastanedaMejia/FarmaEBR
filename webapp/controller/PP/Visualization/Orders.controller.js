@@ -11,7 +11,7 @@ sap.ui.define([
     'sap/ui/model/Filter',
     "sap/ui/model/FilterOperator",
     "sap/ui/demo/webapp/model/formatter"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator,formatter) {
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter) {
     "use strict";
 
     var plant_gb = '';
@@ -26,17 +26,16 @@ sap.ui.define([
             oRouter.getRoute("viewPPOrders").attachMatched(this._onRouteMatched, this);
         },
 
-        _onRouteMatched: function (oEvent) {  
+        _onRouteMatched: function (oEvent) {
             var oArgs;
             oArgs = oEvent.getParameter("arguments");
 
             plant_gb = 'PLANTA';
             //this.PPOrders_view();  
-            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));          
+            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));
 
             var columns = {
-                columns: [
-                    {
+                columns: [{
                         Column: "Orden",
                         Visible: 1
                     },
@@ -84,18 +83,18 @@ sap.ui.define([
         },
 
         PPOrders_view: function () {
-            var oData = {
+            /*var oData = {
                 "END_DATE": this.byId("end_date").getValue(),
                 "PLANT": plant_gb,
                 "START_DATE": this.byId("start_date").getValue()
             };
 
-            this._base_onloadTable("PPOrders_list", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_ordenes", "Ordenes", "IconTabBar_Orders");
+            this._base_onloadTable("PPOrders_list", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_ordenes", "Ordenes", "IconTabBar_Orders");*/
         },
 
         viewStartOrder: function (oEvent) {
 
-           var oItem = oEvent.getSource(),
+            var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
                 items = this.getView().byId("PPOrders_list").getSelectedItems(),
@@ -105,33 +104,30 @@ sap.ui.define([
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                order = item.getCells()[0].getText();
-                estatus= item.getCells()[11].getText();
-                    });
-                }
-                else {
+                    order = item.getCells()[0].getText();
+                    estatus = item.getCells()[11].getText();
+                });
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
+            }
 
             var oDialog = oView.byId("startOrderDialog");
-                                console.log(estatus,"ESTE ES EL ESTATUS");
+            console.log(estatus, "ESTE ES EL ESTATUS");
             var oData = {
-                    "NUM_ORDEN": order,
-                };
-                console.log(oData);
+                "NUM_ORDEN": order,
+            };
+            console.log(oData);
 
             // create dialog lazily
             if (!oDialog) {
-                if(estatus=="INICIADA"){
+                if (estatus == "INICIADA") {
                     oThis.getOwnerComponent().openHelloDialog("La orden seleccionada ya se encuentra iniciada");
-                }
-                else if(estatus=="FINALIZADA"){
-                    oThis.getOwnerComponent().openHelloDialog("No se puede iniciar una orden finalizada");
-                }
-                else{
-                 //create dialog via fragment factory
-                oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.startOrderDialog", this);
-                oView.addDependent(oDialog);
+                } else if (estatus == "CERRADA") {
+                    oThis.getOwnerComponent().openHelloDialog("No se puede iniciar una orden cerrada");
+                } else {
+                    //create dialog via fragment factory
+                    oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.startOrderDialog", this);
+                    oView.addDependent(oDialog);
                 }
             }
 
@@ -140,13 +136,13 @@ sap.ui.define([
             //this._base_onloadCOMBO("mov_101", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/get_101", " ", "Materiales notificar");
             oDialog.open();
 
-            this._base_onloadCOMBO("listPrimario", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_usu_prim","","Usuario Primario");
-            this._base_onloadCOMBO("listSecundario", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_usu_sec","","Usuario Secundario");
-            },
+            this._base_onloadCOMBO("listPrimario", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_usu_prim", "", "Usuario Primario");
+            this._base_onloadCOMBO("listSecundario", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_usu_sec", "", "Usuario Secundario");
+        },
 
         viewStopOrder: function (oEvent) {
 
-           var oItem = oEvent.getSource(),
+            var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
                 items = this.getView().byId("PPOrders_list").getSelectedItems(),
@@ -156,18 +152,17 @@ sap.ui.define([
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                order = item.getCells()[0].getText();
-                    });
-                }
-                else {
+                    order = item.getCells()[0].getText();
+                });
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
+            }
 
             var oDialog = oView.byId("stopOrderDialog");
             var oData = {
-                    "NUM_ORDEN": order,
-                };
-                console.log(oData);
+                "NUM_ORDEN": order,
+            };
+            console.log(oData);
 
             // create dialog lazily
             if (!oDialog) {
@@ -180,9 +175,9 @@ sap.ui.define([
 
             //this._base_onloadCOMBO("mov_101", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/get_101", " ", "Materiales notificar");
             oDialog.open();
-            },
+        },
 
-        onChangeStatusStart: function(oEvent){
+        onChangeStatusStart: function (oEvent) {
             var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 oView = this.getView(),
@@ -192,7 +187,7 @@ sap.ui.define([
                 resourceModel = this.getView().getModel("i18n"),
                 oData = {
                     "Param.1": order,
-                    "Param.2":"INICIADA",
+                    "Param.2": "INICIADA",
                     "Param.3": usuprim,
                     "Param.4": ususec
                 };
@@ -200,16 +195,16 @@ sap.ui.define([
             uri = uri.replace(/\s+/g, '');
             var oThis = this;
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
-            .done(function () {
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
+                .done(function () {
                     console.log(oData);
-            })
-            .fail(function (jqXHR, textStatus, error9Thrown) {
+                })
+                .fail(function (jqXHR, textStatus, error9Thrown) {
                     if (console && console.log) {
                         oThis.getOwnerComponent().openHelloDialog("La solicitud a fallado: Hay conexión de red?");
                     }
@@ -219,13 +214,13 @@ sap.ui.define([
             this.PPOrders_view();
         },
 
-        onOpenValidaciones:function(order){
+        onOpenValidaciones: function (order) {
             var oView = this.getView();
             var oDialog = oView.byId("dataStartOrderPerformActivities");
             var oData = {
-                    "NUM_ORDEN": order,
-                };
-                console.log(oData);
+                "NUM_ORDEN": order,
+            };
+            console.log(oData);
 
             // create dialog lazily
             if (!oDialog) {
@@ -236,8 +231,8 @@ sap.ui.define([
             oDialog.open();
         },
 
-        callOpenDialogValida: function(oEvent){
-                var oItem = oEvent.getSource(),
+        callOpenDialogValida: function (oEvent) {
+            var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
                 items = this.getView().byId("PPOrders_list").getSelectedItems(),
@@ -248,12 +243,11 @@ sap.ui.define([
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                order = item.getCells()[0].getText();
-                    });
-                }
-                else {
+                    order = item.getCells()[0].getText();
+                });
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
+            }
             var oDialog = oView.byId("dataComponents");
 
             // create dialog lazily
@@ -261,8 +255,8 @@ sap.ui.define([
                 // create dialog via fragment factory
                 oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.dataComponents", this);
                 oView.addDependent(oDialog);
-            var oData = {
-                "NUM_ORDEN": order
+                var oData = {
+                    "NUM_ORDEN": order
                 };
                 console.log(oData);
                 this._base_onloadTable("PPComponents", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_get", "Componentes", "");
@@ -350,12 +344,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -364,8 +358,7 @@ sap.ui.define([
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
                                 oModel.setData(aData);
@@ -373,12 +366,10 @@ sap.ui.define([
                                 //oThis.getView().setModel(oModel);
                                 oThis.getView().getModel().setProperty("/componentes", aData);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se han recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -416,7 +407,7 @@ sap.ui.define([
             evt.getSource().getBinding("items").filter([]);
         },
 
-        onSaveMaterial:function(oEvent){
+        onSaveMaterial: function (oEvent) {
             var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
@@ -424,91 +415,89 @@ sap.ui.define([
                 torden = this.getView().byId("PPOrders_list").getSelectedItems(),
                 oView = this.getView(),
                 oThis = this,
-                orden,material,um,lote,etiqueta,estatus,bueno,proximo,desc_material,res_num,res_item,operacion;
+                orden, material, um, lote, etiqueta, estatus, bueno, proximo, desc_material, res_num, res_item, operacion;
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                orden = item.getCells()[0].getText();
-                res_num = item.getCells()[1].getText();
-                res_item = item.getCells()[2].getText();
-                material = item.getCells()[3].getText();
-                um= item.getCells()[4].getText();
-                lote= item.getCells()[5].getValue();
-                etiqueta= item.getCells()[6].getValue();
-                bueno= item.getCells()[7].getState();
-                proximo = item.getCells()[8].getState();
-                desc_material=item.getCells()[9].getText();
-                operacion=item.getCells()[10].getText();
-console.log(bueno,proximo);
-                if(bueno="true"){
-                    estatus="1"
-                }
-                else{
-                    estaus="2"
-                }
-                if(proximo=="true"){
-                    estatus="3"
-                }
-
-                    });
-                }
-                else {
-                this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
-
-        if(items.length == 0){
-                    oThis.getOwnerComponent().openHelloDialog("Seleccione el componente a enviar");
-                }
-                else{    
-        if(etiqueta == "1000001551"||etiqueta == "1000001557"||etiqueta == "1000001560"){    
-
-                    oThis.getOwnerComponent().openHelloDialog("El material: "+etiqueta+" no esta habilitado para: "+lote);
-
-
-            }else{
-
-                            var oData= {
-                "ORDEN": orden,
-                "RES_NUMBER": res_num,
-                "RES_ITEM": res_item,
-                "COD_MATERIAL": material,
-                "UM": um,
-                "LOTE": lote,
-                "ETIQUETA": etiqueta,
-                "ESTATUS": estatus,
-                "MATERIAL": desc_material,
-                "OPERACION": operacion
-            };
-
-            console.log(oData);
-
-            var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/lote_material_ins" + "&OutputParameter=JsonOutput&Content-Type=text/xml"
-            uri = uri.replace(/\s+/g, '');
-
-            $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
-                .done(function (xmlDOM) {
-                    oThis.getOwnerComponent().openHelloDialog("Se a asignado el material: "+etiqueta+" al lote: "+lote);
-                })
-                .fail(function (jqXHR, textStatus, errorThrown) {
-                    if (console && console.log) {
-                        oThis.getOwnerComponent().openHelloDialog("La solicitud a fallado: \u00BFHay conexi\u00F3n de red??");
+                    orden = item.getCells()[0].getText();
+                    res_num = item.getCells()[1].getText();
+                    res_item = item.getCells()[2].getText();
+                    material = item.getCells()[3].getText();
+                    um = item.getCells()[4].getText();
+                    lote = item.getCells()[5].getValue();
+                    etiqueta = item.getCells()[6].getValue();
+                    bueno = item.getCells()[7].getState();
+                    proximo = item.getCells()[8].getState();
+                    desc_material = item.getCells()[9].getText();
+                    operacion = item.getCells()[10].getText();
+                    console.log(bueno, proximo);
+                    if (bueno = "true") {
+                        estatus = "1"
+                    } else {
+                        estaus = "2"
                     }
-                    sap.ui.core.BusyIndicator.hide();
+                    if (proximo == "true") {
+                        estatus = "3"
+                    }
+
                 });
+            } else {
+                this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
+            }
+
+            if (items.length == 0) {
+                oThis.getOwnerComponent().openHelloDialog("Seleccione el componente a enviar");
+            } else {
+                if (etiqueta == "1000001551" || etiqueta == "1000001557" || etiqueta == "1000001560") {
+
+                    oThis.getOwnerComponent().openHelloDialog("El material: " + etiqueta + " no esta habilitado para: " + lote);
 
 
-            }}
+                } else {
+
+                    var oData = {
+                        "ORDEN": orden,
+                        "RES_NUMBER": res_num,
+                        "RES_ITEM": res_item,
+                        "COD_MATERIAL": material,
+                        "UM": um,
+                        "LOTE": lote,
+                        "ETIQUETA": etiqueta,
+                        "ESTATUS": estatus,
+                        "MATERIAL": desc_material,
+                        "OPERACION": operacion
+                    };
+
+                    console.log(oData);
+
+                    var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/lote_material_ins" + "&OutputParameter=JsonOutput&Content-Type=text/xml"
+                    uri = uri.replace(/\s+/g, '');
+
+                    $.ajax({
+                            type: "GET",
+                            dataType: "xml",
+                            cache: false,
+                            url: uri,
+                            data: oData
+                        })
+                        .done(function (xmlDOM) {
+                            oThis.getOwnerComponent().openHelloDialog("Se a asignado el material: " + etiqueta + " al lote: " + lote);
+                        })
+                        .fail(function (jqXHR, textStatus, errorThrown) {
+                            if (console && console.log) {
+                                oThis.getOwnerComponent().openHelloDialog("La solicitud a fallado: \u00BFHay conexi\u00F3n de red??");
+                            }
+                            sap.ui.core.BusyIndicator.hide();
+                        });
+
+
+                }
+            }
         },
 
-        onCloseSaveMaterial: function(oEvent){
+        onCloseSaveMaterial: function (oEvent) {
             this.getView().byId("dataComponents").close();
-            },
+        },
 
 
         onloadBatch: function (oData, path, name) {
@@ -523,12 +512,12 @@ console.log(bueno,proximo);
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -537,8 +526,7 @@ console.log(bueno,proximo);
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
                                 oModel.setData(aData);
@@ -546,12 +534,10 @@ console.log(bueno,proximo);
                                 //oThis.getView().setModel(oModel);
                                 oThis.getView().getModel().setProperty("/componentes", aData);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se han recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -566,7 +552,7 @@ console.log(bueno,proximo);
                 });
         },
 
-        callOpenDialogStep4: function(oEvent){
+        callOpenDialogStep4: function (oEvent) {
 
             var oView = this.getView();
             var oDialog = oView.byId("dataStartOrderScanToolsCheck");
@@ -584,7 +570,7 @@ console.log(bueno,proximo);
         },
 
 
-        onChangeStatusStop: function(oEvent){
+        onChangeStatusStop: function (oEvent) {
             var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 oView = this.getView(),
@@ -592,28 +578,28 @@ console.log(bueno,proximo);
                 resourceModel = this.getView().getModel("i18n"),
                 oData = {
                     "Param.1": order,
-                    "Param.2":"FINALIZADA"
+                    "Param.2": "FINALIZADA"
                 };
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Illuminator?QueryTemplate=FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Query/upd_status_stop&IsTesting=T&Content-Type=text/xml"
             uri = uri.replace(/\s+/g, '');
             var oThis = this;
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData,
-                success:function(){
-                    console.log("")
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                    oThis.getOwnerComponent().openHelloDialog("TEST");
-                }   
-            })
-            .done(function () {
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData,
+                    success: function () {
+                        console.log("")
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        oThis.getOwnerComponent().openHelloDialog("TEST");
+                    }
+                })
+                .done(function () {
                     console.log(oData);
-            })
-            .fail(function (jqXHR, textStatus, errorThrown) {
+                })
+                .fail(function (jqXHR, textStatus, errorThrown) {
                     if (console && console.log) {
                         oThis.getOwnerComponent().openHelloDialog("La solicitud a fallado: Hay conexión de red?");
                     }
@@ -647,16 +633,18 @@ console.log(bueno,proximo);
         handleIconTabBarSelect: function (oEvent) {
             var aFilter = [],
                 oTable = this.byId('PPOrders_list'),
-                oBinding = oTable.getBinding('items'), 
+                oBinding = oTable.getBinding('items'),
                 sKey = oEvent.getParameter("key");
 
             if (sKey !== 'All') {
-                if (sKey !== 'NORAS')
+                if (sKey == 'LIB.') {                    
                     aFilter.push(new Filter("ESTATUS", FilterOperator.Contains, sKey));
+                }
                 else
-                    aFilter.push(new Filter("noras", FilterOperator.Contains, sKey));
+                    aFilter.push(new Filter("ESTATUS_MII", FilterOperator.Contains, sKey));
             }
-
+            //console.log(sKey);.
+            //console.log(aFilter);
             oBinding.filter(aFilter);
         },
 
@@ -668,16 +656,16 @@ console.log(bueno,proximo);
             this.getView().byId("hideColumns_fragment").close();
         },
 
-        callOpenDialogStep3:function(){
+        callOpenDialogStep3: function () {
 
-                this.dialogStep3= sap.ui.xmlfragment("Step3", "sap.ui.demo.webapp.fragment.STEP3", this);
-                 this.getView().addDependent(this.dialogStep3);
-                 this.dialogStep3.open();
+            this.dialogStep3 = sap.ui.xmlfragment("Step3", "sap.ui.demo.webapp.fragment.STEP3", this);
+            this.getView().addDependent(this.dialogStep3);
+            this.dialogStep3.open();
             sap.ui.getCore().byId("Step3--PDFSTEP3").setContent("<iframe height='700' width='1500' src='/XMII/CM/FARMA/POS/instructionFiles/STEP3_WorkInstructions.pdf' ></iframe>")
         },
 
-        callOpenDialogStep0:function(oEvent){
-                var oItem = oEvent.getSource(),
+        callOpenDialogStep0: function (oEvent) {
+            var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
                 items = this.getView().byId("PPOrders_list").getSelectedItems(),
@@ -688,34 +676,33 @@ console.log(bueno,proximo);
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                order = item.getCells()[0].getText();
-                    });
-                }
-                else {
+                    order = item.getCells()[0].getText();
+                });
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
+            }
 
-                console.log(order);
+            console.log(order);
 
-                if(items.length == 0){
-                    oThis.getOwnerComponent().openHelloDialog("Seleccione una Orden");
-                }else{
-                this.dialogStep0= sap.ui.xmlfragment("Step0", "sap.ui.demo.webapp.fragment.STEP0", this);
+            if (items.length == 0) {
+                oThis.getOwnerComponent().openHelloDialog("Seleccione una Orden");
+            } else {
+                this.dialogStep0 = sap.ui.xmlfragment("Step0", "sap.ui.demo.webapp.fragment.STEP0", this);
                 this.getView().addDependent(this.dialogStep0);
                 this.dialogStep0.open();
                 sap.ui.getCore().byId("Step0--PDFSTEP0").setContent("<iframe height='700' width='1500' src='/XMII/CM/FARMA/POS/instructionFiles/STEP_0WorkInstructions.pdf' ></iframe>");
             }
         },
 
-        executeStep0:function(){
+        executeStep0: function () {
             this.dialogStep0.destroy();
         },
 
-        executeStep3:function(){
+        executeStep3: function () {
             this.dialogStep3.destroy();
         },
 
-        onCloseDialogStartOrderPerformActivities: function() {    
+        onCloseDialogStartOrderPerformActivities: function () {
             var oView = this.getView();
             var oDialog = oView.byId("oDialogStartOrderScanSFC");
             // create dialog lazily
@@ -729,13 +716,13 @@ console.log(bueno,proximo);
             oDialog.destroy();
         },
 
-        onPerformed: function() {    
+        onPerformed: function () {
             this.PPOrders_view();
             this.onCloseDialogStartOrderPerformActivities();
             this.callOpenDHRReview();
         },
 
-        callOpenDialogStep1:function(oEvent){
+        callOpenDialogStep1: function (oEvent) {
             var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
                 resourceModel = this.getView().getModel("i18n"),
@@ -748,44 +735,81 @@ console.log(bueno,proximo);
 
             if (items.length > 0) {
                 items.forEach(function (item) {
-                order = item.getCells()[0].getText();
-                    });
-                }
-                else {
+                    order = item.getCells()[0].getText();
+                });
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
-                }
-
-                if(items.length == 0){
-                    oThis.getOwnerComponent().openHelloDialog("Seleccione una Orden");
-                }else{
-
-            if (!oDialog) {
-                // create dialog via fragment factory
-                oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.STEP1", this);
-                oView.addDependent(oDialog);
             }
+
+            if (items.length == 0) {
+                oThis.getOwnerComponent().openHelloDialog("Seleccione una Orden");
+            } else {
+
+                if (!oDialog) {
+                    // create dialog via fragment factory
+                    oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.STEP1", this);
+                    oView.addDependent(oDialog);
+                }
 
 
                 oDialog.open();
             }
         },
 
-        onCloseDialogStep1: function(oEvent) {
+        onCloseDialogStep1: function (oEvent) {
             var oView = this.getView(),
                 oDialog = oView.byId("oDialogStep1");
-                oDialog.close();
+            oDialog.close();
         },
 
-        callOpenDHRReview:function(){
+        callOpenDHRReview: function () {
             var aDataDHR = [];
-                aDataDHR.push({ "ID": "1" , "STATUS" : "1", "TEXT": "All the units have been fully processed through all previous operations?" , "VALUE" :"" , "VISIBLE": "0" });
-                aDataDHR.push({ "ID": "2" , "STATUS" : "1", "TEXT": "All In.Process Non-Conformance Activities hac¡ve been dispositioned?"   , "VALUE" :"" , "VISIBLE": "0"});
-                aDataDHR.push({ "ID": "3" , "STATUS" : "1", "TEXT": "All the Required component Assembly activities have been completed Succesfully?" , "VALUE" :"" , "VISIBLE": "0"  });
-                aDataDHR.push({ "ID": "4" , "STATUS" : "0", "TEXT": "The Total physical count of GOOD UNITS in the order equals?"  , "VALUE" :"5" , "VISIBLE": "1" });
-                aDataDHR.push({ "ID": "5" , "STATUS" : "1", "TEXT": "All Open Messages have been Closed?"  , "VALUE" :"", "VISIBLE": "0" });
-                aDataDHR.push({ "ID": "6" , "STATUS" : "1", "TEXT": "All Notifications have been Dispositioned?"  , "VALUE" :"" , "VISIBLE": "0" });
+            aDataDHR.push({
+                "ID": "1",
+                "STATUS": "1",
+                "TEXT": "All the units have been fully processed through all previous operations?",
+                "VALUE": "",
+                "VISIBLE": "0"
+            });
+            aDataDHR.push({
+                "ID": "2",
+                "STATUS": "1",
+                "TEXT": "All In.Process Non-Conformance Activities hac¡ve been dispositioned?",
+                "VALUE": "",
+                "VISIBLE": "0"
+            });
+            aDataDHR.push({
+                "ID": "3",
+                "STATUS": "1",
+                "TEXT": "All the Required component Assembly activities have been completed Succesfully?",
+                "VALUE": "",
+                "VISIBLE": "0"
+            });
+            aDataDHR.push({
+                "ID": "4",
+                "STATUS": "0",
+                "TEXT": "The Total physical count of GOOD UNITS in the order equals?",
+                "VALUE": "5",
+                "VISIBLE": "1"
+            });
+            aDataDHR.push({
+                "ID": "5",
+                "STATUS": "1",
+                "TEXT": "All Open Messages have been Closed?",
+                "VALUE": "",
+                "VISIBLE": "0"
+            });
+            aDataDHR.push({
+                "ID": "6",
+                "STATUS": "1",
+                "TEXT": "All Notifications have been Dispositioned?",
+                "VALUE": "",
+                "VISIBLE": "0"
+            });
             var oModelDHR = new sap.ui.model.json.JSONModel();
-            oModelDHR.setData({Row: aDataDHR});
+            oModelDHR.setData({
+                Row: aDataDHR
+            });
             var oView = this.getView();
             var oDialog = oView.byId("oDialogDHRReview");
 
@@ -804,7 +828,7 @@ console.log(bueno,proximo);
         },
 
 
-        onCloseDHRReview:function(){
+        onCloseDHRReview: function () {
             var oView = this.getView();
             var oDialog = oView.byId("oDialogDHRReview");
 
@@ -819,7 +843,7 @@ console.log(bueno,proximo);
         },
 
 
-        callOpenDialogStep2:function(){
+        callOpenDialogStep2: function () {
             var oView = this.getView();
             var oDialog = oView.byId("oDialogStep2");
             var oModelCOLLECTION = new sap.ui.model.json.JSONModel();
@@ -837,69 +861,100 @@ console.log(bueno,proximo);
             oDialog.open();
 
 
-                     // Data Collection Entry
-                aDataCollection.push({ "ID" : "1",  "COLOR": "#00CC00", "PARAMETER": "Tiempo","VALUE": "4","MIN_VALUE" : "4","MAX_VALUE": "4","DATA_TYPE": "Numérico","UOM": "Minutos"});
-                aDataCollection.push({ "ID" : "2",  "COLOR": "#00CC00","PARAMETER": "Presión","VALUE": "5","MIN_VALUE" : "4","MAX_VALUE": "6","DATA_TYPE": "Numérico","UOM": "Psi"});
-                aDataCollection.push({ "ID" : "3",  "COLOR": "#00CC00", "PARAMETER": "Temparatura","VALUE": "11","MIN_VALUE" : "8","MAX_VALUE": "12","DATA_TYPE": "Numérico","UOM": "Cº"});                oModelCOLLECTION.setData({Row: aDataCollection});
+            // Data Collection Entry
+            aDataCollection.push({
+                "ID": "1",
+                "COLOR": "#00CC00",
+                "PARAMETER": "Tiempo",
+                "VALUE": "4",
+                "MIN_VALUE": "4",
+                "MAX_VALUE": "4",
+                "DATA_TYPE": "Numérico",
+                "UOM": "Minutos"
+            });
+            aDataCollection.push({
+                "ID": "2",
+                "COLOR": "#00CC00",
+                "PARAMETER": "Presión",
+                "VALUE": "5",
+                "MIN_VALUE": "4",
+                "MAX_VALUE": "6",
+                "DATA_TYPE": "Numérico",
+                "UOM": "Psi"
+            });
+            aDataCollection.push({
+                "ID": "3",
+                "COLOR": "#00CC00",
+                "PARAMETER": "Temparatura",
+                "VALUE": "11",
+                "MIN_VALUE": "8",
+                "MAX_VALUE": "12",
+                "DATA_TYPE": "Numérico",
+                "UOM": "Cº"
+            });
+            oModelCOLLECTION.setData({
+                Row: aDataCollection
+            });
             var oTable = this.byId('oTableDataCollection');
             oTable.setModel(oModelCOLLECTION);
 
 
         },
 
-        onCloseDialogStep2:function(oEvent){
+        onCloseDialogStep2: function (oEvent) {
             var oView = this.getView(),
                 oDialog = oView.byId("oDialogStep2");
 
-                oDialog.close();
+            oDialog.close();
         },
 
-        onChangeBarcodeValue : function(oEvent) {
-            var oColorRED =  "#CC0000";
-            var oColorGREEN =  "#00CC00";
+        onChangeBarcodeValue: function (oEvent) {
+            var oColorRED = "#CC0000";
+            var oColorGREEN = "#00CC00";
             var oColorYELLOW = "#D7DF01";
             var oColorWHITE = "#FFFFFF";
             var calibracion = this.byId('oColorCalibracion');
-            
-            this.byId('oColorCalibracion').setProperty('color',oColorWHITE);
-            this.byId('oMsgCalibracion').setProperty('text',"");
-            this.byId('CreaAviso').setProperty('visible',false);
 
-            if(oEvent.mParameters.newValue == "0000042972-001"){
-                this.byId('oColorCalibracion').setProperty('color',oColorGREEN);
-                this.byId('oMsgCalibracion').setProperty('text',"Calibración al día");
-                this.byId('CreaAviso').setProperty('visible',false);
+            this.byId('oColorCalibracion').setProperty('color', oColorWHITE);
+            this.byId('oMsgCalibracion').setProperty('text', "");
+            this.byId('CreaAviso').setProperty('visible', false);
 
-            }else {
-                if(oEvent.mParameters.newValue == "0000042972-002"){
-                    this.byId('oColorCalibracion').setProperty('color',oColorYELLOW);
-                    this.byId('oMsgCalibracion').setProperty('text',"Calibración por Expirar");
-                    this.byId('CreaAviso').setProperty('visible',false);
-                }else {
-                    this.byId('oColorCalibracion').setProperty('color',oColorRED);
-                    this.byId('oMsgCalibracion').setProperty('text',"Calibración Expirada");
-                    this.byId('CreaAviso').setProperty('visible',true);
+            if (oEvent.mParameters.newValue == "0000042972-001") {
+                this.byId('oColorCalibracion').setProperty('color', oColorGREEN);
+                this.byId('oMsgCalibracion').setProperty('text', "Calibración al día");
+                this.byId('CreaAviso').setProperty('visible', false);
+
+            } else {
+                if (oEvent.mParameters.newValue == "0000042972-002") {
+                    this.byId('oColorCalibracion').setProperty('color', oColorYELLOW);
+                    this.byId('oMsgCalibracion').setProperty('text', "Calibración por Expirar");
+                    this.byId('CreaAviso').setProperty('visible', false);
+                } else {
+                    this.byId('oColorCalibracion').setProperty('color', oColorRED);
+                    this.byId('oMsgCalibracion').setProperty('text', "Calibración Expirada");
+                    this.byId('CreaAviso').setProperty('visible', true);
                 }
             }
         },
 
 
-        onChangeValue : function(oEvent) {
+        onChangeValue: function (oEvent) {
 
-                var oModelCOLLECTION = new sap.ui.model.json.JSONModel();
-                var aDataCollection = [];
-                     // Data Collection Entry
-             var index = oEvent.getSource().getParent().getIndex();
-             var oTable = this.byId('oTableDataCollection');
-             var rowContext = oTable.getContextByIndex(index);
-             var objRow = rowContext.getObject();
+            var oModelCOLLECTION = new sap.ui.model.json.JSONModel();
+            var aDataCollection = [];
+            // Data Collection Entry
+            var index = oEvent.getSource().getParent().getIndex();
+            var oTable = this.byId('oTableDataCollection');
+            var rowContext = oTable.getContextByIndex(index);
+            var objRow = rowContext.getObject();
 
-            if(oEvent.mParameters.newValue >= objRow.MIN_VALUE  && oEvent.mParameters.newValue <= objRow.MAX_VALUE )
-             {
-                    objRow.COLOR = "#00CC00"; oModelCOLLECTION.refresh()
-            }else {
-                    objRow.COLOR = '#CC0000'; oModelCOLLECTION.refresh()
-                    
+            if (oEvent.mParameters.newValue >= objRow.MIN_VALUE && oEvent.mParameters.newValue <= objRow.MAX_VALUE) {
+                objRow.COLOR = "#00CC00";
+                oModelCOLLECTION.refresh()
+            } else {
+                objRow.COLOR = '#CC0000';
+                oModelCOLLECTION.refresh()
+
 
             }
         },
@@ -909,19 +964,19 @@ console.log(bueno,proximo);
         },
 
         onDetal_view: function (oEvent) {
-            var oItem, oCtx,estatus, sPath;
+            var oItem, oCtx, estatus, sPath;
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             sPath = oCtx.getPath();
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
-            estatus=oCtx.getProperty("ESTATUS_MII");
-            if(estatus!=="PENDIENTE"){
-            this.getOwnerComponent().openHelloDialog("Seleccione una orden pendiente");
-            }else{
-            this.getRouter().navTo("orderDetail", {
-                orden: oCtx.getProperty("NUM_ORDEN")
-            });
-        }
+            estatus = oCtx.getProperty("ESTATUS_MII");
+            if (estatus !== "PENDIENTE") {
+                this.getOwnerComponent().openHelloDialog("Seleccione una orden pendiente");
+            } else {
+                this.getRouter().navTo("orderDetail", {
+                    orden: oCtx.getProperty("NUM_ORDEN")
+                });
+            }
         }
     });
 });

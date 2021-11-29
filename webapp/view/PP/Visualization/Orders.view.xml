@@ -45,7 +45,7 @@
 
             <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
               <fb:control>
-                <ComboBox id="planta">
+                <ComboBox id="planta" selectedKey="1710">
                   <items>
                     <core:Item key="1710" text="Planta 1710"/>
                   </items>
@@ -58,7 +58,8 @@
                 <DatePicker
                   id="start_date"
                   valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"/>
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false"/>
               </fb:control>
             </fb:FilterItem>
 
@@ -67,7 +68,8 @@
                 <DatePicker
                   id="end_date"
                   valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"/>
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false"/>
               </fb:control>
             </fb:FilterItem>
             
@@ -92,13 +94,13 @@
                 iconColor="Positive"
                 count="{/LIB}"
                 text="{i18n>Released}"
-                key="LIB" />
+                key="LIB." />
               <IconTabFilter
                 icon="sap-icon://create-entry-time"
                 iconColor="Critical"
                 count="{/PEND}"
                 text="{i18n>Pending}"
-                key="PEND" />
+                key="PENDIENTE" />
               <IconTabFilter
                 icon="sap-icon://complete"
                 iconColor="Negative"
@@ -128,7 +130,7 @@
   id="PPOrders_list"
   class="sapUiResponsiveMargin"
   width="auto"
-  mode="SingleSelectLeft"
+  
   items="{/ITEMS}">
             <columns>
               <Column
@@ -184,13 +186,15 @@
               </Column>
               <Column
                   minScreenWidth="Tablet"
-                  demandPopin="false">
+                  demandPopin="false"
+                  id="ESTATUS_Col">
                 <Label text="{i18n>column.status}"/>
               </Column>
               <Column
                   minScreenWidth="Tablet"
-                  demandPopin="false">
-                <Label text="ESTATUS MII"/>
+                  demandPopin="false"
+                  id="ESTATUS_MII">
+                <Label text="Estatus MII"/>
               </Column>
               <Column
                   minScreenWidth="Tablet"

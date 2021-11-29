@@ -174,7 +174,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "FINALIZADA",
+            "ESTATUS_MII": "CERRADA",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ"
         },
@@ -193,7 +193,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "FINALIZADA",
+            "ESTATUS_MII": "CERRADA",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "ALEJANDRO MONTES"
         }
