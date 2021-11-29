@@ -1,4 +1,117 @@
 {
     "selectedOrder": "",
-    "selectedFase": ""
+    "selectedFase": "",
+    "server": {
+        "url": "http://localhost:8010/proxy",
+        "transactions": []
+    },
+    "view": {
+        "login": {
+            "username": "L647",
+            "password": "123"
+        },
+        "supervisorLogin": {
+            "username": "F372",
+            "password": "1123"
+        },
+        "startedOrder": false,
+        "prepProcessFinished": false
+    },
+    "validations": {
+        "values": {
+            "sfc": "0000102429-025",
+            "date": "2021-11-01",
+            "user": "P446327"
+        },
+        "vStep1": false,
+        "vStep2": false,
+        "vStep3": false,
+        "step1": {
+            "v1": false,
+            "v2": false,
+            "v3": false,
+            "v4": false,
+            "v5": false
+        },
+        "step2": {
+            "values": {
+                "t1": "0",
+                "t2": "0",
+                "t3": "0",
+                "t4": "0",
+                "t5": "0",
+                "t6": "0",
+                "t7": "0"
+            },
+            "v1": false,
+            "v2": false,
+            "v3": false,
+            "v4": false,
+            "v5": false,
+            "v6": false,
+            "v7": false
+        },
+        "step3": {
+            "v1": false,
+            "v2": false,
+            "v3": false,
+            "v4": false,
+            "v5": false,
+            "v6": false,
+            "v7": false,
+            "v8": false,
+            "v9": false,
+            "v10": false,
+            "v11": false,
+            "v12": false
+        }
+    },
+    "user": {
+        "name": "",
+        "password": "",
+        "is_enabled": "",
+        "is_available": "",
+        "is_supervisor": ""
+    },
+    "supervisor": {
+        "name": "",
+        "password": "",
+        "is_enabled": "",
+        "is_available": "",
+        "is_supervisor": ""
+    },
+    "timer": {
+        "minutes": "",
+        "seconds": ""
+    },
+    "buttonTimer": {
+        "1": {
+            "started": "0",
+            "complete": "0"
+        },
+        "2": {
+            "started": "0",
+            "complete": "0"
+        },
+        "3": {
+            "started": "0",
+            "complete": "0"
+        },
+        "4": {
+            "started": "0",
+            "complete": "0"
+        },
+        "5": {
+            "started": "0",
+            "complete": "0"
+        },
+        "6": {
+            "started": "0",
+            "complete": "0"
+        },
+        "7": {
+            "started": "0",
+            "complete": "0"
+        }
+    }
 }

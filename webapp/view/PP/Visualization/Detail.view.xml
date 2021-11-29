@@ -96,6 +96,24 @@
               </form:SimpleForm>
             </uxap:blocks>
           </uxap:ObjectPageSubSection>
+          <uxap:ObjectPageSubSection>
+            <FlexBox justifyContent="End" >
+              <Button
+                class="sapUiSmallMargin"
+                text="{i18n>processButton}"
+                icon="{= !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep2} ||
+                  !${masterModel>/validations/vStep3} ? 
+                  'sap-icon://decline' : 'sap-icon://accept'               
+                }"
+                type="{= !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep2} ||
+                  !${masterModel>/validations/vStep3} ? 
+                  'Reject' : 'Accept'               
+                }"
+                press="onOpenProcessDialog" />
+            </FlexBox>
+          </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>      
 

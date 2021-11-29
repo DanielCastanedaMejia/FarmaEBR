@@ -1,62 +1,76 @@
-<core:FragmentDefinition id ="dataStartOrderScanToolsCheck"  xmlns="sap.m" xmlns:com="sap.ui.commons"  xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-    <Dialog title="Validación de Herramientas" id="oDialogStep1" contentHeight="85%" contentWidth="50%" afterClose="onCloseDialogStep1">
-        <VBox width="100%" height="100%">
-
-
-
-
-	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-	       <items>
-          			  <HBox width="100%"  justifyContent="Center" alignContent="Center" >
- 				<items>
-				 	<HBox width="50%"  justifyContent="Center" alignContent="Center" >
- 						 <Image class="sapUiSmallMarginBegin" width="100%" src = "/XMII/CM/demo/App/images/TOOL001.jpg" />
- 					</HBox>
-				 	<HBox width="50%" justifyContent="Center" alignContent="Center" >
-				     	 	      <com:TextArea  id="oInstructions" value="Escanear etiqueta que confirme que el equipo este activo y/o no expirado, que la calibración este vigente" width="100%" height="100px" textDirection="LTR" rows="3"/>
- 			 		</HBox>
-				</items>
- 			</HBox>
-
-	       </items>
-	</VBox> 
-
-	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-	       <items>
-		<Label text="SFC Barcode"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
-		<Input id="oSFCLabel" width="70%"   liveChange="onChangeBarcodeValue" value="0000042972-001"   />
-
-	       </items>
-	</VBox> 
-
-	<HBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-	       <items>
-		<HBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-			<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-	   		    <items>
-				<Label id="oMsgCalibracion" text="Calibración al día"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
-				 <core:Icon id="oColorCalibracion"  src = "sap-icon://circle-task-2" size="2em"  color="#00CC00" />
-			       </items>
-			</VBox> 
-		</HBox>
-	       </items>
-	</HBox> 
-
-        </VBox>
-            <endButton>
-      <Button
-      	id="CreaAviso"
-       type="Accept"
-         text="Crear Aviso"
-         press="onCrearAviso"
-         visible="false"/>
-    </endButton>
-            <beginButton>
-      <Button
-       type="Accept"
-         text="Validar"
-         icon="sap-icon://add-product"
-         press="onCloseDialogStep1"/>
+<core:FragmentDefinition xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    height="100%" >
+    <Dialog
+        contentHeight="100%"
+        contentWidth="100%"
+        class="sapUiResponsiveMargin"
+        id="step1Dialog"
+        title="{i18n>prepProcessStep1Text}">
+        <PDFViewer
+            showDownloadButton="false"
+            height="43em"
+            source="http://localhost:8080/files/prep_step1_instructions.pdf" />
+        <Table>
+            <columns>
+                <Column>
+                    <Text text="{i18n>step1Column1Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step1Column2Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step1Column1Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step1Column2Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step1Column1Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step1Column2Text}"/>
+                </Column>
+            </columns>
+            <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step1Validation1Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v1}" />
+                    <Text text="{i18n>step1Validation3Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v3}" />
+                    <Text text="{i18n>step1Validation5Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v5}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step1Validation2Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v2}" />
+                    <Text text="{i18n>step1Validation4Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v4}" />
+                </cells>
+            </ColumnListItem>
+            </items>
+        </Table>
+    <beginButton>
+        <Button
+            type="Accept"
+            text="{i18n>validateButton}"
+            press="onAcceptStep1Dialog"
+            enabled="{= !${masterModel>/validations/step1/v1} ||
+                        !${masterModel>/validations/step1/v2} ||
+                        !${masterModel>/validations/step1/v3} ||
+                        !${masterModel>/validations/step1/v4} ||
+                        !${masterModel>/validations/step1/v5}
+                        ? false:true}" />
     </beginButton>
-    </Dialog>
+    <endButton>
+        <Button
+            type="Reject"
+            text="{i18n>closeButton}"
+            press="onCloseStep1Dialog" />
+    </endButton>
+   </Dialog>
 </core:FragmentDefinition>

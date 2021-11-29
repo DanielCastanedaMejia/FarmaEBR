@@ -1,19 +1,130 @@
-<core:FragmentDefinition id ="dataStartOrderScanSFCFragment3"  xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-    <Dialog title="Instrucciones para el Operador" id="oDialogStep3">
-
-
-	<VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-	       <items>
-		<core:HTML width="100%" height="100%" id="PDFSTEP3"/>	
-	       </items>
-	</VBox> 
-
-            <beginButton>
-      <Button
-       type="Accept"
-         text="Validar"
-         icon="sap-icon://add-product"
-         press="executeStep3"/>
+<core:FragmentDefinition xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    height="100%" >
+    <Dialog
+        contentHeight="100%"
+        contentWidth="100%"
+        class="sapUiResponsiveMargin"
+        id="step3Dialog"
+        title="{i18n>prepProcessStep3Text}">
+        <PDFViewer
+            showDownloadButton="false"
+            source="http://localhost:8080/files/prep_step1_instructions.pdf" />
+        <Table>
+            <columns>
+                <Column>
+                    <Text text="{i18n>step3Column1Text}"/>
+                </Column>
+                <Column>
+                    <Text text="{i18n>step3Column2Text}"/>
+                </Column>
+                <Column></Column>
+                <Column ></Column>
+                <Column></Column>
+                <Column ></Column>
+            </columns>
+            <items>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3SFC}" />
+                    <Text text="{masterModel>/validations/values/sfc}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>    
+                    <Text text="{i18n>step3Fecha}" />
+                    <Text text="{masterModel>/validations/values/date}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Responsable}" />
+                    <Text text="{masterModel>/validations/values/user}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation1Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v1}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation2Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v2}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation3Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v3}" />
+                    <Text text="{i18n>step3Validation9Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v9}" />
+                    <Text text="{i18n>step3Validation10Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v10}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation4Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v4}" />
+                    <Text text="{i18n>step3Validation11Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v11}" />
+                    <Text text="{i18n>step3Validation12Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v12}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation5Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v5}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation6Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v6}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation7Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v7}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation8Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" />
+                </cells>
+            </ColumnListItem>
+            </items>
+        </Table>
+    <beginButton>
+        <Button
+            type="Accept"
+            text="{i18n>validateButton}"
+            press="onAcceptStep3Dialog"
+            enabled="{= !${masterModel>/validations/step3/v1} ||
+                        !${masterModel>/validations/step3/v2} ||
+                        !${masterModel>/validations/step3/v3} ||
+                        !${masterModel>/validations/step3/v4} ||
+                        !${masterModel>/validations/step3/v5} ||
+                        !${masterModel>/validations/step3/v6} ||
+                        !${masterModel>/validations/step3/v7} ||
+                        !${masterModel>/validations/step3/v8} ||
+                        !${masterModel>/validations/step3/v9} ||
+                        !${masterModel>/validations/step3/v10} ||
+                        !${masterModel>/validations/step3/v11} ||
+                        !${masterModel>/validations/step3/v12}
+                        ? false:true}" />
     </beginButton>
-    </Dialog>
-</core:FragmentDefinition> 
+    <endButton>
+        <Button
+            type="Reject"
+            text="{i18n>closeButton}"
+            press="onCloseStep3Dialog" />
+    </endButton>
+   </Dialog>
+</core:FragmentDefinition>

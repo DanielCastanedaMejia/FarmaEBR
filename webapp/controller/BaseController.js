@@ -393,6 +393,15 @@ console.log(oModel);
                     sap.ui.core.BusyIndicator.hide();
                 });
         },
+        _getMasterModel: function (sProperty) {
+            var oModel = this.getOwnerComponent().getModel("masterModel");
+            var oProperty = oModel.getProperty(sProperty);
+            return oProperty;
+        },
+        _setMasterModel: function(sProperty, oValue) {
+            var oModel = this.getOwnerComponent().getModel("masterModel");
+            oModel.setProperty(sProperty, oValue);
+        },
         _getUsuario: function (id) {
             var oThis = this;
 
