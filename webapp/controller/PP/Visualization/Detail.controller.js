@@ -237,10 +237,10 @@ sap.ui.define([
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
                 sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN");
 
-            oOrderModel.setProperty(sOrderPath + "/ESTATUS_MII", "INICIADA");
+            oOrderModel.setProperty(sOrderPath + "/ESTATUS_MII", "ABIERTA");
             this._setMasterModel("/view/startedOrder", sOrder);
 
-            this.closeDialog("startOrderConfirmation");
+            this.closeDialog("startOrderConfirmationDialog");
         },
         onOpenProcessDialog: function () {
             if (!this.prepProcessDialog) {
