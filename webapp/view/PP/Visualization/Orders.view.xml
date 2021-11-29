@@ -114,7 +114,7 @@
             </items>
           </IconTabBar>
 
-          <Toolbar>
+          <!-- <Toolbar>
             <ToggleButton id="linea" text="Línea"  press="callOpenDialogStep0"/>
             <ToggleButton id="equipo" text="Equípo"  press="callOpenDialogStep1"/>
             <ToggleButton id="mdc" text="M_DC1"  press="callOpenDialogStep2"/>
@@ -123,7 +123,7 @@
           <ToolbarSpacer/>
           <ToggleButton id="startOrder" text="Iniciar"  press="viewStartOrder"/>
           <ToggleButton id="stopOrder" text="Finalizar"   press="viewStopOrder"/>
-          </Toolbar>
+          </Toolbar> -->
           <Table
   id="PPOrders_list"
   class="sapUiResponsiveMargin"
