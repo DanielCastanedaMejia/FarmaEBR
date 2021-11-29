@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <Dialog
+        class="sapUiResponsiveMargin"
+        id="prepProcessDialog"
+        title="{i18n>prepProcessDialogTitle}">
+        <List>
+            <items>
+                <CustomListItem press="onFirstStep" type="Active" >
+                    <HBox justifyContent="SpaceBetween" alignItems="Center" >
+                        <Text class="sapUiResponsiveMargin" text="{i18n>prepProcessStep1Text}" />
+                        <Switch class="sapUiResponsiveMargin" id="validate1" enabled="false" type="AcceptReject"
+                            state="{= ${masterModel>/validations/vStep1}}" />
+                    </HBox>
+                </CustomListItem>
+                <CustomListItem press="onSecondStep" type="Active" >
+                    <HBox justifyContent="SpaceBetween" alignItems="Center" >
+                        <Text class="sapUiResponsiveMargin" text="{i18n>prepProcessStep2Text}" />
+                        <Switch class="sapUiResponsiveMargin" id="validate2" enabled="false" type="AcceptReject"
+                            state="{= ${masterModel>/validations/vStep2}}" />
+                    </HBox>
+                </CustomListItem>
+                <CustomListItem press="onThirdStep" type="Active" >
+                    <HBox justifyContent="SpaceBetween" alignItems="Center" >
+                        <Text class="sapUiResponsiveMargin" text="{i18n>prepProcessStep3Text}" />
+                        <Switch class="sapUiResponsiveMargin" id="validate3" enabled="false" type="AcceptReject"
+                            state="{= ${masterModel>/validations/vStep3}}" />
+                    </HBox>
+                </CustomListItem>
+            </items>
+        </List>
+        <endButton>
+            <Button
+                type="Reject"
+                text="Cerrar"
+                press="onCloseProcessDialog" />
+        </endButton>
+   </Dialog>
+</core:FragmentDefinition>

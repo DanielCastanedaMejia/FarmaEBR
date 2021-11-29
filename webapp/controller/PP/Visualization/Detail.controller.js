@@ -3,16 +3,19 @@ sap.ui.define([
     "sap/ui/demo/webapp/controller/BaseController",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-    'sap/ui/model/json/JSONModel'
+    'sap/ui/model/json/JSONModel',
+    "../../../model/formatter"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Detail", {
+        formatter: formatter,
         onInit: function () {
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("orderDetail").attachMatched(this._onRouteMatched, this);
+            this.onOpenProcessDialog();
         },
 
         _onRouteMatched: function (oEvent) {
@@ -50,7 +53,6 @@ sap.ui.define([
 
             //this._base_onloadTable('PMOperationList', aData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/Operaciones_componentes_RESPALDO_', "Operaciones", "");
         },
-
         onOpenDialogAddOperation: function (oEvent) {
             var oView = this.getView();
             var oDialog = oView.byId("AddOperationDialog");
@@ -74,7 +76,6 @@ sap.ui.define([
 
             oDialog.open();
         },
-
         onOpenDialogCloseOrder: function (oEvent) {
             var oItem = oEvent.getSource(),
                 oCtx = oItem.getBindingContext(),
@@ -86,7 +87,6 @@ sap.ui.define([
 
             this._handleMessageBoxOpen(resourceModel.getResourceBundle().getText("MessageConfirmCTEC"), "warning", oData, this);
         },
-
         _handleMessageBoxOpen: function (sMessage, sMessageBoxType, oData, oThis) {
             MessageBox[sMessageBoxType](sMessage, {
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
@@ -97,7 +97,6 @@ sap.ui.define([
                 }.bind(this)
             });
         },
-
         onPPOrderOperation: function (oEvent) {
             var oItem, oCtx, sPath;
             oItem = oEvent.getSource();
@@ -110,11 +109,9 @@ sap.ui.define([
                 planta: oCtx.getProperty('1710')
             });
         },
-
         onOpenDialog: function () {
             this.getOwnerComponent().openHelloDialog();
         },
-
         onOpenDialogStart: function (oEvent) {
             var oItem, oCtx,
                 oItem = oEvent.getSource(),
@@ -128,10 +125,6 @@ sap.ui.define([
                 oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.view.PMNewUser", this);
                 oView.addDependent(oDialog);
             }},
-
-        
-
-            
         changeOrderStatus: function (oData, path) {
 
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + path + "&OutputParameter=JsonOutput&Content-Type=text/xml"
@@ -181,6 +174,237 @@ sap.ui.define([
                     sap.ui.core.BusyIndicator.hide();
                 });
 
+        },
+        onOpenStartOrderConfirmation: function () {
+            if(this._getMasterModel("/view/startedOrder"))
+                return;
+
+            var oSelected = this.byId("PPOrders_list").getSelectedItem();
+
+            if(oSelected === null) {
+                MessageToast.show("Seleccione una orden a iniciar");
+                return;
+            }
+
+            var oContext = oSelected.getBindingContext(),
+                sPath = oContext.getPath();
+
+            if(this.getView().getModel().getProperty(sPath + "/ESTATUS") !== "3") {
+                MessageToast.show("Solo se pueden iniciar ordenes liberadas");
+                return;
+            }
+            var oThis = this;
+            if(!this.startOrderConfirmationDialog) {
+                this.startOrderConfirmationDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.startOrderConfirmation"
+                });
+            }
+            this.startOrderConfirmationDialog.then(function(oDialog) {
+                var oModel = oThis.getView().getModel().getProperty(sPath),
+                    oStartOrderModel = new JSONModel(oModel);
+
+
+                oThis.getView().setModel(oStartOrderModel, "startOrder");
+                oModel = oThis.getView().getModel("startOrder");
+                var formatedDate = oModel.getProperty("/INICIO_PLANEADO").substring(0, 10);
+                oModel.setProperty("/INICIO_PLANEADO", formatedDate);
+                formatedDate = oModel.getProperty("/FIN_PLANEADO").substring(0, 10);
+                oModel.setProperty("/FIN_PLANEADO", formatedDate);
+                formatedDate = oModel.getProperty("/FECHA_INS").substring(0, 10);
+                oModel.setProperty("/FECHA_INS", formatedDate);
+                console.log(oModel);
+                oDialog.open();
+            });
+        },
+        onStartOrder: function () {
+            // var oSelected = this.byId("selectStartOrder").getSelectedItem();
+            // if (oSelected == null) {
+            //     MessageToast.show("Seleccione la orden a iniciar");
+            //     return;
+            // }
+            // var oContext = oSelected.getBindingContext(),
+            //     sPath = oContext.getPath(),
+            //     oModel = this.getView().getModel();
+
+            // oModel.setProperty(sPath + "/Status", "1");
+
+            // this.byId("orderListDialog").close();
+            // this.getOwnerComponent().getModel("masterModel").setProperty("/view/startedOrder", true);
+
+            var oSelected = this.byId("PPOrders_list").getSelectedItem(),
+                oContext = oSelected.getBindingContext(),
+                sPath = oContext.getPath();
+
+            this.getView().getModel().setProperty(sPath + "/ESTATUS", "1");
+            this.getView().getModel().refresh(true);
+            this._setMasterModel("/view/startedOrder", sPath);
+            this.onCloseStartOrderConfirmation();
+            this.onOpenProcessDialog();
+        },
+        onOpenProcessDialog: function () {
+            if (!this.prepProcessDialog) {
+                this.prepProcessDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.PrepProcess"
+                });
+            }
+            this.prepProcessDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onCloseStartOrderConfirmation: function () {
+            this.byId("startOrderConfirmationDialog").close();
+        },
+        onCloseProcessDialog: function () {
+            this.byId("prepProcessDialog").close();
+        },
+        onCloseStep1Dialog: function () {
+            this.byId("step1Dialog").close();
+        },
+        onAcceptStep1Dialog: function () {
+            this._setMasterModel("/validations/vStep1", true);
+            this.onCloseStep1Dialog();
+        },
+        onCloseCharts: function () {
+            this.byId("oDialogReport").close();
+        },
+        onAcceptStep2Dialog: function () {
+            this._setMasterModel("/validations/vStep2", true);
+            this.onCloseStep2Dialog();
+        },
+        onCloseStep2Dialog: function () {
+            this.byId("step2Dialog").close();
+        },
+        onAcceptStep3Dialog: function () {
+            var sPath = this._getMasterModel("/view/startedOrder");
+
+            this._setMasterModel("/validations/vStep3", true);
+            this._setMasterModel("/view/prepProcessFinished", true);
+            this.onCloseStep3Dialog();
+            this.onCloseProcessDialog();
+
+            this.getView().getModel().setProperty(sPath + "/ESTATUS", "2");
+            MessageToast.show("Puede comenzar la produción");
+        },
+        onCloseStep3Dialog: function () {
+            this.byId("step3Dialog").close();
+        },
+        onScrapComponent: function () {
+            MessageToast.show("Componente de Scrap");
+        },
+        onScrapUnit: function () {
+            MessageToast.show("Unidad de Scrap");
+        },
+        onBuyOff: function () {
+            MessageToast.show("BuyOff");
+        },
+        onGraphics: function () {
+            MessageToast.show("Gráficas");
+            if (!this.pDialog) {
+                // @ts-ignore
+                this.pDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.Charts"
+                }).then(function (oDialog) {
+                    // forward compact/cozy style into dialog
+                    syncStyleClass("sapUiSizeCondensed", this.getView(), oDialog);
+                    return oDialog;
+                }.bind(this));
+            }
+            this.pDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onReports: function () {
+            MessageToast.show("Reportes");
+        },
+        onDHRReview: function () {
+            MessageToast.show("Revisión de DHR");
+        },
+        onFirstStep: function () {
+            if (!this.step1Dialog) {
+                this.step1Dialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.Step1"
+                });
+            }
+            this.step1Dialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onSecondStep: function () {
+            if (!this._getMasterModel("/validations/vStep1")) {
+                MessageToast.show("Verifique el proceso anterior antes de continuar");
+                return;
+            }
+            if (!this.step2Dialog) {
+                this.step2Dialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.Step2"
+                });
+            }
+            this.step2Dialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onThirdStep: function () {
+            if (!this._getMasterModel("/validations/vStep2")) {
+                MessageToast.show("Verifique el proceso anterior antes de continuar");
+                return;
+            }
+            if (!this.step3Dialog) {
+                this.step3Dialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.Step3"
+                });
+            }
+            this.step3Dialog.then(function (oDialog) {
+                oDialog.open();
+            });
+            var oDate = new Date();
+            var sToday = oDate.toJSON();
+            sToday = sToday.substring(0, 10);
+
+            var oDate = this._getMasterModel("/validations/values/date");
+        },
+        onPressTimer: function (oEvent) {
+            var idLength = oEvent.getSource().getId().toString();
+            var nId = idLength.at(idLength.length - 1);
+            var minutes;
+            var second;
+            var timer_isPressed = this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + nId + "/started");
+            if (timer_isPressed == "0") {
+                this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/started", "1");
+                var time = this.getView().byId("timer" + nId);
+                var fiveMinutesLater  = new Date();
+                var scs = fiveMinutesLater.setMinutes(fiveMinutesLater.getMinutes());
+
+                var countdowntime = scs;
+
+                this.x = setInterval(function () {
+                    var now = new Date().getTime();
+                    var cTime = now - countdowntime;
+                    minutes = Math.floor((cTime % (1000 * 60 * 60)) / (1000 * 60));
+                    second = Math.floor((cTime % (1000 * 60)) / 1000);
+                    this.minStatic = String(minutes);
+                    this.secStatic = second.toString();
+                    //console.log(this.minStatic);
+                    //console.log(this.secStatic);
+                    if(second.toString().length == 1)                        
+                        time.setText(minutes + ":" + "0" + second);
+                    else
+                        time.setText(minutes + ":" + second);
+
+                    
+                });
+
+            } else {
+                this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/started", "0");
+                this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/complete", "1");
+                clearInterval(this.x);
+                
+                //console.log(this.minStatic);
+                //console.log(this.secStatic);
+                /*if(secStatic.length == 1)                        
+                        time.setText(minStatic + ":" + "0" + secStatic);
+                    else
+                        time.setText(minStatic + ":" + secStatic);*/
+            }
         }
 
     });

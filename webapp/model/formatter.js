@@ -59,6 +59,27 @@ sap.ui.define([], function () {
             }
         },
 
+		statusTimer: function (sStatus) {
+			switch (sStatus) {
+				case "0":
+					return "Tomar tiempo";
+				case "1":
+					return "Detener tiempo;";
+				default:
+					return"";
+			}
+		},
+
+		statusTimComp: function (sStatus) {
+			switch (sStatus) {
+				case "0":
+					return true;
+				case "1":
+					return false;
+				default:
+					return"";
+			}
+		},
         conditionColor: function (sState) {
             switch (sState) {
                 case "0":

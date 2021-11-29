@@ -96,6 +96,19 @@
               </form:SimpleForm>
             </uxap:blocks>
           </uxap:ObjectPageSubSection>
+          <uxap:ObjectPageSubSection>
+            <FlexBox justifyContent="End" >
+              <Button
+                class="sapUiSmallMargin"
+                text="{i18n>processButton}"
+                type="{= !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep1} ? 
+                  'Reject' : 'Accept'                
+                }"
+                press="onOpenProcessDialog" />
+            </FlexBox>
+          </uxap:ObjectPageSubSection>
         </uxap:subSections>
       </uxap:ObjectPageSection>      
 
