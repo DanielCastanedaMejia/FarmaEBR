@@ -22,7 +22,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "VICTOR ROMERO",
             "USUARIO_SEC": "SUSANA QUINTERO"
         },
@@ -41,7 +41,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "SUSANA QUINTERO"
         },
@@ -60,7 +60,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO"
         },
@@ -79,7 +79,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO"
         },
@@ -98,7 +98,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "ALEJANDRO MONTES"
         },
@@ -117,7 +117,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "SUSANA QUINTERO"
         },
@@ -136,7 +136,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ"
         },
@@ -155,7 +155,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ"
         },
@@ -174,9 +174,9 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "---",
-            "USUARIO_PRIM": "---",
-            "USUARIO_SEC": "---"
+            "ESTATUS_MII": "FINALIZADA",
+            "USUARIO_PRIM": "ABIGAIL LOPEZ",
+            "USUARIO_SEC": "FRANCISCO ORDOÑEZ"
         },
         {
             "NUM_ORDEN": "1000764",
@@ -193,7 +193,7 @@
             "ESTATUS": "1",
             "COMBINADA": "",
             "UNIDA_MEDIDA": "PZA",
-            "ESTATUS_MII": "INICIADA",
+            "ESTATUS_MII": "FINALIZADA",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "ALEJANDRO MONTES"
         }

@@ -915,8 +915,8 @@ console.log(bueno,proximo);
             sPath = oCtx.getPath();
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
             estatus=oCtx.getProperty("ESTATUS_MII");
-            if(estatus!=="INICIADA"){
-            this.getOwnerComponent().openHelloDialog("Seleccione una orden iniciada");
+            if(estatus!=="PENDIENTE"){
+            this.getOwnerComponent().openHelloDialog("Seleccione una orden pendiente");
             }else{
             this.getRouter().navTo("orderDetail", {
                 orden: oCtx.getProperty("NUM_ORDEN")

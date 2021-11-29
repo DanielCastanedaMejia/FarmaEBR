@@ -29,7 +29,9 @@ sap.ui.define([], function () {
         miiStateColor: function (sState) {
             switch (sState) {
                 case "FINALIZADA":
-                    return "Error";  
+                    return "Error";
+                case "PENDIENTE":
+                    return "Warning";
                 case "INICIADA":
                     return "Success";              
             }
