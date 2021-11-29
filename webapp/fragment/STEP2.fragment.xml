@@ -11,7 +11,7 @@
         <PDFViewer
             showDownloadButton="false"
             height="30em"
-            source="{masterModel>/server/url}/XMII/CM/Pharma_Prefabricado_Modular/files/prep_step1_instructions.pdf" />
+            source="http://localhost:8080/files/prep_step1_instructions.pdf" />
         <Table>
             <columns>
                 <Column>
