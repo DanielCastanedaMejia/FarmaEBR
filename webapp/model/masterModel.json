@@ -15,7 +15,7 @@
             "password": "1123"
         },
         "startedOrder": false,
-        "prepProcessFinished": true
+        "prepProcessFinished": false
     },
     "validations": {
         "values": {

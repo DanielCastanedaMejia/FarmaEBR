@@ -16,7 +16,6 @@ sap.ui.define([
             var oRouter = this.getRouter();
             oRouter.getRoute("orderDetail").attachMatched(this._onRouteMatched, this);
         },
-
         _onRouteMatched: function (oEvent) {
             var oArgs, oView;
             oArgs = oEvent.getParameter("arguments");
@@ -241,7 +240,7 @@ sap.ui.define([
             oOrderModel.setProperty(sOrderPath + "/ESTATUS_MII", "INICIADA");
             this._setMasterModel("/view/startedOrder", sOrder);
 
-            this.onCloseStartOrderConfirmation();
+            this.closeDialog("startOrderConfirmation");
         },
         onOpenProcessDialog: function () {
             if (!this.prepProcessDialog) {
@@ -252,9 +251,6 @@ sap.ui.define([
             this.prepProcessDialog.then(function (oDialog) {
                 oDialog.open();
             });
-        },
-        onCloseStartOrderConfirmation: function () {
-            this.byId("startOrderConfirmationDialog").close();
         },
         onOpenFinishOrderConfirmation: function() {
             if(!this.closeOrderConfirmationDialog) {
@@ -276,8 +272,22 @@ sap.ui.define([
                 oDialog.open();
             });
         },
-        onCloseFinishDialog: function() {
-            this.byId("finishOrderDialog").close();
+        onOpenImageDetailDialog: function() {
+            if(!this.imageDetailDialog) {
+                this.imageDetailDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.ImageDetail"
+                });
+            }
+            this.imageDetailDialog.then(function(oDialog){
+                oDialog.open();
+            });
+        },
+        onCloseDialog: function(oEvent) {
+            const oSource = oEvent.getSource();
+            this.byId(oSource.getId() + "Dialog").close();
+        },
+        closeDialog: function(sId) {
+            this.byId(sId).close();
         },
         onFinishOrder: function() {
             const sPath = this._getMasterModel("/selectedOrder"),
@@ -337,29 +347,20 @@ sap.ui.define([
                 }
             });
             this._setMasterModel("/validations", resetValidations);
-            this.onCloseFinishDialog();
-            this.onCloseFinishOrderConfirmation();
+            this.closeDialog("finishOrderDialog");
+            this.closeDialog("FinishOrderConfirmationDialog");
             window.history.go(-1);
-        },
-        onCloseFinishOrderConfirmation: function() {
-            this.byId("FinishOrderConfirmationDialog").close();
-        },
-        onCloseProcessDialog: function () {
-            this.byId("prepProcessDialog").close();
-        },
-        onCloseStep1Dialog: function () {
-            this.byId("step1Dialog").close();
         },
         onAcceptStep1Dialog: function () {
             this._setMasterModel("/validations/vStep1", true);
-            this.onCloseStep1Dialog();
+            this.closeDialog("step1Dialog");
         },
         onCloseCharts: function () {
             this.byId("oDialogReport").close();
         },
         onAcceptStep2Dialog: function () {
             this._setMasterModel("/validations/vStep2", true);
-            this.onCloseStep2Dialog();
+            this.closeDialog("step2Dialog");
         },
         onCloseStep2Dialog: function () {
             this.byId("step2Dialog").close();
@@ -367,13 +368,10 @@ sap.ui.define([
         onAcceptStep3Dialog: function () {
             this._setMasterModel("/validations/vStep3", true);
             this._setMasterModel("/view/prepProcessFinished", true);
-            this.onCloseStep3Dialog();
-            this.onCloseProcessDialog();
+            this.closeDialog("step3Dialog");
+            this.closeDialog("prepProcess");
 
             MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
-        },
-        onCloseStep3Dialog: function () {
-            this.byId("step3Dialog").close();
         },
         onScrapComponent: function () {
             MessageToast.show("Componente de Scrap");

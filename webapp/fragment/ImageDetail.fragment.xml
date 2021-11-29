@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    height="100%" >
+    <Dialog
+        class="sapUiResponsiveMargin"
+        id="imageDetailDialog"
+        title="{i18n>imageDetailDialogTitle}">
+        <FlexBox justifyContent="Center" >
+            <Image
+                src="http://localhost:8080/images/medidor.jpg" />
+        </FlexBox>
+        <endButton>
+            <Button
+                id="imageDetail"
+                type="Reject"
+                text="{i18n>closeButton}"
+                press="onCloseDialog" />
+        </endButton>
+   </Dialog>
+</core:FragmentDefinition>

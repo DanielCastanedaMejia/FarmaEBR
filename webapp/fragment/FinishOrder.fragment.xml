@@ -33,7 +33,7 @@
                 <Button text="{i18n>notifyBtnTxt}" class="sapUiSmallMarginEnd"  id="btnNotifyUnit" type="Accept" press="onOpenFinishOrderConfirmation" />
         </beginButton>
         <endButton>
-                <Button text="{i18n>cancelButton}" class="sapUiSmallMarginEnd"  id="btnCloseUnit" type="Reject" press="onCloseFinishDialog" />
+                <Button text="{i18n>cancelButton}" class="sapUiSmallMarginEnd"  id="finishOrder" type="Reject" press="onCloseDialog" />
         </endButton>
     </Dialog>
 </core:FragmentDefinition>

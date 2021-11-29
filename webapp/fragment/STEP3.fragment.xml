@@ -122,9 +122,10 @@
     </beginButton>
     <endButton>
         <Button
+            id="step3"
             type="Reject"
             text="{i18n>closeButton}"
-            press="onCloseStep3Dialog" />
+            press="onCloseDialog" />
     </endButton>
    </Dialog>
 </core:FragmentDefinition>

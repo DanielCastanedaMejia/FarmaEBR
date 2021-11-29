@@ -32,9 +32,10 @@
         </List>
         <endButton>
             <Button
+                id="prepProcess"
                 type="Reject"
                 text="Cerrar"
-                press="onCloseProcessDialog" />
+                press="onCloseDialog" />
         </endButton>
    </Dialog>
 </core:FragmentDefinition>
