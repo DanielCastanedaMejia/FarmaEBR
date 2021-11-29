@@ -80,11 +80,11 @@
           <uxap:ObjectPageSubSection>
             <uxap:blocks>
               <form:SimpleForm
-            minWidth="1024"
-            editable="false"
-            layout="ResponsiveGridLayout"
-            labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
-            columnsL="1" columnsM="1">
+                minWidth="1024"
+                editable="false"
+                layout="ResponsiveGridLayout"
+                labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
+                columnsL="1" columnsM="1">
                 <form:content>
                   <Label text="Cantidad" />
                   <Text text="{/CANTIDAD_PROGRAMADA} {/UNIDA_MEDIDA}" />
@@ -103,7 +103,7 @@
                 text="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
                   !${masterModel>/validations/vStep3} ? 
-                  'Iniciar Proceso' : 'Mostrar Proceso'
+                  ${i18n>processStartButton} : ${i18n>processShowButton}
                 }"
                 icon="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
@@ -116,6 +116,13 @@
                   'Reject' : 'Accept'               
                 }"
                 press="onOpenProcessDialog" />
+
+              <Button
+                class="sapUiSmallMargin"
+                text="{= !${masterModel>/view/startedOrder} ? ${i18n>startOrderButton} : ${i18n>closeOrderButton}}"
+                icon="{= !${masterModel>/view/startedOrder} ? 'sap-icon://begin' : 'sap-icon://decline'}"
+                type="{= !${masterModel>/view/startedOrder} ? 'Accept' : 'Reject'}"
+                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}" />
             </FlexBox>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
