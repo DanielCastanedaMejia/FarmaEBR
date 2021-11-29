@@ -118,10 +118,16 @@
                 press="onOpenProcessDialog" />
               <Button
                 class="sapUiSmallMargin"
-                text="{i18n>startOrderButton}"
+                text="{
+                  parts: [{ path: 'masterModel>/view/startedOrder' }, { path: '/NUM_ORDEN' }],
+                  formatter: '.formatter.orderButtonText'
+                }"
                 icon="sap-icon://begin"
-                type="Accept"
-                enabled="true"
+                type="{
+                  parts: [{ path: 'masterModel>/view/startedOrder' }, { path: '/NUM_ORDEN' }],
+                  formatter: '.formatter.orderButtonType'
+                }"
+                enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
                 press="onOpenStartOrderConfirmation" />
               <!-- <Button
                 class="sapUiSmallMargin"

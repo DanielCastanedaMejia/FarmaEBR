@@ -106,6 +106,26 @@ sap.ui.define([], function () {
                 return 'Sin Causa';
             else
                 return sData;
+        },
+        orderButtonType: function (sStarted, sNum) {
+            if(!sStarted)
+                return "Accept";
+            if(sStarted != sNum)
+                return "Accept";
+            else
+                return "Reject";
+        },
+        orderButtonText: function (sStarted, sNum) {
+            const oBundle = this.getOwnerComponent().getModel("i18n").getResourceBundle(),
+                sStart = oBundle.getText("startOrderButton"),
+                sEnd = oBundle.getText("closeOrderButton");
+
+            if(!sStarted)
+                return sStart;
+            if(sStarted != sNum)
+                return sStart;
+            else
+                return sEnd;
         }
     };
 });
