@@ -100,7 +100,11 @@
             <FlexBox justifyContent="End" >
               <Button
                 class="sapUiSmallMargin"
-                text="{i18n>processButton}"
+                text="{= !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep2} ||
+                  !${masterModel>/validations/vStep3} ? 
+                  'Iniciar Proceso' : 'Mostrar Proceso'
+                }"
                 icon="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
                   !${masterModel>/validations/vStep3} ? 
