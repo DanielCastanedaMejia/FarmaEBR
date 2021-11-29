@@ -44,7 +44,7 @@ sap.ui.define([
             this.getView().setModel(newModel);
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/header", "Cabecera");
 
-            for(var i = 0; i < 3; i++){
+            for (var i = 0; i < 3; i++) {
                 this.getOwnerComponent().getModel("fasesModel").setProperty("/ITEMS/" + i.toString() + "/orden", newModel.getProperty("/NUM_ORDEN"));
                 this.getOwnerComponent().getModel("fasesModel").setProperty("/ITEMS/" + i.toString() + "/ctdopera", newModel.getProperty("/CANTIDAD_PROGRAMADA"));
             }
@@ -123,7 +123,8 @@ sap.ui.define([
                 // create dialog via fragment factory
                 oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.view.PMNewUser", this);
                 oView.addDependent(oDialog);
-            }},
+            }
+        },
         changeOrderStatus: function (oData, path) {
 
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + path + "&OutputParameter=JsonOutput&Content-Type=text/xml"
@@ -134,12 +135,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -147,8 +148,7 @@ sap.ui.define([
                         var aData = eval(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             //Create  the JSON model and set the data                                                                                                
                             MessageToast.show(aData[0].message);
                             var aData = {
@@ -158,8 +158,7 @@ sap.ui.define([
                             oThis._base_onloadHeader(aData, "EquipandoXXI/DatosTransaccionales/Mantenimiento/Orden/Visualizar/Transaction/visualizar_orden", "Cabecera");
                         }
 
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se recibio información");
                     }
 
@@ -361,11 +360,12 @@ sap.ui.define([
             var nId = idLength.at(idLength.length - 1);
             var minutes;
             var second;
+            var actualTimer
             var timer_isPressed = this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + nId + "/started");
             if (timer_isPressed == "0") {
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/started", "1");
                 var time = this.getView().byId("timer" + nId);
-                var fiveMinutesLater  = new Date();
+                var fiveMinutesLater = new Date();
                 var scs = fiveMinutesLater.setMinutes(fiveMinutesLater.getMinutes());
 
                 var countdowntime = scs;
@@ -379,28 +379,20 @@ sap.ui.define([
                     this.secStatic = second.toString();
                     //console.log(this.minStatic);
                     //console.log(this.secStatic);
-                    if(second.toString().length == 1)                        
+                    if (second.toString().length == 1)
                         time.setText(minutes + ":" + "0" + second);
                     else
                         time.setText(minutes + ":" + second);
-
-                    
                 });
-
             } else {
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/started", "0");
                 this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + nId + "/complete", "1");
+
+                this.getOwnerComponent().getModel("masterModel").setProperty("/buttonTimer/" + (parseInt(nId) + 1) + "/complete", "0");
                 clearInterval(this.x);
-                
-                //console.log(this.minStatic);
-                //console.log(this.secStatic);
-                /*if(secStatic.length == 1)                        
-                        time.setText(minStatic + ":" + "0" + secStatic);
-                    else
-                        time.setText(minStatic + ":" + secStatic);*/
+                console.log(this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + nId + "/timeValue"));
             }
         }
 
     });
-}
-);
+});

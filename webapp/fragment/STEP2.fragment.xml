@@ -32,7 +32,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation1Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v1}" />
-                    <Text text="MM:SS" id="timer1"/>
+                    <Text text="{masterModel>/buttonTimer/1/timeValue}" id="timer1"/>
                     <Button 
                         id="timebtn1"
                         icon="sap-icon://future" 
@@ -46,7 +46,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation2Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
-                    <Text text="MM:SS" id="timer2"/>
+                    <Text text="{masterModel>/buttonTimer/2/timeValue}" id="timer2"/>
                     <Button
                         id="timebtn2"
                         icon="sap-icon://future"
@@ -60,7 +60,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation3Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
-                    <Text text="MM:SS" id="timer3"/>
+                    <Text text="{masterModel>/buttonTimer/3/timeValue}" id="timer3"/>
                     <Button
                         id="timebtn3"
                         icon="sap-icon://future"
@@ -74,7 +74,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation4Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
-                    <Text text="MM:SS" id="timer4"/>
+                    <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>
                     <Button
                         id="timebtn4"
                         icon="sap-icon://future"
@@ -88,7 +88,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation5Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v5}" />
-                    <Text text="MM:SS" id="timer5"/>
+                    <Text text="{masterModel>/buttonTimer/5/timeValue}" id="timer5"/>
                     <Button 
                         id="timebtn5"
                         icon="sap-icon://future"
@@ -102,7 +102,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation6Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v6}" />
-                    <Text text="MM:SS" id="timer6"/>
+                    <Text text="{masterModel>/buttonTimer/6/timeValue}" id="timer6"/>
                     <Button
                         id="timebtn6"
                         icon="sap-icon://future"
@@ -116,7 +116,7 @@
                 <cells>
                     <Text text="{i18n>step2Validation7Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v7}" />
-                    <Text text="MM:SS" id="timer7"/>
+                    <Text text="{masterModel>/buttonTimer/7/timeValue}" id="timer7"/>
                     <Button
                         id="timebtn7"
                         icon="sap-icon://future"
