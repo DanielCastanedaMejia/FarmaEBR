@@ -101,10 +101,15 @@
               <Button
                 class="sapUiSmallMargin"
                 text="{i18n>processButton}"
+                icon="{= !${masterModel>/validations/vStep1} ||
+                  !${masterModel>/validations/vStep2} ||
+                  !${masterModel>/validations/vStep3} ? 
+                  'sap-icon://decline' : 'sap-icon://accept'               
+                }"
                 type="{= !${masterModel>/validations/vStep1} ||
-                  !${masterModel>/validations/vStep1} ||
-                  !${masterModel>/validations/vStep1} ? 
-                  'Reject' : 'Accept'                
+                  !${masterModel>/validations/vStep2} ||
+                  !${masterModel>/validations/vStep3} ? 
+                  'Reject' : 'Accept'               
                 }"
                 press="onOpenProcessDialog" />
             </FlexBox>
