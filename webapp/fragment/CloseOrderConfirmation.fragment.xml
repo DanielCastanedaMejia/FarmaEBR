@@ -1,0 +1,38 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <Dialog
+      id="FinishOrderConfirmationDialog"
+      title="{i18n>closeOrderConfirmationDialogTitle}">
+      <FlexBox
+        class="sapUiSmallMargin"
+        justifyContent="Center"
+        direction="Column" >
+
+        <Text text="{i18n>orderLabelText}{startOrder>/NUM_ORDEN}" />
+        <Text text="{i18n>typeLabelText}{startOrder>/TIPO}" />
+        <Text text="{i18n>matLabelText}{startOrder>/MATERIAL}" />
+        <Text text="{i18n>matDescLabelText}{startOrder>/DESC_MATERIAL}" />
+        <Text text="{i18n>qtyLabelText}{startOrder>/CANTIDAD_PROGRAMADA}" />
+        <Text text="{i18n>startLabelText}{startOrder>/INICIO_PLANEADO}" />
+        <Text text="{i18n>endLabelText}{startOrder>/FIN_PLANEADO}" />
+        <Text text="{i18n>plantLabelText}{startOrder>/PLANTA}" />
+        <Text text="{i18n>loteLabelText}{startOrder>/LOTE}" />
+        <Text text="{i18n>inspLoteLabelText}{startOrder>/LOTE_INSPECCION}" />
+        <Text text="{i18n>measLabelText}{startOrder>/UNIDA_MEDIDA}" />
+
+      </FlexBox>
+    <beginButton>
+      <Button
+        text="{i18n>acceptButton}"
+        type="Accept"
+        press=".onFinishOrder" />
+    </beginButton>
+    <endButton>
+      <Button
+        text="{i18n>cancelButton}"
+        type="Reject"
+        press=".onCloseFinishOrderConfirmation"/>
+    </endButton>
+   </Dialog>
+</core:FragmentDefinition>

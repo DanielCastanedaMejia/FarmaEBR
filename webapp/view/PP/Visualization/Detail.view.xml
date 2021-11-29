@@ -19,6 +19,12 @@
         <FlexItemData growFactor="1" />
       </core:layoutData>
     </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Estación de trabajo X "
+        wrapping="true"
+        />
+      <core:Icon src="sap-icon://arrow-right" />
     <MenuButton text="Detalle de Orden" class="customtitle">
       <menu>
         <Menu>
@@ -122,13 +128,16 @@
                   parts: [{ path: 'masterModel>/view/startedOrder' }, { path: '/NUM_ORDEN' }],
                   formatter: '.formatter.orderButtonText'
                 }"
-                icon="sap-icon://begin"
+                icon="{
+                  parts: [{ path: 'masterModel>/view/startedOrder' }, { path: '/NUM_ORDEN' }],
+                  formatter: '.formatter.orderButtonIcon'
+                }"
                 type="{
                   parts: [{ path: 'masterModel>/view/startedOrder' }, { path: '/NUM_ORDEN' }],
                   formatter: '.formatter.orderButtonType'
                 }"
                 enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
-                press="onOpenStartOrderConfirmation" />
+                press="onOpenOrderConfirmation" />
               <!-- <Button
                 class="sapUiSmallMargin"
                 text="{= ${masterModel>/view/startedOrder} != ${/NUM_ORDEN} ? ${i18n>startOrderButton} : ${i18n>closeOrderButton}}"

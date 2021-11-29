@@ -1017,8 +1017,8 @@ sap.ui.define([
             sPath = oCtx.getPath();
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
             estatus = oCtx.getProperty("ESTATUS_MII");
-            if (estatus !== "PENDIENTE") {
-                this.getOwnerComponent().openHelloDialog("Seleccione una orden pendiente");
+            if (estatus !== "PENDIENTE" && estatus !== "INICIADA") {
+                this.getOwnerComponent().openHelloDialog("Seleccione una orden iniciada o pendiente");
             } else {
                 this.getRouter().navTo("orderDetail", {
                     orden: oCtx.getProperty("NUM_ORDEN")
