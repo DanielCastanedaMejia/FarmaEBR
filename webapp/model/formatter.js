@@ -32,7 +32,7 @@ sap.ui.define([], function () {
                     return "Error";
                 case "PENDIENTE":
                     return "Warning";
-                case "INICIADA":
+                case "ABIERTA":
                     return "Success";              
             }
         },
