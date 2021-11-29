@@ -138,9 +138,6 @@
                 }"
                 enabled="{= ${masterModel>/view/prepProcessFinished} ? true : false}"
                 press="onOpenOrderConfirmation" />
-                <Button
-                  text="Test"
-                  press="onOpenImageDetailDialog" />
               </FlexBox>
           </uxap:ObjectPageSubSection>
         </uxap:subSections>
