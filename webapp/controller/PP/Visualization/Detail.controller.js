@@ -172,17 +172,17 @@ sap.ui.define([
                 });
 
         },
-        onOpenOrderConfirmation: function() {
+        onOpenOrderConfirmation: function () {
             const oStart = this._getMasterModel("/view/startedOrder"),
                 sNumOrder = this.getView().getModel().getProperty("/NUM_ORDEN");
-            
-            if(!oStart)
+
+            if (!oStart)
                 this.onOpenStartOrderConfirmation();
             else
-                if(oStart !== sNumOrder) 
-                    this.onOpenStartOrderConfirmation();
-                else
-                    this.onOpenFinishOrderDialog();
+            if (oStart !== sNumOrder)
+                this.onOpenStartOrderConfirmation();
+            else
+                this.onOpenFinishOrderDialog();
         },
         onOpenStartOrderConfirmation: function () {
             var oThis = this;
@@ -252,44 +252,44 @@ sap.ui.define([
                 oDialog.open();
             });
         },
-        onOpenFinishOrderConfirmation: function() {
-            if(!this.closeOrderConfirmationDialog) {
+        onOpenFinishOrderConfirmation: function () {
+            if (!this.closeOrderConfirmationDialog) {
                 this.closeOrderConfirmationDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.closeOrderConfirmation"
                 });
             }
-            this.closeOrderConfirmationDialog.then(function(oDialog) {
+            this.closeOrderConfirmationDialog.then(function (oDialog) {
                 oDialog.open();
             });
         },
-        onOpenFinishOrderDialog: function() {
-            if(!this.finishOrderDialog) {
+        onOpenFinishOrderDialog: function () {
+            if (!this.finishOrderDialog) {
                 this.finishOrderDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.FinishOrder"
                 });
             }
-            this.finishOrderDialog.then(function(oDialog){
+            this.finishOrderDialog.then(function (oDialog) {
                 oDialog.open();
             });
         },
-        onOpenImageDetailDialog: function() {
-            if(!this.imageDetailDialog) {
+        onOpenImageDetailDialog: function () {
+            if (!this.imageDetailDialog) {
                 this.imageDetailDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.ImageDetail"
                 });
             }
-            this.imageDetailDialog.then(function(oDialog){
+            this.imageDetailDialog.then(function (oDialog) {
                 oDialog.open();
             });
         },
-        onCloseDialog: function(oEvent) {
+        onCloseDialog: function (oEvent) {
             const oSource = oEvent.getSource();
             this.byId(oSource.getId() + "Dialog").close();
         },
-        closeDialog: function(sId) {
+        closeDialog: function (sId) {
             this.byId(sId).close();
         },
-        onFinishOrder: function() {
+        onFinishOrder: function () {
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 

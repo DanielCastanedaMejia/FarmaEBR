@@ -7,9 +7,12 @@
         contentWidth="100%"
         class="sapUiResponsiveMargin"
         id="step3Dialog"
+        initialFocus="pdf_step3"
         title="{i18n>prepProcessStep3Text}">
         <PDFViewer
+            id="pdf_step3"
             showDownloadButton="false"
+            height="30em"
             source="http://localhost:8080/files/prep_step1_instructions.pdf" />
         <Table>
             <columns>
