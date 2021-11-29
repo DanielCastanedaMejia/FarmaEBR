@@ -273,6 +273,57 @@ sap.ui.define([
             oOrderModel.setProperty(sPath + "/ESTATUS_MII", "CERRADA");
             this._setMasterModel("/selectedOrder", "");
             this._setMasterModel("/view/startedOrder", false);
+            this._setMasterModel("/view/prepProcessFinished", false);
+            const resetValidations = new JSONModel({
+                "values": {
+                    "sfc": "0000102429-025",
+                    "date": "2021-11-01",
+                    "user": "P446327"
+                },
+                "vStep1": false,
+                "vStep2": false,
+                "vStep3": false,
+                "step1": {
+                    "v1": false,
+                    "v2": false,
+                    "v3": false,
+                    "v4": false,
+                    "v5": false
+                },
+                "step2": {
+                    "values": {
+                        "t1": "",
+                        "t2": "",
+                        "t3": "",
+                        "t4": "",
+                        "t5": "",
+                        "t6": "",
+                        "t7": ""
+                    },
+                    "v1": false,
+                    "v2": false,
+                    "v3": false,
+                    "v4": false,
+                    "v5": false,
+                    "v6": false,
+                    "v7": false
+                },
+                "step3": {
+                    "v1": false,
+                    "v2": false,
+                    "v3": false,
+                    "v4": false,
+                    "v5": false,
+                    "v6": false,
+                    "v7": false,
+                    "v8": false,
+                    "v9": false,
+                    "v10": false,
+                    "v11": false,
+                    "v12": false
+                }
+            });
+            this._setMasterModel("/validations", resetValidations);
             
             this.onCloseFinishOrderConfirmation();
             window.history.go(-1);
