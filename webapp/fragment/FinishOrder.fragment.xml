@@ -1,0 +1,39 @@
+<core:FragmentDefinition id ="dataStartOrderPerformActivities"  xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Complete Unit" id="finishOrderDialog" contentHeight="70%" contentWidth="40%" afterClose="onCloseCompleteUnit">
+        <VBox height="100%" class="sapUiResponsiveMargin">
+            <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+                <items>
+                <Label text="{i18n>sfcInputLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
+                <Input enabled="false" id="oSFCBarcode" width="100%"  value="{masterModel>/view/startedOrder}"   />	
+                </items>
+            </VBox> 
+
+            <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+                <items>
+                <Label text="{i18n>goodProductionLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
+                <Input type="Number" enabled="true" id="oGOOD" width="40%"  value="2"   />	
+                </items>
+            </VBox> 
+
+            <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+                <items>
+                <Label text="{i18n>scrapLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
+                <Input type="Number" enabled="true" id="oSCRAP" width="40%"  value="1"   />	
+                </items>
+            </VBox> 
+
+            <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+                <items>
+                <Label text="{i18n>productionNotificationLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
+                <Input type="Number" enabled="true"  id="oNOTIF" width="40%"  value="1"   />	
+                </items>
+            </VBox>
+        </VBox>
+        <beginButton>
+                <Button text="{i18n>notifyBtnTxt}" class="sapUiSmallMarginEnd"  id="btnNotifyUnit" type="Accept" press="onOpenFinishOrderConfirmation" />
+        </beginButton>
+        <endButton>
+                <Button text="{i18n>cancelButton}" class="sapUiSmallMarginEnd"  id="btnCloseUnit" type="Reject" press="onCloseFinishDialog" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>
