@@ -126,6 +126,22 @@ sap.ui.define([], function () {
                 return sStart;
             else
                 return sEnd;
+        },
+        orderButtonPress: function(sStarted, sNum) {
+            if(!sStarted)
+                return "onOpenStartOrderConfirmation";
+            if(sStarted != sNum)
+                return "onOpenStartOrderConfirmation";
+            else
+                return "onOpenFinishOrderConfirmation";
+        },
+        orderButtonIcon: function(sStarted, sNum) {
+            if(!sStarted)
+                return "sap-icon://begin";
+            if(sStarted != sNum)
+                return "sap-icon://begin";
+            else
+                return "sap-icon://decline";
         }
     };
 });

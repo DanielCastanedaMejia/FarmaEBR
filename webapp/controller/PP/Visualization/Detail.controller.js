@@ -173,6 +173,18 @@ sap.ui.define([
                 });
 
         },
+        onOpenOrderConfirmation: function() {
+            const oStart = this._getMasterModel("/view/startedOrder"),
+                sNumOrder = this.getView().getModel().getProperty("/NUM_ORDEN");
+            
+            if(!oStart)
+                this.onOpenStartOrderConfirmation();
+            else
+                if(oStart !== sNumOrder) 
+                    this.onOpenStartOrderConfirmation();
+                else
+                    this.onOpenFinishOrderConfirmation();
+        },
         onOpenStartOrderConfirmation: function () {
             var oThis = this;
 
@@ -245,10 +257,28 @@ sap.ui.define([
             this.byId("startOrderConfirmationDialog").close();
         },
         onOpenFinishOrderConfirmation: function() {
+            if(!this.closeOrderConfirmationDialog) {
+                this.closeOrderConfirmationDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.closeOrderConfirmation"
+                });
+            }
+            this.closeOrderConfirmationDialog.then(function(oDialog) {
+                oDialog.open();
+            });
+        },
+        onFinishOrder: function() {
+            const sPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 
+            oOrderModel.setProperty(sPath + "/ESTATUS_MII", "CERRADA");
+            this._setMasterModel("/selectedOrder", "");
+            this._setMasterModel("/view/startedOrder", false);
+            
+            this.onCloseFinishOrderConfirmation();
+            window.history.go(-1);
         },
         onCloseFinishOrderConfirmation: function() {
-
+            this.byId("FinishOrderConfirmationDialog").close();
         },
         onCloseProcessDialog: function () {
             this.byId("prepProcessDialog").close();
