@@ -87,31 +87,38 @@
     "buttonTimer": {
         "1": {
             "started": "0",
-            "complete": "0"
+            "complete": "0",
+            "timeValue": "MM:SS"
         },
         "2": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         },
         "3": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         },
         "4": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         },
         "5": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         },
         "6": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         },
         "7": {
             "started": "0",
-            "complete": "0"
+            "complete": "1",
+            "timeValue": "MM:SS"
         }
     }
 }
