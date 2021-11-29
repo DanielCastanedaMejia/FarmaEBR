@@ -183,7 +183,7 @@ sap.ui.define([
                 if(oStart !== sNumOrder) 
                     this.onOpenStartOrderConfirmation();
                 else
-                    this.onOpenFinishOrderConfirmation();
+                    this.onOpenFinishOrderDialog();
         },
         onOpenStartOrderConfirmation: function () {
             var oThis = this;
@@ -266,6 +266,19 @@ sap.ui.define([
                 oDialog.open();
             });
         },
+        onOpenFinishOrderDialog: function() {
+            if(!this.finishOrderDialog) {
+                this.finishOrderDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.FinishOrder"
+                });
+            }
+            this.finishOrderDialog.then(function(oDialog){
+                oDialog.open();
+            });
+        },
+        onCloseFinishDialog: function() {
+            this.byId("finishOrderDialog").close();
+        },
         onFinishOrder: function() {
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
@@ -324,7 +337,7 @@ sap.ui.define([
                 }
             });
             this._setMasterModel("/validations", resetValidations);
-            
+            this.onCloseFinishDialog();
             this.onCloseFinishOrderConfirmation();
             window.history.go(-1);
         },
