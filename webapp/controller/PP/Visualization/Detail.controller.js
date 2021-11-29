@@ -175,23 +175,6 @@ sap.ui.define([
 
         },
         onOpenStartOrderConfirmation: function () {
-            if(this._getMasterModel("/view/startedOrder"))
-                return;
-
-            var oSelected = this.byId("PPOrders_list").getSelectedItem();
-
-            if(oSelected === null) {
-                MessageToast.show("Seleccione una orden a iniciar");
-                return;
-            }
-
-            var oContext = oSelected.getBindingContext(),
-                sPath = oContext.getPath();
-
-            if(this.getView().getModel().getProperty(sPath + "/ESTATUS") !== "3") {
-                MessageToast.show("Solo se pueden iniciar ordenes liberadas");
-                return;
-            }
             var oThis = this;
             if(!this.startOrderConfirmationDialog) {
                 this.startOrderConfirmationDialog = this.loadFragment({
@@ -199,19 +182,35 @@ sap.ui.define([
                 });
             }
             this.startOrderConfirmationDialog.then(function(oDialog) {
-                var oModel = oThis.getView().getModel().getProperty(sPath),
-                    oStartOrderModel = new JSONModel(oModel);
+                const sPath = oThis._getMasterModel("/selectedOrder"),
+                    oOrderModel = oThis.getOwnerComponent().getModel("ordersModel"),
+                    NUM_ORDEN = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
+                    TIPO = oOrderModel.getProperty(sPath + "/TIPO"),
+                    MATERIAL = oOrderModel.getProperty(sPath + "/MATERIAL"),
+                    DESC_MATERIAL = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
+                    CANTIDAD_PROGRAMADA = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
+                    INICIO_PLANEADO = oOrderModel.getProperty(sPath + "/INICIO_PLANEADO"),
+                    FIN_PLANEADO = oOrderModel.getProperty(sPath + "/FIN_PLANEADO"),
+                    PLANTA = oOrderModel.getProperty(sPath + "/PLANTA"),
+                    LOTE = oOrderModel.getProperty(sPath + "/LOTE"),
+                    LOTE_INSPECCION = oOrderModel.getProperty(sPath + "/LOTE_INSPECCION").substring(0, 10),
+                    UNIDA_MEDIDA = oOrderModel.getProperty(sPath + "/UNIDA_MEDIDA").substring(0, 10);
 
+                var oStartModel = new JSONModel({
+                    "NUM_ORDEN": NUM_ORDEN,
+                    "TIPO": TIPO,
+                    "MATERIAL": MATERIAL,
+                    "DESC_MATERIAL": DESC_MATERIAL,
+                    "CANTIDAD_PROGRAMADA": CANTIDAD_PROGRAMADA,
+                    "INICIO_PLANEADO": INICIO_PLANEADO,
+                    "FIN_PLANEADO": FIN_PLANEADO,
+                    "PLANTA": PLANTA,
+                    "LOTE": LOTE,
+                    "LOTE_INSPECCION": LOTE_INSPECCION,
+                    "UNIDA_MEDIDA": UNIDA_MEDIDA
+                });
 
-                oThis.getView().setModel(oStartOrderModel, "startOrder");
-                oModel = oThis.getView().getModel("startOrder");
-                var formatedDate = oModel.getProperty("/INICIO_PLANEADO").substring(0, 10);
-                oModel.setProperty("/INICIO_PLANEADO", formatedDate);
-                formatedDate = oModel.getProperty("/FIN_PLANEADO").substring(0, 10);
-                oModel.setProperty("/FIN_PLANEADO", formatedDate);
-                formatedDate = oModel.getProperty("/FECHA_INS").substring(0, 10);
-                oModel.setProperty("/FECHA_INS", formatedDate);
-                console.log(oModel);
+                oThis.getView().setModel(oStartModel, "startOrder");
                 oDialog.open();
             });
         },
