@@ -18,6 +18,10 @@
         "uri": "model/masterModel.json",
         "type": "JSON"
       },
+      "filterDateOrdersModel": {
+        "uri": "model/filterDateOrdersModel.json",
+        "type": "JSON"
+      },
       "fasesModel": {
         "uri": "model/fasesModel.json",
         "type": "JSON"
@@ -70,6 +74,10 @@
       },
       "masterModel": {
         "dataSource": "masterModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "filterDateOrdersModel":{
+        "dataSource": "filterDateOrdersModel",
         "type": "sap.ui.model.json.JSONModel"
       },
       "fasesModel": {

@@ -39,7 +39,7 @@
           </Button>
         </Toolbar>
         <fb:FilterBar header="Órdenes"
-                      reset="onReset" search="PPOrders_view" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+                      reset="_onRouteMatched" search="PPOrders_view" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact" showRestoreOnFB="true">
 
           <fb:filterItems>
 
@@ -59,7 +59,8 @@
                   id="start_date"
                   valueFormat="dd-MM-yyyy"
                   displayFormat="dd-MM-yyyy"
-                  enabled="false"/>
+                  enabled="false"
+                  value="25-07-2019"/>
               </fb:control>
             </fb:FilterItem>
 
@@ -69,10 +70,11 @@
                   id="end_date"
                   valueFormat="dd-MM-yyyy"
                   displayFormat="dd-MM-yyyy"
-                  enabled="false"/>
+                  enabled="false"
+                  value="08-08-2019"/>
               </fb:control>
             </fb:FilterItem>
-            
+
           </fb:filterItems>          
 
         </fb:FilterBar>
@@ -192,8 +194,7 @@
               </Column>
               <Column
                   minScreenWidth="Tablet"
-                  demandPopin="false"
-                  id="ESTATUS_MII">
+                  demandPopin="false">
                 <Label text="Estatus MII"/>
               </Column>
               <Column

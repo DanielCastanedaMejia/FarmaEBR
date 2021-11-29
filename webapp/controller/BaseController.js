@@ -1,40 +1,39 @@
 sap.ui.define([
-	"sap/ui/core/mvc/Controller",
+    "sap/ui/core/mvc/Controller",
     "sap/ui/core/routing/History",
     "sap/m/MessageToast",
 ], function (Controller, History, MessageToast) {
-	"use strict";
+    "use strict";
     return Controller.extend("sap.ui.demo.webapp.controller.BaseController", {
 
-		getRouter : function () {
+        getRouter: function () {
             return sap.ui.core.UIComponent.getRouterFor(this);
-		},
+        },
         onNavBack: function (oEvent) {
-			var oHistory, sPreviousHash;
-			oHistory = History.getInstance();
-			sPreviousHash = oHistory.getPreviousHash();
-			if (sPreviousHash !== undefined) {
+            var oHistory, sPreviousHash;
+            oHistory = History.getInstance();
+            sPreviousHash = oHistory.getPreviousHash();
+            if (sPreviousHash !== undefined) {
                 window.history.go(-1);
                 console.log("History")
-            } else {                
-                this.getRouter().navTo("appHome", {}, true /*no history*/);
+            } else {
+                this.getRouter().navTo("appHome", {}, true /*no history*/ );
                 console.log("no History")
-			}
+            }
         },
         goToHome: function () {
-            this.getRouter().navTo("appHome", {}, true /*no history*/);
+            this.getRouter().navTo("appHome", {}, true /*no history*/ );
         },
 
         _selectionColumn: function (oEvent, table) {
             var oTable = this.byId(table),
-                index = oEvent.getParameter("listItem").getBindingContext().sPath.split('/')[2];                
+                index = oEvent.getParameter("listItem").getBindingContext().sPath.split('/')[2];
 
             if (oEvent.getParameter("selected")) {
                 oTable.getColumns()[index].setVisible(true);
-            }
-            else {
+            } else {
                 oTable.getColumns()[index].setVisible(false);
-            }        
+            }
         },
 
         _selectColumnsAll: function () {
@@ -55,7 +54,7 @@ sap.ui.define([
                 oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.hideColumns", this);
                 oView.addDependent(oDialog);
             }
-            oDialog.open();           
+            oDialog.open();
         },
 
 
@@ -78,11 +77,10 @@ sap.ui.define([
                 oItems = oList.getItems(),
                 oColumns = oTable.getColumns();
 
-            $.each(columns.columns, function (index) {                
+            $.each(columns.columns, function (index) {
                 if (this.Visible) {
                     oList.setSelectedItem(oItems[index]);
-                }
-                else {
+                } else {
                     oColumns[index].setVisible(false);
                 }
             });
@@ -104,12 +102,12 @@ sap.ui.define([
             oTable.setBusy(true);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
@@ -118,8 +116,7 @@ sap.ui.define([
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
 
@@ -130,20 +127,17 @@ sap.ui.define([
                                     var oSTATS = oThis.byId(stats_bar);
 
                                     oModel_stats.setData(aData.STATS);
-                                    oSTATS.setModel(oModel_stats)
-                                        ;
+                                    oSTATS.setModel(oModel_stats);
                                 }
                                 oModel.setSizeLimit(aData.length);
 
                                 oTable.getModel().setSizeLimit(aData.length);
                                 oTable.setModel(oModel);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se ha recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -174,26 +168,25 @@ sap.ui.define([
             oTable.setBusy(true);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
-                    
+
                     if (opElement.firstChild !== null) {
                         var aData = JSON.parse(opElement.firstChild.data);
 
                         if (aData.ITEMS.length > 0) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
-                                var oModel = new sap.ui.model.json.JSONModel();                               
-                                oModel.setData(aData);                                
+                                var oModel = new sap.ui.model.json.JSONModel();
+                                oModel.setData(aData);
                                 //check if exist a header element
                                 if (stats_bar !== '') {
                                     var oModel_stats = new sap.ui.model.json.JSONModel();
@@ -203,16 +196,14 @@ sap.ui.define([
                                     oSTATS.setModel(oModel_stats);
                                 }
                                 oModel.setSizeLimit(aData.ITEMS.length);
-console.log("modelo ultimo");
-console.log(oModel);
-                                oTable.setModel(oModel);                                
+                                console.log("modelo ultimo");
+                                console.log(oModel);
+                                oTable.setModel(oModel);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se han recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -244,12 +235,12 @@ console.log(oModel);
             oCombo.setBusy(true);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
@@ -258,8 +249,7 @@ console.log(oModel);
                         if (aData[0] !== undefined) {
                             if (aData[0].error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
 
@@ -267,16 +257,14 @@ console.log(oModel);
                                 oCombo.getModel().setSizeLimit(aData.length);
                                 oModel.setData(aData);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se ha recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
                     if (setKey != "")
-                        oCombo.setSelectedKey(setKey);                    
+                        oCombo.setSelectedKey(setKey);
 
                     oCombo.setBusy(false);
 
@@ -287,7 +275,7 @@ console.log(oModel);
                     }
                     oCombo.setBusy(false);
                 });
-        },   
+        },
 
         _base_onloadHeader: function (oData, path, name) {
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + path + "&OutputParameter=JsonOutput&Content-Type=text/xml"
@@ -299,22 +287,21 @@ console.log(oModel);
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
                     if (opElement.firstChild != null) {
-                        var aData = JSON.parse(opElement.firstChild.data);                        
+                        var aData = JSON.parse(opElement.firstChild.data);
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
                                 oModel.setData(aData);
@@ -322,15 +309,13 @@ console.log(oModel);
                                 // Assign the model object to the SAPUI5 core
                                 oView.getView().setModel(oModel);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se ha recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
-                    }                   
-                    
+                    }
+
                     sap.ui.core.BusyIndicator.hide();
 
                 })
@@ -342,7 +327,7 @@ console.log(oModel);
                 });
         },
 
-                _base_onloadHeader_changed: function (oData, path, name, oModel) {
+        _base_onloadHeader_changed: function (oData, path, name, oModel) {
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + path + "&OutputParameter=JsonOutput&Content-Type=text/xml"
             uri = uri.replace(/\s+/g, '');
 
@@ -352,12 +337,12 @@ console.log(oModel);
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -366,20 +351,17 @@ console.log(oModel);
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 oModel.setData(aData);
 
                                 // Assign the model object to the SAPUI5 core
                                 oView.getView().setModel(oModel);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se han recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -398,7 +380,7 @@ console.log(oModel);
             var oProperty = oModel.getProperty(sProperty);
             return oProperty;
         },
-        _setMasterModel: function(sProperty, oValue) {
+        _setMasterModel: function (sProperty, oValue) {
             var oModel = this.getOwnerComponent().getModel("masterModel");
             oModel.setProperty(sProperty, oValue);
         },
@@ -422,5 +404,5 @@ console.log(oModel);
             });
         },
 
-	});
+    });
 });

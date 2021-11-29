@@ -90,6 +90,53 @@ sap.ui.define([
             };
 
             this._base_onloadTable("PPOrders_list", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_ordenes", "Ordenes", "IconTabBar_Orders");*/
+            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("filterDateOrdersModel"));
+
+            var columns = {
+                columns: [{
+                        Column: "Orden",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Material",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Desc Material",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Planta",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Inicio Prog",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Fin Prog",
+                        Visible: 0
+                    },
+                    {
+                        Column: "Tipo",
+                        Visible: 0
+                    },
+                    {
+                        Column: "Lote",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Cant Prog",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Estatus",
+                        Visible: 1
+                    }
+                ]
+            };
+
+            this._setColumns(columns, "columnList", "PPOrders_list");
         },
 
         viewStartOrder: function (oEvent) {
@@ -638,7 +685,7 @@ sap.ui.define([
 
             if (sKey !== 'All') {
                 if (sKey == 'LIB.') {                    
-                    aFilter.push(new Filter("ESTATUS", FilterOperator.Contains, sKey));
+                    //aFilter.push(new Filter("ESTATUS", FilterOperator.Contains, sKey));
                 }
                 else
                     aFilter.push(new Filter("ESTATUS_MII", FilterOperator.Contains, sKey));
