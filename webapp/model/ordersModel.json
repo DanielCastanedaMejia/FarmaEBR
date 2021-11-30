@@ -45,7 +45,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": "0"
+            "EBR_STATUS": "1"
         },
         {
             "NUM_ORDEN": "1000720",
@@ -65,7 +65,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": "0"
+            "EBR_STATUS": "2"
         },
         {
             "NUM_ORDEN": "1000753",
@@ -85,7 +85,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": "0"
+            "EBR_STATUS": "3"
         },
         {
             "NUM_ORDEN": "1000754",

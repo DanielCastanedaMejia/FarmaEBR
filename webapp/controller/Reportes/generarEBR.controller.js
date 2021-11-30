@@ -63,7 +63,7 @@ sap.ui.define([
                     var nombre = $(xml).find('Profile').attr('firstname');
                     var apellido = $(xml).find('Profile').attr('lastname');
 
-                    oThis.byId(id).setValue(nombre + ' ' + apellido);
+                    oThis.getView().byId(id).setValue(nombre + ' ' + apellido);
 		console.log(nombre + apellido);
                 },
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -435,15 +435,46 @@ wind.close();
             });
         },
 
-        onShowEbr: function() {
+        onShowEbr: function(oEvent) {
+            var othis = this;
             if(!this.ebrDialog) {
                 this.ebrDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.EbrPdf"
                 });
             }
             this.ebrDialog.then(function(oDialog) {
+
+                if(!othis.byId("PPOrders_list").getSelectedItem()){
+                    MessageToast.show("Seleccione una orden");
+                    return;
+                }
+                var oItem = othis.byId("PPOrders_list").getSelectedItem(),
+                    oContext = oItem.getBindingContext(),
+                    sPath = oContext.getPath(),
+                    oModel = othis.getOwnerComponent().getModel("ordersModel"),
+                    sProp = oModel.getProperty(sPath + "/EBR_STATUS"),
+                    sSrc;
+
+                switch(sProp) {
+                    case "0":
+                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        break;
+                    case "1":
+                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        break;
+                    case "2":
+                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        break;
+                    case "3":
+                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        break;
+                    case "4":
+                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        break;
+                }
+
+                othis.getView().byId("ebrPdfView").setSource(sSrc);
                 oDialog.open();
-                this.byId("ebrPdfView").setSource("");
             });
         },
         onCloseEbr: function() {

@@ -145,26 +145,30 @@ sap.ui.define([], function () {
         },
         ebrStateText: function(sStatus) {
             switch(sStatus) {
-                case "4":
-                    return "100%";
                 case "1":
                     return "25%";
                 case "2":
                     return "50%";
+                case "3":
+                    return "75%";
+                case "4":
+                    return "100%";
                 default:
                     return "0%";
             }
         },
         ebrStateColor: function(sStatus) {
             switch(sStatus) {
-                case "4":
-                    return "Success";
                 case "1":
-                    return "Warning";
+                    return "Indication02";
                 case "2":
-                    return "Information";
+                    return "Indication03";
+                case "3":
+                    return "Indication04";
+                case "4":
+                    return "Indication05";
                 default:
-                    return "Error";
+                    return "Indication01";
             }
         }
     };
