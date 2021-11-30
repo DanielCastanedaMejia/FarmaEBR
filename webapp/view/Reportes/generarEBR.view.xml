@@ -1,4 +1,4 @@
-<mvc:View xmlns:f="sap.f"
+<mvc:View xmlns:tnt="sap.tnt" xmlns:uxap="sap.uxap" xmlns:f="sap.f"
 	controllerName="sap.ui.demo.webapp.controller.Reportes.generarEBR"
 	xmlns:core="sap.ui.core"
 	xmlns:fb="sap.ui.comp.filterbar"
@@ -92,16 +92,29 @@
                   value="08-08-2019"/>
               </fb:control>
             </fb:FilterItem>
-
+            
           </fb:filterItems>          
 
         </fb:FilterBar>
         <content>
           <Table
+          sticky="InfoToolbar"
   id="PPOrders_list"
   class="sapUiResponsiveMargin"
   width="auto"
-  items="{/ITEMS}">
+  items="{/ITEMS}"
+     mode="SingleSelectMaster">
+     <infoToolbar>
+      <tnt:ToolHeader  >
+        <tnt:content>
+            <Button
+              class="sapUiResponsiveMarginRightLeft"
+              text="Generar EBR" 
+              press="onShowEbr"
+              type="Emphasized" />
+        </tnt:content>
+      </tnt:ToolHeader> 
+    </infoToolbar>
             <columns>
               <Column
                 minScreenWidth="Small"
@@ -183,9 +196,7 @@
             </columns>
 
             <items>
-              <ColumnListItem
-                type="Active"
-                press="onShowEbr">
+              <ColumnListItem>
                 <cells>
                   <Text text="{NUM_ORDEN}"/>
                   <Text text="{MATERIAL}"/>
