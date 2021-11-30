@@ -106,7 +106,7 @@ sap.ui.define([
         onGotoHome() {
             // Mantener como IP remoto 
             // window.location.href="http://localhost:8010/proxy/XMII/CM/MenuTiles/index.html"; 
-            window.location.href = "http://187.189.27.245:50000/XMII/CM/MenuTilesP/index.html";
+            window.location.href = "http://baycomiidemo.ddns.net:50000/XMII/CM/MenuTilesP/index.html";
         },
 
         onDisplayViewQMOrders: function () {
