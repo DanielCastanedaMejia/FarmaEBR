@@ -1026,7 +1026,6 @@ sap.ui.define([
             this.proFlowDialog.then(function (oDialog) {
 
                 othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
-
                 othis.getView().setBusy(false);
                 oDialog.open();
             });

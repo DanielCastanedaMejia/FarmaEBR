@@ -17,7 +17,8 @@
 			scrollable="false"
 			foldedCorners="true"
 			nodes="{/nodes}"
-			lanes="{/lanes}">
+			lanes="{/lanes}"
+            wheelZoomable="false" >
 			<c:nodes>
 				<c:ProcessFlowNode
 					laneId="{lane}"
@@ -27,9 +28,7 @@
 					children="{children}"
 					state="{state}"
 					stateText="{stateText}"
-					texts="{texts}"
-					highlighted="{highlighted}"
-					focused="{focused}" />
+					texts="{texts}" />
 			</c:nodes>
 			<c:lanes>
 				<c:ProcessFlowLaneHeader

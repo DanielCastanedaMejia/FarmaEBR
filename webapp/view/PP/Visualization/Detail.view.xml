@@ -75,7 +75,12 @@
           <ObjectStatus text="{/DESC_MATERIAL}"/>
           <ObjectIdentifier title="{/ESTATUS}"/>
         </layout:VerticalLayout>
-
+        <Button
+          class="sapUiMediumMarginLeft"
+          icon="sap-icon://workflow-tasks" 
+          press="onOpenProcessFlow"
+          id="ProcessFlow"
+          text="Ver flujo de la orden" />
       </FlexBox>
 
     </uxap:headerContent>

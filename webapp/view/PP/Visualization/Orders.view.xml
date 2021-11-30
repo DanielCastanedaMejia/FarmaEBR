@@ -139,7 +139,6 @@
           </Toolbar> -->
           <Toolbar >
             <ToolbarSpacer/>
-            <f:Avatar src="sap-icon://business-objects-experience" displayShape="Square" press="onOpenProcessFlow" id="ProcessFlow"></f:Avatar>
             <f:Avatar src="sap-icon://business-objects-experience" displayShape="Square" press="onChart" id="chartDemo"></f:Avatar>
             <ToolbarSeparator/>
           </Toolbar>
