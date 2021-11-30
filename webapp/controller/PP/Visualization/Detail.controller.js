@@ -286,12 +286,27 @@ sap.ui.define([
                 oDialog.open();
             });
         },
+        onOpenVideoDetailDialog: function () {
+            if (!this.videoDetailDialog) {
+                this.videoDetailDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.videoDetail"
+                });
+            }
+            this.videoDetailDialog.then(function (oDialog) {                
+                oDialog.open();
+            });
+        },
         onOpenPDFDetailDialog: function (oEvent) {
-            var sSource = oEvent.getSource().getId().toString();            
+            var sSource = oEvent.getSource().getId().toString();
             var indexOfPDF = sSource.charAt(sSource.length - 1)            
             this._pdfViewer.setSource("./files/Step1_" + indexOfPDF + ".pdf");
-			this._pdfViewer.setTitle("Step 1");
-			this._pdfViewer.open();
+            this._pdfViewer.setTitle(this._getMasterModel("/PDFTitles/" + indexOfPDF));
+            this._pdfViewer.open();
+        },
+        onPDFDummy: function () {
+            this._pdfViewer.setSource("./files/PDF_DummySteps.pdf");
+            this._pdfViewer.setTitle("PDF");
+            this._pdfViewer.open();
         },
         onCloseDialog: function (oEvent) {
             const oSource = oEvent.getSource();
@@ -382,7 +397,7 @@ sap.ui.define([
         onCloseStep2Dialog: function () {
             this.closeDialog("step2Dialog");
         },
-        onAcceptStep3Dialog: function () {            
+        onAcceptStep3Dialog: function () {
             this.onOpenSuperVDialog();
             //this._setMasterModel("/view/prepProcessFinished", true);
             //this.closeDialog("step3Dialog");
@@ -468,7 +483,7 @@ sap.ui.define([
         },
         onRangeChange: function () {
             //MessageToast.show("Cambio el valor prro");
-            if(this.byId("rangeId").getValue() >= 380 && this.byId("rangeId").getValue() <= 400) {
+            if (this.byId("rangeId").getValue() >= 380 && this.byId("rangeId").getValue() <= 400) {
                 this.byId("switchRangeId").setState(true);
                 this.byId("rangeId").setValueState("Success");
             } else {

@@ -23,8 +23,8 @@
             "date": "2021-11-01",
             "user": "P446327"
         },
-        "vStep1": true,
-        "vStep2": true,
+        "vStep1": false,
+        "vStep2": false,
         "vStep3": false,
         "step1": {
             "user": "",
@@ -133,5 +133,11 @@
             "complete": "1",
             "timeValue": "MM:SS"
         }
+    },
+    "PDFTitles": {
+        "1": "Limpieza de area",
+        "2": "Elementos innecesarios",
+        "3": "Rótulo",
+        "4": "Instrumentos calibrados"
     }
 }

@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:f="sap.f"
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core"
+    height="100%" >
+    <Dialog
+        class="sapUiResponsiveMargin"
+        id="videoDetailDialog"
+        title="{i18n>imageDetailDialogTitle}">
+        <FlexBox justifyContent="Center" >
+            <core:HTML 
+            content='&lt;video width=&quot;720&quot; height=&quot;480&quot; controls&gt;
+            &lt;source src=&quot;./files/Step2_3.mp4&quot; type=&quot;video/mp4&quot;&gt;
+          Your browser does not support the video tag.
+          &lt;/video&gt;'>
+			</core:HTML>
+        </FlexBox>
+        <endButton>
+            <Button
+                id="videoDetail"
+                type="Reject"
+                text="{i18n>closeButton}"
+                press="onCloseDialog" />
+        </endButton>
+   </Dialog>
+</core:FragmentDefinition>

@@ -32,6 +32,9 @@
                 <Column vAlign="Middle" width="5rem">
                     <Text text="{i18n>step1Column3Text}"/>
                 </Column>
+                <Column vAlign="Middle" width="5rem">
+                    
+                </Column>
                 <!-- <Column vAlign="Middle" width="5rem" >
                     <Text text="{i18n>step1Column2Text}"/>
                 </Column>
@@ -47,10 +50,12 @@
                 <cells>
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v1}" />
                     <Text text="{i18n>step1Validation1Text}" />
-                    <Button id="infoPDF1" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
+                    <Button id="infoPDF1" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />                    
+
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v5}" />
                     <Text text="{i18n>step1Validation5Text}" />
                     <Button id="infoPDF3" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
+                    <Text />
                     
                 </cells>
             </ColumnListItem>
@@ -62,10 +67,12 @@
                     <Text/>-->
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v3}" />
                     <Text text="{i18n>step1Validation3Text}" />
-                    <Button id="infoPDF2" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
+                    <Button id="infoPDF2" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />                    
+
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v4}" />
-                    <Text text="{i18n>step1Validation4Text}" />
+                    <Text text="{i18n>step1Validation4Text}" />                    
                     <Button id="infoPDF4" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
+                    <Button icon="sap-icon://show" press="onOpenImageDetailDialog" />
                 </cells>
             </ColumnListItem>
             </items>
