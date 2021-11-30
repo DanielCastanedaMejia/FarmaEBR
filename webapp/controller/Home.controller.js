@@ -123,7 +123,7 @@ sap.ui.define([
             if (oKey === '')
                 console.log("Empty");
             else {
-                this.getRouter().navTo("loginUserPP", {
+                this.getRouter().navTo("viewPPOrders", {
                     "plant": oKey
                 });
             }

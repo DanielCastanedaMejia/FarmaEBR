@@ -6,7 +6,8 @@
     xmlns:layout="sap.ui.layout" >
     <Toolbar
         class="toolbar_background">
-     <Button type="Back" press="onNavBack"/>
+     <!-- <Button type="Back" press="onNavBack"/>-->
+     <ToolbarSeparator />
       <Image id="logo" src="images/SAP_Logo.png">
       </Image>
       <core:Icon

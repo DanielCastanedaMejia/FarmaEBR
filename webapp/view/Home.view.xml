@@ -39,7 +39,7 @@
       <ToolbarSpacer/>
       <Label
              id ="username"
-             text=""
+             text="{masterModel>/view/login/username}"
              class="toolbar_color"></Label>
              <!-- En el campo text estaba escrito el usuario de MII-->
       <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">

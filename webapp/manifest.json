@@ -140,6 +140,12 @@
         {
           "pattern": "",
           "name": "appHome",
+          "target": "loginUserPP"
+        },
+
+        {
+          "pattern": "home",
+          "name": "home",
           "target": "home"
         },
         {
