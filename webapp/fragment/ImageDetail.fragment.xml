@@ -8,7 +8,7 @@
         title="{i18n>imageDetailDialogTitle}">
         <FlexBox justifyContent="Center" >
             <Image
-                src="./images/medidor.jpg" />
+                src="./images/clean.jpg" />
         </FlexBox>
         <endButton>
             <Button

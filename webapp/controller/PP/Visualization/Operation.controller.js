@@ -947,6 +947,13 @@ sap.ui.define([
         },
         onQA: function () {
             MessageToast.show("Nav to QA");
+            var
+                oView = this.getView();
+
+            this.getRouter().navTo("QA", {
+                orden: "001",
+                operacion: "010"
+            });
         }
     });
 }

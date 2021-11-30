@@ -189,9 +189,9 @@
           "target": "home"
         },
         {
-          "pattern": "Calidad/{plant}",
-          "name": "viewQMOrders",
-          "target": "viewQMOrders"
+          "pattern": "QA",
+          "name": "QA",
+          "target": "QA"
         },
 
 
@@ -507,10 +507,10 @@
           "viewPath": "sap.ui.demo.webapp.view.PP.Visualization"
         },
         
-        "viewQMOrders": {
-          "viewId": "QMOrders",
-          "viewName": "QMOrders",
-          "viewPath": "sap.ui.demo.webapp.view.QM",
+        "QA": {
+          "viewId": "QA",
+          "viewName": "QA",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization",
           "viewLevel": 2
         },
         "viewPPOrders": {

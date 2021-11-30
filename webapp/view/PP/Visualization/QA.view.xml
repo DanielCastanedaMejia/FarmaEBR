@@ -1,0 +1,270 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.Visualization.QA"
+  xmlns:uxap="sap.uxap"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:f="sap.f"
+  xmlns:layout="sap.ui.layout"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+
+  <Page
+    enableScrolling="false"
+    id="pageInspection">
+    <customHeader>
+      <Toolbar
+  class="toolbar_default">
+        <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+ <Image src="images/SAP_Logo.png" press="goToHome"/>
+        <core:Icon
+        src="sap-icon://employee-lookup"
+        class="toolbar_title sapUiSmallMarginBegin">
+          <core:layoutData>
+            <FlexItemData growFactor="1" />
+          </core:layoutData>
+        </core:Icon>
+        <MenuButton text="Inspección" class="customtitle">
+          <menu>
+            <Menu>
+              <items>
+                <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+              </items>
+            </Menu>
+          </menu>
+        </MenuButton>
+        <ToolbarSpacer/>
+        <Label
+             id ="username"
+             text=""
+             class="toolbar_color"></Label>
+        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+        </Button>
+      </Toolbar>
+
+    </customHeader>
+    <content>
+      <uxap:ObjectPageLayout
+    id="ObjectPageLayout"
+    showTitleInHeaderContent="true"
+    alwaysShowContentHeader="false"
+    preserveHeaderStateOnScroll="false"
+    headerContentPinnable="true"
+    isChildPage="true"
+    upperCaseAnchorBar="false">
+        <uxap:headerTitle>
+          <uxap:ObjectPageDynamicHeaderTitle>
+             <uxap:expandedHeading>
+              <Title text="Lote {/OPERACION} inspección: {/LOTE_INSPECCION}" wrapping="true" class="sapUiSmallMarginEnd"/>
+            </uxap:expandedHeading>
+            <uxap:actions>
+                <MenuButton text="Operaciones.." icon="sap-icon://provision" visible="false">
+                <menu>
+                  <Menu itemSelected="onMenuAction">
+                    <MenuItem text="Inspeccionar lote" icon="sap-icon://clinical-tast-tracker" press="onInspeccion" />
+                    <MenuItem text="Decisión de empleo" icon="sap-icon://employee-approvals" press="onDe" />
+                    <MenuItem text="Ver documentos"  id="btn-mat-prima" icon="sap-icon://show" press="onVisualizarArchivos" />
+                    <MenuItem text="Ver planos" id="btn-pt" icon="sap-icon://crossed-line-chart" press="onVisualizarPlanos" />
+
+                  </Menu>
+                </menu>
+              </MenuButton>
+            </uxap:actions>
+          </uxap:ObjectPageDynamicHeaderTitle>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+      <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">        
+        <layout:VerticalLayout >
+          <ObjectStatus title="Operacion" />
+                                  <ComboBox
+                              id="listOperation"
+                              showSecondaryValues= "true"
+                             selectionChange="onChangeOperations"
+                             width="110%"
+                             items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }">
+                              <core:ListItem key="{KEY}" text="{TEXT}" additionalText="{KEY}"/>
+                            </ComboBox>
+                            <ComboBox
+                              id="listOperationBatch"
+                             selectionChange="onChangeOperationBatch"
+                             width="110%"
+                             items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }">
+                              <core:ListItem key="{id}" text="{id}"/>
+                            </ComboBox>
+                                <ComboBox
+                              id="listOperationConsecutivo"
+                              showSecondaryValues= "true"
+                             selectionChange="onChangeOperationsInspeccion"
+                             width="110%"
+                             items="{
+                          path: '/',
+                          sorter: { path: 'desc' }
+                        }">
+                              <core:ListItem key="{KEY}" text="{TEXT}" additionalText="{KEY}"/>
+                            </ComboBox>
+          <ObjectIdentifier title="Material "  text="{/MATERIAL}  {/DESC_MATERIAL}"/>
+          <ObjectIdentifier title="Cantidad " text="{/CTD_MAT}  {/UM}"/>
+          <ObjectIdentifier title="Inspecciones " text="{/CTD} {/NUM_ORDEN} {/OPERACION}"/>
+
+        </layout:VerticalLayout>
+      </FlexBox>
+    </uxap:headerContent>
+        <uxap:sections>
+          <uxap:ObjectPageSection title="Características Calidad">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <uxap:blocks>
+                  <Table
+                           id="charListQM"
+                           class="sapUiResponsiveMargin"
+                           width="auto"
+                           items="{/ITEMS}">
+                    <columns>
+                      <Column>
+                        <Label text="Secuencia"/>
+                      </Column>
+                      <Column width="15%">
+                        <Label text="Descripción"/>
+                      </Column>
+                      <Column width="5%">
+                        <Label text="Tipo"/>
+                      </Column>                      
+                      <Column width="15%">
+                        <Label text="Valor"/>
+                      </Column>                      
+                      <Column>
+                        <Label text="Lim. Inf." tooltip="Límite Inferior"/>
+                      </Column>
+                      <Column>
+                        <Label text="Val. teórico" tooltip="Valor teórico"/>
+                      </Column>
+                      <Column>
+                        <Label text="Lim. Sup." tooltip="Límite Superior"/>
+                      </Column>
+                      <Column>
+                        <Label text="Unidad"/>
+                      </Column>
+                      <Column width="15%">
+                        <Label text="Estatus"/>
+                      </Column>
+                    <Column>
+                        <Label text="Maestro"/>
+                      </Column>
+                       <Column>
+                        <Label text="Grupo"/>
+                      </Column>
+                    </columns>
+                    <items>
+                      <ColumnListItem>
+                        <cells>
+                          <Text text="{INSPCHAR}"/>
+                          <Text text="{CHAR_DESCR}"/>
+                          <Text text="{CHAR_TYPE}"/>                          
+                          <HBox>
+                     <ComboBox
+                                  id="comboMenu"
+                                  change="changeCombo"
+                                  showSecondaryValues= "true"
+                                  selectedKey="{sel_KEY}"
+                                  visible="{
+                                  path: 'COMBO_VISIBLE',
+                                  formatter: '.formatter.elementVisible'
+                                }"
+                                items="{
+                                  path: 'MENU/',
+                                  sorter: { path: 'TEXT' },
+                                  templateShareable:false 
+                                }">
+                              <core:ListItem key="{KEY};{CODE};{CODE_GROUPE}" text="{TEXT}" additionalText="{KEY}"/>
+                                </ComboBox>
+                            <Input
+                            type="Text"
+                            id="inputValue"
+                            placeholder="Valor"
+                            value="{value}"
+                            focus="true"
+                            liveChange="onVerifyValue"
+                            visible="{
+                              path: 'INPUT_VISIBLE',
+                              formatter: '.formatter.elementVisible'
+                            }">
+                            </Input>
+                          </HBox>                                                    
+                          <Text text="{LW_TO_LMT}"/>
+                          <Text text="{TARGET_VAL}"/>
+                          <Text text="{UP_TOL_LMT}"/>
+                          <Text text="{UNIT}"/>
+                          <ComboBox
+                              id="comboDes"
+                              change="changeCombo"
+                              selectedKey="{sel_KEY_des}"                             
+                            items="{
+                              path: 'MENU_DES/',
+                              sorter: { path: 'TEXT' },
+                              templateShareable:false 
+                            }">
+                            <core:Item key="{KEY}" text="{TEXT}"/>
+                          </ComboBox>
+                          <Text text="{MSTR_CHAR}"/>
+                         <Text text="{CODE_GROUPE}"/>
+
+                        </cells>
+                      </ColumnListItem>
+                    </items>
+                  </Table>
+                </uxap:blocks>
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+          <uxap:ObjectPageSection title="Características Material">
+            <uxap:subSections>
+              <uxap:ObjectPageSubSection>
+                <uxap:blocks>
+                  <Table
+                   id="MMBarchChars"
+                   class="sapUiResponsiveMargin"
+                   width="100%"
+                   items="{/ITEMS}">
+              <columns>
+                <Column>
+                  <Label text="Descripcion"/>
+                </Column>
+                 <Column>
+                  <Label text="UM"/>
+                </Column>
+                <Column width="15%">
+                  <Label text="Valor"/>
+                </Column>
+              </columns>
+              <items>
+                <ColumnListItem>
+                   <cells>
+                          <Text text="{CHAR_DESCR}"/>
+
+
+                          <Text text="{UNIT}"/>
+               <Text text="{value}"/>
+                       
+                         
+                        </cells>
+                </ColumnListItem>
+              </items>
+            </Table>
+                </uxap:blocks>  
+              </uxap:ObjectPageSubSection>
+            </uxap:subSections>
+          </uxap:ObjectPageSection>
+  
+        </uxap:sections>
+      </uxap:ObjectPageLayout>
+    </content>
+
+  </Page>
+
+
+</mvc:View>

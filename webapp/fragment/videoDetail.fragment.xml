@@ -8,8 +8,8 @@
         title="{i18n>imageDetailDialogTitle}">
         <FlexBox justifyContent="Center" >
             <core:HTML 
-            content='&lt;video width=&quot;720&quot; height=&quot;480&quot; controls&gt;
-            &lt;source src=&quot;./files/Step2_3.mp4&quot; type=&quot;video/mp4&quot;&gt;
+            content='&lt;video width=&quot;720&quot; height=&quot;480&quot; controls autoplay&gt;
+            &lt;source src=&quot;./images/vdo/Paso3.mp4&quot; type=&quot;video/mp4&quot;&gt;
           Your browser does not support the video tag.
           &lt;/video&gt;'>
 			</core:HTML>

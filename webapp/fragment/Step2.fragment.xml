@@ -49,6 +49,9 @@
                 <Column vAlign="Middle" width="11rem">
                     <!--<Text text="{i18n>step2Column4Text}" />-->
                 </Column>
+                <Column vAlign="Middle" width="11rem">
+                    <!--<Text text="{i18n>step2Column4Text}" />-->
+                </Column>
             </columns>
             <items>
             <ColumnListItem>
