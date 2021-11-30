@@ -25,7 +25,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "VICTOR ROMERO",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000654",
@@ -45,7 +45,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000720",
@@ -65,7 +65,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000753",
@@ -85,7 +85,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000754",
@@ -105,7 +105,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "ALEJANDRO MONTES",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000755",
@@ -125,7 +125,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "SUSANA QUINTERO",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000756",
@@ -145,7 +145,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000757",
@@ -165,7 +165,7 @@
             "ESTATUS_MII": "PENDIENTE",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ",
-            "EBR_STATUS": 0
+            "EBR_STATUS": "0"
         },
         {
             "NUM_ORDEN": "1000759",
@@ -185,7 +185,7 @@
             "ESTATUS_MII": "CERRADA",
             "USUARIO_PRIM": "ABIGAIL LOPEZ",
             "USUARIO_SEC": "FRANCISCO ORDOÑEZ",
-            "EBR_STATUS": 100
+            "EBR_STATUS": "4"
         },
         {
             "NUM_ORDEN": "1000764",
@@ -205,7 +205,7 @@
             "ESTATUS_MII": "CERRADA",
             "USUARIO_PRIM": "RICARDO CISNEROS",
             "USUARIO_SEC": "ALEJANDRO MONTES",
-            "EBR_STATUS": 100
+            "EBR_STATUS": "4"
         }
     ]
 }
