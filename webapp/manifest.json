@@ -53,6 +53,18 @@
       "salesShare": {
 				"uri": "model/SalesShare.json",
 				"type": "JSON"
+			},
+      "flowLanesAndNodes": {
+				"uri": "model/ProcessFlowLanesAndNodes.json",
+				"type": "JSON"
+			},
+      "flowLanes": {
+				"uri": "model/ProcessFlowLanesOnly.json",
+				"type": "JSON"
+			},
+      "flowNodes": {
+				"uri": "model/ProcessFlowNodes.json",
+				"type": "JSON"
 			}
     }
   },
@@ -127,6 +139,18 @@
       "salesShare": {
         "type": "sap.ui.model.json.JSONModel",
         "dataSource": "salesShare"
+      },
+      "flowLanesAndNodes": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "flowLanesAndNodes"
+      },
+      "flowLanes": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "flowLanes"
+      },
+      "flowNodes": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "flowNodes"
       }
     },
     "resources": {

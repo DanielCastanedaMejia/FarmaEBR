@@ -1,0 +1,49 @@
+<core:FragmentDefinition
+    id ="dataStartOrderScanSFCFragment"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:c="sap.suite.ui.commons"
+    class="sapUiSizeCompact">
+    <Dialog
+        title="Flujo de procesos"
+        id="ProcessFlowDialog"
+        contentHeight="100%"
+        contentWidth="100%">
+        <c:ProcessFlow
+			id="processflow1"
+			scrollable="false"
+			foldedCorners="true"
+			nodes="{/nodes}"
+			lanes="{/lanes}">
+			<c:nodes>
+				<c:ProcessFlowNode
+					laneId="{lane}"
+					nodeId="{id}"
+					title="{title}"
+					titleAbbreviation="{titleAbbreviation}"
+					children="{children}"
+					state="{state}"
+					stateText="{stateText}"
+					texts="{texts}"
+					highlighted="{highlighted}"
+					focused="{focused}" />
+			</c:nodes>
+			<c:lanes>
+				<c:ProcessFlowLaneHeader
+					laneId="{id}"
+					iconSrc="{icon}"
+					text="{label}"
+					position="{position}" />
+			</c:lanes>
+		</c:ProcessFlow>
+    <endButton>
+      <Button
+       type="Reject"
+         text="Cerrar"
+         press="onCloseProcessFlow"/>
+    </endButton>
+    </Dialog>
+</core:FragmentDefinition> 

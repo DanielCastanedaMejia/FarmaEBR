@@ -1014,6 +1014,28 @@ sap.ui.define([
             this.getRouter().navTo("crearAviso");
         },
 
+        onOpenProcessFlow: function() {
+            const othis = this;
+            this.getView().setBusy(true);
+            if (!this.proFlowDialog) {
+                // @ts-ignore
+                this.proFlowDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.ProcessFlow"
+                });
+            }
+            this.proFlowDialog.then(function (oDialog) {
+
+                othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
+
+                othis.getView().setBusy(false);
+                oDialog.open();
+            });
+        },
+
+        onCloseProcessFlow: function() {
+            this.byId("ProcessFlowDialog").close();
+        },
+
         onDetal_view: function (oEvent) {
             var oItem, oCtx, estatus, sPath;
             oItem = oEvent.getSource();
@@ -1030,18 +1052,16 @@ sap.ui.define([
             }
         },
         onChart: function () {
-            MessageToast.show("Gráficas");
-            if (!this.pDialog) {
+            const othis = this;
+            this.getView().setBusy(true);
+            if (!this.chartsDialog) {
                 // @ts-ignore
-                this.pDialog = this.loadFragment({
+                this.chartsDialog = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.Charts"
-                }).then(function (oDialog) {
-                    // forward compact/cozy style into dialog
-                    syncStyleClass("sapUiSizeCondensed", this.getView(), oDialog);
-                    return oDialog;
-                }.bind(this));
+                });
             }
-            this.pDialog.then(function (oDialog) {
+            this.chartsDialog.then(function (oDialog) {
+                othis.getView().setBusy(false);
                 oDialog.open();
             });
         },
