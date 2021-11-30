@@ -9,11 +9,11 @@
         id="step2Dialog"
         initialFocus="pdf_step2"
         title="{i18n>prepProcessStep2Text}">
-        <PDFViewer
+        <!-- <PDFViewer
             id="pdf_step2"
             showDownloadButton="false"
             height="30em"
-            source="./files/prep_step1_instructions.pdf" />
+            source="./files/prep_step1_instructions.pdf" />-->
         <Table>
             <columns>
                 <Column vAlign="Middle">

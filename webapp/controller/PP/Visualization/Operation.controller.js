@@ -944,6 +944,9 @@ sap.ui.define([
                 orden: oView.getModel().getProperty('/ORDEN'),
                 operacion: oView.getModel().getProperty('/OPERACION')
             });
+        },
+        onQA: function () {
+            MessageToast.show("Nav to QA");
         }
     });
 }

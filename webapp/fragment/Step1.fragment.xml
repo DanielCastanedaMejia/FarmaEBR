@@ -7,11 +7,11 @@
         id="step1Dialog"
         initialFocus="pdf_step1"
         title="{i18n>prepProcessStep1Text}">
-        <PDFViewer
+        <!-- <PDFViewer
             id="pdf_step1"
             showDownloadButton="false"
             height="38em"
-            source="./files/prep_step1_instructions.pdf" />
+            source="./files/prep_step1_instructions.pdf" />-->
         <Table>
             <columns>
                 <Column vAlign="Middle" width="5rem">
@@ -32,7 +32,7 @@
                 <Column vAlign="Middle" width="5rem">
                     <Text text="{i18n>step1Column3Text}"/>
                 </Column>
-                <Column vAlign="Middle" width="5rem" >
+                <!-- <Column vAlign="Middle" width="5rem" >
                     <Text text="{i18n>step1Column2Text}"/>
                 </Column>
                 <Column vAlign="Middle">
@@ -40,7 +40,7 @@
                 </Column>
                 <Column vAlign="Middle" width="5rem">
                     <Text text="{i18n>step1Column3Text}"/>
-                </Column>
+                </Column>-->
             </columns>
             <items>
             <ColumnListItem>
@@ -48,18 +48,22 @@
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v1}" />
                     <Text text="{i18n>step1Validation1Text}" />
                     <Text/>
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v3}" />
-                    <Text text="{i18n>step1Validation3Text}" />
-                    <Text/>
+                    
+                    
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v5}" />
                     <Text text="{i18n>step1Validation5Text}" />
+                    
                 </cells>
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
+                    <!-- 
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v2}" />
                     <Text text="{i18n>step1Validation2Text}" />
-                    <Text/>
+                    <Text/>-->
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step1/v3}" />
+                    <Text text="{i18n>step1Validation3Text}" />
+                    <Text />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v4}" />
                     <Text text="{i18n>step1Validation4Text}" />
                     <Button icon="sap-icon://show" press="onOpenImageDetailDialog" />

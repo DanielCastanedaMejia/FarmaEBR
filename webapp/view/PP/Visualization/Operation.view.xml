@@ -87,9 +87,9 @@
               <Button
                icon="sap-icon://employee-lookup"
                type="Emphasized"
-               text="Inspección"
-               press="onInspeccion"
-               visible="false"/>
+               text="QA"
+               press="onQA"
+               visible="true"/>
               <Button id="addRows"
                 type="Transparent" 
                 tooltip="Agregar materiales" 

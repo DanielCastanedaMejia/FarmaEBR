@@ -9,11 +9,11 @@
         id="step3Dialog"
         initialFocus="pdf_step3"
         title="{i18n>prepProcessStep3Text}">
-        <PDFViewer
+        <!-- <PDFViewer
             id="pdf_step3"
             showDownloadButton="false"
             height="30em"
-            source="./files/prep_step1_instructions.pdf" />
+            source="./files/prep_step1_instructions.pdf" />-->
         <Table>
             <columns>
                 <Column>

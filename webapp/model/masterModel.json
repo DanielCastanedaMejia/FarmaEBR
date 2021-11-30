@@ -28,7 +28,7 @@
         "vStep3": false,
         "step1": {
             "v1": false,
-            "v2": false,
+            "v2": true,
             "v3": false,
             "v4": false,
             "v5": false
@@ -65,7 +65,11 @@
             "v11": false,
             "v12": false
         },
-        "supervisorValidation" : false
+        "supervisorValidation" : false,
+
+        "vQAStep1": false,
+        "vQAStep2": false,
+        "vQAStep3": false
     },
     "user": {
         "name": "",
