@@ -47,11 +47,10 @@
                 <cells>
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v1}" />
                     <Text text="{i18n>step1Validation1Text}" />
-                    <Text/>
-                    
-                    
+                    <Button id="infoPDF1" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v5}" />
                     <Text text="{i18n>step1Validation5Text}" />
+                    <Button id="infoPDF3" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
                     
                 </cells>
             </ColumnListItem>
@@ -63,10 +62,10 @@
                     <Text/>-->
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v3}" />
                     <Text text="{i18n>step1Validation3Text}" />
-                    <Text />
+                    <Button id="infoPDF2" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step1/v4}" />
                     <Text text="{i18n>step1Validation4Text}" />
-                    <Button icon="sap-icon://show" press="onOpenImageDetailDialog" />
+                    <Button id="infoPDF4" icon="sap-icon://hint" press="onOpenPDFDetailDialog" />
                 </cells>
             </ColumnListItem>
             </items>
