@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:f="sap.f"
 	controllerName="sap.ui.demo.webapp.controller.Reportes.generarEBR"
 	xmlns:core="sap.ui.core"
 	xmlns:fb="sap.ui.comp.filterbar"
@@ -35,6 +35,13 @@
 					<Label 
 						labelFor="myColumn"
 						class="toolbar_title"
+						text="Estación de trabajo X"
+						wrapping="true"/>
+						<core:Icon 
+							src="sap-icon://arrow-right" />
+					<Label 
+						labelFor="myColumn"
+						class="toolbar_title"
 						text="Generación de EBR"
 						wrapping="true"/>
 					<ToolbarSpacer/>
@@ -49,29 +56,176 @@
 						class="sapUiLargeMarginEnd">
 					</Button>
 				</Toolbar>
-        
-	
-				<ScrollContainer
-					height="100%"
-					width="100%"
-					horizontal="true"
-					vertical="true">
-					<FlexBox 
-						direction="Column" 
-						renderType="Div" 
-						class="sapUiSmallMargin">
-						<PDFViewer 
-							source="{/Source}" 
-							title="{/Title}" 
-							height="{/Height}">
-							<layoutData>
-								<FlexItemData growFactor="1" />
-							</layoutData>
-						</PDFViewer>
-					</FlexBox>
-				</ScrollContainer>
+        <fb:FilterBar header="Órdenes"
+                      reset="_onRouteMatched" search="PPOrders_view" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact" showRestoreOnFB="true">
 
+          <fb:filterItems>
 
+            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+              <fb:control>
+                <ComboBox id="planta" selectedKey="1710">
+                  <items>
+                    <core:Item key="1710" text="Planta 1710"/>
+                  </items>
+                </ComboBox>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="A" label="{i18n>StartDate}">
+              <fb:control>
+                <DatePicker
+                  id="start_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false"
+                  value="25-07-2019"/>
+              </fb:control>
+            </fb:FilterItem>
+
+            <fb:FilterItem name="B" label="{i18n>EndDate}">
+              <fb:control>
+                <DatePicker
+                  id="end_date"
+                  valueFormat="dd-MM-yyyy"
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false"
+                  value="08-08-2019"/>
+              </fb:control>
+            </fb:FilterItem>
+
+          </fb:filterItems>          
+
+        </fb:FilterBar>
+        <content>
+          <Table
+  id="PPOrders_list"
+  class="sapUiResponsiveMargin"
+  width="auto"
+  items="{/ITEMS}">
+            <columns>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Orden"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Codigo Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Material"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Planta"/>
+              </Column>
+              <Column
+                minScreenWidth="Small"
+                demandPopin="true">
+                <Label text="Fecha Inicio"/>
+              </Column>
+              <Column
+                minScreenWidth="Tablet"
+                demandPopin="false">
+                <Label text="Fecha Fin"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Tipo"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false"
+                  visible="false">
+                <Label text="Lote Prod"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Lote Inspec"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Cant Prog"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false"
+                  id="ESTATUS_Col">
+                <Label text="{i18n>column.status}"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="Estatus MII"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="USUARIO PRIM"/>
+              </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="USUARIO SEC"/>
+              </Column>
+            </columns>
+
+            <items>
+              <ColumnListItem
+                type="Active"
+                press="onDetal_view">
+                <cells>
+                  <Text text="{NUM_ORDEN}"/>
+                  <Text text="{MATERIAL}"/>
+                  <Text text="{DESC_MATERIAL}"/>
+                  <Text text="{PLANTA}"/>
+                  <ObjectStatus text="{
+                    path: 'INICIO_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <ObjectStatus text="{
+                    path: 'FIN_PLANEADO',
+                    formatter: '.formatter.date'
+                  }"/>
+                  <Text text="{TIPO}"/>
+                  <Text text="{LOTE}"/>
+                  <Text text="{LOTE_INSPECCION}"/>
+                  <Text text="{CANTIDAD_PROGRAMADA}"/>
+                  <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderState'
+                          }"
+                    state="{
+                            path: 'ESTATUS',
+                            formatter: '.formatter.orderStateColor'
+                    }"
+                    />
+                    <ObjectStatus 
+                    class="stat"
+                    text="{
+                            path: 'ESTATUS_MII'
+                          }"
+                    state="{
+                            path: 'ESTATUS_MII',
+                            formatter: '.formatter.miiStateColor'
+                    }"
+                    />
+                    <Text text="{USUARIO_PRIM}"/>
+                    <Text text="{USUARIO_SEC}"/>
+                </cells>
+              </ColumnListItem>
+            </items>
+          </Table>
+        </content>
 			</Page>
 		</pages>
 	</NavContainer>

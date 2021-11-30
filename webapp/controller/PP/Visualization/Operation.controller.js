@@ -501,7 +501,6 @@ sap.ui.define([
                         };
                         console.log("length", iConsLength);
                         for(var i = 0; i < iConsLength; i++) {
-                            console.log("Check", oConsModel.getProperty("/items/" + i + "/id"), sId)
                             if(oConsModel.getProperty("/items/" + i + "/id") == sId) {
                                 iQty += parseInt(oConsModel.getProperty("/items/" + i + "/qty"));
                                 oConsModel.setProperty("/items/" + i + "/qty", iQty);

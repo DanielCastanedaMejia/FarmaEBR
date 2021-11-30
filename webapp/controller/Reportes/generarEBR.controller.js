@@ -3,28 +3,32 @@ sap.ui.define([
     "sap/m/MessageBox",
     "sap/ui/demo/webapp/controller/BaseController",
     "sap/ui/model/json/JSONModel",
-    "sap/m/MessageToast"
-], function (jQuery,MessageBox,BaseController, JSONModel, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/demo/webapp/model/formatter"
+], function (jQuery,MessageBox,BaseController, JSONModel, MessageToast, formatter) {
     "use strict";
     return BaseController.extend("sap.ui.demo.webapp.controller.generarEBR", {
-      
+        formatter: formatter,
         onInit: function () {
-		this._getUsuario("username");
-          		var operador=this.obtenerUsuario();
-	         	//console.log(operador);
-            	//var oRouter = this.getRouter();
-            	//oRouter.getRoute("generarEBR").attachMatched(this._onRouteMatched, this);
+            this._getUsuario("username");
+                    var operador=this.obtenerUsuario();
+                    //console.log(operador);
+                    //var oRouter = this.getRouter();
+                    //oRouter.getRoute("generarEBR").attachMatched(this._onRouteMatched, this);
 
-		this._sValidPath="http://localhost:8010/proxy/XMII/CM/FARMA/POS/documentos/FormatoEBR.pdf" 
-		//this._sValidPath = sap.ui.require.toUrl("http://localhost:8010/proxy/XMII/CM/FARMA_EBR/MII-Launchpad/files/EBR_SinCaratula_SoloLogoInicial_Separado_Ok.pdf");
-		//this._sInvalidPath = sap.ui.require.toUrl("sap/m/sample/PDFViewerEmbedded") + "/sample_nonexisting.pdf";
-		this._oModel = new JSONModel({
-			Source: this._sValidPath,
-			Title: "Formato EBR",
-			Height: "600px"
-		});
-		this.getView().setModel(this._oModel);
+            this._sValidPath="http://localhost:8010/proxy/XMII/CM/FARMA/POS/documentos/FormatoEBR.pdf" 
+            //this._sValidPath = sap.ui.require.toUrl("http://localhost:8010/proxy/XMII/CM/FARMA_EBR/MII-Launchpad/files/EBR_SinCaratula_SoloLogoInicial_Separado_Ok.pdf");
+            //this._sInvalidPath = sap.ui.require.toUrl("sap/m/sample/PDFViewerEmbedded") + "/sample_nonexisting.pdf";
+            this._oModel = new JSONModel({
+                Source: this._sValidPath,
+                Title: "Formato EBR",
+                Height: "600px"
+            });
+            this.getView().setModel(this._oModel);
 
+            var oModel = this.getOwnerComponent().getModel("ordersModel");
+
+            this.byId("PPOrders_list").setModel(oModel);
         },
 
  onIniciar: function(){
