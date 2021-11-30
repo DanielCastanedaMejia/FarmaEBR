@@ -6,26 +6,26 @@
                 <Label text="{i18n>sfcInputLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
                 <Input enabled="false" id="oSFCBarcode" width="100%"  value="{masterModel>/view/startedOrder}"   />	
                 </items>
-            </VBox> 
+            </VBox>
 
             <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
                 <items>
                 <Label text="{i18n>goodProductionLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
-                <Input type="Number" enabled="true" id="oGOOD" width="40%"  value="2"   />	
+                <Input type="Number" enabled="true" id="oGOOD" width="40%"  value=""   />	
                 </items>
             </VBox> 
 
             <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
                 <items>
                 <Label text="{i18n>scrapLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
-                <Input type="Number" enabled="true" id="oSCRAP" width="40%"  value="1"   />	
+                <Input type="Number" enabled="true" id="oSCRAP" width="40%"  value=""   />	
                 </items>
             </VBox> 
 
             <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
                 <items>
                 <Label text="{i18n>productionNotificationLabel}"    width="100%" design="Bold" class="sapUiTinyMarginEnd"/>
-                <Input type="Number" enabled="true"  id="oNOTIF" width="40%"  value="1"   />	
+                <Input type="Number" enabled="true"  id="oNOTIF" width="40%"  value=""   />	
                 </items>
             </VBox>
         </VBox>
