@@ -27,6 +27,8 @@
         "vStep2": true,
         "vStep3": false,
         "step1": {
+            "user": "",
+            "date": "",
             "v1": false,
             "v2": true,
             "v3": false,
@@ -34,6 +36,8 @@
             "v5": false
         },
         "step2": {
+            "user": "",
+            "date": "",
             "values": {
                 "t1": true,
                 "t2": false,
@@ -52,6 +56,8 @@
             "v7": false
         },
         "step3": {
+            "user": "",
+            "date": "",
             "v1": false,
             "v2": false,
             "v3": false,

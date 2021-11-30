@@ -489,7 +489,8 @@ sap.ui.define([
                             sUm = oModel.getProperty(sPath + "/UM"),
                             oConsModel = this.getOwnerComponent().getModel("consumeModel"),
                             iConsLength = oConsModel.getProperty("/items").length,
-                            aConsData = oConsModel.getProperty("/items");
+                            aConsData = oConsModel.getProperty("/items"),
+                            sDate = Date();
 
                         iQty = parseInt(iQty);
 
@@ -497,7 +498,8 @@ sap.ui.define([
                             "id": sId,
                             "desc": sDesc,
                             "um": sUm,
-                            "qty": iQty
+                            "qty": iQty,
+                            "date": sDate
                         };
                         console.log("length", iConsLength);
                         for(var i = 0; i < iConsLength; i++) {

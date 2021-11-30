@@ -365,6 +365,8 @@ sap.ui.define([
         onAcceptStep1Dialog: function () {
             this.setEbrStatus("1");
             this._setMasterModel("/validations/vStep1", true);
+            this._setMasterModel("/validations/step1/date", Date());
+            this._setMasterModel("/validations/step1/user", this._getMasterModel("/view/login/username"));
             this.closeDialog("step1Dialog");
         },
         onCloseCharts: function () {
@@ -373,6 +375,8 @@ sap.ui.define([
         onAcceptStep2Dialog: function () {
             this.setEbrStatus("2");
             this._setMasterModel("/validations/vStep2", true);
+            this._setMasterModel("/validations/step2/date", Date());
+            this._setMasterModel("/validations/step2/user", this._getMasterModel("/view/login/username"));
             this.closeDialog("step2Dialog");
         },
         onCloseStep2Dialog: function () {
@@ -447,6 +451,8 @@ sap.ui.define([
                     this.closeDialog("prepProcessDialog");
                     this.closeDialog("supervisorLogDialog");
                     this._setMasterModel("/validations/vStep3", true);
+                    this._setMasterModel("/validations/step3/date", Date());
+                    this._setMasterModel("/validations/step3/user", this._getMasterModel("/view/login/username"));
 
                     MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
                 } else {
@@ -599,6 +605,8 @@ sap.ui.define([
 
                 othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
                 othis.constructProcessFlow();
+                othis.getView().byId("processflow1").setZoomLevel("One");
+                othis.getView().byId("processflow1").optimizeLayout();
                 othis.getView().setBusy(false);
                 oDialog.open();
             });
@@ -607,28 +615,134 @@ sap.ui.define([
             console.log("Construyendo");
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
+                oConsModel = this.getOwnerComponent().getModel("consumeModel"),
                 sNum = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
                 sDesc = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
                 sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
-                sDate = oOrderModel.getProperty(sPath + "/FECHA_INS"),
-                sLote = oOrderModel.getProperty(sPath + "/LOTE"),
-                sTitle = "Orden: " + sNum,
-                sFirst = "Descripción: " + sDesc + "\nCantidad: " + sQty,
-                sSecond = "Fecha Lib: " + sDate + "\nLote: " + sLote;
+                sLote = oOrderModel.getProperty(sPath + "/LOTE");
 
-            var oNewNode = new ProcessFlowNode({
-                nodeId: "0",
-                laneId: "0",
+                // ORDEN
+            var sTitle = "Orden: " + sNum,
+                sDate = oOrderModel.getProperty(sPath + "/FECHA_INS").substring(0, 10),
+                sState = "Positive",
+                sStateText = "Liberada",
+                sFirst = sDesc + "\nCantidad: " + sQty,
+                sSecond = sDate + "\nLote: " + sLote,
+                sTime, sUser, aData, iIndex;
+
+            this.createNewNode("0", "0", sTitle, sState, sStateText, sFirst, sSecond);
+
+            // STEP 1
+            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
+
+            sTitle = "Preparación de área de trabajo";
+            
+            if(this._getMasterModel("/validations/vStep1")) {
+                sState = "Positive";
+                sStateText = "OK";
+                sDate = this._getMasterModel("/validations/step1/date").substring(4, 15);
+                sTime = this._getMasterModel("/validations/step1/date").substring(16, 21);
+                sFirst = sDate + " " + sTime;
+                sUser = "Usuario: " + this._getMasterModel("/validations/step1/user");
+                sSecond = sUser; 
+            } else {
+                sState = "Negative";
+            }
+
+            this.createNewNode("10", "1", sTitle, sState, sStateText, sFirst, sSecond);
+
+            // STEP 2
+            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
+            sTitle = "Cambio de formato";
+            if(this._getMasterModel("/validations/vStep2")) {
+                sState = "Positive";
+                sStateText = "OK";
+                sDate = this._getMasterModel("/validations/step2/date").substring(4, 15);
+                sTime = this._getMasterModel("/validations/step2/date").substring(16, 21);
+                sFirst = sDate + " " + sTime;
+                sUser = "Usuario: " + this._getMasterModel("/validations/step2/user");
+                sSecond = sUser; 
+            } else {
+                sState = "Negative";
+            }
+            this.createNewNode("11", "1", sTitle, sState, sStateText, sFirst, sSecond);
+
+            // STEP 3
+            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
+            sTitle = "Parámetros del equipo";
+            if(this._getMasterModel("/validations/vStep3")) {
+                sState = "Positive";
+                sStateText = "OK";
+                sDate = this._getMasterModel("/validations/step3/date").substring(4, 15);
+                sTime = this._getMasterModel("/validations/step3/date").substring(16, 21);
+                sFirst = sDate + " " + sTime;
+                sUser = "Usuario: " + this._getMasterModel("/validations/step3/user");
+                sSecond = sUser; 
+            } else {
+                sState = "Negative";
+            }
+            this.createNewNode("12", "1", sTitle, sState, sStateText, sFirst, sSecond);
+
+            // FIRMA
+            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
+            sTitle = "Firma supervisor";
+            if(this._getMasterModel("/validations/supervisorValidation")) {
+                sState = "Positive";
+                sStateText = "OK";
+                sDate = this._getMasterModel("/validations/step3/date").substring(4, 15);
+                sTime = this._getMasterModel("/validations/step3/date").substring(16, 21);
+                sFirst = sDate + " " + sTime;
+                sUser = "Usuario: " + this._getMasterModel("/view/supervisorLogin/username");
+                sSecond = sUser; 
+            } else {
+                sState = "Negative";
+            }
+            this.createNewNode("13", "1", sTitle, sState, sStateText, sFirst, sSecond);
+
+            // CONSUMOS
+            aData = oConsModel.getProperty("/items");
+            iIndex = 20
+
+            for(var i = 0; i < aData.length; i++, iIndex++) {
+                this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
+
+                sTitle = oConsModel.getProperty("/items/" + i + "/desc");
+                sState = "Neutral";
+                sStateText = "";
+                sDate = oConsModel.getProperty("/items/" + i + "/date").substring(4, 15);
+                sTime = oConsModel.getProperty("/items/" + i + "/date").substring(16, 21);
+                sUser = "";
+                sFirst = sDate + " " + sTime + "\n" + sUser;
+                sSecond = "Lote: " + oOrderModel.getProperty(sPath + "/LOTE") + "\nCantidad: " + oConsModel.getProperty("/items/" + i + "/qty"); 
+
+                this.createNewNode(iIndex.toString(), "2", sTitle, sState, sStateText, sFirst, sSecond);
+            }
+        },
+        onCloseProcessFlow: function() {
+            this.byId("ProcessFlowDialog").close();
+            this.byId("processflow1").removeAllNodes();
+        },
+        createNewNode: function (nodeId, laneId, sTitle, sState, sStateText, sFirst, sSecond) {
+            var oNewNode =  new ProcessFlowNode({
+                nodeId: nodeId,
+                laneId: laneId,
                 title: sTitle,
                 children: [ ],
-                state: "Positive",
-                stateText: "",
+                state: sState,
+                stateText: sStateText,
                 texts: [ sFirst, sSecond ]
             });
             this.byId("processflow1").insertNode(oNewNode, 0);
         },
-        onCloseProcessFlow: function() {
-            this.byId("ProcessFlowDialog").close();
-        },
+        clearAttributes: function(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser) {
+            sTitle = "";
+            sDate = "";
+            sState = "";
+            sStateText = "";
+            sFirst = "";
+            sSecond = "";
+            sTime = "";
+            sUser = "";
+        }
     });
 });
