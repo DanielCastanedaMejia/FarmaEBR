@@ -42,8 +42,8 @@
              text="{masterModel>/view/login/username}"
              class="toolbar_color"></Label>
              <!-- En el campo text estaba escrito el usuario de MII-->
-      <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">
-      </Button>
+      <Button icon="sap-icon://person-placeholder" type="Transparent" class="" enabled="false"/>
+      <Button icon="sap-icon://log" type="Transparent" class="sapUiTinyMargin" press="onLogout"/>      
     </Toolbar>
 
 <layout:VerticalLayout class="sapUiResponsiveMargin">
