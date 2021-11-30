@@ -298,7 +298,8 @@ sap.ui.define([
         },
         onOpenPDFDetailDialog: function (oEvent) {
             var sSource = oEvent.getSource().getId().toString();
-            var indexOfPDF = sSource.charAt(sSource.length - 1)            
+            var indexOfPDF = sSource.charAt(sSource.length - 1);
+            console.log(indexOfPDF);
             this._pdfViewer.setSource("./files/Step1_" + indexOfPDF + ".pdf");
             this._pdfViewer.setTitle(this._getMasterModel("/PDFTitles/" + indexOfPDF));
             this._pdfViewer.open();
