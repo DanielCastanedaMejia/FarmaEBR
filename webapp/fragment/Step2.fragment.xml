@@ -2,9 +2,7 @@
 	xmlns="sap.m"
 	xmlns:core="sap.ui.core"
     height="100%" >
-    <Dialog
-        contentHeight="100%"
-        contentWidth="100%"
+    <Dialog        
         class="sapUiResponsiveMargin"
         id="step2Dialog"
         initialFocus="pdf_step2"
@@ -148,12 +146,6 @@
                         press="onPressTimer"
                         enabled="{ path: 'masterModel&gt;/buttonTimer/7/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t7}" placeholder="Tiempo (minutos)" />-->
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
-                    
-                    <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t4}" placeholder="Tiempo (minutos)" />-->
                 </cells>
             </ColumnListItem>
             </items>

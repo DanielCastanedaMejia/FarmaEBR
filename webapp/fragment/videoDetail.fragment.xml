@@ -7,7 +7,7 @@
         id="videoDetailDialog"
         title="{i18n>imageDetailDialogTitle}">
         <FlexBox justifyContent="Center" >
-            <core:HTML 
+            <core:HTML id="videoHTML"
             content='&lt;video width=&quot;720&quot; height=&quot;480&quot; controls autoplay&gt;
             &lt;source src=&quot;./images/vdo/paso3.mp4&quot; type=&quot;video/mp4&quot;&gt;
           Your browser does not support the video tag.
@@ -19,7 +19,7 @@
                 id="videoDetail"
                 type="Reject"
                 text="{i18n>closeButton}"
-                press="onCloseDialog" />
+                press="onCloseVideoDialog" />
         </endButton>
    </Dialog>
 </core:FragmentDefinition>

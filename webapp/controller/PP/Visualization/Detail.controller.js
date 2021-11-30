@@ -57,6 +57,7 @@ sap.ui.define([
         },
         onOpenDialogAddOperation: function (oEvent) {
             var oView = this.getView();
+            this.vDialog;
             var oDialog = oView.byId("AddOperationDialog");
             // create dialog lazily
             if (!oDialog) {
@@ -293,8 +294,15 @@ sap.ui.define([
                 });
             }
             this.videoDetailDialog.then(function (oDialog) {                
-                oDialog.open();
+                oDialog.open();                
             });
+        },
+        onCloseVideoDialog: function (oEvent) {
+            const oSource = oEvent.getSource();
+            const oSrcVideo = oSource.getId() + "Dialog--videoHTML";
+            console.log(oSource.getId() + "Dialog--videoHTML");
+            this.byId(oSrcVideo).removeAttribute('src');
+            this.byId(oSource.getId() + "Dialog").close();
         },
         onOpenPDFDetailDialog: function (oEvent) {
             var sSource = oEvent.getSource().getId().toString();

@@ -3,8 +3,6 @@
 	xmlns:core="sap.ui.core"
     height="100%" >
     <Dialog
-        contentHeight="100%"
-        contentWidth="100%"
         class="sapUiResponsiveMargin"
         id="step3Dialog"
         initialFocus="pdf_step3"
