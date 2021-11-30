@@ -649,8 +649,6 @@ sap.ui.define([
             this.createNewNode("0", "0", sTitle, sState, sStateText, sFirst, sSecond);
 
             // STEP 1
-            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
-
             sTitle = "Preparación de área de trabajo";
             
             if(this._getMasterModel("/validations/vStep1")) {
@@ -663,12 +661,17 @@ sap.ui.define([
                 sSecond = sUser; 
             } else {
                 sState = "Negative";
+                sDate = "";
+                sStateText = "";
+                sFirst = "";
+                sSecond = "";
+                sTime = "";
+                sUser = "";
             }
 
             this.createNewNode("10", "1", sTitle, sState, sStateText, sFirst, sSecond);
 
             // STEP 2
-            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
             sTitle = "Cambio de formato";
             if(this._getMasterModel("/validations/vStep2")) {
                 sState = "Positive";
@@ -680,11 +683,16 @@ sap.ui.define([
                 sSecond = sUser; 
             } else {
                 sState = "Negative";
+                sDate = "";
+                sStateText = "";
+                sFirst = "";
+                sSecond = "";
+                sTime = "";
+                sUser = "";
             }
             this.createNewNode("11", "1", sTitle, sState, sStateText, sFirst, sSecond);
 
             // STEP 3
-            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
             sTitle = "Parámetros del equipo";
             if(this._getMasterModel("/validations/vStep3")) {
                 sState = "Positive";
@@ -696,11 +704,16 @@ sap.ui.define([
                 sSecond = sUser; 
             } else {
                 sState = "Negative";
+                sDate = "";
+                sStateText = "";
+                sFirst = "";
+                sSecond = "";
+                sTime = "";
+                sUser = "";
             }
             this.createNewNode("12", "1", sTitle, sState, sStateText, sFirst, sSecond);
 
             // FIRMA
-            this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
             sTitle = "Firma supervisor";
             if(this._getMasterModel("/validations/supervisorValidation")) {
                 sState = "Positive";
@@ -723,7 +736,7 @@ sap.ui.define([
                 this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
 
                 sTitle = oConsModel.getProperty("/items/" + i + "/desc");
-                sState = "Neutral";
+                sState = "Positive";
                 sStateText = "";
                 sDate = oConsModel.getProperty("/items/" + i + "/date").substring(4, 15);
                 sTime = oConsModel.getProperty("/items/" + i + "/date").substring(16, 21);
@@ -733,6 +746,28 @@ sap.ui.define([
 
                 this.createNewNode(iIndex.toString(), "2", sTitle, sState, sStateText, sFirst, sSecond);
             }
+
+            // CALIDAD
+
+            // DECLARACIÓN DE PRODUCCIÓN
+            sTitle = ""
+
+            // CIERRE
+            var bStatus = oOrderModel.getProperty(sPath + "ESTATUS_MII");
+
+            if(bStatus === "CERRADA") {
+                sTitle = "Orden: " + oOrderModel.getProperty(sPath + "/NUM_ORDEN");
+                sState = "Positive";
+                sStateText = "Cerrada";
+                sDate = Date().substring(4, 15);
+                sTime = Date().substring(16, 21);
+                sUser = this._getMasterModel("/view/login/username");
+                sFirst = sDate + " " + sTime;
+                sSecond = "Usuario: " + sUser;
+
+                this.createNewNode("50", "5", sTitle, sState, sStateText, sFirst, sSecond);
+            }
+
         },
         onCloseProcessFlow: function() {
             this.byId("ProcessFlowDialog").close();
@@ -749,16 +784,6 @@ sap.ui.define([
                 texts: [ sFirst, sSecond ]
             });
             this.byId("processflow1").insertNode(oNewNode, 0);
-        },
-        clearAttributes: function(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser) {
-            sTitle = "";
-            sDate = "";
-            sState = "";
-            sStateText = "";
-            sFirst = "";
-            sSecond = "";
-            sTime = "";
-            sUser = "";
         }
     });
 });

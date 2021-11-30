@@ -472,8 +472,7 @@ wind.close();
                         sSrc = "../../files/EBR_5.pdf";
                         break;
                     default:
-                        sSrc = "";
-                        break;
+                        return;
                 }
 
                 othis.getView().byId("ebrPdfView").setSource(sSrc);
