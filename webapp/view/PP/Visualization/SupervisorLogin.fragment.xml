@@ -45,7 +45,7 @@ xmlns:core="sap.ui.core" >
        <Button
             text="{i18n>dialogCloseButtonText}"
             icon="sap-icon://decline"
-            press=".onCloseDialog"
+            press=".onCloseSuperDialog"
             type="Reject"/>
    </endButton>
 </Dialog>

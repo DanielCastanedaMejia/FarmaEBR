@@ -45,7 +45,15 @@
       "materialModel": {
         "uri": "model/materialsModel.json",
         "type": "JSON"
-      }
+      },
+      "consumeModel": {
+        "uri": "model/Consumption.json",
+        "type": "JSON"
+      },
+      "salesShare": {
+				"uri": "model/SalesShare.json",
+				"type": "JSON"
+			}
     }
   },
   "sap.ui": {
@@ -111,6 +119,14 @@
       "materialModel": {
         "dataSource": "materialModel",
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "consumeModel": {
+        "dataSource": "consumeModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "salesShare": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "salesShare"
       }
     },
     "resources": {
@@ -140,6 +156,12 @@
         {
           "pattern": "",
           "name": "appHome",
+          "target": "loginUserPP"
+        },
+
+        {
+          "pattern": "home",
+          "name": "home",
           "target": "home"
         },
         {

@@ -4,9 +4,10 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     'sap/ui/model/json/JSONModel',
-    "../../../model/formatter"
+    "../../../model/formatter",
+    "sap/ui/core/syncStyleClass"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Detail", {
@@ -363,15 +364,88 @@ sap.ui.define([
             this.closeDialog("step2Dialog");
         },
         onCloseStep2Dialog: function () {
-            this.byId("step2Dialog").close();
+            this.closeDialog("step2Dialog");
         },
-        onAcceptStep3Dialog: function () {
-            this._setMasterModel("/validations/vStep3", true);
-            this._setMasterModel("/view/prepProcessFinished", true);
-            this.closeDialog("step3Dialog");
-            this.closeDialog("prepProcessDialog");
+        onAcceptStep3Dialog: function () {            
+            this.onOpenSuperVDialog();
+            //this._setMasterModel("/view/prepProcessFinished", true);
+            //this.closeDialog("step3Dialog");
+            //this.closeDialog("prepProcessDialog");
 
-            MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
+            //MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
+        },
+        onOpenSuperVDialog: function () {
+            // create dialog lazily
+            if (!this.pDialog) {
+                // @ts-ignore
+                this.pDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.view.PP.Visualization.SupervisorLogin"
+                }).then(function (oDialog) {
+                    // forward compact/cozy style into dialog
+                    syncStyleClass("sapUiSizeCondensed", this.getView(), oDialog);
+                    return oDialog;
+                }.bind(this));
+            }
+            this.pDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onCloseSuperDialog: function () {
+            // note: We don't need to chain to the pDialog promise, since this event-handler
+            // is only called from within the loaded dialog itself.
+            this.byId("supervisorLogDialog").close();
+        },
+        onAcceptDialog: function () {
+            var sUsername = this._getMasterModel("/view/supervisorLogin/username"),
+                sPassword = this._getMasterModel("/view/supervisorLogin/password");
+
+            var oData = {
+                "username": sUsername,
+                "password": sPassword
+            }
+
+            var server = this._getMasterModel("/server/url");
+            (server);
+
+            //var path="/XMII/Runner?Transaction=Pharma_Prefabricado_Modular/DatosMaestros/Produccion/User/Transaction/select_UsersPhPM_Login&OutputParameter=JsonOutput&Content-Type=text/xml";
+            //this._base_loadSuperv(oData, server, path);
+            //this.byId("supervisorLogDialog").close();
+
+            var oModel = new JSONModel();
+            var aData = this.getOwnerComponent().getModel("usersModel");
+            oModel.setData(aData);
+            var nModel = oModel.oData.getProperty("/user").length;
+            var userModel, passModel;
+            var validIndex, validUser = false;
+            for (var i = 0; i < nModel; i++) {
+                userModel = aData.getProperty("/user/" + i + "/username");
+                passModel = aData.getProperty("/user/" + i + "/password");
+                if (userModel == sUsername && sPassword == passModel) {
+                    validUser = true;
+                    validIndex = i;
+                    break;
+                }
+            }
+            if (validUser) {
+                if (aData.getProperty("/user/" + validIndex + "/is_supervisor") == "1") {
+                    this._setMasterModel("/view/prepProcessFinished", true);
+                    this._setMasterModel("/validations/supervisorValidation", true);
+                    this.closeDialog("step3Dialog");
+                    this.closeDialog("prepProcessDialog");
+                    this.closeDialog("supervisorLogDialog");
+                    this._setMasterModel("/validations/vStep3", true);
+
+                    MessageToast.show("Proceso finalizado, ahora puede iniciar la orden");
+                } else {
+                    MessageToast.show("Es necesario el inicio de sesión de un supervisor. Intente de nuevo");
+                    this._setMasterModel("/view/supervisorLogin/password", "");
+
+                }
+            } else {
+                MessageToast.show("Usuario y/o contraseña incorrectos. Intente de nuevo");
+                this._setMasterModel("/view/supervisorLogin/password", "");
+                //this._setMasterModel("/view/login/password", "");
+            }
         },
         onScrapComponent: function () {
             MessageToast.show("Componente de Scrap");

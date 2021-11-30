@@ -91,7 +91,13 @@ sap.ui.define([
             }
         },
 
-
+        onLogout: function () {
+            this.getRouter().navTo("appHome");
+            this.getOwnerComponent().getModel("masterModel").setProperty("/view/login/username", "");
+            this.getOwnerComponent().getModel("masterModel").setProperty("/view/login/password", "");
+            this.getOwnerComponent().getModel("masterModel").setProperty("/view/supervisorLogin/username", "");
+            this.getOwnerComponent().getModel("masterModel").setProperty("/view/supervisorLogin/password", "");
+        },
 
         onOpenDialog: function () {
             this.getOwnerComponent().openHelloDialog();
@@ -123,7 +129,7 @@ sap.ui.define([
             if (oKey === '')
                 console.log("Empty");
             else {
-                this.getRouter().navTo("loginUserPP", {
+                this.getRouter().navTo("viewPPOrders", {
                     "plant": oKey
                 });
             }

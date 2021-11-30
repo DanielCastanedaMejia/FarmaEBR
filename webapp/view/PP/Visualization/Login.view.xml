@@ -6,7 +6,8 @@
     xmlns:layout="sap.ui.layout" >
     <Toolbar
         class="toolbar_background">
-     <Button type="Back" press="onNavBack"/>
+     <!-- <Button type="Back" press="onNavBack"/>-->
+     <ToolbarSeparator />
       <Image id="logo" src="images/SAP_Logo.png">
       </Image>
       <core:Icon
@@ -32,8 +33,8 @@
     <ScrollContainer
         id="login"
         horizontal="false" >
-        
-            <VBox class="sapUiLargeMarginTop" alignItems="Center">
+            <!-- <Image src="images/bayco.PNG"></Image>-->
+            <VBox class="sapUiLargeMargin" alignItems="Center">
                 <Text
                     class="sapUiSmallMarginTopBottom"
                     text="{i18n>loginUsernameLabel}" />

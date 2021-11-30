@@ -1,4 +1,4 @@
-<mvc:View
+<mvc:View xmlns:f="sap.f"
    controllerName="sap.ui.demo.webapp.controller.PP.Visualization.Orders"
    xmlns:form="sap.ui.layout.form"
     xmlns:l="sap.ui.layout"
@@ -89,7 +89,8 @@
           <IconTabBar
             id="IconTabBar_Orders"
             select="handleIconTabBarSelect"
-            class="sapUiResponsiveContentPadding">
+            class="sapUiResponsiveContentPadding"
+            expandable="false" >
             <items>
               <IconTabFilter
                 showAll="true"
@@ -122,7 +123,9 @@
                 text="{i18n>Open}"
                 key="ABIE" />              
             </items>
+            
           </IconTabBar>
+          
 
           <!-- <Toolbar>
             <ToggleButton id="linea" text="Línea"  press="callOpenDialogStep0"/>
@@ -134,6 +137,13 @@
           <ToggleButton id="startOrder" text="Iniciar"  press="viewStartOrder"/>
           <ToggleButton id="stopOrder" text="Finalizar"   press="viewStopOrder"/>
           </Toolbar> -->
+          <Toolbar >
+            <ToolbarSpacer/>
+            <f:Avatar src="sap-icon://business-objects-experience" press="onChart" id="chartDemo"></f:Avatar>
+            <ToolbarSeparator/>
+          </Toolbar>
+          
+                  
           <Table
   id="PPOrders_list"
   class="sapUiResponsiveMargin"

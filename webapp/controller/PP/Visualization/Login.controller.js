@@ -48,7 +48,8 @@ sap.ui.define([
             }
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_enabled") == "1") {                    
-                    this.navToOrdersPP();
+                    //this.navToOrdersPP();
+                    this.navToHome();
                 } else {                    
                     this.onOpenDialog();
                 }
@@ -56,6 +57,17 @@ sap.ui.define([
                 MessageToast.show("Usuario y/o contraseña incorrectos. Intente de nuevo");
                 this._setMasterModel("/view/login/password", "");
                 //this._setMasterModel("/view/login/password", "");
+            }
+        },
+
+        navToHome: function () {
+            var oKey = "PLANTA";
+            if (oKey === '')
+                console.log("Empty");
+            else {
+                this.getRouter().navTo("home", {
+                    "plant": oKey
+                });
             }
         },
 
@@ -99,7 +111,7 @@ sap.ui.define([
             });
         },
 
-        onCloseDialog: function () {
+        onCloseSuperDialog: function () {
             // note: We don't need to chain to the pDialog promise, since this event-handler
             // is only called from within the loaded dialog itself.
             this.byId("supervisorLogDialog").close();
@@ -138,7 +150,8 @@ sap.ui.define([
             }
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_supervisor") == "1") {                    
-                    this.navToOrdersPP();
+                    //this.navToOrdersPP();
+                    this.navToHome();
                 } else {
                     MessageToast.show("Es necesario el inicio de sesión de un supervisor. Intente de nuevo");
                     this._setMasterModel("/view/supervisorLogin/password", "");
