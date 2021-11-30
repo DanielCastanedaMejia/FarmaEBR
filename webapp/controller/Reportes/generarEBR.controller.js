@@ -456,21 +456,23 @@ wind.close();
                     sSrc;
 
                 switch(sProp) {
-                    case "0":
-                        sSrc = "../../files/prep_step1_instructions.pdf";
-                        break;
                     case "1":
-                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        sSrc = "../../files/EBR_1.pdf";
                         break;
                     case "2":
-                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        sSrc = "../../files/EBR_2.pdf";
                         break;
                     case "3":
-                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        sSrc = "../../files/EBR_3.pdf";
                         break;
                     case "4":
-                        sSrc = "../../files/prep_step1_instructions.pdf";
+                        sSrc = "../../files/EBR_4.pdf";
                         break;
+                    case "5":
+                        sSrc = "../../files/EBR_5.pdf";
+                        break;
+                    default:
+                        return;
                 }
 
                 othis.getView().byId("ebrPdfView").setSource(sSrc);

@@ -146,12 +146,14 @@ sap.ui.define([], function () {
         ebrStateText: function(sStatus) {
             switch(sStatus) {
                 case "1":
-                    return "25%";
+                    return "20%";
                 case "2":
-                    return "50%";
+                    return "40%";
                 case "3":
-                    return "75%";
+                    return "60%";
                 case "4":
+                    return "80%";
+                case "5":
                     return "100%";
                 default:
                     return "0%";
@@ -164,8 +166,10 @@ sap.ui.define([], function () {
                 case "2":
                     return "Indication03";
                 case "3":
-                    return "Indication04";
+                    return "Indication03";
                 case "4":
+                    return "Indication04";
+                case "5":
                     return "Indication05";
                 default:
                     return "Indication01";

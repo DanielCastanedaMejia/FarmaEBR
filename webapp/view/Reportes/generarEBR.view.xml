@@ -107,11 +107,14 @@
      <infoToolbar>
       <tnt:ToolHeader  >
         <tnt:content>
+        <ToolbarSpacer />
             <Button
               class="sapUiResponsiveMarginRightLeft"
               text="Generar EBR" 
+              width="99%"
               press="onShowEbr"
               type="Emphasized" />
+              <ToolbarSpacer/>
         </tnt:content>
       </tnt:ToolHeader> 
     </infoToolbar>
