@@ -142,6 +142,30 @@ sap.ui.define([], function () {
                 return "sap-icon://begin";
             else
                 return "sap-icon://decline";
+        },
+        ebrStateText: function(sStatus) {
+            switch(sStatus) {
+                case "4":
+                    return "100%";
+                case "1":
+                    return "25%";
+                case "2":
+                    return "50%";
+                default:
+                    return "0%";
+            }
+        },
+        ebrStateColor: function(sStatus) {
+            switch(sStatus) {
+                case "4":
+                    return "Success";
+                case "1":
+                    return "Warning";
+                case "2":
+                    return "Information";
+                default:
+                    return "Error";
+            }
         }
     };
 });

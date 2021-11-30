@@ -175,12 +175,17 @@
                   demandPopin="false">
                 <Label text="USUARIO SEC"/>
               </Column>
+              <Column
+                  minScreenWidth="Tablet"
+                  demandPopin="false">
+                <Label text="AVANCE EBR"/>
+              </Column>
             </columns>
 
             <items>
               <ColumnListItem
                 type="Active"
-                press="onDetal_view">
+                press="onShowEbr">
                 <cells>
                   <Text text="{NUM_ORDEN}"/>
                   <Text text="{MATERIAL}"/>
@@ -221,6 +226,16 @@
                     />
                     <Text text="{USUARIO_PRIM}"/>
                     <Text text="{USUARIO_SEC}"/>
+					<ObjectStatus
+						class="stat"
+						text="{
+								path: 'EBR_STATUS',
+								formatter: '.formatter.ebrStateText'
+							}"
+						state="{
+							path: 'EBR_STATUS',
+							formatter: '.formatter.ebrStateColor'
+						}" />
                 </cells>
               </ColumnListItem>
             </items>
