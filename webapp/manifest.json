@@ -45,6 +45,10 @@
       "materialModel": {
         "uri": "model/materialsModel.json",
         "type": "JSON"
+      },
+      "consumeModel": {
+        "uri": "model/Consumption.json",
+        "type": "JSON"
       }
     }
   },
@@ -110,6 +114,10 @@
       },
       "materialModel": {
         "dataSource": "materialModel",
+        "type": "sap.ui.model.json.JSONModel"
+      },
+      "consumeModel": {
+        "dataSource": "consumeModel",
         "type": "sap.ui.model.json.JSONModel"
       }
     },

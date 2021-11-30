@@ -56,7 +56,7 @@ sap.ui.define([
             iLeft = iQty - iDone;
 
             oHeadModel.setProperty("/FALTANTE", iLeft);
-            oHeadModel.setProperty("/PRODUCIDO", iDone);
+            oHeadModel.setProperty("/PRODUIDO", iDone);
             oHeadModel.setProperty("/ORDEN", sOrder);
             oHeadModel.setProperty("/OPERACION", sOpe);
             oHeadModel.setProperty("/AVANCE", fDone);
@@ -427,7 +427,15 @@ sap.ui.define([
                 xml_completo = '<Rowsets>\n',
                 oView = this.getView(),
                 flag_send = 0,
-                oThis = this;
+                oThis = this,
+                oContext = this.byId("PMComponentList").getSelectedItem().getBindingContext(),
+                sPath = oContext.getPath(),
+                iQty = oContext.getModel().getProperty(sPath + "/CANTIDAD");
+
+            if(!iQty) {
+                MessageToast.show("Ingrese la cantidad a consumir");
+                return;
+            }
 
             if (items.length > 0) {
                 xml_completo += '<Rowset>\n';
@@ -470,7 +478,45 @@ sap.ui.define([
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: function (oAction) {
                     if (oAction === MessageBox.Action.YES) {
-                        oThis.createConsumption(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_261');
+
+                        const oSelected = this.byId("PMComponentList").getSelectedItem(),
+                            oContext = oSelected.getBindingContext(),
+                            oModel = oContext.getModel(),
+                            sPath = oContext.getPath();
+                        var iQty = oModel.getProperty(sPath + "/CANTIDAD"),
+                            sId = oModel.getProperty(sPath + "/MATERIAL"),
+                            sDesc = oModel.getProperty(sPath + "/DESC_MATERIAL"),
+                            sUm = oModel.getProperty(sPath + "/UM"),
+                            oConsModel = this.getOwnerComponent().getModel("consumeModel"),
+                            iConsLength = oConsModel.getProperty("/items").length,
+                            aConsData = oConsModel.getProperty("/items");
+
+                        iQty = parseInt(iQty);
+
+                        var oNewModel = {
+                            "id": sId,
+                            "desc": sDesc,
+                            "um": sUm,
+                            "qty": iQty
+                        };
+                        console.log("length", iConsLength);
+                        for(var i = 0; i < iConsLength; i++) {
+                            console.log("Check", oConsModel.getProperty("/items/" + i + "/id"), sId)
+                            if(oConsModel.getProperty("/items/" + i + "/id") == sId) {
+                                iQty += parseInt(oConsModel.getProperty("/items/" + i + "/qty"));
+                                oConsModel.setProperty("/items/" + i + "/qty", iQty);
+                                return;
+                            }
+                        }
+                        if(i == iConsLength) {
+                            aConsData.push(oNewModel);
+                            oConsModel.setProperty("/items", aConsData);
+                        }
+                        this.onDeleteRow();
+                        MessageToast.show("Material consumido");
+
+
+                        //oThis.createConsumption(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_261');
                     }
                 }.bind(this)
             });
@@ -704,7 +750,6 @@ sap.ui.define([
                 }.bind(this)
             });
         },
-
 
         desinstallMaf: function (oData, path) {
 
