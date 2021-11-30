@@ -64,7 +64,8 @@
             "v10": false,
             "v11": false,
             "v12": false
-        }
+        },
+        "supervisorValidation" : false
     },
     "user": {
         "name": "",
