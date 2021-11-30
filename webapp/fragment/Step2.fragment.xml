@@ -50,7 +50,7 @@
             <items>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step2Validation1Text}" />
+                    <!-- <Text text="{i18n>step2Validation1Text}" />
                     <Text />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v1}" />
                     <Text text="{masterModel>/buttonTimer/1/timeValue}" id="timer1"/>
@@ -59,8 +59,18 @@
                         icon="sap-icon://future" 
                         text="{ path: 'masterModel&gt;/buttonTimer/1/started', formatter: '.formatter.statusTimer' }" 
                         press="onPressTimer"
-                        enabled="{ path: 'masterModel&gt;/buttonTimer/1/complete', formatter: '.formatter.statusTimComp' }"></Button>
+                        enabled="{ path: 'masterModel&gt;/buttonTimer/1/complete', formatter: '.formatter.statusTimComp' }"></Button>-->
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t1}" placeholder="Tiempo (minutos)" />-->
+                    <Text text="{i18n>step2Validation2Text}" />
+                            <Button icon="sap-icon://show" press="onVideoDetailsDialog" />
+                            <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
+                            <Text text="{masterModel>/buttonTimer/2/timeValue}" id="timer2"/>
+                            <Button
+                                id="timebtn2"
+                                icon="sap-icon://future"
+                                text="{ path: 'masterModel&gt;/buttonTimer/2/started', formatter: '.formatter.statusTimer' }"
+                                press="onPressTimer"
+                                enabled="{ path: 'masterModel&gt;/buttonTimer/2/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <Text text="{i18n>step2Validation5Text}" />
                     <Text />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v5}" />
@@ -76,16 +86,16 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step2Validation2Text}" />
-                    <Button icon="sap-icon://show" press="onVideoDetailsDialog" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
-                    <Text text="{masterModel>/buttonTimer/2/timeValue}" id="timer2"/>
-                    <Button
-                        id="timebtn2"
-                        icon="sap-icon://future"
-                        text="{ path: 'masterModel&gt;/buttonTimer/2/started', formatter: '.formatter.statusTimer' }"
-                        press="onPressTimer"
-                        enabled="{ path: 'masterModel&gt;/buttonTimer/2/complete', formatter: '.formatter.statusTimComp' }"></Button>
+                    <Text text="{i18n>step2Validation3Text}" />
+                        <Text />
+                        <Switch type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
+                        <Text text="{masterModel>/buttonTimer/3/timeValue}" id="timer3"/>
+                        <Button
+                            id="timebtn3"
+                            icon="sap-icon://future"
+                            text="{ path: 'masterModel&gt;/buttonTimer/3/started', formatter: '.formatter.statusTimer' }"
+                            press="onPressTimer"
+                            enabled="{ path: 'masterModel&gt;/buttonTimer/3/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--Input liveChange="true" value="{masterModel>/validations/step2/values/t2}" placeholder="Tiempo (minutos)" />-->
                     <Text text="{i18n>step2Validation6Text}" />
                     <Text />
@@ -102,16 +112,16 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step2Validation3Text}" />
-                    <Text />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
-                    <Text text="{masterModel>/buttonTimer/3/timeValue}" id="timer3"/>
-                    <Button
-                        id="timebtn3"
-                        icon="sap-icon://future"
-                        text="{ path: 'masterModel&gt;/buttonTimer/3/started', formatter: '.formatter.statusTimer' }"
-                        press="onPressTimer"
-                        enabled="{ path: 'masterModel&gt;/buttonTimer/3/complete', formatter: '.formatter.statusTimComp' }"></Button>
+                    <Text text="{i18n>step2Validation4Text}" />
+                        <Text />
+                        <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
+                        <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>
+                        <Button
+                            id="timebtn4"
+                            icon="sap-icon://future"
+                            text="{ path: 'masterModel&gt;/buttonTimer/4/started', formatter: '.formatter.statusTimer' }" 
+                            press="onPressTimer"
+                            enabled="{ path: 'masterModel&gt;/buttonTimer/4/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t3}" placeholder="Tiempo (minutos)" />-->
                     <Text text="{i18n>step2Validation7Text}" />
                     <Text />
@@ -128,16 +138,7 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step2Validation4Text}" />
-                    <Text />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
-                    <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>
-                    <Button
-                        id="timebtn4"
-                        icon="sap-icon://future"
-                        text="{ path: 'masterModel&gt;/buttonTimer/4/started', formatter: '.formatter.statusTimer' }" 
-                        press="onPressTimer"
-                        enabled="{ path: 'masterModel&gt;/buttonTimer/4/complete', formatter: '.formatter.statusTimComp' }"></Button>
+                    
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t4}" placeholder="Tiempo (minutos)" />-->
                 </cells>
             </ColumnListItem>

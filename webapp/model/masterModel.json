@@ -23,8 +23,8 @@
             "date": "2021-11-01",
             "user": "P446327"
         },
-        "vStep1": false,
-        "vStep2": false,
+        "vStep1": true,
+        "vStep2": true,
         "vStep3": false,
         "step1": {
             "v1": false,
@@ -35,15 +35,15 @@
         },
         "step2": {
             "values": {
-                "t1": "",
-                "t2": "",
-                "t3": "",
-                "t4": "",
-                "t5": "",
-                "t6": "",
-                "t7": ""
+                "t1": true,
+                "t2": false,
+                "t3": false,
+                "t4": false,
+                "t5": false,
+                "t6": false,
+                "t7": false
             },
-            "v1": false,
+            "v1": true,
             "v2": false,
             "v3": false,
             "v4": false,
@@ -63,6 +63,7 @@
             "v9": false,
             "v10": false,
             "v11": false,
+            "range": 0,
             "v12": false
         },
         "supervisorValidation" : false,
@@ -92,12 +93,12 @@
     "buttonTimer": {
         "1": {
             "started": "0",
-            "complete": "0",
+            "complete": "1",
             "timeValue": "MM:SS"
         },
         "2": {
             "started": "0",
-            "complete": "1",
+            "complete": "0",
             "timeValue": "MM:SS"
         },
         "3": {

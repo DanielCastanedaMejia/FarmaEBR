@@ -450,6 +450,14 @@ sap.ui.define([
                 //this._setMasterModel("/view/login/password", "");
             }
         },
+        onRangeChange: function () {
+            //MessageToast.show("Cambio el valor prro");
+            if(this.byId("rangeId").getValue() >= 380 && this.byId("rangeId").getValue() <= 400) {
+                this.byId("switchRangeId").setState(true);
+            } else {
+                this.byId("switchRangeId").setState(false);
+            }
+        },
         onScrapComponent: function () {
             MessageToast.show("Componente de Scrap");
         },

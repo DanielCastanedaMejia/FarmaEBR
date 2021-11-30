@@ -48,18 +48,6 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step3Validation1Text}" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v1}" />
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
-                    <Text text="{i18n>step3Validation2Text}" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v2}" />
-                </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
                     <Text text="{i18n>step3Validation3Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step3/v3}" />
                     <Text text="{i18n>step3Validation9Text}" />
@@ -80,8 +68,30 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
+                    <Text text="{i18n>step3Validation1Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v1}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation2Text}" />
+                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v2}" />
+                </cells>
+            </ColumnListItem>            
+            <ColumnListItem>
+                <cells>
                     <Text text="{i18n>step3Validation5Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step3/v5}" />
+                </cells>
+            </ColumnListItem>
+            <ColumnListItem>
+                <cells>
+                    <Text text="{i18n>step3Validation8Text}" />
+                    <!-- <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" />-->
+                    <Input id="rangeId" value="{masterModel>/validations/step3/range}" type="Number" liveChange="onRangeChange" ></Input>
+                    <!-- <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" enabled="false" />-->
+                    <Text text="{i18n>step3Validation8Range}" />
+                    <Switch id="switchRangeId" type="AcceptReject" state="{masterModel>/validations/step3/v8}" enabled="false" />
                 </cells>
             </ColumnListItem>
             <ColumnListItem>
@@ -95,13 +105,7 @@
                     <Text text="{i18n>step3Validation7Text}" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step3/v7}" />
                 </cells>
-            </ColumnListItem>
-            <ColumnListItem>
-                <cells>
-                    <Text text="{i18n>step3Validation8Text}" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" />
-                </cells>
-            </ColumnListItem>
+            </ColumnListItem>            
             </items>
         </Table>
     <beginButton>
