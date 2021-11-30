@@ -114,12 +114,12 @@
                 icon="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
                   !${masterModel>/validations/vStep3} ? 
-                  'sap-icon://decline' : 'sap-icon://accept'               
+                  'sap-icon://add-process' : 'sap-icon://accept'               
                 }"
                 type="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
                   !${masterModel>/validations/vStep3} ? 
-                  'Reject' : 'Accept'               
+                  'Ghost' : 'Accept'               
                 }"
                 press="onOpenProcessDialog" />
               <Button
