@@ -604,19 +604,28 @@ sap.ui.define([
             });
         },
         constructProcessFlow: function() {
-            var oNewNode = new ProcessFlowNode(1,{
-                "id": "0",
-                "lane": "0",
-                "title": "Orden: ",
-                "titleAbbreviation": "SO 1",
-                "children": [ 10 ],
-                "state": "Positive",
-                "stateText": "",
-                "focused": false,
-                "highlighted": false,
-                "texts": [ "D: " ]
+            console.log("Construyendo");
+            const sPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
+                sNum = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
+                sDesc = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
+                sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
+                sDate = oOrderModel.getProperty(sPath + "/FECHA_INS"),
+                sLote = oOrderModel.getProperty(sPath + "/LOTE"),
+                sTitle = "Orden: " + sNum,
+                sFirst = "Descripción: " + sDesc + "\nCantidad: " + sQty,
+                sSecond = "Fecha Lib: " + sDate + "\nLote: " + sLote;
+
+            var oNewNode = new ProcessFlowNode({
+                nodeId: "0",
+                laneId: "0",
+                title: sTitle,
+                children: [ ],
+                state: "Positive",
+                stateText: "",
+                texts: [ sFirst, sSecond ]
             });
-            this.byId("processflow1").insert
+            this.byId("processflow1").insertNode(oNewNode, 0);
         },
         onCloseProcessFlow: function() {
             this.byId("ProcessFlowDialog").close();

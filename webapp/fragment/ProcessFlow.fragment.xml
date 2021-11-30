@@ -24,7 +24,6 @@
 					laneId="{lane}"
 					nodeId="{id}"
 					title="{title}"
-					titleAbbreviation="{titleAbbreviation}"
 					children="{children}"
 					state="{state}"
 					stateText="{stateText}"

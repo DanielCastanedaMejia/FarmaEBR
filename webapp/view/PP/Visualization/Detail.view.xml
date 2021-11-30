@@ -105,7 +105,7 @@
           <Toolbar>
             <Button
               class="sapUiMediumMarginLeft"
-              icon="sap-icon://workflow-tasks" 
+              icon="sap-icon://step" 
               press="onOpenProcessFlow"
               id="ProcessFlow"
               text="Ver flujo de la orden" />
