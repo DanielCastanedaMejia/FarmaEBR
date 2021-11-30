@@ -64,6 +64,7 @@
             "v10": false,
             "v11": false,
             "range": 0,
+            "inputSate": "None",
             "v12": false
         },
         "supervisorValidation" : false,

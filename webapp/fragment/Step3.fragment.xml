@@ -88,7 +88,7 @@
                 <cells>
                     <Text text="{i18n>step3Validation8Text}" />
                     <!-- <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" />-->
-                    <Input id="rangeId" value="{masterModel>/validations/step3/range}" type="Number" liveChange="onRangeChange" ></Input>
+                    <Input id="rangeId" value="{masterModel>/validations/step3/range}" type="Number" liveChange="onRangeChange" valueState="{masterModel>/validations/step3/inputState}" ></Input>
                     <!-- <Switch type="AcceptReject" state="{masterModel>/validations/step3/v8}" enabled="false" />-->
                     <Text text="{i18n>step3Validation8Range}" />
                     <Switch id="switchRangeId" type="AcceptReject" state="{masterModel>/validations/step3/v8}" enabled="false" />

@@ -454,8 +454,10 @@ sap.ui.define([
             //MessageToast.show("Cambio el valor prro");
             if(this.byId("rangeId").getValue() >= 380 && this.byId("rangeId").getValue() <= 400) {
                 this.byId("switchRangeId").setState(true);
+                this.byId("rangeId").setValueState("Success");
             } else {
                 this.byId("switchRangeId").setState(false);
+                this.byId("rangeId").setValueState("Error");
             }
         },
         onScrapComponent: function () {
