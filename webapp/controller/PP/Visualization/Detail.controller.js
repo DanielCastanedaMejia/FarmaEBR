@@ -7,9 +7,9 @@ sap.ui.define([
     "../../../model/formatter",
     "sap/ui/core/syncStyleClass",
     "sap/m/PDFViewer",
-    "sap/m/Button"
+    "sap/suite/ui/commons/ProcessFlowNode"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass, PDFViewer, Button) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass, PDFViewer, ProcessFlowNode) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Detail", {
@@ -298,10 +298,7 @@ sap.ui.define([
         },
         onOpenPDFDetailDialog: function (oEvent) {
             var sSource = oEvent.getSource().getId().toString();
-            var indexOfPDF = sSource.charAt(sSource.length - 1)
-            var btnAux = new Button();
-            btnAux.setText("Test");
-            console.log(btnAux);
+            var indexOfPDF = sSource.charAt(sSource.length - 1)            
             this._pdfViewer.setSource("./files/Step1_" + indexOfPDF + ".pdf");
             this._pdfViewer.setTitle(this._getMasterModel("/PDFTitles/" + indexOfPDF));
             this._pdfViewer.open();
@@ -603,7 +600,50 @@ sap.ui.define([
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 
             oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
-        }
+        },
+        onOpenProcessFlow: function() {
+            const othis = this;
+            this.getView().setBusy(true);
+            if (!this.proFlowDialog) {
+                // @ts-ignore
+                this.proFlowDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.ProcessFlow"
+                });
+            }
+            this.proFlowDialog.then(function (oDialog) {
 
+                othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
+                othis.constructProcessFlow();
+                othis.getView().setBusy(false);
+                oDialog.open();
+            });
+        },
+        constructProcessFlow: function() {
+            console.log("Construyendo");
+            const sPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
+                sNum = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
+                sDesc = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
+                sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
+                sDate = oOrderModel.getProperty(sPath + "/FECHA_INS"),
+                sLote = oOrderModel.getProperty(sPath + "/LOTE"),
+                sTitle = "Orden: " + sNum,
+                sFirst = "Descripción: " + sDesc + "\nCantidad: " + sQty,
+                sSecond = "Fecha Lib: " + sDate + "\nLote: " + sLote;
+
+            var oNewNode = new ProcessFlowNode({
+                nodeId: "0",
+                laneId: "0",
+                title: sTitle,
+                children: [ ],
+                state: "Positive",
+                stateText: "",
+                texts: [ sFirst, sSecond ]
+            });
+            this.byId("processflow1").insertNode(oNewNode, 0);
+        },
+        onCloseProcessFlow: function() {
+            this.byId("ProcessFlowDialog").close();
+        },
     });
 });

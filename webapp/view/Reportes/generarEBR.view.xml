@@ -160,7 +160,7 @@
               <Column
                   minScreenWidth="Tablet"
                   demandPopin="false">
-                <Label text="Lote Inspec"/>
+                <Label text="Lote"/>
               </Column>
               <Column
                   minScreenWidth="Tablet"
@@ -211,8 +211,8 @@
                     formatter: '.formatter.date'
                   }"/>
                   <Text text="{TIPO}"/>
-                  <Text text="{LOTE}"/>
                   <Text text="{LOTE_INSPECCION}"/>
+                  <Text text="{LOTE}"/>
                   <Text text="{CANTIDAD_PROGRAMADA}"/>
                   <ObjectStatus 
                     class="stat"
