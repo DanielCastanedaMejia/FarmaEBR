@@ -5,9 +5,10 @@ sap.ui.define([
     "sap/m/MessageBox",
     'sap/ui/model/json/JSONModel',
     "../../../model/formatter",
-    "sap/ui/core/syncStyleClass"
+    "sap/ui/core/syncStyleClass",
+    "sap/m/PDFViewer"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass, PDFViewer) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Detail", {
@@ -16,6 +17,7 @@ sap.ui.define([
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("orderDetail").attachMatched(this._onRouteMatched, this);
+            this._pdfViewer = new PDFViewer();
         },
         _onRouteMatched: function (oEvent) {
             var oArgs, oView;
@@ -282,6 +284,13 @@ sap.ui.define([
             this.imageDetailDialog.then(function (oDialog) {
                 oDialog.open();
             });
+        },
+        onOpenPDFDetailDialog: function (oEvent) {
+            var sSource = oEvent.getSource().getId().toString();            
+            var indexOfPDF = sSource.charAt(sSource.length - 1)            
+            this._pdfViewer.setSource("./files/Step1_" + indexOfPDF + ".pdf");
+			this._pdfViewer.setTitle("Step 1");
+			this._pdfViewer.open();
         },
         onCloseDialog: function (oEvent) {
             const oSource = oEvent.getSource();
