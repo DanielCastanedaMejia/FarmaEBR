@@ -436,7 +436,18 @@ wind.close();
         },
 
         onShowEbr: function() {
-            
+            if(!this.ebrDialog) {
+                this.ebrDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.EbrPdf"
+                });
+            }
+            this.ebrDialog.then(function(oDialog) {
+                oDialog.open();
+                this.byId("ebrPdfView").setSource("");
+            });
+        },
+        onCloseEbr: function() {
+            this.byId("ebrDialog").close();
         }
  
     });

@@ -1,0 +1,8 @@
+<core:FragmentDefinition id ="dataStartOrderPerformActivities"  xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:u="sap.ui.unified" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Complete Unit" id="ebrDialog" contentHeight="100%" contentWidth="100%" afterClose="onCloseCompleteUnit">
+        <PDFViewer id="ebrPdfView" />
+        <endButton>
+                <Button text="{i18n>closeButton}" class="sapUiSmallMarginEnd" type="Reject" press="onCloseEbr" />
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

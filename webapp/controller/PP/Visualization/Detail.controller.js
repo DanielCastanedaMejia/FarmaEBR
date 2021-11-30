@@ -353,12 +353,7 @@ sap.ui.define([
             window.history.go(-1);
         },
         onAcceptStep1Dialog: function () {
-
-            var sPath = this._getMasterModel("/selectedOrder"),
-                oOrderModel = this.getOwnerComponent().getModel("ordersModel");
-
-            oOrderModel.setProperty(sPath + "/EBR_STATUS", "1");
-
+            this.setEbrStatus("1");
             this._setMasterModel("/validations/vStep1", true);
             this.closeDialog("step1Dialog");
         },
@@ -366,10 +361,7 @@ sap.ui.define([
             this.byId("oDialogReport").close();
         },
         onAcceptStep2Dialog: function () {
-            var sPath = this._getMasterModel("/selectedOrder"),
-                oOrderModel = this.getOwnerComponent().getModel("ordersModel");
-
-            oOrderModel.setProperty(sPath + "/EBR_STATUS", "2");
+            this.setEbrStatus("2");
             this._setMasterModel("/validations/vStep2", true);
             this.closeDialog("step2Dialog");
         },
@@ -438,10 +430,7 @@ sap.ui.define([
             }
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_supervisor") == "1") {
-                    var sPath = this._getMasterModel("/selectedOrder"),
-                        oOrderModel = this.getOwnerComponent().getModel("ordersModel");
-        
-                    oOrderModel.setProperty(sPath + "/EBR_STATUS", "3");
+                    this.setEbrStatus("3");
                     this._setMasterModel("/view/prepProcessFinished", true);
                     this._setMasterModel("/validations/supervisorValidation", true);
                     this.closeDialog("step3Dialog");
@@ -570,6 +559,12 @@ sap.ui.define([
 
                 clearInterval(this.x);
             }
+        },
+        setEbrStatus: function (sStatus) {
+            var sPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel");
+
+            oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
         }
 
     });
