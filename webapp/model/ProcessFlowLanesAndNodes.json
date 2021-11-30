@@ -1,16 +1,16 @@
 {
 	"nodes": [
 		{
-			"id": "1",
+			"id": "0",
 			"lane": "0",
-			"title": "Sales Order 1",
+			"title": "Orden: ",
 			"titleAbbreviation": "SO 1",
-			"children": [ 10, 11, 12 ],
+			"children": [ 10 ],
 			"state": "Positive",
-			"stateText": "OK status",
+			"stateText": "",
 			"focused": false,
 			"highlighted": false,
-			"texts": [ "Sales Order Document Overdue long text for the wrap up all the aspects", "Not cleared" ]
+			"texts": [ "Descripción: ", "Cantidad: ", "Lote: " ]
 		}, {
 			"id": "10",
 			"lane": "1",
@@ -93,24 +93,34 @@
 	"lanes": [
 		{
 			"id": "0",
-			"icon": "sap-icon://order-status",
-			"label": "Liberadas",
+			"icon": "sap-icon://initiative",
+			"label": "Liberación",
 			"position": 0
 		}, {
 			"id": "1",
-			"icon": "sap-icon://monitor-payments",
-			"label": "Pendientes",
+			"icon": "sap-icon://activity-2",
+			"label": "Acondicionamiento",
 			"position": 1
 		}, {
 			"id": "2",
-			"icon": "sap-icon://payment-approval",
-			"label": "Abiertas",
+			"icon": "sap-icon://cause",
+			"label": "Consumos",
 			"position": 2
 		}, {
 			"id": "3",
-			"icon": "sap-icon://money-bills",
-			"label": "Cerradas",
+			"icon": "sap-icon://inspection",
+			"label": "Calidad",
 			"position": 3
+		}, {
+			"id": "4",
+			"icon": "sap-icon://add-product",
+			"label": "Declaración de producción",
+			"position": 4
+		}, {
+			"id": "5",
+			"icon": "sap-icon://inbox",
+			"label": "Cierre",
+			"position": 5
 		}
 	]
 }

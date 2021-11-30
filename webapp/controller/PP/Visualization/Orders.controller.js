@@ -1014,27 +1014,6 @@ sap.ui.define([
             this.getRouter().navTo("crearAviso");
         },
 
-        onOpenProcessFlow: function() {
-            const othis = this;
-            this.getView().setBusy(true);
-            if (!this.proFlowDialog) {
-                // @ts-ignore
-                this.proFlowDialog = this.loadFragment({
-                    name: "sap.ui.demo.webapp.fragment.ProcessFlow"
-                });
-            }
-            this.proFlowDialog.then(function (oDialog) {
-
-                othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
-                othis.getView().setBusy(false);
-                oDialog.open();
-            });
-        },
-
-        onCloseProcessFlow: function() {
-            this.byId("ProcessFlowDialog").close();
-        },
-
         onDetal_view: function (oEvent) {
             var oItem, oCtx, estatus, sPath;
             oItem = oEvent.getSource();

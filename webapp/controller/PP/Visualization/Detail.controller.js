@@ -6,9 +6,10 @@ sap.ui.define([
     'sap/ui/model/json/JSONModel',
     "../../../model/formatter",
     "sap/ui/core/syncStyleClass",
-    "sap/m/PDFViewer"
+    "sap/m/PDFViewer",
+    "sap/suite/ui/commons/ProcessFlowNode"
 
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass, PDFViewer) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter, syncStyleClass, PDFViewer, ProcessFlowNode) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Detail", {
@@ -584,7 +585,41 @@ sap.ui.define([
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 
             oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
-        }
+        },
+        onOpenProcessFlow: function() {
+            const othis = this;
+            this.getView().setBusy(true);
+            if (!this.proFlowDialog) {
+                // @ts-ignore
+                this.proFlowDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.ProcessFlow"
+                });
+            }
+            this.proFlowDialog.then(function (oDialog) {
 
+                othis.getView().byId("processflow1").setModel(othis.getOwnerComponent().getModel("flowLanesAndNodes"));
+                othis.constructProcessFlow();
+                othis.getView().setBusy(false);
+                oDialog.open();
+            });
+        },
+        constructProcessFlow: function() {
+            var oNewNode = new ProcessFlowNode(1,{
+                "id": "0",
+                "lane": "0",
+                "title": "Orden: ",
+                "titleAbbreviation": "SO 1",
+                "children": [ 10 ],
+                "state": "Positive",
+                "stateText": "",
+                "focused": false,
+                "highlighted": false,
+                "texts": [ "D: " ]
+            });
+            this.byId("processflow1").insert
+        },
+        onCloseProcessFlow: function() {
+            this.byId("ProcessFlowDialog").close();
+        },
     });
 });
