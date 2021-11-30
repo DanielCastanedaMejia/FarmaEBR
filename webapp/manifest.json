@@ -49,7 +49,11 @@
       "consumeModel": {
         "uri": "model/Consumption.json",
         "type": "JSON"
-      }
+      },
+      "salesShare": {
+				"uri": "model/SalesShare.json",
+				"type": "JSON"
+			}
     }
   },
   "sap.ui": {
@@ -119,6 +123,10 @@
       "consumeModel": {
         "dataSource": "consumeModel",
         "type": "sap.ui.model.json.JSONModel"
+      },
+      "salesShare": {
+        "type": "sap.ui.model.json.JSONModel",
+        "dataSource": "salesShare"
       }
     },
     "resources": {

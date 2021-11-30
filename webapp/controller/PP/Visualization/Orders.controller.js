@@ -10,8 +10,9 @@ sap.ui.define([
     "sap/m/MessageBox",
     'sap/ui/model/Filter',
     "sap/ui/model/FilterOperator",
-    "sap/ui/demo/webapp/model/formatter"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter) {
+    "sap/ui/demo/webapp/model/formatter",
+    "sap/ui/core/syncStyleClass"
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter, syncStyleClass) {
     "use strict";
 
     var plant_gb = '';
@@ -24,6 +25,9 @@ sap.ui.define([
             //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("viewPPOrders").attachMatched(this._onRouteMatched, this);
+
+            var auxModel = this.getOwnerComponent().getModel("salesShare");
+            this.getView().setModel(auxModel, "salesModel");
         },
 
         _onRouteMatched: function (oEvent) {
@@ -1024,6 +1028,25 @@ sap.ui.define([
                     orden: oCtx.getProperty("NUM_ORDEN")
                 });
             }
+        },
+        onChart: function () {
+            MessageToast.show("Gráficas");
+            if (!this.pDialog) {
+                // @ts-ignore
+                this.pDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.Charts"
+                }).then(function (oDialog) {
+                    // forward compact/cozy style into dialog
+                    syncStyleClass("sapUiSizeCondensed", this.getView(), oDialog);
+                    return oDialog;
+                }.bind(this));
+            }
+            this.pDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        onCloseCharts: function () {
+            this.byId("oDialogReport").close();
         }
     });
 });
