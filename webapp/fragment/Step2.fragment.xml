@@ -23,6 +23,9 @@
                     <!-- <Text text="{i18n>step2Column2Text}" /> -->
                 </Column>
                 <Column vAlign="Middle" width="5rem">
+                    <!-- <Text text="{i18n>step2Column2Text}" /> -->
+                </Column>
+                <Column vAlign="Middle" width="5rem">
                     <Text text="{i18n>step2Column2Text}"/>
                 </Column>
                 <Column vAlign="Middle" width="5rem">
@@ -62,7 +65,8 @@
                         enabled="{ path: 'masterModel&gt;/buttonTimer/1/complete', formatter: '.formatter.statusTimComp' }"></Button>-->
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t1}" placeholder="Tiempo (minutos)" />-->
                     <Text text="{i18n>step2Validation2Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text />
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
                     <Text text="{masterModel>/buttonTimer/2/timeValue}" id="timer2"/>
                     <Button
@@ -73,7 +77,8 @@
                         enabled="{ path: 'masterModel&gt;/buttonTimer/2/complete', formatter: '.formatter.statusTimComp' }"></Button>
 
                     <Text text="{i18n>step2Validation5Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text />
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v5}" />
                     <Text text="{masterModel>/buttonTimer/5/timeValue}" id="timer5"/>
                     <Button 
@@ -88,7 +93,8 @@
             <ColumnListItem>
                 <cells>
                     <Text text="{i18n>step2Validation3Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text />                        
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
                     <Text text="{masterModel>/buttonTimer/3/timeValue}" id="timer3"/>
                     <Button
@@ -100,7 +106,8 @@
                     <!--Input liveChange="true" value="{masterModel>/validations/step2/values/t2}" placeholder="Tiempo (minutos)" />-->
 
                     <Text text="{i18n>step2Validation6Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text />
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v6}" />
                     <Text text="{masterModel>/buttonTimer/6/timeValue}" id="timer6"/>
                     <Button
@@ -114,10 +121,11 @@
             </ColumnListItem>
             <ColumnListItem>
                 <cells>
-                    <Text text="{i18n>step2Validation4Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text text="{i18n>step2Validation4Text}" />                    
+                    <Button icon="sap-icon://show" press="onOpenVideoDetailDialog" />
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
-                    <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>
+                    <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>                    
                     <Button
                         id="timebtn4"
                         icon="sap-icon://future"
@@ -126,7 +134,8 @@
                         enabled="{ path: 'masterModel&gt;/buttonTimer/4/complete', formatter: '.formatter.statusTimComp' }"></Button>
                     <!--<Input liveChange="true" value="{masterModel>/validations/step2/values/t3}" placeholder="Tiempo (minutos)" />-->
                     <Text text="{i18n>step2Validation7Text}" />
-                    <Button icon="sap-icon://hint" press="onVideoDetailsDialog" />
+                    <Text />
+                    <Button icon="sap-icon://hint" press="onPDFDummy" />
                     <Switch type="AcceptReject" state="{masterModel>/validations/step2/v7}" />
                     <Text text="{masterModel>/buttonTimer/7/timeValue}" id="timer7"/>
                     <Button
