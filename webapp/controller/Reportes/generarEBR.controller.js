@@ -433,8 +433,12 @@ wind.close();
                     console.log(CadenaNombre);                            
                 }
             });
-        }
+        },
 
+        onShowEbr: function() {
+            
+        }
+ 
     });
 });
 
