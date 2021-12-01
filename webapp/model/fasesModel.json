@@ -12,7 +12,8 @@
             "confNumb": "0000002902",
             "umope": "PZA",
             "orden": "1000720",
-            "avance": 22.75
+            "producido": 0,
+            "avance": 0
         },
         {
             "planta": "1710",
@@ -26,7 +27,8 @@
             "confNumb": "0000002905",
             "umope": "PZA",
             "orden": "1000720",
-            "avance": "NA"
+            "poducido": 0,
+            "avance": 0
         },
         {
             "planta": "1710",
@@ -40,7 +42,8 @@
             "confNumb": "0000002903",
             "umope": "PZA",
             "orden": "1000720",
-            "avance": "NA"
+            "poducido": 0,
+            "avance": 0
         }
     ]
 }

@@ -41,28 +41,25 @@ sap.ui.define([
                 oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
                 sOrderPath = oMasterModel.getProperty("/selectedOrder"),
                 sOpePath = oMasterModel.getProperty("/selectedFase"),
-                fDone = oOpeModel.getProperty(sOpePath + "/avance"),
-                iDone, iLeft;
+                iDone = oOpeModel.getProperty(sOpePath + "/producido"),
+                iLeft, fDone;
 
             const sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN"),
                 iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
                 sOpe = oOpeModel.getProperty(sOpePath + "/Ope");
-
-            if (fDone == "NA") {
-                iDone = 0;
-            } else {
-                iDone = Math.floor(iQty * (fDone / 100));
-            }
+            
+            fDone = (iDone / iQty) * 100;
             iLeft = iQty - iDone;
+            var model = {
+                "FALTANTE": iLeft,
+                "PRODUCIDO": iDone,
+                "ORDEN": sOrder,
+                "OPERACION": sOpe,
+                "AVANCE": fDone,
+                "PROGRAMADO": iQty
+            };
 
-            oHeadModel.setProperty("/FALTANTE", iLeft);
-            oHeadModel.setProperty("/PRODUIDO", iDone);
-            oHeadModel.setProperty("/ORDEN", sOrder);
-            oHeadModel.setProperty("/OPERACION", sOpe);
-            oHeadModel.setProperty("/AVANCE", fDone);
-            oHeadModel.setProperty("/PROGRAMADO", iQty);
-
-            var newModel = new JSONModel(oHeadModel.getProperty("/"));
+            var newModel = new JSONModel(model);
 
             this.getView().setModel(newModel);
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
@@ -267,9 +264,31 @@ sap.ui.define([
                 };
                 
                 var oModel = this.getOwnerComponent().getModel("notifyProd"),
-                    aData = oModel.getProperty("/items");
+                    oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
+                    oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
+                    oHeadModel = this.getOwnerComponent().getModel("headModel"),
+                    sPath = this._getMasterModel("/selectedFase"),
+                    sOrderPath = this._getMasterModel("/selectedOrder"),
+                    iDone = oOpeModel.getProperty(sPath + "/producido"),
+                    aData = oModel.getProperty("/items"),
+                    iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
+                    fDone, iLeft;
 
                 aData.push(oData);
+                iDone += parseInt(oData.CANTIDAD);
+                oOpeModel.setProperty(sPath + "/producido", iDone);
+                oView.getModel().setProperty("/PRODUCIDO", iDone);
+
+                fDone = (iDone / iQty) * 100;
+                fDone = fDone.toFixed(2);
+
+                oOpeModel.setProperty(sPath + "/avance", fDone);
+                oView.getModel().setProperty("/AVANCE", fDone);
+
+                iLeft = iQty - iDone;
+
+                oView.getModel().setProperty("/FALTANTE", iLeft)
+
                 //this.createNotification(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_101');
                 this.onCloseDialogAddNotification();
             }
