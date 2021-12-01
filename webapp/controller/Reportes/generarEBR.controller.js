@@ -461,6 +461,7 @@ wind.close();
                         break;
                     case "2":
                         sSrc = "http://baycomiidemo.ddns.net:50000/XMII/CM/FARMAP/POS/files/EBR_2.pdf";
+                        
                         break;
                     case "3":
                         sSrc = "http://baycomiidemo.ddns.net:50000/XMII/CM/FARMAP/POS/files/EBR_3.pdf";
