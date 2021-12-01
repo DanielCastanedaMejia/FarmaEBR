@@ -7,14 +7,22 @@ sap.ui.define([
     "sap/ui/demo/webapp/model/formatter"
 
 ], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter) {
-	"use strict";
+    "use strict";
 
-	return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.QA", {
-		onInit: function () {
+    return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.QA", {
+        onInit: function () {
             var oRouter = this.getRouter();
             oRouter.getRoute("QA").attachMatched(this._onRouteMatched, this);
+            const oMatModel = this.getOwnerComponent().getModel("materialModel"),
+               oNewModel = new JSONModel(oMatModel.getProperty("/items"));
+
+            var oQAModel = this.getOwnerComponent().getModel("QAModel"),
+                qNewModel = new JSONModel(oQAModel.getProperty("/items"));
+
+            this.byId("charListQM").setModel(qNewModel);
+            this.byId("MMBarchChars").setModel(oNewModel);
         },
-		_onRouteMatched: function (oEvent) {
+        _onRouteMatched: function (oEvent) {
             var
                 oArgs = oEvent.getParameter("arguments"),
                 oView = this.getView();
@@ -62,8 +70,7 @@ sap.ui.define([
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 
             var columns = {
-                columns: [
-                    {
+                columns: [{
                         Column: "Res no",
                         Visible: 0
                     },
@@ -108,6 +115,6 @@ sap.ui.define([
 
             this._setColumns(columns, "columnList", "PMComponentList");
         }
-	});
+    });
 
 });

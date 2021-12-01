@@ -19,6 +19,7 @@
         <core:Icon
         src="sap-icon://employee-lookup"
         class="toolbar_title sapUiSmallMarginBegin">
+        
           <core:layoutData>
             <FlexItemData growFactor="1" />
           </core:layoutData>
@@ -37,8 +38,11 @@
              id ="username"
              text=""
              class="toolbar_color"></Label>
-        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
+        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" visible="false">
+          
         </Button>
+        <Button text="Registrar resultado" icon="sap-icon://save" type="Default"></Button>
+        <Button text="Decisión empleo" icon="sap-icon://decision" type="Default"></Button>
       </Toolbar>
 
     </customHeader>
@@ -54,10 +58,10 @@
         <uxap:headerTitle>
           <uxap:ObjectPageDynamicHeaderTitle>
              <uxap:expandedHeading>
-              <Title text="Lote {/OPERACION} inspección: {/LOTE_INSPECCION}" wrapping="true" class="sapUiSmallMarginEnd"/>
+              <Title text="Lote de inspección: {/LOTE_INSPECCION}" wrapping="true" class="sapUiSmallMarginEnd"/>
             </uxap:expandedHeading>
             <uxap:actions>
-                <MenuButton text="Operaciones.." icon="sap-icon://provision" visible="false">
+                <MenuButton text="Operaciones.." icon="sap-icon://provision" visible="false">                  
                 <menu>
                   <Menu itemSelected="onMenuAction">
                     <MenuItem text="Inspeccionar lote" icon="sap-icon://clinical-tast-tracker" press="onInspeccion" />
@@ -68,18 +72,19 @@
                   </Menu>
                 </menu>
               </MenuButton>
-            </uxap:actions>
+            </uxap:actions>            
           </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
         <uxap:headerContent>
       <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">        
         <layout:VerticalLayout >
-          <ObjectStatus title="Operacion" />
+          <ObjectStatus title="Operacion" visible="false" />
                                   <ComboBox
                               id="listOperation"
                               showSecondaryValues= "true"
                              selectionChange="onChangeOperations"
                              width="110%"
+                             visible="false"
                              items="{
                           path: '/',
                           sorter: { path: 'desc' }
@@ -90,6 +95,7 @@
                               id="listOperationBatch"
                              selectionChange="onChangeOperationBatch"
                              width="110%"
+                             visible="false"
                              items="{
                           path: '/',
                           sorter: { path: 'desc' }
@@ -101,6 +107,7 @@
                               showSecondaryValues= "true"
                              selectionChange="onChangeOperationsInspeccion"
                              width="110%"
+                             visible="false"
                              items="{
                           path: '/',
                           sorter: { path: 'desc' }
@@ -109,7 +116,7 @@
                             </ComboBox>
           <ObjectIdentifier title="Material "  text="{/MATERIAL}  {/DESC_MATERIAL}"/>
           <ObjectIdentifier title="Cantidad " text="{/CTD_MAT}  {/UM}"/>
-          <ObjectIdentifier title="Inspecciones " text="{/CTD} {/NUM_ORDEN} {/OPERACION}"/>
+          <ObjectIdentifier title="Inspecciones " text="{/OPERACION}"/>
 
         </layout:VerticalLayout>
       </FlexBox>
@@ -123,7 +130,7 @@
                            id="charListQM"
                            class="sapUiResponsiveMargin"
                            width="auto"
-                           items="{/ITEMS}">
+                           items="{/}">
                     <columns>
                       <Column>
                         <Label text="Secuencia"/>
@@ -162,24 +169,19 @@
                     <items>
                       <ColumnListItem>
                         <cells>
-                          <Text text="{INSPCHAR}"/>
-                          <Text text="{CHAR_DESCR}"/>
-                          <Text text="{CHAR_TYPE}"/>                          
+                          <Text text="{secuencia}"/>
+                          <Text text="{desc}"/>
+                          <Text text="{um}"/>                          
                           <HBox>
                      <ComboBox
                                   id="comboMenu"
                                   change="changeCombo"
-                                  showSecondaryValues= "true"
-                                  selectedKey="{sel_KEY}"
-                                  visible="{
-                                  path: 'COMBO_VISIBLE',
-                                  formatter: '.formatter.elementVisible'
-                                }"
-                                items="{
-                                  path: 'MENU/',
-                                  sorter: { path: 'TEXT' },
-                                  templateShareable:false 
-                                }">
+                                  showSecondaryValues="true"
+                                  selectedKey="{valor/1}"
+                                  visible="true"
+                                  
+                                  value="{valor/0}"
+                                items="{valor}">
                               <core:ListItem key="{KEY};{CODE};{CODE_GROUPE}" text="{TEXT}" additionalText="{KEY}"/>
                                 </ComboBox>
                             <Input
@@ -189,10 +191,7 @@
                             value="{value}"
                             focus="true"
                             liveChange="onVerifyValue"
-                            visible="{
-                              path: 'INPUT_VISIBLE',
-                              formatter: '.formatter.elementVisible'
-                            }">
+                            visible="false">
                             </Input>
                           </HBox>                                                    
                           <Text text="{LW_TO_LMT}"/>
@@ -202,7 +201,8 @@
                           <ComboBox
                               id="comboDes"
                               change="changeCombo"
-                              selectedKey="{sel_KEY_des}"                             
+                              selectedKey="{sel_KEY_des}"
+                              value="{estatus}"           
                             items="{
                               path: 'MENU_DES/',
                               sorter: { path: 'TEXT' },
@@ -210,8 +210,8 @@
                             }">
                             <core:Item key="{KEY}" text="{TEXT}"/>
                           </ComboBox>
-                          <Text text="{MSTR_CHAR}"/>
-                         <Text text="{CODE_GROUPE}"/>
+                          <Text text="{maestro}"/>
+                         <Text text="{grupo}"/>
 
                         </cells>
                       </ColumnListItem>
@@ -229,7 +229,7 @@
                    id="MMBarchChars"
                    class="sapUiResponsiveMargin"
                    width="100%"
-                   items="{/ITEMS}">
+                   items="{/}">
               <columns>
                 <Column>
                   <Label text="Descripcion"/>
@@ -244,11 +244,11 @@
               <items>
                 <ColumnListItem>
                    <cells>
-                          <Text text="{CHAR_DESCR}"/>
+                          <Text text="{desc}"/>
 
 
-                          <Text text="{UNIT}"/>
-               <Text text="{value}"/>
+                          <Text text="{um}"/>
+               <Text text="1000"/>
                        
                          
                         </cells>
