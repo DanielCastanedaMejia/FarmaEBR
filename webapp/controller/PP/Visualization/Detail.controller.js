@@ -759,7 +759,7 @@ sap.ui.define([
 
             // DECLARACIÓN DE PRODUCCIÓN
             aData = oProdModel.getProperty("/items");
-            iIndex = 20;
+            iIndex = 30;
 
             for(var i = 0; i < aData.length; i++, iIndex++) {
 
