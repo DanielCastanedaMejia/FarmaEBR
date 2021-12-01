@@ -140,7 +140,7 @@ sap.ui.define([
                         var oModel = this.getOwnerComponent().getModel("QAModel");
 
                         oModel.setProperty("/register", true);
-                        console.log("ENTRAAAA")
+                        this.setEbrStatus("4");
                         MessageToast.show("Resultados registrados");
                     }
                 }.bind(this)
@@ -162,6 +162,12 @@ sap.ui.define([
         onCloseJob: function() {
             MessageToast.show("Decisión de empleo grabada");
             this.onCancelJob();
+        },
+        setEbrStatus: function (sStatus) {
+            var sPath = this._getMasterModel("/selectedOrder"),
+                oOrderModel = this.getOwnerComponent().getModel("ordersModel");
+
+            oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
         }
     });
 
