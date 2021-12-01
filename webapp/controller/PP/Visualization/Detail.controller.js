@@ -301,7 +301,7 @@ sap.ui.define([
             const oSource = oEvent.getSource();
             const oSrcVideo = oSource.getId() + "Dialog--videoHTML";
             console.log(oSource.getId() + "Dialog--videoHTML");
-            this.byId(oSrcVideo).removeAttribute('src');
+            //this.byId(oSrcVideo).removeAttribute('src');
             this.byId(oSource.getId() + "Dialog").close();
         },
         onOpenPDFDetailDialog: function (oEvent) {
