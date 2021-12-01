@@ -58,7 +58,7 @@
         <uxap:headerTitle>
           <uxap:ObjectPageDynamicHeaderTitle>
             <uxap:expandedHeading>
-              <Title text="LOTE {/OPERACION}" wrapping="true" class="sapUiSmallMarginEnd"/>
+              <Title text="Operación {/OPERACION}" wrapping="true" class="sapUiSmallMarginEnd"/>
             </uxap:expandedHeading>
 
             <uxap:snappedHeading>

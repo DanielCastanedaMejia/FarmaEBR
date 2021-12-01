@@ -174,6 +174,12 @@ sap.ui.define([], function () {
                 default:
                     return "Indication01";
             }
+        },
+        qaStatus: function(sStatus) {
+            if(sStatus == "APROBADO")
+                return "Success";
+            else
+                return "Error";
         }
     };
 });

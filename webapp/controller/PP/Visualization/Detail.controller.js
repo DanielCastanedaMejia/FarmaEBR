@@ -641,6 +641,7 @@ sap.ui.define([
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
                 oConsModel = this.getOwnerComponent().getModel("consumeModel"),
                 oProdModel = this.getOwnerComponent().getModel("notifyProd"),
+                oQAModel = this.getOwnerComponent().getModel("QAModel"),
                 sNum = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
                 sDesc = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
                 sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
@@ -756,10 +757,36 @@ sap.ui.define([
             }
 
             // CALIDAD
+            var bFlag = oQAModel.getProperty("/register");
+
+            if(bFlag) {
+                var aux;
+                aData = oQAModel.getProperty("/items");
+                iIndex = 30;
+
+                for(var i = 0; i < aData.length; i++, iIndex++) {
+
+                    sTitle = oQAModel.getProperty("/items/" + i + "/desc");
+                    aux = oQAModel.getProperty("/items/" + i + "/estatus");
+                    if(aux == "APROBADO") {
+                        sState = "Positive";
+                        sStateText = "OK";
+                    } else {
+                        sState = "Negative";
+                        sStateText = "FAIL";
+                    }
+                    sUser = "";
+                    sFirst = "";
+                    sSecond = ""; 
+
+                    this.createNewNode(iIndex.toString(), "3", sTitle, sState, sStateText, sFirst, sSecond);
+                    
+                }
+            }
 
             // DECLARACIÓN DE PRODUCCIÓN
             aData = oProdModel.getProperty("/items");
-            iIndex = 30;
+            iIndex = 40;
 
             for(var i = 0; i < aData.length; i++, iIndex++) {
 

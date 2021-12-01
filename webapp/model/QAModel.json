@@ -1,167 +1,167 @@
 {
+    "register": false,
     "items": [
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Son todos los comprimidos/capsulas de igual forma?",
-            "valor": {
-                "0": "Si",
-                "1": "No"
-            },
+            "valor": [{
+                "TEXT": "Si"
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Son todos los comprimidos/capsulas de igual tamaño? ",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Poseen todos los comprimidos/capsulas el mismo color? ",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Poseen los comprimidos un recubrimiento uniforme? ",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Toda la superficie del comprimido esta re- cubierta?",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Todo el comprimido recubierto tiene igual lustre o pulido? ¿se hallan libres de polvo y sin erosión, decapado o picoteado? ",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Aparecen todas las marcas de forma uniforme y lucen idénticas?",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Están todos los comprimidos libres de roturas, grietas o huecos? ",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Lucen los comprimidos/capsulas libres de cualquier tipo de agente de contaminación?",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "Posee la muestra examinada, alguna cápsula vacía?",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         },
         {
             "secuencia": "PHARMA_R01",
             "desc": "¿Posee el producto el mismo aroma que el original? ¿Posee un aroma particularmente extraño?",
-            "valor": {
+            "valor": [{
                 "0": "Si",
                 "1": "No"
-            },
+            }],
             "limiteinf": "",
             "limitesup": "",
             "valorteo": "",
             "um": "",
-            "estatus": "APROBADO",
+            "estatus": "DESAPROBADO",
             "maestro": "0000122",
             "grupo": "000289"
         }

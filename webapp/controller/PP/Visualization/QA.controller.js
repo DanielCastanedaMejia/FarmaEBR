@@ -10,6 +10,7 @@ sap.ui.define([
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.QA", {
+        formatter: formatter,
         onInit: function () {
             var oRouter = this.getRouter();
             oRouter.getRoute("QA").attachMatched(this._onRouteMatched, this);
@@ -114,6 +115,53 @@ sap.ui.define([
             };
 
             this._setColumns(columns, "columnList", "PMComponentList");
+        },
+        onButtonChange: function(oEvent) {
+            var oModel = this.getOwnerComponent().getModel("QAModel"),
+                oSource = oEvent.getSource(),
+                oContext = oSource.getBindingContext(),
+                sPath = oContext.getPath(),
+                bFlag = oSource.getSelectedKey();
+            
+            if(bFlag == "1") {
+                oModel.setProperty(sPath + "/estatus", "APROBADO");
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "APROBADO");                
+            } else {
+                oModel.setProperty(sPath + "/estatus", "DESAPROBADO"); 
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "DESAPROBADO");   
+            }
+        },
+        confirmRegister: function() {
+            MessageBox["warning"]("¿Seguro que desea registrar los resultados?", {
+                actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+                onClose: function (oAction) {
+                    if (oAction === MessageBox.Action.YES) {
+
+                        var oModel = this.getOwnerComponent().getModel("QAModel");
+
+                        oModel.setProperty("/register", true);
+                        console.log("ENTRAAAA")
+                        MessageToast.show("Resultados registrados");
+                    }
+                }.bind(this)
+            });
+        },
+        job: function(){
+            if (!this.jD) {
+                this.jD = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.ConfirmJob"
+                });
+            }
+            this.jD.then(function(oD) {
+                oD.open();
+            });
+        },
+        onCancelJob: function() {
+            this.byId("jobDialog").close();
+        },
+        onCloseJob: function() {
+            MessageToast.show("Decisión de empleo grabada");
+            this.onCancelJob();
         }
     });
 

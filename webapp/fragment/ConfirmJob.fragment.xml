@@ -1,0 +1,26 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+    <Dialog
+      id="jobDialog"
+      title="¿Guardar la decisión de empleo?">
+    <beginButton>
+    </beginButton>
+    <buttons>
+      <Button
+        text="{i18n>acceptButton}"
+        type="Accept"
+        press=".onCloseJob" />
+        <Button
+            text="Aceptar Desvío"
+            press=".onCloseJob"  />
+      <Button
+        id="FinishOrderConfirmation"
+        text="{i18n>cancelButton}"
+        type="Reject"
+        press=".onCancelJob"/>
+    </buttons>
+    <endButton>
+    </endButton>
+   </Dialog>
+</core:FragmentDefinition>

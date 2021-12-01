@@ -41,8 +41,8 @@
         <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" visible="false">
           
         </Button>
-        <Button text="Registrar resultado" icon="sap-icon://save" type="Default"></Button>
-        <Button text="Decisión empleo" icon="sap-icon://decision" type="Default"></Button>
+        <Button press="confirmRegister" text="Registrar resultado" icon="sap-icon://save" type="Default"></Button>
+        <Button press="job" text="Decisión empleo" icon="sap-icon://decision" type="Default"></Button>
       </Toolbar>
 
     </customHeader>
@@ -68,7 +68,6 @@
                     <MenuItem text="Decisión de empleo" icon="sap-icon://employee-approvals" press="onDe" />
                     <MenuItem text="Ver documentos"  id="btn-mat-prima" icon="sap-icon://show" press="onVisualizarArchivos" />
                     <MenuItem text="Ver planos" id="btn-pt" icon="sap-icon://crossed-line-chart" press="onVisualizarPlanos" />
-
                   </Menu>
                 </menu>
               </MenuButton>
@@ -141,7 +140,7 @@
                       <Column width="5%">
                         <Label text="Tipo"/>
                       </Column>                      
-                      <Column width="15%">
+                      <Column width="10em">
                         <Label text="Valor"/>
                       </Column>                      
                       <Column>
@@ -152,9 +151,6 @@
                       </Column>
                       <Column>
                         <Label text="Lim. Sup." tooltip="Límite Superior"/>
-                      </Column>
-                      <Column>
-                        <Label text="Unidad"/>
                       </Column>
                       <Column width="15%">
                         <Label text="Estatus"/>
@@ -173,23 +169,27 @@
                           <Text text="{desc}"/>
                           <Text text="{um}"/>                          
                           <HBox>
-                     <ComboBox
+                          <SegmentedButton selectedKey="0" selectionChange="onButtonChange" width="8rem" >
+                            <items>
+                              <SegmentedButtonItem key="1" text="Si" />
+                              <SegmentedButtonItem key="0" text="No" />
+                            </items>
+                          </SegmentedButton>
+                          <!-- <Text text="! {OPTIONS>/valor/0/TEXT};" />
+                          <ComboBox
                                   id="comboMenu"
                                   change="changeCombo"
                                   showSecondaryValues="true"
-                                  selectedKey="{valor/1}"
+                                  selectedKey="{/valor/0/KEY}"
                                   visible="true"
-                                  
-                                  value="{valor/0}"
-                                items="{valor}">
-                              <core:ListItem key="{KEY};{CODE};{CODE_GROUPE}" text="{TEXT}" additionalText="{KEY}"/>
-                                </ComboBox>
+                                items="{OPTIONS>/valor}">
+                              <core:Item key="{OPTIONS>/KEY}" text="{OPTIONS>/TEXT}"/>
+                            </ComboBox> -->
                             <Input
                             type="Text"
                             id="inputValue"
                             placeholder="Valor"
                             value="{value}"
-                            focus="true"
                             liveChange="onVerifyValue"
                             visible="false">
                             </Input>
@@ -197,8 +197,13 @@
                           <Text text="{LW_TO_LMT}"/>
                           <Text text="{TARGET_VAL}"/>
                           <Text text="{UP_TOL_LMT}"/>
-                          <Text text="{UNIT}"/>
-                          <ComboBox
+                          <ObjectStatus
+                            text="{estatus}"
+                            state="{
+                              path: 'estatus',
+                              formatter: '.formatter.qaStatus'
+                            }" />
+                          <!-- <ComboBox
                               id="comboDes"
                               change="changeCombo"
                               selectedKey="{sel_KEY_des}"
@@ -209,7 +214,7 @@
                               templateShareable:false 
                             }">
                             <core:Item key="{KEY}" text="{TEXT}"/>
-                          </ComboBox>
+                          </ComboBox> -->
                           <Text text="{maestro}"/>
                          <Text text="{grupo}"/>
 
