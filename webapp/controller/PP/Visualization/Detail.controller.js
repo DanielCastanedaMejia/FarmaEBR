@@ -640,6 +640,7 @@ sap.ui.define([
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
                 oConsModel = this.getOwnerComponent().getModel("consumeModel"),
+                oProdModel = this.getOwnerComponent().getModel("notifyProd"),
                 sNum = oOrderModel.getProperty(sPath + "/NUM_ORDEN"),
                 sDesc = oOrderModel.getProperty(sPath + "/DESC_MATERIAL"),
                 sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
@@ -738,10 +739,9 @@ sap.ui.define([
 
             // CONSUMOS
             aData = oConsModel.getProperty("/items");
-            iIndex = 20
+            iIndex = 20;
 
             for(var i = 0; i < aData.length; i++, iIndex++) {
-                this.clearAttributes(sTitle, sDate, sState, sStateText, sFirst, sSecond, sTime, sUser);
 
                 sTitle = oConsModel.getProperty("/items/" + i + "/desc");
                 sState = "Positive";
@@ -758,7 +758,22 @@ sap.ui.define([
             // CALIDAD
 
             // DECLARACIÓN DE PRODUCCIÓN
-            sTitle = ""
+            aData = oProdModel.getProperty("/items");
+            iIndex = 20;
+
+            for(var i = 0; i < aData.length; i++, iIndex++) {
+
+                sTitle = oProdModel.getProperty("/items/" + i + "/MATERIAL");
+                sState = "Positive";
+                sStateText = "";
+                sDate = oProdModel.getProperty("/items/" + i + "/date").substring(4, 15);
+                sTime = oProdModel.getProperty("/items/" + i + "/date").substring(16, 21);
+                sUser = "";
+                sFirst = sDate + " " + sTime + "\n" + sUser;
+                sSecond = "Lote: " + oProdModel.getProperty("/items/" + i + "/LOTE") + "\nCantidad: " + oProdModel.getProperty("/items/" + i + "/CANTIDAD"); 
+
+                this.createNewNode(iIndex.toString(), "4", sTitle, sState, sStateText, sFirst, sSecond);
+            }
 
             // CIERRE
             var bStatus = oOrderModel.getProperty(sPath + "ESTATUS_MII");

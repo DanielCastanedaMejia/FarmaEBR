@@ -11,15 +11,19 @@
       <l:content>
         <!-- Filter by date range -->
         <Label text="Material"/>
-        <ComboBox
-                    id="mov_101"
-                    showSecondaryValues="true"
-                    items="{
-					             path: '/',
-                       sorter: { path: 'id' }
-			              }">
-          <core:ListItem key="{id}" text="{desc}" additionalText="{move}"/>
-        </ComboBox>
+        <Input
+        id="mov_101"
+				class="sapUiSmallMarginBottom"
+        value="{orderModel>/desc}"
+        enabled="false" />
+        <!-- <ComboBox
+          id="mov_101"
+          items="{
+            path: 'orderModel>/',
+            sorter: { path: 'id' }
+          }">
+          <core:ListItem key="{orderModel>/id}" text="{orderModel>/desc}" additionalText="{orderModel>/move}"/>
+        </ComboBox> -->
         <!-- Filter by plan name(s) -->
         <Label text="{i18n>PPOperationDetail.quantity}"/>
         <Input

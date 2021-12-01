@@ -138,11 +138,23 @@ sap.ui.define([
                 oDialog = sap.ui.xmlfragment(oView.getId(), "sap.ui.demo.webapp.fragment.addNotification", this);
                 oView.addDependent(oDialog);
             }
+            var sPath = this._getMasterModel("/selectedOrder"),
+                oModel = this.getOwnerComponent().getModel("ordersModel"),
+                sId = oModel.getProperty(sPath + "/NUM_ORDEN"),
+                sDesc = oModel.getProperty(sPath + "/DESC_MATERIAL"),
+                sLote = oModel.getProperty(sPath + "/LOTE"),
+                oProdData = new JSONModel({
+                    "id": sId,
+                    "desc": sDesc
+                });
+                console.log("Data", oProdData)
 
             oView.byId('inputQuantity').setValue('');
-            oView.byId('inputBatch').setValue('');
-
-            this._base_onloadCOMBO("mov_101", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/get_101", " ", "Materiales notificar");
+            oView.byId('inputBatch').setValue(sLote);
+            //this.byId("mov_101").setModel(oProdData, "orderModel");
+            oView.setModel(oProdData, "orderModel");
+            
+            //this._base_onloadCOMBO("mov_101", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/get_101", " ", "Materiales notificar");
             oDialog.open();
         },
 
@@ -243,7 +255,9 @@ sap.ui.define([
                 this.getOwnerComponent().openHelloDialog("Ingresa una cantidad");
             else {
 
-                var oData = {
+                var sDate = Date(),
+                    oData = {
+                    "date": sDate,
                     "MATERIAL": material.getSelectedKey(),
                     "MOV": material.getSelectedItem().getAdditionalText(),
                     "CANTIDAD": cantidad.getValue(),
@@ -251,8 +265,12 @@ sap.ui.define([
                     "OPERACION": oView.getModel().getProperty('/OPERACION'),
                     "LOTE": lote.getValue()
                 };
-                console.log(oData);
-                this.createNotification(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_101');
+                
+                var oModel = this.getOwnerComponent().getModel("notifyProd"),
+                    aData = oModel.getProperty("/items");
+
+                aData.push(oData);
+                //this.createNotification(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_101');
                 this.onCloseDialogAddNotification();
             }
 
@@ -501,7 +519,6 @@ sap.ui.define([
                             "qty": iQty,
                             "date": sDate
                         };
-                        console.log("length", iConsLength);
                         for(var i = 0; i < iConsLength; i++) {
                             if(oConsModel.getProperty("/items/" + i + "/id") == sId) {
                                 iQty += parseInt(oConsModel.getProperty("/items/" + i + "/qty"));
@@ -853,12 +870,17 @@ sap.ui.define([
                     "OPERACION": oView.getModel().getProperty('/OPERACION')
                 };
 
-                this.sendTime(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/tiempos');
-                var aData = {
-                    "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
-                    "OPERACION": oView.getModel().getProperty('/OPERACION')
-                };
-                this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
+                var oModel = this.getOwnerComponent().getModel("notifyTime"),
+                    aData = oModel.getProperty("/times");
+
+                aData.push(oData);
+
+                //this.sendTime(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/tiempos');
+                // var aData = {
+                //     "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
+                //     "OPERACION": oView.getModel().getProperty('/OPERACION')
+                // };
+                //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 
                 this.onCloseDialogSendTime();
             }

@@ -268,15 +268,15 @@ growing="true"
                         <Input type="Number" value="{CANTIDAD}" placeholder="cantidad"/>
                         <Text text="{UM}"/>
                         <ObjectStatus
-                    class="stat"
-                    text="{
-                            path: 'MOVE_TYPE',
-                            formatter: '.formatter.conditionState'
+                          class="stat"
+                          text="{
+                                  path: 'MOVE_TYPE',
+                                  formatter: '.formatter.conditionState'
+                                }"
+                          state="{
+                                  path: 'MOVE_TYPE',
+                                  formatter: '.formatter.orderStateColor'
                           }"
-                    state="{
-                            path: 'MOVE_TYPE',
-                            formatter: '.formatter.orderStateColor'
-                    }"
                         />
                         <Text text=""/>
                       </cells>
