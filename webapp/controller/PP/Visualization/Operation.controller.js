@@ -989,7 +989,6 @@ sap.ui.define([
             });
         },
         onQA: function () {
-            MessageToast.show("Nav to QA");
             var
                 oView = this.getView();
 
