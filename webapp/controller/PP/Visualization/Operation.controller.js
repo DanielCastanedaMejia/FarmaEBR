@@ -259,7 +259,7 @@ sap.ui.define([
                     oData = {
                     "date": sDate,
                     "MATERIAL": material.getSelectedKey(),
-                    "MOV": material.getSelectedItem().getAdditionalText(),
+                    //"MOV": material.getSelectedItem().getAdditionalText(),
                     "CANTIDAD": cantidad.getValue(),
                     "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
                     "OPERACION": oView.getModel().getProperty('/OPERACION'),
