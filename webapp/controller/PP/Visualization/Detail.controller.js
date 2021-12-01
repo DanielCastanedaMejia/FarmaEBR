@@ -328,6 +328,8 @@ sap.ui.define([
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 
+
+            this.setEbrStatus("5");
             oOrderModel.setProperty(sPath + "/ESTATUS_MII", "CERRADA");
             this._setMasterModel("/selectedOrder", "");
             this._setMasterModel("/view/startedOrder", false);

@@ -140,7 +140,7 @@ sap.ui.define([
                         var oModel = this.getOwnerComponent().getModel("QAModel");
 
                         oModel.setProperty("/register", true);
-                        this.setEbrStatus("5");
+                        this.setEbrStatus("4");
                         MessageToast.show("Resultados registrados");
                     }
                 }.bind(this)
