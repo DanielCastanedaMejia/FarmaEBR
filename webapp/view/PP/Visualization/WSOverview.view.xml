@@ -50,7 +50,6 @@
         width="70%"
         src="./images/linea{masterModel>/user/work_station}.jpg"
         press=".onContinue" />
-
     </FlexBox>
   </Page>
 </mvc:View>
