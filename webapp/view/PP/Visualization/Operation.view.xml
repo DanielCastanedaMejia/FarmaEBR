@@ -25,7 +25,7 @@
         </core:Icon>
       <Label labelFor="myColumn"
         class="toolbar_title"
-        text="Estación de trabajo X "
+        text="Estación de trabajo {masterModel>/user/work_station} "
         wrapping="true"
         />
       <core:Icon src="sap-icon://arrow-right" />
