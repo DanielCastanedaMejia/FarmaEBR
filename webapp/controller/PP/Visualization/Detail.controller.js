@@ -407,6 +407,7 @@ sap.ui.define([
             if(bState) {
                 if(timer_isPressed === "0") {
                     this._setMasterModel("/buttonTimer/" + sId + "/started", "1");
+                    this._setMasterModel("/buttonTimer/" + sId + "/timeValue", "0:00");
                 } else {
                     this._setMasterModel("/validations/step2/values/t" + sId, true);
                 }
