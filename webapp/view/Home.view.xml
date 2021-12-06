@@ -74,10 +74,11 @@
     </TileContent>
   </GenericTile>
 
-  <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-                 header="Agregar Merma"
-                 subheader="Merma"
-       press="onMermas">
+  <GenericTile
+    class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+    header="Agregar Merma"
+    subheader="Merma"
+    press="onMermas">
       <TileContent>
         <ImageContent src="sap-icon://program-triangles-2" />
       </TileContent>
@@ -131,6 +132,15 @@
            press="onVerMAF">
           <TileContent>
             <ImageContent src="sap-icon://action-settings" />
+          </TileContent>
+        </GenericTile>
+        <GenericTile
+          class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+          header="Geolocalización"
+          subheader="Mantenimiento"
+          press="onGeolocalizacion">
+          <TileContent>
+            <ImageContent src="sap-icon://globe" />
           </TileContent>
         </GenericTile>
       </layout:HorizontalLayout>

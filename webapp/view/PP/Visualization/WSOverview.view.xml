@@ -38,6 +38,7 @@
       <Button icon="sap-icon://person-placeholder" type="Transparent" class="" enabled="false"/>
       <Button icon="sap-icon://log" type="Transparent" class="sapUiTinyMargin" press="onLogout"/>      
     </Toolbar>
+    
     <FlexBox
       id="imageContainer"
       width="100%"
@@ -45,11 +46,15 @@
       direction="Column"
       justifyContent="Center"
       alignItems="Center" >
+
       <Image
         id="imgWS"
-        width="70%"
+        width="60rem"
+        decorative="false"
         src="./images/linea{masterModel>/user/work_station}.jpg"
         press=".onContinue" />
+
     </FlexBox>
+
   </Page>
 </mvc:View>
