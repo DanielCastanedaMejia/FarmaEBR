@@ -398,6 +398,22 @@ sap.ui.define([
         onCloseCharts: function () {
             this.byId("oDialogReport").close();
         },
+        onChangeSwitch: function (oEvent) {
+            const oSource = oEvent.getSource(),
+                sId = oEvent.getParameter("id").split("--")[2].substring(6),
+                bState = this.byId("switch" + sId).getState(),
+                timer_isPressed = this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + sId + "/started");
+
+            if(bState) {
+                if(timer_isPressed === "0") {
+                    this._setMasterModel("/buttonTimer/" + sId + "/started", "1");
+                } else {
+                    this._setMasterModel("/validations/step2/values/t" + sId, true);
+                }
+                this.byId("timebtn" + sId).firePress();
+            }
+
+        },
         onAcceptStep2Dialog: function () {
             this.setEbrStatus("2");
             this._setMasterModel("/validations/vStep2", true);
