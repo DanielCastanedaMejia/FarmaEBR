@@ -84,7 +84,8 @@
         "password": "",
         "is_enabled": "",
         "is_available": "",
-        "is_supervisor": ""
+        "is_supervisor": "",
+        "work_station": "1"
     },
     "supervisor": {
         "name": "",

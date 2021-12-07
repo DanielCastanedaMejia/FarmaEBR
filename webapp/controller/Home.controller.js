@@ -235,7 +235,9 @@ sap.ui.define([
         onRegistroPesos() {
             this.getRouter().navTo("registroPesos");
         },
-
+        onGeolocalizacion: function (oEvent) {
+            
+        },
         onVerAvisos() {
             this.getRouter().navTo("verAvisos");
         },

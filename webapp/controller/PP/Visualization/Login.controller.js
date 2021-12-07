@@ -35,12 +35,18 @@ sap.ui.define([
             var aData = this.getOwnerComponent().getModel("usersModel");
             oModel.setData(aData);
             var nModel = oModel.oData.getProperty("/user").length;
-            var userModel, passModel;
+            var userModel, passModel, oLoggedUser, sWS;
             var validIndex, validUser = false;
             for (var i = 0; i < nModel; i++) {
                 userModel = aData.getProperty("/user/" + i + "/username");
                 passModel = aData.getProperty("/user/" + i + "/password");
                 if (userModel == sUsername && sPassword == passModel) {
+                    sWS = aData.getProperty("/user/" + i + "/work_station");
+                    oLoggedUser = {
+                        "name": userModel,
+                        "work_station": sWS
+                    }
+                    this._setMasterModel("/user", oLoggedUser);
                     validUser = true;
                     validIndex = i;
                     break;
@@ -49,7 +55,7 @@ sap.ui.define([
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_enabled") == "1") {                    
                     //this.navToOrdersPP();
-                    this.navToHome();
+                    this.navTo("wsOverview");
                 } else {                    
                     this.onOpenDialog();
                 }
@@ -69,6 +75,10 @@ sap.ui.define([
                     "plant": oKey
                 });
             }
+        },
+
+        navTo: function (sTarget) {
+            this.getRouter().navTo(sTarget);
         },
 
         navToOrdersPP: function () {
@@ -151,7 +161,7 @@ sap.ui.define([
             if (validUser) {
                 if (aData.getProperty("/user/" + validIndex + "/is_supervisor") == "1") {                    
                     //this.navToOrdersPP();
-                    this.navToHome();
+                    this.navTo("wsOverview");
                 } else {
                     MessageToast.show("Es necesario el inicio de sesión de un supervisor. Intente de nuevo");
                     this._setMasterModel("/view/supervisorLogin/password", "");

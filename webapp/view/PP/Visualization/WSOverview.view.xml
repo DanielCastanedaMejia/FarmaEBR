@@ -1,0 +1,60 @@
+<mvc:View
+  controllerName="sap.ui.demo.webapp.controller.PP.Visualization.WSOverview"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  xmlns:layout="sap.ui.layout"
+  xmlns:tnt="sap.tnt"
+  xmlns:microchart="sap.suite.ui.microchart">
+  <Page
+    showHeader="false">
+    <Toolbar
+        class="toolbar_background">
+    <Button icon="sap-icon://home-share"
+        text="Menú Demos"
+        type="Emphasized"
+        press="onGotoHome"
+        class="sapUiLargeMarginBegin" />
+      <Image id="logo" src="images/SAP_Logo.png">
+      </Image>
+      <core:Icon
+      src="sap-icon://customer-and-supplier"
+      class="toolbar_title sapUiSmallMarginBegin">
+        <core:layoutData>
+          <FlexItemData growFactor="1" />
+        </core:layoutData>
+      </core:Icon>
+      <Label labelFor="myColumn"
+        class="toolbar_title"
+        text="Estación de trabajo {masterModel>/user/work_station}"
+        wrapping="true"
+        />
+      <ToolbarSpacer/>
+      <Label
+            id ="username"
+            text="{masterModel>/view/login/username}"
+            class="toolbar_color"></Label>
+            <!-- En el campo text estaba escrito el usuario de MII-->
+      <Button icon="sap-icon://person-placeholder" type="Transparent" class="" enabled="false"/>
+      <Button icon="sap-icon://log" type="Transparent" class="sapUiTinyMargin" press="onLogout"/>      
+    </Toolbar>
+    
+    <FlexBox
+      class="sapUiSmallMarginTop"
+      id="imageContainer"
+      width="100%"
+      direction="Column"
+      justifyContent="Center"
+      alignItems="Center" >
+
+      <Image
+        id="imgWS"
+        width="60rem"
+        decorative="false"
+        src="./images/linea{masterModel>/user/work_station}.jpg"
+        press=".onContinue" />
+
+    </FlexBox>
+
+  </Page>
+</mvc:View>

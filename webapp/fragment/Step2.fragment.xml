@@ -68,7 +68,7 @@
                     <Text text="{i18n>step2Validation2Text}" />
                     <Text />
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v2}" />
+                    <Switch id="switch2" type="AcceptReject" change=".onChangeSwitch" state="{masterModel>/validations/step2/v2}" />
                     <Text text="{masterModel>/buttonTimer/2/timeValue}" id="timer2"/>
                     <Button
                         id="timebtn2"
@@ -80,7 +80,7 @@
                     <Text text="{i18n>step2Validation5Text}" />
                     <Text />
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v5}" />
+                    <Switch id="switch5" change=".onChangeSwitch" type="AcceptReject" state="{masterModel>/validations/step2/v5}" />
                     <Text text="{masterModel>/buttonTimer/5/timeValue}" id="timer5"/>
                     <Button 
                         id="timebtn5"
@@ -96,7 +96,7 @@
                     <Text text="{i18n>step2Validation3Text}" />
                     <Text />                        
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
+                    <Switch id="switch3" change=".onChangeSwitch" type="AcceptReject" state="{masterModel>/validations/step2/v3}" />
                     <Text text="{masterModel>/buttonTimer/3/timeValue}" id="timer3"/>
                     <Button
                         id="timebtn3"
@@ -109,7 +109,7 @@
                     <Text text="{i18n>step2Validation6Text}" />
                     <Text />
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v6}" />
+                    <Switch id="switch6" change=".onChangeSwitch" type="AcceptReject" state="{masterModel>/validations/step2/v6}" />
                     <Text text="{masterModel>/buttonTimer/6/timeValue}" id="timer6"/>
                     <Button
                         id="timebtn6"
@@ -125,7 +125,7 @@
                     <Text text="{i18n>step2Validation4Text}" />                    
                     <Button icon="sap-icon://show" press="onOpenVideoDetailDialog" />
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
+                    <Switch id="switch4" change=".onChangeSwitch" type="AcceptReject" state="{masterModel>/validations/step2/v4}" />
                     <Text text="{masterModel>/buttonTimer/4/timeValue}" id="timer4"/>                    
                     <Button
                         id="timebtn4"
@@ -137,7 +137,7 @@
                     <Text text="{i18n>step2Validation7Text}" />
                     <Text />
                     <Button icon="sap-icon://hint" press="onPDFDummy" />
-                    <Switch type="AcceptReject" state="{masterModel>/validations/step2/v7}" />
+                    <Switch id="switch7" change=".onChangeSwitch" type="AcceptReject" state="{masterModel>/validations/step2/v7}" />
                     <Text text="{masterModel>/buttonTimer/7/timeValue}" id="timer7"/>
                     <Button
                         id="timebtn7"

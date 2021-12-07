@@ -202,6 +202,16 @@
       },
       "routes": [
         {
+          "pattern": "wsOverview",
+          "name": "wsOverview",
+          "target": "wsOverview"
+        },
+        {
+          "pattern": "geoView",
+          "name": "geoView",
+          "target": "geoView"
+        },
+        {
           "pattern": "",
           "name": "appHome",
           "target": "loginUserPP"
@@ -523,6 +533,15 @@
           "viewId": "home",
           "viewName": "Home",
           "viewLevel": 1
+        },
+        "geoView": {
+          "viewId": "geoMap",
+          "viewName": "geoMap"
+        },
+        "wsOverview": {
+          "viewId": "wsOverview",
+          "viewName": "WSOverview",
+          "viewPath": "sap.ui.demo.webapp.view.PP.Visualization" 
         },
         "notFound": {
           "viewId": "notFound",

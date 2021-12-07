@@ -5,21 +5,24 @@
             "password": "1234",
             "is_enabled": "1",
             "is_available": "1",
-            "is_supervisor": "0"
+            "is_supervisor": "0",
+            "work_station": "1"
         },
         {
             "username": "P226",
             "password": "4321",
             "is_enabled": "1",
             "is_available": "1",
-            "is_supervisor": "0"
+            "is_supervisor": "0",
+            "work_station": "2"
         },
         {
             "username": "L647",
             "password": "123",
             "is_enabled": "0",
             "is_available": "0",
-            "is_supervisor": "0"
+            "is_supervisor": "0",
+            "work_station": "3"
         },
         {
             "username": "P446327",
