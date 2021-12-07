@@ -11,8 +11,9 @@ sap.ui.define([
     'sap/ui/model/Filter',
     "sap/ui/model/FilterOperator",
     "sap/ui/demo/webapp/model/formatter",
-    "sap/ui/core/syncStyleClass"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter, syncStyleClass) {
+    "sap/ui/core/syncStyleClass",
+    "sap/ui/model/json/JSONModel"
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter, syncStyleClass, JSONModel) {
     "use strict";
 
     var plant_gb = '';
@@ -688,10 +689,9 @@ sap.ui.define([
                 sKey = oEvent.getParameter("key");
 
             if (sKey !== 'All') {
-                if (sKey == 'LIB.') {                    
+                if (sKey == 'LIB.') {
                     //aFilter.push(new Filter("ESTATUS", FilterOperator.Contains, sKey));
-                }
-                else
+                } else
                     aFilter.push(new Filter("ESTATUS_MII", FilterOperator.Contains, sKey));
             }
             //console.log(sKey);.
@@ -1039,8 +1039,16 @@ sap.ui.define([
                 });
             }
             this.chartsDialog.then(function (oDialog) {
+                var cardManifests = new JSONModel();
+                //var card = this.getView().byId("myCard");
+
+                cardManifests.loadData(sap.ui.require.toUrl("sap/ui/demo/webapp/model/data/cardManifests.json"));
+                oDialog.setModel(cardManifests, "manifests");
+                var oDialog2 = oDialog;
                 othis.getView().setBusy(false);
                 oDialog.open();
+
+                oDialog2.open();
             });
         },
         onCloseCharts: function () {

@@ -179,8 +179,21 @@
     </GenericTile>
   </layout:HorizontalLayout>
   
-
-
+  <Title
+    titleStyle="H4"
+    text="Área de prueba"
+    class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop" />
+  <layout:HorizontalLayout allowWrapping="true">
+    <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
+                  header="Geolocalización"
+                  subheader="Prueba"
+                  press="onVerGeo"
+                  visible="true">
+      <TileContent>
+        <ImageContent src="sap-icon://choropleth-chart"></ImageContent>
+      </TileContent>
+    </GenericTile>
+  </layout:HorizontalLayout>
 
 
 </layout:VerticalLayout>

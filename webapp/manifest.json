@@ -218,6 +218,12 @@
           "target": "QA"
         },
 
+        {
+          "pattern": "Geo",
+          "name": "Geo",
+          "target": "Geo"
+        },
+
 
 
 
@@ -529,6 +535,13 @@
           "viewName": "Login",
           "transition": "flip",
           "viewPath": "sap.ui.demo.webapp.view.PP.Visualization"
+        },
+
+        "Geo": {
+          "viewId": "geo",
+          "viewName": "Geo",
+          "transition": "flip",
+          "viewPath": "sap.ui.demo.webapp.view"
         },
         
         "QA": {

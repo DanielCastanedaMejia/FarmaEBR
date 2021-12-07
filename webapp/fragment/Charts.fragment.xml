@@ -1,67 +1,69 @@
-<core:FragmentDefinition id ="dataStartOrderScanSFCFragment"  
-	xmlns="sap.m" 	
+<core:FragmentDefinition id ="dataStartOrderScanSFCFragment"
+	xmlns="sap.m"
 	xmlns:smartFilterBar="sap.ui.comp.smartfilterbar"
-	xmlns:smartTable="sap.ui.comp.smarttable" 
-	xmlns:l="sap.ui.layout" 			
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.f"
-	xmlns:table="sap.ui.table" 
+	xmlns:w="sap.ui.integration.widgets"
+	xmlns:table="sap.ui.table"
 	xmlns:fb="sap.ui.comp.filterbar"
- 	xmlns:u="sap.ui.unified" 
+	xmlns:u="sap.ui.unified"
 	xmlns:viz="sap.viz.ui5.controls"
 	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
-	xmlns:viz.data="sap.viz.ui5.data" 
+	xmlns:viz.data="sap.viz.ui5.data"
 	xmlns:vm="sap.ui.comp.variants"
-	xmlns:core="sap.ui.core"
- 	class="sapUiSizeCompact">
-    <Dialog title="{i18n>btnGraphics}" id="oDialogReport" contentHeight="100%" contentWidth="100%" afterClose="onCloseCharts">
+	xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+	<Dialog id="oDialogReport" icon="sap-icon://move" afterClose="onCloseCharts" draggable="true" horizontalScrolling="false" >
 
-	 <viz:VizFrame xmlns:viz="sap.viz.ui5.controls" id="oLineChart" uiConfig="{applicationSet:'fiori'}" vizType="column" width="100%">
-						<viz:dataset>
-							<dataSet:FlattenedDataset xmlns:dataSet="sap.viz.ui5.data" data="{salesModel>/SalesShare}">
-								<dataSet:dimensions>									
-										<dataSet:DimensionDefinition name="Date" value="{Date}"/>									
-								</dataSet:dimensions>
-								<dataSet:measures>				
-										<dataSet:MeasureDefinition name="Real" value="{Real}"/>								
-									     <dataSet:MeasureDefinition name="Plan" value="{Plan}"/>						
-								</dataSet:measures>
-							</dataSet:FlattenedDataset>
-						</viz:dataset>
-						<viz:feeds>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Real"/>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Plan"/>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Date"/>
-							
-						</viz:feeds>
-					</viz:VizFrame>
-	 <viz:VizFrame xmlns:viz="sap.viz.ui5.controls" id="oLineChart2" uiConfig="{applicationSet:'fiori'}" vizType="line" width="100%">
-						<viz:dataset>
-							<dataSet:FlattenedDataset xmlns:dataSet="sap.viz.ui5.data" data="{salesModel>/SalesShare}">
-								<dataSet:dimensions>									
-										<dataSet:DimensionDefinition name="Date" value="{Date}"/>									
-								</dataSet:dimensions>
-								<dataSet:measures>				
-										<dataSet:MeasureDefinition name="Real" value="{Real}"/>								
-									     <dataSet:MeasureDefinition name="Plan" value="{Plan}"/>						
-								</dataSet:measures>
-							</dataSet:FlattenedDataset>
-						</viz:dataset>
-						<viz:feeds>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Real"/>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Plan"/>
-							<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Date"/>
-							
-						</viz:feeds>
-					</viz:VizFrame>
+		<!-- <viz:VizFrame xmlns:viz="sap.viz.ui5.controls" id="oLineChart" uiConfig="{applicationSet:'fiori'}" vizType="column" width="100%">
+			<viz:dataset>
+				<dataSet:FlattenedDataset xmlns:dataSet="sap.viz.ui5.data" data="{salesModel>/SalesShare}">
+					<dataSet:dimensions>
+						<dataSet:DimensionDefinition name="Date" value="{Date}"/>
+					</dataSet:dimensions>
+					<dataSet:measures>
+						<dataSet:MeasureDefinition name="Real" value="{Real}"/>
+						<dataSet:MeasureDefinition name="Plan" value="{Plan}"/>
+					</dataSet:measures>
+				</dataSet:FlattenedDataset>
+			</viz:dataset>
+			<viz:feeds>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Real"/>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Plan"/>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Date"/>
 
+			</viz:feeds>
+		</viz:VizFrame>
+		<viz:VizFrame xmlns:viz="sap.viz.ui5.controls" id="oLineChart2" uiConfig="{applicationSet:'fiori'}" vizType="line" width="100%">
+			<viz:dataset>
+				<dataSet:FlattenedDataset xmlns:dataSet="sap.viz.ui5.data" data="{salesModel>/SalesShare}">
+					<dataSet:dimensions>
+						<dataSet:DimensionDefinition name="Date" value="{Date}"/>
+					</dataSet:dimensions>
+					<dataSet:measures>
+						<dataSet:MeasureDefinition name="Real" value="{Real}"/>
+						<dataSet:MeasureDefinition name="Plan" value="{Plan}"/>
+					</dataSet:measures>
+				</dataSet:FlattenedDataset>
+			</viz:dataset>
+			<viz:feeds>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Real"/>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="valueAxis" type="Measure" values="Plan"/>
+				<feed:FeedItem xmlns:feed="sap.viz.ui5.controls.common.feeds" uid="categoryAxis" type="Dimension" values="Date"/>
 
+			</viz:feeds>
+		</viz:VizFrame>-->
 
+			<f:GridContainer class="sapUiSmallMargin" width="100%">
+				<w:Card height="21rem" manifest="{manifests>/donut}">
+					<w:layoutData>
+						<f:GridContainerItemLayoutData columns="3" />
+					</w:layoutData>
+				</w:Card>
+			</f:GridContainer>		
 
-
-    
-
-            <HBox justifyContent="Center" alignContent="Center" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
-                <Button text="{i18n>btnCloseGraphics}" class="sapUiSmallMarginEnd" width="100px" id="btnExit" type="Reject" press=".onCloseCharts" />
-            </HBox>
-    </Dialog>
+		<HBox justifyContent="Center" alignContent="Center" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
+			<Button text="{i18n>btnCloseGraphics}" class="sapUiSmallMarginEnd" width="100px" id="btnExit" type="Reject" press=".onCloseCharts" />
+		</HBox>
+	</Dialog>
 </core:FragmentDefinition>

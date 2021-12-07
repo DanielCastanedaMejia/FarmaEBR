@@ -259,6 +259,9 @@ sap.ui.define([
         onIntercompany() {
             this.getRouter().navTo("Intercompany");
         },
+        onVerGeo() {
+            this.getRouter().navTo("Geo");
+        },
 
     });
 });

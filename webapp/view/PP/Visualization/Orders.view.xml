@@ -141,8 +141,7 @@
             <ToolbarSpacer/>
             <f:Avatar src="sap-icon://business-objects-experience" displayShape="Square" press="onChart" id="chartDemo"></f:Avatar>
             <ToolbarSeparator/>
-          </Toolbar>
-          
+          </Toolbar>          
                   
           <Table
   id="PPOrders_list"
