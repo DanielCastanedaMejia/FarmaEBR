@@ -28,16 +28,17 @@ sap.ui.define([
 			this.getView().setModel(oModelS, "STATE");
 		},
 
-		_onRouteMatched: function (oEvent) {			
+		_onRouteMatched: function (oEvent) {
 
-			var accessTokenMapbox = 'pk.eyJ1Ijoib3NjYXJtYXJ4IiwiYSI6ImNqeXVqZzQ0NzAwdTEza21zb3F0NXA1am8ifQ.LktymKMtKad0q8HeWgd-ww';
+			var accessTokenMapbox = 'pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg';
 			var appCode = 'xqjCK7HxKbj-oYA-K6yw_w';
 			var appId = 'dhTVPAlSKvlkx5WaEWs0';
+			var url = "https://api.mapbox.com/styles/v1/axelmz/ckwwdvtkb0pvo14mswi19e7xp/tiles/{LOD}/{X}/{Y}@2x?access_token="
 
 			// If you have not set up any Map Provider keys, then we will set a default map for one of the providers so that you can see something
-			var defaultUrlHA = appCode === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://1.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
-			var defaultUrlHB = appCode === "NOT CONFIGURED" | undefined ? "https://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://2.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
-			var defaultUrlMBA = accessTokenMapbox === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/256/{LOD}/{X}/{Y}@2x?access_token=" + accessTokenMapbox;
+			//var defaultUrlHA = appCode === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://1.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
+			//var defaultUrlHB = appCode === "NOT CONFIGURED" | undefined ? "https://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://2.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
+			var defaultUrlMBA = accessTokenMapbox === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : url + accessTokenMapbox;
 			var defaultCopyright = appCode === "NOT CONFIGURED" | undefined ? "Tile courtesy of OpenStreetMap" : "Tiles Courtesy of HERE Maps";
 
 			var oMapConfig = {
@@ -50,7 +51,7 @@ sap.ui.define([
 						"tileX": "256",
 						"tileY": "256",
 						"maxLOD": "20",
-						"copyright": "Tiles Courtesy of HERE Maps",
+						"copyright": defaultCopyright,
 						"Source": [{
 							"id": "s1",
 							"url": defaultUrlMBA
