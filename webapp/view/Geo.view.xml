@@ -43,8 +43,241 @@
           </Button>
         </Toolbar>
       </customHeader>
-      <content>
+
+      <uxap:ObjectPageLayout
+      id="ObjectPageLayout"
+      showTitleInHeaderContent="true"
+      alwaysShowContentHeader="false"
+      preserveHeaderStateOnScroll="false"
+      headerContentPinnable="true"
+      isChildPage="true"
+      upperCaseAnchorBar="false">
+    <uxap:headerTitle>
+      <uxap:ObjectPageHeader objectImageShape="Square"
+            objectTitle="{HEADER>/NOMBRE}"
+            objectImageAlt="Barco Carguero B1"
+            id="ObjectPageLayoutHeaderTitle"
+            isObjectTitleAlwaysVisible="false"
+            objectImageURI="./images/{HEADER>/FOTO}"                               
+            showPlaceholder="true">
+        <uxap:actions>
+
+        </uxap:actions>
         
-      </content>
+      </uxap:ObjectPageHeader>
+    </uxap:headerTitle>
+
+    <uxap:headerContent>
+      <FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
+        <layout:VerticalLayout >
+          <ObjectStatus text="{HEADER>/UBICACION_TECNICA}"/>
+          <GenericTag text="{HEADER>/ALERTA}" status="Warning" visible="{
+                                        path: 'HEADER>/ALERTA_VISIBLE',
+                                        formatter: '.formatter.alertVisible'
+                                    }"/>
+          <mc:BulletMicroChart size="S" scale="K" targetValue="100" press="press">
+            <mc:actual>
+              <mc:BulletMicroChartData value="{HEADER>/GASTO}" color="{HEADER>/COLOR_GASTO}"/>
+            </mc:actual>
+            <mc:thresholds>
+              <mc:BulletMicroChartData value="0" color="Error"/>
+              <mc:BulletMicroChartData value="50" color="Critical"/>
+              <mc:BulletMicroChartData value="150" color="Critical"/>
+              <mc:BulletMicroChartData value="200" color="Error"/>
+            </mc:thresholds>
+          </mc:BulletMicroChart>
+        </layout:VerticalLayout>
+        <layout:VerticalLayout class="sapUiLargeMarginBegin">
+          <ObjectStatus title="Proveedor" text=""/>
+          <Link text="{HEADER>/PROVEEDOR}"/>
+          <ObjectStatus title="Ubicación"/>
+          <ObjectStatus text="{HEADER>/COORDENADAS}"/>
+        </layout:VerticalLayout>
+        <layout:HorizontalLayout class="">
+          <TileContent unit="" footer="Calidad" class="noPrintable">
+            <content>
+              <NumericContent value="{HEADER>/CALIDAD}" indicator="Up" valueColor="Good" press="press" scale="%" icon="sap-icon://vertical-waterfall-chart"/>
+            </content>
+          </TileContent>
+          <TileContent footer="Disponibilidad" class="noPrintable">
+            <content>
+              <NumericContent value="{HEADER>/DISPONIBILIDAD}" scale="%" icon="sap-icon://line-chart-time-axis" valueColor="Critical"/>
+            </content>
+          </TileContent>
+          <TileContent footer="Desempeño" class="noPrintable">
+            <content>
+              <NumericContent value="{HEADER>/DESEMPENO}" scale="%" icon="sap-icon://bar-chart" valueColor="Good"/>
+            </content>
+          </TileContent>
+          <TileContent unit="" footer="OEE" class="noPrintable">
+            <content> 
+              <NumericContent  value="{HEADER>/OEE}" valueColor="Error"  scale="%" icon="sap-icon://business-objects-experience"/>
+            </content>
+          </TileContent>
+
+          <FlexBox width="17rem" height="7rem">
+            <items>
+              <mc:InteractiveLineChart selectionChanged="selectionChanged" press="press">
+                <mc:points>
+                  <mc:InteractiveLineChartPoint value="6" label="Mar" selected="true"/>
+                  <mc:InteractiveLineChartPoint value="2" label="Abr"/>
+                  <mc:InteractiveLineChartPoint value="5" label="May"/>
+                  <mc:InteractiveLineChartPoint value="9" label="Jun" selected="true"/>
+                  <mc:InteractiveLineChartPoint value="3" label="Jul"/>
+                  <mc:InteractiveLineChartPoint value="1" label="Ago"/>
+                </mc:points>
+              </mc:InteractiveLineChart>
+            </items>
+          </FlexBox>
+          
+        </layout:HorizontalLayout>
+      </FlexBox>
+    </uxap:headerContent>
+
+    <uxap:ObjectPageSection title="Geolocalización">
+      <uxap:subSections>
+        <uxap:ObjectPageSubSection>
+          <uxap:blocks>
+            <vbm:GeoMap height="500px" width="100%" id="geoMap" initialZoom="7" initialPosition="-103.37;20.8;0.0">
+              <vbm:resources>
+                <vbm:Resource name="SAP_logo" src="images/SAP_Logo.png"/>
+                <vbm:Resource name="SAP_logo_Other" />
+              </vbm:resources>
+              <vbm:vos>
+                <vbm:Spots>
+                  <vbm:Spot id="Spot1" position="-103.37;20.8;0" tooltip="Aviso 1"
+                            type="{STATE>/status}" icon="{STATE>/icon}" text="{STATE>/text}" contentOffset="{contentOffset}"
+                            click="onModel3D" contextMenu="onContextMenuSpot">
+                  </vbm:Spot>
+                  <vbm:Spot position="-103.37;20.8;0"
+                            tooltip="Planta 1"
+                            image="SAP_logo"
+                            scale="0.2;0.2;1"
+                            alignment="1"
+                            click="onClickB1">
+                  </vbm:Spot>
+                  <vbm:Spot id="Spot2" position="-101.1;20.8;0" tooltip="Aviso 2"
+                            type="Success" icon="" text="" contentOffset="{contentOffset}"
+                            click="onClickPos2" contextMenu="onContextMenuSpot">
+                  </vbm:Spot>
+                  <vbm:Spot position="-101.1;20.8;0.0"
+                            tooltip="Planta 2"
+                            image="SAP_logo"
+                            scale="0.2;0.2;1"
+                            alignment="1"
+                            click="onClickB2">
+                  </vbm:Spot>
+                  <vbm:Spot id="Spot3" position="-100.45;25.8;0" tooltip="Aviso 3"
+                            type="Success" icon="" text="" contentOffset="{contentOffset}"
+                            click="onClickPos2" contextMenu="onContextMenuSpot">
+                  </vbm:Spot>
+                  <vbm:Spot position="-100.45;25.8;0"
+                            tooltip="Planta 3"
+                            image="SAP_logo"
+                            scale="0.2;0.2;1"
+                            alignment="1"
+                            click="onClickB2">
+                  </vbm:Spot>
+                </vbm:Spots>
+              </vbm:vos>
+              <vbm:legend>
+                <vbm:Legend id="legend" caption="Leyenda">
+                  <vbm:LegendItem text="Condición OK" color="rgb(97,166,86)" />
+                  <vbm:LegendItem text="Aviso de falla" color="rgb(211,32,48)" />
+                </vbm:Legend>
+              </vbm:legend>
+            </vbm:GeoMap>
+          </uxap:blocks>
+        </uxap:ObjectPageSubSection>
+      </uxap:subSections>
+    </uxap:ObjectPageSection>
+
+    <uxap:sections>
+      <uxap:ObjectPageSection title="Avisos">
+        <uxap:subSections>
+          <uxap:ObjectPageSubSection>
+            <uxap:blocks>
+              <Table
+id="PMNotificationList"
+class="sapUiResponsiveMargin"
+width="auto"
+items="{/ITEMS}">
+                <columns>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                    width="8em">
+                    <Label text="{i18n>columnID}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true"
+                    width="4em">
+                    <Label text="{i18n>columnType}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnDesc}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnCreatedby}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Small"
+                    demandPopin="true">
+                    <Label text="{i18n>columnReportedby}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="false">
+                    <Label text="{i18n>columnDate}"/>
+                  </Column>
+                  <Column
+                    minScreenWidth="Tablet"
+                    demandPopin="false">
+                    <Label text="{i18n>columnOrder}"/>
+                  </Column>
+                  <Column
+                      minScreenWidth="Tablet"
+                      demandPopin="false">
+                    <Label text="{i18n>Status}"/>
+                  </Column>
+                  <Column
+                      minScreenWidth="Tablet"
+                      demandPopin="false"
+                      width="4em">
+                    <Label text="{i18n>Stop}"/>
+                  </Column>
+                </columns>
+
+                <items>
+                  <ColumnListItem
+                    type="Navigation"
+                    press="onPMNotificationDetail">
+                    <cells>
+                      <ObjectIdentifier title="{id}"/>
+                      <Text text="{type}"/>
+                      <Text text="{description}"/>
+                      <Text text="{createdby}"/>
+                      <Text text="{reportedby}"/>
+                      <Text text="{date}"/>
+                      <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
+                      <Text text="{status}"/>
+                      <Text text="{stop}"/>
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+            </uxap:blocks>
+          </uxap:ObjectPageSubSection>
+        </uxap:subSections>
+      </uxap:ObjectPageSection>
+
+    </uxap:sections>
+  </uxap:ObjectPageLayout>
+
   </Page>
 </mvc:View>

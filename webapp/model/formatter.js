@@ -16,12 +16,10 @@ sap.ui.define([], function () {
                         }
                         return sDate_format;
                     }
-                }
-                else {
+                } else {
                     return sDate;
                 }
-            }
-            catch (err) {
+            } catch (err) {
                 ("ERROR");
             }
         },
@@ -33,18 +31,18 @@ sap.ui.define([], function () {
                 case "PENDIENTE":
                     return "Warning";
                 case "ABIERTA":
-                    return "Success";              
+                    return "Success";
             }
         },
 
         orderStateColor: function (sState) {
-            switch (sState) { 
+            switch (sState) {
                 case "1":
                     return "Success";
                 case "3":
                     return "Warning";
                 case "2":
-                    return "Error";                
+                    return "Error";
             }
         },
 
@@ -59,27 +57,27 @@ sap.ui.define([], function () {
             }
         },
 
-		statusTimer: function (sStatus) {
-			switch (sStatus) {
-				case "0":
-					return "Tomar tiempo";
-				case "1":
-					return "Detener tiempo;";
-				default:
-					return"";
-			}
-		},
+        statusTimer: function (sStatus) {
+            switch (sStatus) {
+                case "0":
+                    return "Tomar tiempo";
+                case "1":
+                    return "Detener tiempo;";
+                default:
+                    return "";
+            }
+        },
 
-		statusTimComp: function (sStatus) {
-			switch (sStatus) {
-				case "0":
-					return true;
-				case "1":
-					return false;
-				default:
-					return"";
-			}
-		},
+        statusTimComp: function (sStatus) {
+            switch (sStatus) {
+                case "0":
+                    return true;
+                case "1":
+                    return false;
+                default:
+                    return "";
+            }
+        },
         conditionColor: function (sState) {
             switch (sState) {
                 case "0":
@@ -91,7 +89,7 @@ sap.ui.define([], function () {
             }
         },
 
-        conditionState:function(sState) {
+        conditionState: function (sState) {
             switch (sState) {
                 case "1":
                     return "BUENO";
@@ -108,9 +106,9 @@ sap.ui.define([], function () {
                 return sData;
         },
         orderButtonType: function (sStarted, sNum) {
-            if(!sStarted)
+            if (!sStarted)
                 return "Accept";
-            if(sStarted != sNum)
+            if (sStarted != sNum)
                 return "Accept";
             else
                 return "Reject";
@@ -120,31 +118,31 @@ sap.ui.define([], function () {
                 sStart = oBundle.getText("startOrderButton"),
                 sEnd = oBundle.getText("closeOrderButton");
 
-            if(!sStarted)
+            if (!sStarted)
                 return sStart;
-            if(sStarted != sNum)
+            if (sStarted != sNum)
                 return sStart;
             else
                 return sEnd;
         },
-        orderButtonPress: function(sStarted, sNum) {
-            if(!sStarted)
+        orderButtonPress: function (sStarted, sNum) {
+            if (!sStarted)
                 return "onOpenStartOrderConfirmation";
-            if(sStarted != sNum)
+            if (sStarted != sNum)
                 return "onOpenStartOrderConfirmation";
             else
                 return "onOpenFinishOrderConfirmation";
         },
-        orderButtonIcon: function(sStarted, sNum) {
-            if(!sStarted)
+        orderButtonIcon: function (sStarted, sNum) {
+            if (!sStarted)
                 return "sap-icon://begin";
-            if(sStarted != sNum)
+            if (sStarted != sNum)
                 return "sap-icon://begin";
             else
                 return "sap-icon://decline";
         },
-        ebrStateText: function(sStatus) {
-            switch(sStatus) {
+        ebrStateText: function (sStatus) {
+            switch (sStatus) {
                 case "1":
                     return "20%";
                 case "2":
@@ -159,8 +157,8 @@ sap.ui.define([], function () {
                     return "0%";
             }
         },
-        ebrStateColor: function(sStatus) {
-            switch(sStatus) {
+        ebrStateColor: function (sStatus) {
+            switch (sStatus) {
                 case "1":
                     return "Indication02";
                 case "2":
@@ -175,11 +173,17 @@ sap.ui.define([], function () {
                     return "Indication01";
             }
         },
-        qaStatus: function(sStatus) {
-            if(sStatus == "APROBADO")
+        qaStatus: function (sStatus) {
+            if (sStatus == "APROBADO")
                 return "Success";
             else
                 return "Error";
+        },
+        alertVisible: function (sState) {
+            if (sState === "0")
+                return false;
+            else
+                return true;
         }
     };
 });
