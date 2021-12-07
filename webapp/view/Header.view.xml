@@ -5,7 +5,7 @@
   <ObjectHeader
 		id="oh1"
 		responsive="true"
-		showMarkers="true"
+		
 		numberState="Success"
 		backgroundDesign="Translucent">
     <!--<attributes>
