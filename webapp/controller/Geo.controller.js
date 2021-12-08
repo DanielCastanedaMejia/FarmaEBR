@@ -83,11 +83,12 @@ sap.ui.define([
 			//this._base_onloadTable("PMComponentList", aData, "GIM/DatosTransaccionales/Mantenimiento/Orden/Visualizar/Transaction/get_components", "Componentes", "");   
 
 		},
-		onSpotTestclick: function () {
-			MessageToast.show("Click on SpotTest, nav to SpotDetail");
+		onSpotClick: function (oEvent) {
+			const oSource = oEvent.getSource();
+			var id = oSource.getId();
+			MessageToast.show("Click on " + this.byId(id).getId() + " -> nav to Spot Detail");
 		},
-		onContextMenuSpot: function (oEvent) {
-			//MessageToast.show("Context Menu");
+		onContextMenuSpot: function (oEvent) {			
 			var oThis = this;
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
@@ -97,7 +98,7 @@ sap.ui.define([
 				});
 			}
 			this.contextMenuDialog.then(function (oDialog) {
-				var title = oThis.byId(id).getText();
+				var title = oThis.byId(id).getTooltip();
 				oDialog.setTitle(title);
 				oDialog.open();
 			});
@@ -112,8 +113,6 @@ sap.ui.define([
 			var spotJSON = new JSONModel(spotModel);
 			var nModel = spotJSON.oData.getProperty("/SPOT").length;
 
-			console.log(nModel);
-
 			for (var i = 0; i < nModel; i++) {
 				var id = spotJSON.oData.getProperty("/SPOT/" + i + "/ID");
 				var pos = spotJSON.oData.getProperty("/SPOT/" + i + "/POS");
@@ -124,8 +123,7 @@ sap.ui.define([
 				var alignment = spotJSON.oData.getProperty("/SPOT/" + i + "/ALIGNMENT");
 				var contentOffset = spotJSON.oData.getProperty("/SPOT/" + i + "/CONTENTOFFSET");
 
-				this.addSpot(id, pos, type, tooltip, text, icon, alignment, contentOffset);
-				//console.log(id);
+				this.addSpot(id, pos, type, tooltip, text, icon, alignment, contentOffset);				
 			}
 
 		},
@@ -138,9 +136,9 @@ sap.ui.define([
 			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
 			spot.setIcon(icon);
 			spot.setAlignment(alignment);
-			spot.attachClick(this.onSpotTestclick, this);
+			spot.attachClick(this.onSpotClick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
-			spot.setContentOffset(contentOffset);
+			spot.setContentOffset(contentOffset);			
 
 			this.getView().byId("spotsGeo").addItem(spot);
 		}
