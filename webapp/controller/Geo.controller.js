@@ -28,28 +28,15 @@ sap.ui.define([
 			this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");
 
-			var spot = new sap.ui.vbm.Spot("spotTest");
-
-			spot.setPosition("-105;15;0");
-			spot.setType("None");
-			spot.setTooltip("Aviso 3");
-			spot.setText("Fondo de bikini"); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
-			//spot.setIcon("sap-icon://alert");
-			spot.setAlignment("1");
-			spot.attachClick(this.onSpotTestclick, this);
-			spot.attachContextMenu(this.onContextMenuSpot, this);
-
-			this.getView().byId("spotsGeo").addItem(spot);
-
+			this.createSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
 		},
-
 		_onRouteMatched: function (oEvent) {
 
 			var accessTokenMapbox = 'pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg';
 
 			var appCode = 'xqjCK7HxKbj-oYA-K6yw_w';
 			var appId = 'dhTVPAlSKvlkx5WaEWs0';
-			
+
 			//var urlAux = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/wmts?access_token=pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg";
 
 			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/tiles/{LOD}/{X}/{Y}@2x?access_token=";
@@ -95,26 +82,42 @@ sap.ui.define([
 			//this._base_onloadTable("PMComponentList", aData, "GIM/DatosTransaccionales/Mantenimiento/Orden/Visualizar/Transaction/get_components", "Componentes", "");   
 
 		},
-
 		onSpotTestclick: function () {
 			MessageToast.show("Click on SpotTest, nav to SpotDetail");
 		},
-
-		onContextMenuSpot: function () {
+		onContextMenuSpot: function (oEvent) {
 			//MessageToast.show("Context Menu");
+			var oThis = this;
+			const oSource = oEvent.getSource();
+			var id = oSource.getId();
 			if (!this.contextMenuDialog) {
-                this.contextMenuDialog = this.loadFragment({
-                    name: "sap.ui.demo.webapp.fragment.geoContextMenu"
-                });
-            }
-            this.contextMenuDialog.then(function (oDialog) {
-                oDialog.open();
-            });        
+				this.contextMenuDialog = this.loadFragment({
+					name: "sap.ui.demo.webapp.fragment.geoContextMenu"
+				});
+			}
+			this.contextMenuDialog.then(function (oDialog) {
+				var title = oThis.byId(id).getText();
+				oDialog.setTitle(title);
+				oDialog.open();
+			});
 		},
 		onCloseContextMenu: function (oEvent) {
 			const oSource = oEvent.getSource();
-			console.log(oSource.getId());
-            this.byId(oSource.getId() + "Dialog").close();
+			this.byId(oSource.getId() + "Dialog").close();
+		},
+		createSpot: function (spotId, position, type, tooltip, text, icon, alignment) {
+			var spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + spotId);
+
+			spot.setPosition(position);
+			spot.setType(type);
+			spot.setTooltip(tooltip);
+			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
+			//spot.setIcon(icon);
+			spot.setAlignment(alignment);
+			spot.attachClick(this.onSpotTestclick, this);
+			spot.attachContextMenu(this.onContextMenuSpot, this);
+
+			this.getView().byId("spotsGeo").addItem(spot);
 		}
 	});
 });

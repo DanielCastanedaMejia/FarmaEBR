@@ -13,8 +13,8 @@
             </items>
         </VBox>
 
-        <beginButton>
+        <endButton>
             <Button id="geoContext" type="Default" text="Cerrar" press="onCloseContextMenu"/>
-        </beginButton>
+        </endButton>
     </Dialog>
 </core:FragmentDefinition> 
