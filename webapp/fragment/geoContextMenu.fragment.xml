@@ -1,0 +1,20 @@
+<core:FragmentDefinition id ="dataStartOrderScanSFCFragment"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Spot Menu" id="geoContextDialog">
+
+
+        <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
+            <items>
+                
+            </items>
+        </VBox>
+
+        <beginButton>
+            <Button id="geoContext" type="Default" text="Cerrar" press="onCloseContextMenu"/>
+        </beginButton>
+    </Dialog>
+</core:FragmentDefinition> 

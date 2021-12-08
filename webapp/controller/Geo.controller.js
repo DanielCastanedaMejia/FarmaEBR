@@ -1,7 +1,7 @@
 sap.ui.define([
 	"sap/ui/demo/webapp/controller/BaseController",
 	"sap/ui/demo/webapp/model/formatter",
-	"sap/m/MessageToast"
+	"sap/m/MessageToast",
 ], function (BaseController, formatter, MessageToast) {
 	"use strict";
 
@@ -32,11 +32,12 @@ sap.ui.define([
 
 			spot.setPosition("-105;15;0");
 			spot.setType("None");
-			spot.setTooltip("Spot Test");
-			spot.setText("Fondo de bikini");
-			spot.setAlignment("1");
+			spot.setTooltip("Aviso 3");
+			spot.setText("Fondo de bikini"); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
 			//spot.setIcon("sap-icon://alert");
+			spot.setAlignment("1");
 			spot.attachClick(this.onSpotTestclick, this);
+			spot.attachContextMenu(this.onContextMenuSpot, this);
 
 			this.getView().byId("spotsGeo").addItem(spot);
 
@@ -96,11 +97,24 @@ sap.ui.define([
 		},
 
 		onSpotTestclick: function () {
-			MessageToast.show("Click on SpotTest");
+			MessageToast.show("Click on SpotTest, nav to SpotDetail");
 		},
 
 		onContextMenuSpot: function () {
-			MessageToast.show("Context Menu");
+			//MessageToast.show("Context Menu");
+			if (!this.contextMenuDialog) {
+                this.contextMenuDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.geoContextMenu"
+                });
+            }
+            this.contextMenuDialog.then(function (oDialog) {
+                oDialog.open();
+            });        
+		},
+		onCloseContextMenu: function (oEvent) {
+			const oSource = oEvent.getSource();
+			console.log(oSource.getId());
+            this.byId(oSource.getId() + "Dialog").close();
 		}
 	});
 });
