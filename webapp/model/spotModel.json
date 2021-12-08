@@ -1,0 +1,22 @@
+{
+    "SPOT": [
+        {
+            "ID": "044",
+            "POS": "-105;15;0",
+            "TYPE": "None",
+            "TOOLTIP": "Aviso 4",
+            "TEXT": "Fondo de bikini",
+            "ICON": "",
+            "ALIGNMENT": "1"
+        },
+        {
+            "ID": "045",
+            "POS": "-105;10;0",
+            "TYPE": "Warning",
+            "TOOLTIP": "Aviso 7",
+            "TEXT": "Rapture",
+            "ICON": "",
+            "ALIGNMENT": "1"
+        }
+    ]
+}

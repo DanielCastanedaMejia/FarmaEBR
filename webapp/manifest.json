@@ -81,6 +81,10 @@
             "notifyProd": {
                 "uri": "model/NotifyProd.json",
                 "type": "JSON"
+            },
+            "spots": {
+                "uri": "model/spotModel.json",
+                "type": "JSON"
             }
         }
     },
@@ -187,6 +191,10 @@
             "notifyProd": {
                 "type": "sap.ui.model.json.JSONModel",
                 "dataSource": "notifyProd"
+            },
+            "spots": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "spots"
             }
         },
         "resources": {

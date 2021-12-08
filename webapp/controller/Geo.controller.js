@@ -2,7 +2,8 @@ sap.ui.define([
 	"sap/ui/demo/webapp/controller/BaseController",
 	"sap/ui/demo/webapp/model/formatter",
 	"sap/m/MessageToast",
-], function (BaseController, formatter, MessageToast) {
+	"sap/ui/model/json/JSONModel"
+], function (BaseController, formatter, MessageToast, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.webapp.controller.Geo", {
@@ -27,8 +28,8 @@ sap.ui.define([
 			oModelS.setData(oDataS);
 			this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");
-
-			this.createSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
+			this.loadSpotModel();
+			//this.addSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
 		},
 		_onRouteMatched: function (oEvent) {
 
@@ -105,14 +106,36 @@ sap.ui.define([
 			const oSource = oEvent.getSource();
 			this.byId(oSource.getId() + "Dialog").close();
 		},
-		createSpot: function (spotId, position, type, tooltip, text, icon, alignment) {
+		loadSpotModel: function () {
+			var spotModel = this.getOwnerComponent().getModel("spots");
+			this.getView().setModel(spotModel);
+			var spotJSON = new JSONModel(spotModel);
+			var nModel = spotJSON.oData.getProperty("/SPOT").length;
+
+			console.log(nModel);
+
+			for (var i = 0; i < nModel; i++) {
+				var id = spotJSON.oData.getProperty("/SPOT/" + i + "/ID");
+				var pos = spotJSON.oData.getProperty("/SPOT/" + i + "/POS");
+				var type = spotJSON.oData.getProperty("/SPOT/" + i + "/TYPE");
+				var tooltip = spotJSON.oData.getProperty("/SPOT/" + i + "/TOOLTIP");
+				var text = spotJSON.oData.getProperty("/SPOT/" + i + "/TEXT");
+				var icon = spotJSON.oData.getProperty("/SPOT/" + i + "/ICON");
+				var alignment = spotJSON.oData.getProperty("/SPOT/" + i + "/ALIGNMENT");
+
+				this.addSpot(id, pos, type, tooltip, text, icon, alignment);
+				//console.log(id);
+			}
+
+		},
+		addSpot: function (spotId, position, type, tooltip, text, icon, alignment) {
 			var spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + spotId);
 
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);
 			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
-			//spot.setIcon(icon);
+			spot.setIcon(icon);
 			spot.setAlignment(alignment);
 			spot.attachClick(this.onSpotTestclick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
