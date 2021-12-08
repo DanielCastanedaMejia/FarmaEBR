@@ -122,13 +122,14 @@ sap.ui.define([
 				var text = spotJSON.oData.getProperty("/SPOT/" + i + "/TEXT");
 				var icon = spotJSON.oData.getProperty("/SPOT/" + i + "/ICON");
 				var alignment = spotJSON.oData.getProperty("/SPOT/" + i + "/ALIGNMENT");
+				var contentOffset = spotJSON.oData.getProperty("/SPOT/" + i + "/CONTENTOFFSET");
 
-				this.addSpot(id, pos, type, tooltip, text, icon, alignment);
+				this.addSpot(id, pos, type, tooltip, text, icon, alignment, contentOffset);
 				//console.log(id);
 			}
 
 		},
-		addSpot: function (spotId, position, type, tooltip, text, icon, alignment) {
+		addSpot: function (spotId, position, type, tooltip, text, icon, alignment, contentOffset) {
 			var spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + spotId);
 
 			spot.setPosition(position);
@@ -139,6 +140,7 @@ sap.ui.define([
 			spot.setAlignment(alignment);
 			spot.attachClick(this.onSpotTestclick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
+			spot.setContentOffset(contentOffset);
 
 			this.getView().byId("spotsGeo").addItem(spot);
 		}

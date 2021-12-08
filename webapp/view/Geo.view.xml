@@ -126,15 +126,6 @@
                                 </vbm:resources>
                                 <vbm:vos>
                                     <vbm:Spots id="spotsGeo">
-                                        <vbm:Spot id="Spot1" position="-103.37;20.20;0" tooltip="Aviso 1" type="{STATE>/status}" icon="{STATE>/icon}" text="Planta 1" contentOffset="{contentOffset}" click="onModel3D" contextMenu="onContextMenuSpot">
-                                        </vbm:Spot>
-                                        
-                                        <vbm:Spot id="Spot2" position="-101.1;20.8;0" tooltip="Aviso 2" type="Success" icon="" text="Planta 2" contentOffset="{contentOffset}" click="onClickPos2" contextMenu="onContextMenuSpot">
-                                        </vbm:Spot>
-                                       
-                                        <vbm:Spot id="Spot3" position="-100.45;25.8;0" tooltip="Aviso 3" type="Success" icon="" text="Planta 3" contentOffset="{contentOffset}" click="onClickPos2" contextMenu="onContextMenuSpot">
-                                        </vbm:Spot>
-                                        
                                     </vbm:Spots>
                                 </vbm:vos>
                                 <vbm:legend>

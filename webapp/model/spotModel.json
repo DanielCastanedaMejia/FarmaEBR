@@ -1,13 +1,44 @@
 {
     "SPOT": [
         {
+            "ID": "Spot1",
+            "POS": "-103.37;20.20;0",
+            "TYPE": "Error",
+            "TOOLTIP": "Aviso 1",
+            "TEXT": "Planta 1",
+            "ICON": "",
+            "ALIGNMENT": "1",
+            "CONTENTOFFSET": "0;5"
+        },
+        {
+            "ID": "Spot2",
+            "POS": "-101.1;20.8;0",
+            "TYPE": "Success",
+            "TOOLTIP": "Aviso 2",
+            "TEXT": "Planta 2",
+            "ICON": "",
+            "ALIGNMENT": "1",
+            "CONTENTOFFSET": "0;5"
+        },
+        {
+            "ID": "Spot3",
+            "POS": "-100.45;25.8;0",
+            "TYPE": "Success",
+            "TOOLTIP": "Aviso 3",
+            "TEXT": "Planta 3",
+            "ICON": "",
+            "ALIGNMENT": "1",
+            "CONTENTOFFSET": "0;5"
+        },
+        {
             "ID": "044",
             "POS": "-105;15;0",
             "TYPE": "None",
             "TOOLTIP": "Aviso 4",
             "TEXT": "Fondo de bikini",
             "ICON": "",
-            "ALIGNMENT": "1"
+            "ALIGNMENT": "1",
+            "CONTENTOFFSET": "0;-24"
         },
         {
             "ID": "045",
@@ -16,7 +47,8 @@
             "TOOLTIP": "Aviso 7",
             "TEXT": "Rapture",
             "ICON": "",
-            "ALIGNMENT": "1"
+            "ALIGNMENT": "1",
+            "CONTENTOFFSET": "0;5"
         }
     ]
 }
