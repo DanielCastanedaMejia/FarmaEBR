@@ -125,8 +125,8 @@
                                     <vbm:Resource name="SAP_logo_Other" />
                                 </vbm:resources>
                                 <vbm:vos>
-                                    <vbm:Spots>
-                                        <vbm:Spot id="Spot1" position="-103.37;20.8;0" tooltip="Aviso 1" type="{STATE>/status}" icon="{STATE>/icon}" text="{STATE>/text}" contentOffset="{contentOffset}" click="onModel3D" contextMenu="onContextMenuSpot">
+                                    <vbm:Spots id="spotsGeo">
+                                        <vbm:Spot id="Spot1" position="-103.37;20.20;0" tooltip="Aviso 1" type="{STATE>/status}" icon="{STATE>/icon}" text="{STATE>/text}" contentOffset="{contentOffset}" click="onModel3D" contextMenu="onContextMenuSpot">
                                         </vbm:Spot>
                                         <vbm:Spot position="-103.37;20.8;0" tooltip="Planta 1" image="SAP_logo" scale="0.2;0.2;1" alignment="1" click="onClickB1">
                                         </vbm:Spot>
