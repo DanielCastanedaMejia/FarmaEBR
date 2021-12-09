@@ -9,7 +9,14 @@
             "ICON": "",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;5",
-            "IMAGEPATH": ""
+            "IMAGEPATH": [
+                {
+                    "PATH": "/images/plant1_1.png"
+                },
+                {
+                    "PATH": "/images/plant1_2.jpg"
+                }
+            ]
         },
         {
             "ID": "Spot2",
@@ -20,7 +27,11 @@
             "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;5",
-            "IMAGEPATH": ""
+            "IMAGEPATH": [
+                {
+                    "PATH": ""
+                }
+            ]
         },
         {
             "ID": "Spot3",

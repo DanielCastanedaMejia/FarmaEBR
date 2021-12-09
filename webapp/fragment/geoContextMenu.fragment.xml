@@ -7,11 +7,22 @@
     <Dialog title="Spot Menu" id="geoContextDialog">
 
 
-        <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
-            <items>
-                <Image id="mainImg" width="50%" height="50%" class="sapUiMediumMarginBottom" ></Image>
-            </items>
-        </VBox>
+        <HBox width="100%" direction="Column" >
+            <Panel>
+                <FlexBox renderType="Bare" >
+                    <Image id="mainImg" width="50%" height="50%" class="sapUiSmallMargin">
+                        <layoutData>
+                            <FlexItemData growFactor="1"></FlexItemData>
+                        </layoutData>
+                    </Image>
+                    <Label text="TEST" class="sapUiSmallMargin">
+                        <layoutData>
+                            <FlexItemData growFactor="4"></FlexItemData>
+                        </layoutData>
+                    </Label>
+                </FlexBox>
+            </Panel>
+        </HBox>
 
         <endButton>
             <Button id="geoContext" type="Default" text="Cerrar" press="onCloseContextMenu"/>
