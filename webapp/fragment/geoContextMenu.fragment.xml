@@ -9,7 +9,7 @@
 
         <VBox width="100%" direction="Column" class="sapUiSmallMarginBottom">
             <items>
-                
+                <Image id="mainImg" width="50%" height="50%" class="sapUiMediumMarginBottom" ></Image>
             </items>
         </VBox>
 

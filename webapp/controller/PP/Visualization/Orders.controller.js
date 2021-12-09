@@ -1017,8 +1017,11 @@ sap.ui.define([
         onDetal_view: function (oEvent) {
             var oItem, oCtx, estatus, sPath;
             oItem = oEvent.getSource();
+            console.log(oItem);
             oCtx = oItem.getBindingContext();
+            console.log(oCtx);
             sPath = oCtx.getPath();
+            console.log(sPath);
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
             estatus = oCtx.getProperty("ESTATUS_MII");
             if (estatus !== "PENDIENTE" && estatus !== "ABIERTA") {

@@ -1,6 +1,7 @@
 {
     "selectedOrder": "",
     "selectedFase": "",
+    "selectedSpot": "",
     "server": {
         "url": "http://localhost:8010/proxy",
         "transactions": []

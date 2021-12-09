@@ -8,7 +8,8 @@
             "TEXT": "Planta 1",
             "ICON": "",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5"
+            "CONTENTOFFSET": "0;5",
+            "IMAGEPATH": ""
         },
         {
             "ID": "Spot2",
@@ -18,7 +19,8 @@
             "TEXT": "Planta 2",
             "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5"
+            "CONTENTOFFSET": "0;5",
+            "IMAGEPATH": ""
         },
         {
             "ID": "Spot3",
@@ -28,7 +30,8 @@
             "TEXT": "Planta 3",
             "ICON": "",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5"
+            "CONTENTOFFSET": "0;5",
+            "IMAGEPATH": ""
         },
         {
             "ID": "bikiniBottom",
@@ -38,7 +41,8 @@
             "TEXT": "Fondo de bikini",
             "ICON": "",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;-24"
+            "CONTENTOFFSET": "0;-24",
+            "IMAGEPATH": "a"
         },
         {
             "ID": "raptureSpot",
@@ -48,7 +52,8 @@
             "TEXT": "",
             "ICON": "sap-icon://building",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5"
+            "CONTENTOFFSET": "0;5",
+            "IMAGEPATH": "/images/rapture.jpg"
         }
     ]
 }

@@ -88,7 +88,16 @@ sap.ui.define([
 			var id = oSource.getId();
 			MessageToast.show("Click on " + this.byId(id).getId() + " -> nav to Spot Detail");
 		},
-		onContextMenuSpot: function (oEvent) {			
+		onContextMenuSpot: function (oEvent) {
+			//--------------------------------------------------
+			var oItem, oModel, img, sPath;
+			oItem = oEvent.getSource();
+			console.log(oItem);
+			oModel = oItem.getModel("spotM");
+			console.log(oModel);			
+			img = oModel.IMAGEPATH;
+			console.log(img);
+			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
@@ -100,6 +109,7 @@ sap.ui.define([
 			this.contextMenuDialog.then(function (oDialog) {
 				var title = oThis.byId(id).getTooltip();
 				oDialog.setTitle(title);
+				oThis.getView().byId("mainImg").setSrc(img);
 				oDialog.open();
 			});
 		},
@@ -111,25 +121,42 @@ sap.ui.define([
 			var spotModel = this.getOwnerComponent().getModel("spots");
 			this.getView().setModel(spotModel);
 			var spotJSON = new JSONModel(spotModel);
-			var nModel = spotJSON.oData.getProperty("/SPOT").length;
-
+			var nModel = spotModel.getProperty("/SPOT").length;
+			var spot;
 			for (var i = 0; i < nModel; i++) {
-				var id = spotJSON.oData.getProperty("/SPOT/" + i + "/ID");
-				var pos = spotJSON.oData.getProperty("/SPOT/" + i + "/POS");
-				var type = spotJSON.oData.getProperty("/SPOT/" + i + "/TYPE");
-				var tooltip = spotJSON.oData.getProperty("/SPOT/" + i + "/TOOLTIP");
-				var text = spotJSON.oData.getProperty("/SPOT/" + i + "/TEXT");
-				var icon = spotJSON.oData.getProperty("/SPOT/" + i + "/ICON");
-				var alignment = spotJSON.oData.getProperty("/SPOT/" + i + "/ALIGNMENT");
-				var contentOffset = spotJSON.oData.getProperty("/SPOT/" + i + "/CONTENTOFFSET");
+				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
+				/*var pos = spotModel.getProperty("/SPOT/" + i + "/POS");
+				var type = spotModel.getProperty("/SPOT/" + i + "/TYPE");
+				var tooltip = spotModel.getProperty("/SPOT/" + i + "/TOOLTIP");
+				var text = spotModel.getProperty("/SPOT/" + i + "/TEXT");
+				var icon = spotModel.getProperty("/SPOT/" + i + "/ICON");
+				var alignment = spotModel.getProperty("/SPOT/" + i + "/ALIGNMENT");
+				var contentOffset = spotModel.getProperty("/SPOT/" + i + "/CONTENTOFFSET");
+				var imagePath = spotModel.getProperty("/SPOT/" + i + "/IMAGEPATH");*/
 
-				this.addSpot(id, pos, type, tooltip, text, icon, alignment, contentOffset);				
+				//this.addSpot(id, pos, type, tooltip, text, icon, alignment, contentOffset);				
+
+				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
+
+				spot.setModel(spotJSON.oData.getProperty("/SPOT/" + i), "spotM");
+				var sModel = spot.getModel("spotM")
+				spot.setPosition(sModel.POS);
+				spot.setType(sModel.TYPE);
+				spot.setTooltip(sModel.TOOLTIP);
+				spot.setText(sModel.TEXT); //Solo puede asignarse texto o ico,no, no ambos al mismo tiempo
+				spot.setIcon(sModel.ICON);
+				spot.setAlignment(sModel.ALIGNMENT);
+				spot.attachClick(this.onSpotClick, this);
+				spot.attachContextMenu(this.onContextMenuSpot, this);
+				spot.setContentOffset(sModel.CONTENTOFFSET);
+
+				this.getView().byId("spotsGeo").addItem(spot);
 			}
 
 		},
 		addSpot: function (spotId, position, type, tooltip, text, icon, alignment, contentOffset) {
 			var spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + spotId);
-
+			
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);
@@ -138,7 +165,7 @@ sap.ui.define([
 			spot.setAlignment(alignment);
 			spot.attachClick(this.onSpotClick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
-			spot.setContentOffset(contentOffset);			
+			spot.setContentOffset(contentOffset);
 
 			this.getView().byId("spotsGeo").addItem(spot);
 		}
