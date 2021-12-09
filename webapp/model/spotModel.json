@@ -1,7 +1,7 @@
 {
     "SPOT": [
         {
-            "ID": "Spot1",
+            "ID": "0",
             "POS": "-103.37;20.20;0",
             "TYPE": "Error",
             "TOOLTIP": "Planta 1",
@@ -19,7 +19,7 @@
             ]
         },
         {
-            "ID": "Spot2",
+            "ID": "1",
             "POS": "-101.1;20.8;0",
             "TYPE": "Success",
             "TOOLTIP": "Planta 2",
@@ -29,12 +29,15 @@
             "CONTENTOFFSET": "0;5",
             "IMAGEPATH": [
                 {
-                    "PATH": ""
+                    "PATH": "/images/plant2_1.png"
+                },
+                {
+                    "PATH": "/images/plant2_2.jpg"
                 }
             ]
         },
         {
-            "ID": "Spot3",
+            "ID": "2",
             "POS": "-100.45;25.8;0",
             "TYPE": "Success",
             "TOOLTIP": "Planta 3",
@@ -42,10 +45,17 @@
             "ICON": "",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;5",
-            "IMAGEPATH": ""
+            "IMAGEPATH": [
+                {
+                    "PATH": "/images/plant3_1.png"
+                },
+                {
+                    "PATH": "/images/plant3_2.jpg"
+                }
+            ]
         },
         {
-            "ID": "bikiniBottom",
+            "ID": "3",
             "POS": "-105;15;0",
             "TYPE": "None",
             "TOOLTIP": "Fondo de bikini",
@@ -53,10 +63,17 @@
             "ICON": "",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;-24",
-            "IMAGEPATH": "a"
+            "IMAGEPATH": [
+                {
+                    "PATH": "/images/plant4_1.png"
+                },
+                {
+                    "PATH": "/images/plant4_2.jpg"
+                }
+            ]
         },
         {
-            "ID": "raptureSpot",
+            "ID": "4",
             "POS": "-105;10;0",
             "TYPE": "Warning",
             "TOOLTIP": "Rapture",
@@ -64,7 +81,14 @@
             "ICON": "sap-icon://building",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;5",
-            "IMAGEPATH": "/images/rapture.jpg"
+            "IMAGEPATH": [
+                {
+                    "PATH": "/images/plant5_1.jpg"
+                },
+                {
+                    "PATH": "/images/plant5_2.jpg"
+                }
+            ]
         }
     ]
 }

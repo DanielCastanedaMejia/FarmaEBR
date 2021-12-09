@@ -2,8 +2,9 @@ sap.ui.define([
 	"sap/ui/demo/webapp/controller/BaseController",
 	"sap/ui/demo/webapp/model/formatter",
 	"sap/m/MessageToast",
-	"sap/ui/model/json/JSONModel"
-], function (BaseController, formatter, MessageToast, JSONModel) {
+	"sap/ui/model/json/JSONModel",
+	"sap/m/Image"
+], function (BaseController, formatter, MessageToast, JSONModel, Image) {
 	"use strict";
 
 	return BaseController.extend("sap.ui.demo.webapp.controller.Geo", {
@@ -28,6 +29,7 @@ sap.ui.define([
 			oModelS.setData(oDataS);
 			this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");
+			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "SPOTSMOD");
 			this.loadSpotModel();
 			//this.addSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
 		},
@@ -94,10 +96,9 @@ sap.ui.define([
 			oItem = oEvent.getSource();
 			console.log(oItem);
 			oModel = oItem.getModel("spotM");
-			console.log(oModel);			
-			img = oModel.IMAGEPATH;
-			console.log(img);
-			//---------------------------------------------------
+			console.log(oModel);
+			console.log(oModel.ID);			
+			//---------------------------------------------------			
 			var oThis = this;
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
@@ -109,7 +110,9 @@ sap.ui.define([
 			this.contextMenuDialog.then(function (oDialog) {
 				var title = oThis.byId(id).getTooltip();
 				oDialog.setTitle(title);
-				oThis.getView().byId("mainImg").setSrc(img);
+				oThis.byId("carouselImg").setActivePage("mainImg0");
+				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
+				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
 				oDialog.open();
 			});
 		},
@@ -125,49 +128,21 @@ sap.ui.define([
 			var spot;
 			for (var i = 0; i < nModel; i++) {
 				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
-				/*var pos = spotModel.getProperty("/SPOT/" + i + "/POS");
-				var type = spotModel.getProperty("/SPOT/" + i + "/TYPE");
-				var tooltip = spotModel.getProperty("/SPOT/" + i + "/TOOLTIP");
-				var text = spotModel.getProperty("/SPOT/" + i + "/TEXT");
-				var icon = spotModel.getProperty("/SPOT/" + i + "/ICON");
-				var alignment = spotModel.getProperty("/SPOT/" + i + "/ALIGNMENT");
-				var contentOffset = spotModel.getProperty("/SPOT/" + i + "/CONTENTOFFSET");
-				var imagePath = spotModel.getProperty("/SPOT/" + i + "/IMAGEPATH");*/
-
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
-
 				spot.setModel(spotJSON.oData.getProperty("/SPOT/" + i), "spotM");
 				var sModel = spot.getModel("spotM")
-
 				var pos = sModel.POS;
 				var type = sModel.TYPE;
 				var tooltip = sModel.TOOLTIP;
 				var text = sModel.TEXT;
 				var icon = sModel.ICON;
 				var alignment = sModel.ALIGNMENT;
-				var contentOffset = sModel.CONTENTOFFSET;
-				//var imagePath = spotModel.getProperty("/SPOT/" + i + "/IMAGEPATH");
-
-				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset);				
-
-				
-				/*spot.setPosition(sModel.POS);
-				spot.setType(;
-				spot.setTooltip(sModel.TOOLTIP);
-				spot.setText(sModel.TEXT); //Solo puede asignarse texto o ico,no, no ambos al mismo tiempo
-				spot.setIcon(sModel.ICON);
-				spot.setAlignment(sModel.ALIGNMENT);
-				spot.attachClick(this.onSpotClick, this);
-				spot.attachContextMenu(this.onContextMenuSpot, this);
-				spot.setContentOffset(sModel.CONTENTOFFSET);
-
-				this.getView().byId("spotsGeo").addItem(spot);*/
+				var contentOffset = sModel.CONTENTOFFSET;		
+				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset);
 			}
 
 		},
 		addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset) {
-			//var spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + spotId);
-			
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);

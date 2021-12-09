@@ -10,11 +10,20 @@
         <HBox width="100%" direction="Column" >
             <Panel>
                 <FlexBox renderType="Bare" >
-                    <Image id="mainImg" width="50%" height="50%" class="sapUiSmallMargin">
+                    <!-- <Image id="mainImg" width="50%" height="50%" class="sapUiSmallMargin">
                         <layoutData>
                             <FlexItemData growFactor="1"></FlexItemData>
                         </layoutData>
-                    </Image>
+                    </Image>-->
+                    <Carousel activePage="0" id="carouselImg" class="sapUiSmallMargin" loop="true" width="50%" height="50%">                        
+                        <layoutData>
+                            <FlexItemData growFactor="0"></FlexItemData>
+                        </layoutData>
+                        <pages >
+                            <Image id="mainImg0" src="" ></Image>
+                            <Image id="mainImg1" src="" ></Image>
+                        </pages>                        
+                    </Carousel>
                     <Label text="TEST" class="sapUiSmallMargin">
                         <layoutData>
                             <FlexItemData growFactor="4"></FlexItemData>
