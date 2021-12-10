@@ -91,14 +91,15 @@ sap.ui.define([
 			MessageToast.show("Click on " + this.byId(id).getId() + " -> nav to Spot Detail");
 		},
 		onContextMenuSpot: function (oEvent) {
-			//--------------------------------------------------
+			//---------------------------------------------------
 			var oItem, oModel, img, sPath;
 			oItem = oEvent.getSource();
 			console.log(oItem);
 			oModel = oItem.getModel("spotM");
 			console.log(oModel);
-			console.log(oModel.ID);			
+			console.log(oModel.ID);
 			//---------------------------------------------------			
+			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
@@ -110,14 +111,22 @@ sap.ui.define([
 			this.contextMenuDialog.then(function (oDialog) {
 				var title = oThis.byId(id).getTooltip();
 				oDialog.setTitle(title);
+				//--------------------------------------------------
 				oThis.byId("carouselImg").setActivePage("mainImg0");
 				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
 				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
+				//---------------------------------------------------
+				var posArray = oModel.POS.toString().split(";", 2);
+				var lat = posArray[0],
+					lon = posArray[1];
+					oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@20.7108809,-103.4876346,13.1z");
+				//-----------------------------------------------------
 				oDialog.open();
 			});
 		},
 		onCloseContextMenu: function (oEvent) {
 			const oSource = oEvent.getSource();
+			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
 		loadSpotModel: function () {
@@ -137,7 +146,7 @@ sap.ui.define([
 				var text = sModel.TEXT;
 				var icon = sModel.ICON;
 				var alignment = sModel.ALIGNMENT;
-				var contentOffset = sModel.CONTENTOFFSET;		
+				var contentOffset = sModel.CONTENTOFFSET;
 				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset);
 			}
 

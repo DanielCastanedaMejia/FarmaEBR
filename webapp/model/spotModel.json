@@ -2,7 +2,7 @@
     "SPOT": [
         {
             "ID": "0",
-            "POS": "-103.37;20.20;0",
+            "POS": "-103.37;20.20;0",            
             "TYPE": "Error",
             "TOOLTIP": "Planta 1",
             "TEXT": "Planta 1",
@@ -29,7 +29,7 @@
             "CONTENTOFFSET": "0;5",
             "IMAGEPATH": [
                 {
-                    "PATH": "/images/plant2_1.png"
+                    "PATH": "/images/plant2_1.jpg"
                 },
                 {
                     "PATH": "/images/plant2_2.jpg"
@@ -47,7 +47,7 @@
             "CONTENTOFFSET": "0;5",
             "IMAGEPATH": [
                 {
-                    "PATH": "/images/plant3_1.png"
+                    "PATH": "/images/plant3_1.jpeg"
                 },
                 {
                     "PATH": "/images/plant3_2.jpg"
@@ -65,7 +65,7 @@
             "CONTENTOFFSET": "0;-24",
             "IMAGEPATH": [
                 {
-                    "PATH": "/images/plant4_1.png"
+                    "PATH": "/images/plant4_1.jpg"
                 },
                 {
                     "PATH": "/images/plant4_2.jpg"

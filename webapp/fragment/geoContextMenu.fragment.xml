@@ -24,11 +24,24 @@
                             <Image id="mainImg1" src="" ></Image>
                         </pages>                        
                     </Carousel>
-                    <Label text="TEST" class="sapUiSmallMargin">
+                    <VBox class="sapUiSmallMargin" >
+
+                        <HBox>
+                            <core:Icon src="sap-icon://shortcut" class="sapUiSmallMarginTop" ></core:Icon>
+                            <Link id="ubiId" text="Como llegar" href="" target="_blank" class="sapUiSmallMargin"></Link>
+                        </HBox>
+
+                        <HBox>
+                            <core:Icon src="sap-icon://call" class="sapUiSmallMarginTop" ></core:Icon>
+                            <Link id="telId" text="Llamar" href="" target="_blank" class="sapUiSmallMargin"></Link>
+                        </HBox>
+
                         <layoutData>
                             <FlexItemData growFactor="4"></FlexItemData>
                         </layoutData>
-                    </Label>
+                    </VBox>
+                    
+
                 </FlexBox>
             </Panel>
         </HBox>
