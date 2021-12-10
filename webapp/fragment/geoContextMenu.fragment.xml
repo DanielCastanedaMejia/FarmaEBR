@@ -27,12 +27,12 @@
                     <VBox class="sapUiSmallMargin" >
 
                         <HBox>
-                            <core:Icon src="sap-icon://shortcut" class="sapUiSmallMarginTop" ></core:Icon>
+                            <core:Icon src="sap-icon://functional-location" class="sapUiSmallMarginTop" ></core:Icon>
                             <Link id="ubiId" text="Como llegar" href="" target="_blank" class="sapUiSmallMargin"></Link>
                         </HBox>
 
                         <HBox>
-                            <core:Icon src="sap-icon://call" class="sapUiSmallMarginTop" ></core:Icon>
+                            <core:Icon src="sap-icon://outgoing-call" class="sapUiSmallMarginTop" ></core:Icon>
                             <Link id="telId" text="Llamar" href="" target="_blank" class="sapUiSmallMargin"></Link>
                         </HBox>
 
