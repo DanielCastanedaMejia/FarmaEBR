@@ -119,7 +119,7 @@ sap.ui.define([
 				var posArray = oModel.POS.toString().split(";", 2);
 				var lat = posArray[0],
 					lon = posArray[1];
-					oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@20.7108809,-103.4876346,13.1z");
+					oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@" + lon + "," + lat + ",13.1z");
 				//-----------------------------------------------------
 				var tel = oModel.TEL;				
 				oThis.byId("telId").setHref("tel://" + tel);
