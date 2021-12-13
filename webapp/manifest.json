@@ -85,6 +85,10 @@
             "spots": {
                 "uri": "model/spotModel.json",
                 "type": "JSON"
+            },
+            "noticesModel": {
+                "uri": "model/noticesModel.json",
+                "type": "JSON"
             }
         }
     },
@@ -195,6 +199,10 @@
             "spots": {
                 "type": "sap.ui.model.json.JSONModel",
                 "dataSource": "spots"
+            },
+            "noticesModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "noticesModel"
             }
         },
         "resources": {

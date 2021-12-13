@@ -174,7 +174,7 @@
                                         <Column minScreenWidth="Tablet" demandPopin="false">
                                             <Label text="{i18n>Status}"/>
                                         </Column>
-                                        <Column minScreenWidth="Tablet" demandPopin="false" width="4em">
+                                        <Column minScreenWidth="Tablet" demandPopin="false">
                                             <Label text="{i18n>Stop}"/>
                                         </Column>
                                     </columns>

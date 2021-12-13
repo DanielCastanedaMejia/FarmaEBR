@@ -30,6 +30,9 @@ sap.ui.define([
 			//this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");
 			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "SPOTSMOD");
+			//this.getView().byId("PMNotificationList").setModel(this.getOwnerComponent().getModel("noticesModel"));
+
+			//console.log(this.getView().byId("PMNotificationList").getModel());
 			this.loadSpotModel();
 			//this.addSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
 		},
@@ -89,20 +92,34 @@ sap.ui.define([
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
 			//MessageToast.show("Click on " + this.byId(id).getId() + " -> Show Spot Detail Header");
-			var oItem, oModel, img, sPath;
+			var oItem, oModel;
 			oItem = oEvent.getSource();
-			//console.log(oItem);
 			oModel = oItem.getModel("spotM");
-			//console.log(oModel);
-			//console.log(oModel.ID);
 			console.log(oModel);
-			var aModel = new JSONModel(oModel);
-			console.log(aModel);
+			var aModel = new JSONModel(oModel);			
 			this.getView().setModel(aModel, "HEADER");
+			//this.getView().byId("PMNotificationList").setModel();
+			var nModel = new JSONModel(this.getOwnerComponent().getModel("noticesModel"));
+			var aData = nModel.oData.oData;
+			var indexSpotClicked = id.at(-1);
+
+			console.log(nModel);			
+			//console.log(aData);
+			//console.log(aData.ITEMS.length);
+			//console.log(aData.ITEMS[0].spotId);
+
+			for(var i = 0; i < aData.ITEMS.length; i++) {
+				console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
+				if(aData.ITEMS[i].spotId == indexSpotClicked) {
+					console.log("Show this row of noticesModel");
+				} else {
+					console.log("Don't show this row of noticesModel");
+				}
+			}
 		},
 		onContextMenuSpot: function (oEvent) {
 			//---------------------------------------------------
-			var oItem, oModel, img, sPath;
+			var oItem, oModel;
 			oItem = oEvent.getSource();
 			//console.log(oItem);
 			oModel = oItem.getModel("spotM");
