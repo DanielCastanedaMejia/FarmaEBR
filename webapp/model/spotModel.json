@@ -20,11 +20,6 @@
             "TEL": "3333333331"
         },
         {
-            "ID": "01",
-            "POS": "-103.37;20.20;0",
-            "TOOLTIP": "Planta 1"
-        },
-        {
             "ID": "1",
             "POS": "-101.1;20.8;0",
             "TYPE": "Success",
@@ -64,7 +59,7 @@
         },
         {
             "ID": "3",
-            "POS": "-105;15;0",
+            "POS": "165.31;11.60",
             "TYPE": "None",
             "TOOLTIP": "Fondo de bikini",
             "TEXT": "Fondo de bikini",
