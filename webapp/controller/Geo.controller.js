@@ -141,8 +141,8 @@ sap.ui.define([
 			for (var i = 0; i < nModel; i++) {
 				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
-				spot.setModel(spotJSON.oData.getProperty("/SPOT/" + i), "spotM");
-				var sModel = spot.getModel("spotM")
+				spot.setModel(spotModel.getProperty("/SPOT/" + i), "spotM");
+				var sModel = spot.getModel("spotM");
 				var pos = sModel.POS;
 				var type = sModel.TYPE;
 				var tooltip = sModel.TOOLTIP;
@@ -160,7 +160,7 @@ sap.ui.define([
 			spot.setTooltip(tooltip);
 			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
 			spot.setIcon(icon);
-			spot.setAlignment(alignment);
+			//spot.setAlignment(alignment);
 			spot.attachClick(this.onSpotClick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
 			spot.setContentOffset(contentOffset);

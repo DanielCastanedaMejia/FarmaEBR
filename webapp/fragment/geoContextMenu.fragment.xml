@@ -4,35 +4,28 @@
     xmlns:u="sap.ui.unified"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-    <Dialog title="Spot Menu" id="geoContextDialog">
-
-
-        <HBox width="100%" direction="Column" >
+    <Dialog title="Spot Menu" id="geoContextDialog" class="sapUiResponsiveMargin" horizontalScrolling="false">
+        <HBox width="50em" class="sapUiResponsiveMargin" direction="Row" renderType="Bare">
             <Panel>
-                <FlexBox renderType="Bare" >
-                    <!-- <Image id="mainImg" width="50%" height="50%" class="sapUiSmallMargin">
-                        <layoutData>
-                            <FlexItemData growFactor="1"></FlexItemData>
-                        </layoutData>
-                    </Image>-->
-                    <Carousel activePage="0" id="carouselImg" class="sapUiSmallMargin" loop="true" width="50%" height="50%">                        
-                        <layoutData>
-                            <FlexItemData growFactor="0"></FlexItemData>
-                        </layoutData>
-                        <pages >
-                            <Image id="mainImg0" src="" ></Image>
-                            <Image id="mainImg1" src="" ></Image>
-                        </pages>                        
-                    </Carousel>
-                    <VBox class="sapUiSmallMargin" >
+                <FlexBox direction="Column" alignItems="Center">
+                    <Panel id="carouselCont">
+                        <Carousel arrowsPlacement="PageIndicator" activePage="0" id="carouselImg" class="sapUiTinyMargin" loop="true" height="30em">
+                            <layoutData>
+                                <FlexItemData growFactor="0"></FlexItemData>
+                            </layoutData>
+                            <Image id="mainImg0" src=""></Image>
+                            <Image id="mainImg1" src=""></Image>
+                        </Carousel>
+                    </Panel>
+                    <VBox class="sapUiSmallMargin">
 
                         <HBox>
-                            <core:Icon src="sap-icon://functional-location" class="sapUiSmallMarginTop" ></core:Icon>
+                            <core:Icon src="sap-icon://functional-location" class="sapUiSmallMarginTop"></core:Icon>
                             <Link id="ubiId" text="Como llegar" href="" target="_blank" class="sapUiSmallMargin"></Link>
                         </HBox>
 
                         <HBox>
-                            <core:Icon src="sap-icon://outgoing-call" class="sapUiSmallMarginTop" ></core:Icon>
+                            <core:Icon src="sap-icon://outgoing-call" class="sapUiSmallMarginTop"></core:Icon>
                             <Link id="telId" text="Llamar" href="" target="_blank" class="sapUiSmallMargin"></Link>
                         </HBox>
 
@@ -40,12 +33,9 @@
                             <FlexItemData growFactor="4"></FlexItemData>
                         </layoutData>
                     </VBox>
-                    
-
                 </FlexBox>
             </Panel>
         </HBox>
-
         <endButton>
             <Button id="geoContext" type="Default" text="Cerrar" press="onCloseContextMenu"/>
         </endButton>

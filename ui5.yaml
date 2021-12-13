@@ -2,6 +2,11 @@ specVersion: '2.4'
 metadata:
   name: 'project1'
 type: application
+resources:
+  configuration:
+    paths:
+      #webapp: ./dist
+      webapp: webapp
 server:
   customMiddleware:
   - name: fiori-tools-proxy

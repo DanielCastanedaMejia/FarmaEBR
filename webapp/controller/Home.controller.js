@@ -6,7 +6,7 @@ sap.ui.define([
     return BaseController.extend("sap.ui.demo.webapp.controller.Home", {
         onInit: function () {
             //this._getUsuario("username");
-            this.apiServices();
+            //this.apiServices();
         },
 
         apiServices: function () {
@@ -32,6 +32,7 @@ sap.ui.define([
             };
             console.log(data)
 
+            // @ts-ignore
             $.ajax({
                 type: "POST",
                 headers: {
@@ -49,13 +50,13 @@ sap.ui.define([
                     }
                 },
                 contentType: "multipart/form-data",
-                url: "https://sandbox.api.sap.com/mlfs/api/v2/image/ocr",
+                url: "http://localhost:8020/proxy",
                 success: function (result) {
                     console.log("OK");
                     sap.ui.core.BusyIndicator.hide();
 
                 },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                error: function (XMLHttpRequest, textStatus) {
                     console.log("Error");
                     sap.ui.core.BusyIndicator.hide();
                 }
