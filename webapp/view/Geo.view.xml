@@ -122,19 +122,11 @@
                             <vbm:GeoMap height="500px" width="100%" id="geoMap" initialZoom="7" initialPosition="-103.37;20.8;0.0">
                                 <vbm:resources>
                                     <vbm:Resource name="facto" src="images/facto.png"/>
+                                    <vbm:Resource name="city" src="images/city.png"/>
                                     <vbm:Resource name="SAP_logo_Other" />
                                 </vbm:resources>
                                 <vbm:vos>
                                     <vbm:Spots id="spotsGeo">
-
-
-                                        <vbm:Spot position="-103.37;20.20;0"
-                                        tooltip="Planta 1"
-                                        image="facto"
-                                        scale="0.2;0.2;1"
-                                        alignment="1"                                        
-                                        click="">
-                                        </vbm:Spot>
                                     </vbm:Spots>
                                 </vbm:vos>
                                 <vbm:legend>

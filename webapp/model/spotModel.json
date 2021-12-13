@@ -17,8 +17,11 @@
                     "PATH": "/images/plant1_2.jpg"
                 }
             ],
-            "TEL": "3333333331"
+            "TEL": "3333333331",
+            "IMAGE_R": "facto",
+            "SCALE": "0.2;0.2"
         },
+
         {
             "ID": "1",
             "POS": "-101.1;20.8;0",
@@ -27,7 +30,7 @@
             "TEXT": "Planta 2",
             "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5",
+            "CONTENTOFFSET": "0;80",
             "IMAGEPATH": [
                 {
                     "PATH": "/images/plant2_1.jpg"
@@ -36,8 +39,11 @@
                     "PATH": "/images/plant2_2.jpg"
                 }
             ],
-            "TEL": "3333333332"
+            "TEL": "3333333332",
+            "IMAGE_R": "facto",
+            "SCALE": "0.2;0.2"
         },
+
         {
             "ID": "2",
             "POS": "-100.45;25.8;0",
@@ -46,7 +52,7 @@
             "TEXT": "Planta 3",
             "ICON": "",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5",
+            "CONTENTOFFSET": "0;80",
             "IMAGEPATH": [
                 {
                     "PATH": "/images/plant3_1.jpeg"
@@ -55,8 +61,11 @@
                     "PATH": "/images/plant3_2.jpg"
                 }
             ],
-            "TEL": "3333333333"
+            "TEL": "3333333333",
+            "IMAGE_R": "facto",
+            "SCALE": "0.2;0.2"
         },
+
         {
             "ID": "3",
             "POS": "165.31;11.60",
@@ -74,17 +83,20 @@
                     "PATH": "/images/plant4_1.jpg"
                 }
             ],
-            "TEL": "3333333334"
+            "TEL": "3333333334",
+            "IMAGE_R": "facto",
+            "SCALE": "0.2;0.2"
         },
+
         {
             "ID": "4",
-            "POS": "-105;10;0",
+            "POS": "29.55;63.2;0",
             "TYPE": "Warning",
             "TOOLTIP": "Rapture",
             "TEXT": "",
             "ICON": "sap-icon://building",
             "ALIGNMENT": "1",
-            "CONTENTOFFSET": "0;5",
+            "CONTENTOFFSET": "0;80",
             "IMAGEPATH": [
                 {
                     "PATH": "/images/plant5_1.jpg"
@@ -93,7 +105,9 @@
                     "PATH": "/images/plant5_2.jpg"
                 }
             ],
-            "TEL": "3333333335"
+            "TEL": "3333333335",
+            "IMAGE_R": "city",
+            "SCALE": "0.2;0.2"
         }
     ]
 }

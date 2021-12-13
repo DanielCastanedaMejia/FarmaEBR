@@ -10,6 +10,7 @@ sap.ui.define([
         },
 
         apiServices: function () {
+            // @ts-ignore
             var oThis = this;
 
             sap.ui.core.BusyIndicator.show(0);
@@ -51,11 +52,13 @@ sap.ui.define([
                 },
                 contentType: "multipart/form-data",
                 url: "http://localhost:8020/proxy",
+                // @ts-ignore
                 success: function (result) {
                     console.log("OK");
                     sap.ui.core.BusyIndicator.hide();
 
                 },
+                // @ts-ignore
                 error: function (XMLHttpRequest, textStatus) {
                     console.log("Error");
                     sap.ui.core.BusyIndicator.hide();
@@ -72,10 +75,12 @@ sap.ui.define([
                 // "withCredentials" only exists on XMLHTTPRequest2 objects.
                 xhr.open(method, url, true);
 
+            // @ts-ignore
             } else if (typeof XDomainRequest != "undefined") {
 
                 // Otherwise, check if XDomainRequest.
                 // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+                // @ts-ignore
                 xhr = new XDomainRequest();
                 xhr.open(method, url);
 
@@ -86,6 +91,7 @@ sap.ui.define([
 
             }
             return xhr;
+            // @ts-ignore
             var xhr = createCORSRequest('GET', url);
             if (!xhr) {
                 throw new Error('CORS not supported');
@@ -236,6 +242,7 @@ sap.ui.define([
         onRegistroPesos() {
             this.getRouter().navTo("registroPesos");
         },
+        // @ts-ignore
         onGeolocalizacion: function (oEvent) {
             
         },

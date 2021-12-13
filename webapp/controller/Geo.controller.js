@@ -88,7 +88,12 @@ sap.ui.define([
 		onSpotClick: function (oEvent) {
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
-			MessageToast.show("Click on " + this.byId(id).getId() + " -> nav to Spot Detail");
+			MessageToast.show("Click on " + this.byId(id).getId() + " -> Show Spot Detail Header");
+		},
+		onSpotImageClick: function (oEvent) {
+			const oSource = oEvent.getSource();
+			var id = oSource.getId();
+			MessageToast.show("Click on " + this.byId(id).getId() + " -> Show other info spot");
 		},
 		onContextMenuSpot: function (oEvent) {
 			//---------------------------------------------------
@@ -119,9 +124,9 @@ sap.ui.define([
 				var posArray = oModel.POS.toString().split(";", 2);
 				var lat = posArray[0],
 					lon = posArray[1];
-					oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@" + lon + "," + lat + ",13.1z");
+				oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@" + lon + "," + lat + ",13.1z");
 				//-----------------------------------------------------
-				var tel = oModel.TEL;				
+				var tel = oModel.TEL;
 				oThis.byId("telId").setHref("tel://" + tel);
 				//-----------------------------------------------------
 				oDialog.open();
@@ -150,22 +155,42 @@ sap.ui.define([
 				var icon = sModel.ICON;
 				var alignment = sModel.ALIGNMENT;
 				var contentOffset = sModel.CONTENTOFFSET;
-				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset);
+				var image_r = sModel.IMAGE_R;
+				var scale = sModel.SCALE;
+				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id);
 			}
 
 		},
-		addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset) {
+		addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id) {
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);
 			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
 			spot.setIcon(icon);
 			//spot.setAlignment(alignment);
+			spot.setContentOffset(contentOffset);
 			spot.attachClick(this.onSpotClick, this);
 			spot.attachContextMenu(this.onContextMenuSpot, this);
-			spot.setContentOffset(contentOffset);
 
 			this.getView().byId("spotsGeo").addItem(spot);
+
+			//---------------------------------------------------------
+			if (image_r != "") {
+				var spotImg = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id + "i");
+				spotImg.setPosition(position);
+				//spotImg.setType("None");				
+				spotImg.setContentOffset("0;0");
+				//spot.setTooltip(tooltip);
+				//spot.setText(text);
+				spotImg.setAlignment(alignment);
+				spotImg.setScale(scale);
+				spotImg.setImage(image_r)
+				spotImg.invalidate();
+				//spotImg.attachClick(this.onSpotImageClick, this);				
+
+				this.getView().byId("spotsGeo").addItem(spotImg);
+			}
+			//----------------------------------------------------------
 		}
 	});
 });
