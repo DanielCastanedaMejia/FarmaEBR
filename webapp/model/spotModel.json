@@ -19,7 +19,19 @@
             ],
             "TEL": "3333333331",
             "IMAGE_R": "facto",
-            "SCALE": "0.2;0.2"
+            "SCALE": "0.2;0.2",
+
+            "NOMBRE": "Planta PHARMA 01",
+            "UBICACION_TECNICA": "PLS001",
+            "ALERTA": "Alerta reportada",
+            "GASTO": 140,
+            "COLOR_GASTO": "Error",
+            "PROVEEDOR": "Proveedor MX 2",            
+            "CALIDAD": "90",
+            "DISPONIBILIDAD": "81",
+            "DESEMPENO": "77",
+            "OEE": "67.58",
+            "ALERTA_VISIBLE": "1"
         },
 
         {
@@ -41,7 +53,19 @@
             ],
             "TEL": "3333333332",
             "IMAGE_R": "facto",
-            "SCALE": "0.2;0.2"
+            "SCALE": "0.2;0.2",
+
+            "NOMBRE": "Planta PHARMA 02",
+            "UBICACION_TECNICA": "PLS002",
+            "ALERTA": "",
+            "GASTO": 93,
+            "COLOR_GASTO": "Good",
+            "PROVEEDOR": "Proveedor MX 1",            
+            "CALIDAD": "96",
+            "DISPONIBILIDAD": "89",
+            "DESEMPENO": "91",
+            "OEE": "71.04",
+            "ALERTA_VISIBLE": "0"
         },
 
         {
@@ -63,7 +87,19 @@
             ],
             "TEL": "3333333333",
             "IMAGE_R": "facto",
-            "SCALE": "0.2;0.2"
+            "SCALE": "0.2;0.2",
+
+            "NOMBRE": "Planta PHARMA 03",
+            "UBICACION_TECNICA": "PLS003",
+            "ALERTA": "",
+            "GASTO": 97,
+            "COLOR_GASTO": "Good",
+            "PROVEEDOR": "Proveedor MX 1",            
+            "CALIDAD": "93",
+            "DISPONIBILIDAD": "90",
+            "DESEMPENO": "89",
+            "OEE": "69.71",
+            "ALERTA_VISIBLE": "0"
         },
 
         {
@@ -84,8 +120,20 @@
                 }
             ],
             "TEL": "3333333334",
-            "IMAGE_R": "facto",
-            "SCALE": "0.2;0.2"
+            "IMAGE_R": "pina",
+            "SCALE": "0.28;0.28",
+
+            "NOMBRE": "Fondo de Bikini",
+            "UBICACION_TECNICA": "FDB001",
+            "ALERTA": "",
+            "GASTO": 98,
+            "COLOR_GASTO": "Good",
+            "PROVEEDOR": "Proveedor MX 3",            
+            "CALIDAD": "99",
+            "DISPONIBILIDAD": "79",
+            "DESEMPENO": "85",
+            "OEE": "70.34",
+            "ALERTA_VISIBLE": "0"
         },
 
         {
@@ -107,7 +155,19 @@
             ],
             "TEL": "3333333335",
             "IMAGE_R": "city",
-            "SCALE": "0.2;0.2"
+            "SCALE": "0.23;0.23",
+
+            "NOMBRE": "Ciudad Rapture",
+            "UBICACION_TECNICA": "RPT001",
+            "ALERTA": "",
+            "GASTO": 100,
+            "COLOR_GASTO": "Good",
+            "PROVEEDOR": "Proveedor MX 1",            
+            "CALIDAD": "99",
+            "DISPONIBILIDAD": "100",
+            "DESEMPENO": "99",
+            "OEE": "99.99",
+            "ALERTA_VISIBLE": "0"
         }
     ]
 }

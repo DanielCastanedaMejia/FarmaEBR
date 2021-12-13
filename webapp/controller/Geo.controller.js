@@ -27,7 +27,7 @@ sap.ui.define([
 				};
 			oModel.setData(oData);
 			oModelS.setData(oDataS);
-			this.getView().setModel(oModel, "HEADER");
+			//this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");
 			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "SPOTSMOD");
 			this.loadSpotModel();
@@ -88,12 +88,17 @@ sap.ui.define([
 		onSpotClick: function (oEvent) {
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
-			MessageToast.show("Click on " + this.byId(id).getId() + " -> Show Spot Detail Header");
-		},
-		onSpotImageClick: function (oEvent) {
-			const oSource = oEvent.getSource();
-			var id = oSource.getId();
-			MessageToast.show("Click on " + this.byId(id).getId() + " -> Show other info spot");
+			//MessageToast.show("Click on " + this.byId(id).getId() + " -> Show Spot Detail Header");
+			var oItem, oModel, img, sPath;
+			oItem = oEvent.getSource();
+			//console.log(oItem);
+			oModel = oItem.getModel("spotM");
+			//console.log(oModel);
+			//console.log(oModel.ID);
+			console.log(oModel);
+			var aModel = new JSONModel(oModel);
+			console.log(aModel);
+			this.getView().setModel(aModel, "HEADER");
 		},
 		onContextMenuSpot: function (oEvent) {
 			//---------------------------------------------------

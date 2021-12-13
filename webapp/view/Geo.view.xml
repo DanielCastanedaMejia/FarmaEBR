@@ -14,7 +14,7 @@
         <customHeader>
             <Toolbar class="toolbar_default">
                 <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
-                <Image src="images/facto.png">
+                <Image src="images/SAP_Logo.png">
                 </Image>
                 <core:Icon src="sap-icon://map-2" class="toolbar_title sapUiSmallMarginBegin">
                     <core:layoutData>
@@ -40,7 +40,7 @@
 
         <uxap:ObjectPageLayout id="ObjectPageLayout" showTitleInHeaderContent="true" alwaysShowContentHeader="false" preserveHeaderStateOnScroll="false" headerContentPinnable="true" isChildPage="true" upperCaseAnchorBar="false">
             <uxap:headerTitle>
-                <uxap:ObjectPageHeader objectImageShape="Square" objectTitle="{HEADER>/NOMBRE}" objectImageAlt="Barco Carguero B1" id="ObjectPageLayoutHeaderTitle" isObjectTitleAlwaysVisible="false" objectImageURI="./images/{HEADER>/FOTO}" showPlaceholder="true">
+                <uxap:ObjectPageHeader objectImageShape="Square" objectTitle="{HEADER>/NOMBRE}" objectImageAlt="Barco Carguero B1" id="ObjectPageLayoutHeaderTitle" isObjectTitleAlwaysVisible="false" objectImageURI=".{HEADER>/IMAGEPATH/0/PATH}" showPlaceholder="true">
                     <uxap:actions>
 
                     </uxap:actions>
@@ -72,7 +72,7 @@
                         <ObjectStatus title="Proveedor" text=""/>
                         <Link text="{HEADER>/PROVEEDOR}"/>
                         <ObjectStatus title="Ubicación"/>
-                        <ObjectStatus text="{HEADER>/COORDENADAS}"/>
+                        <ObjectStatus text="{HEADER>/POS}"/>
                     </layout:VerticalLayout>
                     <layout:HorizontalLayout class="">
                         <TileContent unit="" footer="Calidad" class="noPrintable">
@@ -122,8 +122,8 @@
                             <vbm:GeoMap height="500px" width="100%" id="geoMap" initialZoom="7" initialPosition="-103.37;20.8;0.0">
                                 <vbm:resources>
                                     <vbm:Resource name="facto" src="images/facto.png"/>
-                                    <vbm:Resource name="city" src="images/city.png"/>
-                                    <vbm:Resource name="SAP_logo_Other" />
+                                    <vbm:Resource name="city" src="images/city.png"/>                                    
+                                    <vbm:Resource name="pina" src="images/pina.png"/>
                                 </vbm:resources>
                                 <vbm:vos>
                                     <vbm:Spots id="spotsGeo">
@@ -132,7 +132,9 @@
                                 <vbm:legend>
                                     <vbm:Legend id="legend" caption="Leyenda">
                                         <vbm:LegendItem text="Condición OK" color="rgb(97,166,86)" />
-                                        <vbm:LegendItem text="Aviso de falla" color="rgb(211,32,48)" />
+                                        <vbm:LegendItem text="Aviso de falla" color="rgb(211,32,48)"/>
+                                        <vbm:LegendItem text="Advertencia" color="rgb(247,169,49)"/>
+                                        <vbm:LegendItem text="Otros" color="rgb(49,148,247)" />
                                     </vbm:Legend>
                                 </vbm:legend>
                             </vbm:GeoMap>
