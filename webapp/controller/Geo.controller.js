@@ -91,40 +91,38 @@ sap.ui.define([
 		onSpotClick: function (oEvent) {
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
-			//MessageToast.show("Click on " + this.byId(id).getId() + " -> Show Spot Detail Header");
 			var oItem, oModel;
 			oItem = oEvent.getSource();
 			oModel = oItem.getModel("spotM");
-			console.log(oModel);
-			var aModel = new JSONModel(oModel);			
+			//console.log(oModel);
+			var aModel = new JSONModel(oModel);
 			this.getView().setModel(aModel, "HEADER");
-			//this.getView().byId("PMNotificationList").setModel();
 			var nModel = new JSONModel(this.getOwnerComponent().getModel("noticesModel"));
 			var aData = nModel.oData.oData;
 			var indexSpotClicked = id.at(-1);
+			//console.log(nModel);
+			var selNoticeModel = {
+				"ITEMS": []
+			};
 
-			console.log(nModel);			
-			//console.log(aData);
-			//console.log(aData.ITEMS.length);
-			//console.log(aData.ITEMS[0].spotId);
-
-			for(var i = 0; i < aData.ITEMS.length; i++) {
-				console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
-				if(aData.ITEMS[i].spotId == indexSpotClicked) {
-					console.log("Show this row of noticesModel");
+			for (var i = 0; i < aData.ITEMS.length; i++) {
+				//console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
+				if (aData.ITEMS[i].spotId == indexSpotClicked) {
+					//console.log("Show this row of noticesModel");
+					selNoticeModel.ITEMS.push(aData.ITEMS[i]);
 				} else {
-					console.log("Don't show this row of noticesModel");
+					//console.log("Don't show this row of noticesModel");
 				}
 			}
+			//console.log(selNoticeModel);
+			var auxModel = new JSONModel(selNoticeModel)
+			this.getView().byId("PMNotificationList").setModel(auxModel);
 		},
 		onContextMenuSpot: function (oEvent) {
 			//---------------------------------------------------
 			var oItem, oModel;
 			oItem = oEvent.getSource();
-			//console.log(oItem);
 			oModel = oItem.getModel("spotM");
-			//console.log(oModel);
-			//console.log(oModel.ID);
 			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
