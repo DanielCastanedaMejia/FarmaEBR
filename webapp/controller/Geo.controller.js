@@ -46,8 +46,13 @@ sap.ui.define([
 			//var urlAux = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/wmts?access_token=pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg";
 
 			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/tiles/{LOD}/{X}/{Y}@2x?access_token=";
+			//Test-map
+			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/tiles/{LOD}/{X}/{Y}@2x?access_token=";
 
-			var url = "https://api.mapbox.com/styles/v1/axelmz/ckwwdvtkb0pvo14mswi19e7xp/tiles/{LOD}/{X}/{Y}@2x?access_token=";
+			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/wmts?access_token="
+
+			//Test
+			var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/tiles/256/{LOD}/{X}/{Y}@2x?access_token=";
 
 			// If you have not set up any Map Provider keys, then we will set a default map for one of the providers so that you can see something
 			//var defaultUrlHA = appCode === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://1.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
@@ -76,8 +81,7 @@ sap.ui.define([
 					"name": "Default",
 					"MapLayer": [{
 						"name": "MapBox",
-						"refMapProvider": "MAPBOX_STARTER",
-						"colBkgnd": "RGB(255,255,255)"
+						"refMapProvider": "MAPBOX_STARTER"
 					}]
 				}]
 			};
