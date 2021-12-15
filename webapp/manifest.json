@@ -5,7 +5,9 @@
         "type": "application",
         "i18n": {
             "bundleUrl": "i18n/i18n.properties",
-            "supportedLocales": [""],
+            "supportedLocales": [
+                ""
+            ],
             "fallbackLocale": ""
         },
         "title": "{{appTitle}}",
@@ -108,8 +110,8 @@
             "id": "app"
         },
         "contentDensities": {
-          "compact": true,
-          "cozy": true
+            "compact": true,
+            "cozy": true
         },
         "dependencies": {
             "minUI5Version": "1.30",
@@ -258,6 +260,11 @@
                     "pattern": "Geo",
                     "name": "Geo",
                     "target": "Geo"
+                },
+                {
+                    "pattern": "Geo/GeoSpotEdit",
+                    "name": "GeoSpotEdit",
+                    "target": "GeoSpotEdit"
                 },
                 {
                     "pattern": "verAvisos",
@@ -548,7 +555,13 @@
                 },
                 "geoView": {
                     "viewId": "geoMap",
-                    "viewName": "geoMap"
+                    "viewName": "geoMap",
+                    "viewLevel": 2
+                },
+                "GeoSpotEdit": {
+                    "viewId": "spotEdit",
+                    "viewName": "GeoSpotEdit",
+                    "viewLevel": 3
                 },
                 "wsOverview": {
                     "viewId": "wsOverview",

@@ -149,15 +149,15 @@ sap.ui.define([
 			this.byId(oSource.getId() + "Dialog").close();
 		},
 		loadSpotModel: function () {			
-			var spotModel = this.getOwnerComponent().getModel("spots");
-			this.getView().setModel(spotModel);
-			var spotJSON = new JSONModel(spotModel);
-			var nModel = spotModel.getProperty("/SPOT").length;
+			//var spotModel = this.getView().getModel("SPOTSMOD");
+			//this.getView().setModel(spotModel);
+			//var spotJSON = new JSONModel(spotModel);
+			var nModel = this.getView().getModel("SPOTSMOD").getProperty("/SPOT").length;
 			var spot;
 			for (var i = 0; i < nModel; i++) {
-				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
+				var id = this.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + i + "/ID");
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
-				spot.setModel(spotModel.getProperty("/SPOT/" + i), "spotM");
+				spot.setModel(this.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + i), "spotM");
 				var sModel = spot.getModel("spotM");
 				var pos = sModel.POS;
 				var type = sModel.TYPE;
@@ -204,13 +204,8 @@ sap.ui.define([
 			}
 			//----------------------------------------------------------
 		},
-		onChangeInput: function () {
-			//console.log(1);
-			
-			//this.getView().byId("spotsGeo").removeAllAggregation();
-			//this.getView().byId("spotsGeo").destroyItems();
-			//this.getView().byId("spotsGeo").removeAllItems();
-			this.loadSpotModel();
+		onNavToEditSpot: function () {
+			this.getRouter().navTo("GeoSpotEdit");
 		}
 	});
 });
