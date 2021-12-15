@@ -1,10 +1,28 @@
-<core:FragmentDefinition id="spotEditFragment"
+<core:FragmentDefinition xmlns:vk="sap.ui.vk" id="spotEditFragment"
     xmlns="sap.m"
     xmlns:l="sap.ui.layout"
     xmlns:u="sap.ui.unified"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-    <Dialog title="Modificar spot" id="editSpotDialog">
+    <Dialog title="Modificar spot" id="editSpotDialog" class="sapUiResponsiveMargin">
+        <VBox class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom">
+            <Label text="{i18n>colSpotID}" />
+            <Input id="spotidID" value="" enabled="false" />
+            <Label text="{i18n>colSpotNOM}" />
+            <Input id="nombreId" value="" />
+            <Label text="{i18n>colSpotTEXT}" />
+            <Input id="textoId" value="" />
+            <Label text="{i18n>colSpotTOOLT}" />
+            <Input id="tooltipId" value="" />
+            <Label text="{i18n>colSpotPOS}" />
+            <Input id="ubiId" value="" />
+            <Label text="{i18n>colSpotUBIT}" />
+            <Input id="ubitId" value="" />
+            <Label text="{i18n>colSpotPROV}" />
+            <Input id="provId" value="" />
+            <Label text="{i18n>colSpotTEL}" />
+            <Input id="telId" value="" />
+        </VBox>
         <beginButton>
             <Button type="Accept" text="Guardar cambios" press="onSaveSpot"/>
         </beginButton>
