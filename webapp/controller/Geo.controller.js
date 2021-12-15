@@ -12,7 +12,7 @@ sap.ui.define([
 		onInit: function () {
 			var oRouter = this.getRouter();
 			oRouter.getRoute("Geo").attachMatched(this._onRouteMatched, this);
-			var oModel = new sap.ui.model.json.JSONModel(),
+			/*var oModel = new sap.ui.model.json.JSONModel(),
 				oModelS = new sap.ui.model.json.JSONModel(),
 				oData = {
 					"ALERTA_VISIBLE": "0"
@@ -28,7 +28,7 @@ sap.ui.define([
 			oModel.setData(oData);
 			oModelS.setData(oDataS);
 			//this.getView().setModel(oModel, "HEADER");
-			this.getView().setModel(oModelS, "STATE");
+			this.getView().setModel(oModelS, "STATE");*/
 			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "SPOTSMOD");
 			//this.getView().byId("PMNotificationList").setModel(this.getOwnerComponent().getModel("noticesModel"));
 
@@ -43,15 +43,6 @@ sap.ui.define([
 			var appCode = 'xqjCK7HxKbj-oYA-K6yw_w';
 			var appId = 'dhTVPAlSKvlkx5WaEWs0';
 
-			//var urlAux = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/wmts?access_token=pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg";
-
-			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckwwo614r08f014pfb52qlkjj/tiles/{LOD}/{X}/{Y}@2x?access_token=";
-			//Test-map
-			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/tiles/{LOD}/{X}/{Y}@2x?access_token=";
-
-			//var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/wmts?access_token="
-
-			//Test
 			var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/tiles/256/{LOD}/{X}/{Y}@2x?access_token=";
 
 			// If you have not set up any Map Provider keys, then we will set a default map for one of the providers so that you can see something
@@ -111,14 +102,10 @@ sap.ui.define([
 
 			for (var i = 0; i < aData.ITEMS.length; i++) {
 				//console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
-				if (aData.ITEMS[i].spotId == indexSpotClicked) {
-					//console.log("Show this row of noticesModel");
+				if (aData.ITEMS[i].spotId == indexSpotClicked) {					
 					selNoticeModel.ITEMS.push(aData.ITEMS[i]);
-				} else {
-					//console.log("Don't show this row of noticesModel");
 				}
 			}
-			//console.log(selNoticeModel);
 			var auxModel = new JSONModel(selNoticeModel)
 			this.getView().byId("PMNotificationList").setModel(auxModel);
 		},
@@ -161,7 +148,7 @@ sap.ui.define([
 			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
-		loadSpotModel: function () {
+		loadSpotModel: function () {			
 			var spotModel = this.getOwnerComponent().getModel("spots");
 			this.getView().setModel(spotModel);
 			var spotJSON = new JSONModel(spotModel);
@@ -208,6 +195,7 @@ sap.ui.define([
 				//spot.setText(text);
 				spotImg.setAlignment(alignment);
 				spotImg.setScale(scale);
+				spotImg.setTooltip("-");
 				spotImg.setImage(image_r)
 				spotImg.invalidate();
 				//spotImg.attachClick(this.onSpotImageClick, this);				
@@ -215,6 +203,14 @@ sap.ui.define([
 				this.getView().byId("spotsGeo").addItem(spotImg);
 			}
 			//----------------------------------------------------------
+		},
+		onChangeInput: function () {
+			//console.log(1);
+			
+			//this.getView().byId("spotsGeo").removeAllAggregation();
+			//this.getView().byId("spotsGeo").destroyItems();
+			//this.getView().byId("spotsGeo").removeAllItems();
+			this.loadSpotModel();
 		}
 	});
 });
