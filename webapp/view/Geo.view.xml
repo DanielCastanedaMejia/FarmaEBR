@@ -31,10 +31,10 @@
                     </menu>
                 </MenuButton>
                 <ToolbarSpacer/>
-                <Label id ="username" text="{SPOTSMOD>/SPOT/0/TEXT}" class="toolbar_color"  ></Label>
+                <Label id ="username" text="{spots>/SPOT/0/TEXT}" class="toolbar_color"  ></Label>
                 <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">
                 </Button>
-                <Input change="onChangeInput" class="sapUiResponsiveMargin" id="testInput" value="{SPOTSMOD>/SPOT/0/TEXT}" width="25%" />
+                <Input change="onChangeInput" class="sapUiResponsiveMargin" id="testInput" value="{spots>/SPOT/0/TEXT}" width="25%" />
             </Toolbar>
         </customHeader>
 

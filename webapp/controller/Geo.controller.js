@@ -29,12 +29,9 @@ sap.ui.define([
 			oModelS.setData(oDataS);
 			//this.getView().setModel(oModel, "HEADER");
 			this.getView().setModel(oModelS, "STATE");*/
-			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "SPOTSMOD");
-			//this.getView().byId("PMNotificationList").setModel(this.getOwnerComponent().getModel("noticesModel"));
-
-			//console.log(this.getView().byId("PMNotificationList").getModel());
-			this.loadSpotModel();
-			//this.addSpot("spotTest", "-105;15;0", "None", "Aviso 3", "Fondo de bikini", "sap-icon://alert", "1")
+			//this.loadSpotModel();
+			this.onLoadSpotByModel();
+			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");						
 		},
 		_onRouteMatched: function (oEvent) {
 
@@ -88,7 +85,7 @@ sap.ui.define([
 			var id = oSource.getId();
 			var oItem, oModel;
 			oItem = oEvent.getSource();
-			oModel = oItem.getModel("spotM");
+			oModel = oItem.getModel("spots");
 			//console.log(oModel);
 			var aModel = new JSONModel(oModel);
 			this.getView().setModel(aModel, "HEADER");
@@ -102,7 +99,7 @@ sap.ui.define([
 
 			for (var i = 0; i < aData.ITEMS.length; i++) {
 				//console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
-				if (aData.ITEMS[i].spotId == indexSpotClicked) {					
+				if (aData.ITEMS[i].spotId == indexSpotClicked) {
 					selNoticeModel.ITEMS.push(aData.ITEMS[i]);
 				}
 			}
@@ -113,7 +110,7 @@ sap.ui.define([
 			//---------------------------------------------------
 			var oItem, oModel;
 			oItem = oEvent.getSource();
-			oModel = oItem.getModel("spotM");
+			oModel = oItem.getModel("spots");
 			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
@@ -129,8 +126,8 @@ sap.ui.define([
 				oDialog.setTitle(title);
 				//--------------------------------------------------
 				oThis.byId("carouselImg").setActivePage("mainImg0");
-				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
-				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("SPOTSMOD").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
+				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
+				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
 				//---------------------------------------------------
 				var posArray = oModel.POS.toString().split(";", 2);
 				var lat = posArray[0],
@@ -148,7 +145,7 @@ sap.ui.define([
 			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
-		loadSpotModel: function () {			
+		loadSpotModel: function () {
 			var spotModel = this.getOwnerComponent().getModel("spots");
 			this.getView().setModel(spotModel);
 			var spotJSON = new JSONModel(spotModel);
@@ -157,8 +154,8 @@ sap.ui.define([
 			for (var i = 0; i < nModel; i++) {
 				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
-				spot.setModel(spotModel.getProperty("/SPOT/" + i), "spotM");
-				var sModel = spot.getModel("spotM");
+				spot.setModel(spotModel.getProperty("/SPOT/" + i), "spots");
+				var sModel = spot.getModel("spots");
 				var pos = sModel.POS;
 				var type = sModel.TYPE;
 				var tooltip = sModel.TOOLTIP;
@@ -176,7 +173,7 @@ sap.ui.define([
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);
-			spot.setText(text); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
+			spot.setText(this.getView().getModel("spots").getProperty("")); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
 			spot.setIcon(icon);
 			//spot.setAlignment(alignment);
 			spot.setContentOffset(contentOffset);
@@ -205,12 +202,43 @@ sap.ui.define([
 			//----------------------------------------------------------
 		},
 		onChangeInput: function () {
-			//console.log(1);
-			
-			//this.getView().byId("spotsGeo").removeAllAggregation();
-			//this.getView().byId("spotsGeo").destroyItems();
-			//this.getView().byId("spotsGeo").removeAllItems();
-			this.loadSpotModel();
+			//console.log(this.getView().byId("spotsGeo").getItems());
+			//console.log(this.getView().byId("spotsGeo").getItems()[0].getProperty("text"));
+			this.getView().byId("spotsGeo").getItems()[0].setProperty("text", this.getView().byId("testInput").getValue());
+		},
+		onLoadSpotByModel: function () {
+			var spot = new sap.ui.vbm.Spot();
+
+			console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length);
+			var spotLength = this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length;
+			for (var i = 0; i < spotLength; i++) {
+				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID"));
+				spot.setModel(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i), "spots");
+				spot.setPosition(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/POS"));
+				spot.setText(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/TEXT"));				
+				spot.setType(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/TYPE"));
+				spot.setTooltip(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/TOOLTIP"));
+				spot.setIcon(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ICON"));
+				//spot.setAlignment(alignment);
+				spot.setContentOffset(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/CONTENTOFFSET"));
+				spot.attachClick(this.onSpotClick, this);
+				spot.attachContextMenu(this.onContextMenuSpot, this);
+				this.getView().byId("spotsGeo").addItem(spot);
+				//---------------------------------------------------------
+				if (this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/IMAGE_R") != "") {
+					var spotImg = new sap.ui.vbm.Spot(this.getView().getId() + "--" + this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID") + "i");
+					spotImg.setPosition(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/POS"));
+					//spotImg.setType("None");				
+					spotImg.setContentOffset("0;0");					
+					spotImg.setAlignment(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ALIGNMENT"));
+					spotImg.setScale(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/SCALE"));
+					spotImg.setTooltip("-");
+					spotImg.setImage(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/IMAGE_R"))
+					//spotImg.invalidate();
+					this.getView().byId("spotsGeo").addItem(spotImg);
+				}
+				//----------------------------------------------------------
+			}
 		}
 	});
 });
