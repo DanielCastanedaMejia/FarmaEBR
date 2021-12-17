@@ -239,6 +239,9 @@ sap.ui.define([
 				}
 				//----------------------------------------------------------
 			}
+		},
+		onNavToEditSpot: function () {
+			this.getRouter().navTo("GeoSpotEdit");
 		}
 	});
 });
