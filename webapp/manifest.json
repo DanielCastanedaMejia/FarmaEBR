@@ -582,7 +582,7 @@
                 "Geo": {
                     "viewId": "geo",
                     "viewName": "Geo",
-                    "transition": "flip",
+                    "transition": "slide",
                     "viewPath": "sap.ui.demo.webapp.view"
                 },
                 "QA": {
