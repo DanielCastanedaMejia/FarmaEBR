@@ -208,6 +208,15 @@ sap.ui.define([
             this._setMasterModel("/newSpot/proveedor", "");
             this._setMasterModel("/newSpot/tel", "");
             this._setMasterModel("/newSpot/typeKey", "");
+        },
+        onDeleteSpot: function (oEvent) {            
+            var oItem = oEvent.getParameter("listItem");
+            var sPath = oItem.getBindingContext().getPath();
+            var sPathSplit = sPath.split("/", 3);
+            var index = sPathSplit.at(-1);
+            var oModel = this.getOwnerComponent().getModel("spots").getProperty("/SPOT");
+            oModel.splice(index, 1);
+            this.getOwnerComponent().getModel("spots").setProperty("/SPOT", oModel);
         }
     });
 });
