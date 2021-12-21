@@ -2,7 +2,7 @@ sap.ui.define([
     "sap/ui/demo/webapp/controller/BaseController",
     "sap/ui/core/routing/History",
     // @ts-ignore
-// @ts-ignore
+    // @ts-ignore
 ], function (BaseController, History) {
     "use strict";
 
@@ -71,7 +71,7 @@ sap.ui.define([
                 });
             }
             this.spotEditDialog.then(function (oDialog) {
-                //aPath es global
+                //aPath es global para la función de actualizar los cambios
                 // @ts-ignore
                 oThis.aPath = sPath;
                 // @ts-ignore
@@ -104,10 +104,7 @@ sap.ui.define([
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
-            console.log(this.aPath);
             this.updateSpotValues();
-            //console.log(oParent.getId());
-            //this.getOwnerComponent().getModel("spots").setProperty(sPath + "/NOMBRE", this.getView().byId("nombreId").getValue());
             this.byId(id).close();
         },
         onCloseDialog: function (oEvent) {
@@ -115,7 +112,6 @@ sap.ui.define([
             this.byId(oSource.getId() + "Dialog").close();
         },
         setFragmentValues: function (sPath) {
-            //console.log(sPath);
             this.getView().byId("spotidID").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
             this.getView().byId("nombreId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
             this.getView().byId("textoId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TEXT"));
@@ -141,8 +137,6 @@ sap.ui.define([
             const id = oParent.getId();
 
             var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
-            console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT"));
-            console.log(tam);
 
             var type;
             switch (this._getMasterModel("/newSpot/typeKey")) {
@@ -201,9 +195,19 @@ sap.ui.define([
                 "ALERTA_VISIBLE": "0"
             };
             this.getOwnerComponent().getModel("spots").setProperty("/SPOT/" + tam + "/", newItem);
-            console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT"));
 
             this.byId(id).close();
+            this.clearNewSpotModel();
+        },
+        clearNewSpotModel: function () {
+            this._setMasterModel("/newSpot/nombre", "");
+            this._setMasterModel("/newSpot/texto", "");
+            this._setMasterModel("/newSpot/tooltip", "");
+            this._setMasterModel("/newSpot/ubicacion", "");
+            this._setMasterModel("/newSpot/ubi_tecnica", "");
+            this._setMasterModel("/newSpot/proveedor", "");
+            this._setMasterModel("/newSpot/tel", "");
+            this._setMasterModel("/newSpot/typeKey", "");
         }
     });
 });
