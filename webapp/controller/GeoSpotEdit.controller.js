@@ -15,7 +15,6 @@ sap.ui.define([
             oRouter.getRoute("GeoSpotEdit").attachMatched(this._onRouteMatched, this);
         },
         // @ts-ignore
-        // @ts-ignore
         _onRouteMatched: function (oEvent) {
             this.getView().setModel(this.getOwnerComponent().getModel("spots"));
         },
@@ -92,6 +91,25 @@ sap.ui.define([
                 // @ts-ignore
                 var tam = oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
                 // @ts-ignore
+                var existeId = false;
+                //var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
+                //console.log(oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + 0 + "/ID"));
+
+                console.log(tam);
+
+                for (var i = 0; i < tam; i++) {
+                    if (oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID") == tam) {
+                        existeId = true;
+                        console.log(existeId);
+                    }
+                    if (existeId == true) {
+                        //tam++;
+                        if (tam <= oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID")) {
+                            tam = oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID");
+                            tam++;
+                        }
+                    }
+                }
                 oThis.byId("spotAddidID").setValue(tam);
                 // @ts-ignore
                 if (oThis.byId("comboTypes").getItems().length == 0)
@@ -135,9 +153,6 @@ sap.ui.define([
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
-
-            var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
-
             var type;
             switch (this._getMasterModel("/newSpot/typeKey")) {
                 case "0":
@@ -162,8 +177,10 @@ sap.ui.define([
                     break;
             }
 
+            var idNewSpot = this.byId("spotAddidID").getValue();
+            var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
             var newItem = {
-                "ID": tam.toString(),
+                "ID": idNewSpot.toString(),
                 "POS": this._getMasterModel("/newSpot/ubicacion"),
                 "TYPE": type,
                 "TOOLTIP": this._getMasterModel("/newSpot/tooltip"),
@@ -207,9 +224,9 @@ sap.ui.define([
             this._setMasterModel("/newSpot/ubi_tecnica", "");
             this._setMasterModel("/newSpot/proveedor", "");
             this._setMasterModel("/newSpot/tel", "");
-            this._setMasterModel("/newSpot/typeKey", "");
+            this._setMasterModel("/newSpot/typeKey", "0");
         },
-        onDeleteSpot: function (oEvent) {            
+        onDeleteSpot: function (oEvent) {
             var oItem = oEvent.getParameter("listItem");
             var sPath = oItem.getBindingContext().getPath();
             var sPathSplit = sPath.split("/", 3);
