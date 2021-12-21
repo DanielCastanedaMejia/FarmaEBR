@@ -6,7 +6,7 @@
             "TYPE": "Error",
             "TOOLTIP": "Planta 1",
             "TEXT": "Planta 1",
-            "ICON": "",
+            "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;80",
             "IMAGEPATH": [
@@ -74,7 +74,7 @@
             "TYPE": "Success",
             "TOOLTIP": "Planta 3",
             "TEXT": "Planta 3",
-            "ICON": "",
+            "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;80",
             "IMAGEPATH": [
@@ -108,7 +108,7 @@
             "TYPE": "None",
             "TOOLTIP": "Fondo de bikini",
             "TEXT": "Fondo de bikini",
-            "ICON": "",
+            "ICON": "sap-icon://factory",
             "ALIGNMENT": "1",
             "CONTENTOFFSET": "0;-24",
             "IMAGEPATH": [

@@ -14,7 +14,7 @@ sap.ui.define([
 			oRouter.getRoute("Geo").attachMatched(this._onRouteMatched, this);
 		},
 		_onRouteMatched: function (oEvent) {
-			console.log("Cargado");
+			//console.log("Cargado");
 			var accessTokenMapbox = 'pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg';
 
 			var appCode = 'xqjCK7HxKbj-oYA-K6yw_w';
@@ -206,8 +206,8 @@ sap.ui.define([
 		onLoadSpotByModel: function () {
 			var spot = new sap.ui.vbm.Spot();
 			//this.getView().byId("spotsGeo").destroyItems();
-			console.log("a");
-			console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length);
+			//console.log("a");
+			//console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length);
 			var spotLength = this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length;
 			for (var i = 0; i < spotLength; i++) {
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID"));
