@@ -3,6 +3,7 @@ sap.ui.define([
     "sap/ui/core/routing/History",
     // @ts-ignore
     // @ts-ignore
+    // @ts-ignore
 ], function (BaseController, History) {
     "use strict";
 
@@ -14,6 +15,7 @@ sap.ui.define([
             // @ts-ignore
             oRouter.getRoute("GeoSpotEdit").attachMatched(this._onRouteMatched, this);
         },
+        // @ts-ignore
         // @ts-ignore
         _onRouteMatched: function (oEvent) {
             this.getView().setModel(this.getOwnerComponent().getModel("spots"));
@@ -62,7 +64,6 @@ sap.ui.define([
             const oSource = oEvent.getSource();
             var oCtx = oSource.getBindingContext();
             var sPath = oCtx.getPath();
-            //console.log(sPath);
             if (!this.spotEditDialog) {
                 // @ts-ignore
                 this.spotEditDialog = this.loadFragment({
@@ -92,24 +93,23 @@ sap.ui.define([
                 var tam = oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
                 // @ts-ignore
                 var existeId = false;
-                //var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
-                //console.log(oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + 0 + "/ID"));
-
-                console.log(tam);
 
                 for (var i = 0; i < tam; i++) {
+                    // @ts-ignore
                     if (oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID") == tam) {
                         existeId = true;
-                        console.log(existeId);
                     }
                     if (existeId == true) {
                         //tam++;
+                        // @ts-ignore
                         if (tam <= oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID")) {
+                            // @ts-ignore
                             tam = oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID");
                             tam++;
                         }
                     }
                 }
+                // @ts-ignore
                 oThis.byId("spotAddidID").setValue(tam);
                 // @ts-ignore
                 if (oThis.byId("comboTypes").getItems().length == 0)
@@ -149,7 +149,6 @@ sap.ui.define([
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/TEL", this.getView().byId("telId").getValue());
         },
         onAddSpot: function (oEvent) {
-            console.log("Spot agregado");
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
