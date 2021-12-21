@@ -141,5 +141,15 @@
         "2": "Elementos innecesarios",
         "3": "Rótulo",
         "4": "Instrumentos calibrados"
+    },
+    "newSpot": {
+        "nombre": "",
+        "texto": "",
+        "tooltip": "",
+        "ubicacion": "-103.37;22;0",
+        "ubi_tecnica": "",
+        "proveedor": "",
+        "tel": "",
+        "typeKey": "0"
     }
 }

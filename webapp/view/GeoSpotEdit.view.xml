@@ -72,5 +72,13 @@
             </items>
         </Table>
 
+        <footer>
+			<Toolbar>
+				<ToolbarSpacer/>
+				<Button id="newSpot" text="Agregar spot" icon="sap-icon://add" press="onPressAdd" type="Accept" />
+				<Button id="delSpot" text="Eliminar spot" icon="sap-icon://delete" press="onPressDel" type="Reject" />
+			</Toolbar>
+		</footer>
+
     </Page>
 </mvc:View>

@@ -1,0 +1,42 @@
+<core:FragmentDefinition xmlns:vk="sap.ui.vk" id="spotAddFragment"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Agregar spot" id="addSpotDialog" class="sapUiResponsiveMargin">
+        <VBox class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom">
+            <Label text="{i18n>colSpotID}" />
+            <Input id="spotAddidID" value="" enabled="false" />
+            <Label text="{i18n>colSpotNOM}" />
+            <Input id="nombreAddId" value="{masterModel>/newSpot/nombre}" />
+            <Label text="{i18n>colSpotTEXT}" />
+            <Input id="textoAddId" value="{masterModel>/newSpot/texto}" />
+            <Label text="{i18n>colSpotTOOLT}" />
+            <Input id="tooltipAddId" value="{masterModel>/newSpot/tooltip}" />
+            <Label text="{i18n>colSpotPOS}" />
+            <Input id="ubiAddId" value="{masterModel>/newSpot/ubicacion}" />
+            <Label text="{i18n>colSpotUBIT}" />
+            <Input id="ubitAddId" value="{masterModel>/newSpot/ubi_tecnica}" />
+            <Label text="{i18n>colSpotPROV}" />
+            <Input id="provAddId" value="{masterModel>/newSpot/proveedor}" />
+            <Label text="{i18n>colSpotTEL}" />
+            <Input id="telAddId" value="{masterModel>/newSpot/tel}" />
+            <Label text="{i18n>colSpotTYPE}" />
+            <ComboBox id="comboTypes" selectedKey="{masterModel>/newSpot/typeKey}" showButton="true" />
+        </VBox>
+        <beginButton>
+            <Button type="Accept" text="Guardar spot" press="onAddSpot" 
+                    enabled="{= !${masterModel>/newSpot/nombre} ||
+                                !${masterModel>/newSpot/texto} ||
+                                !${masterModel>/newSpot/tooltip} ||
+                                !${masterModel>/newSpot/ubicacion} ||
+                                !${masterModel>/newSpot/ubi_tecnica} ||
+                                !${masterModel>/newSpot/proveedor} ||
+                                !${masterModel>/newSpot/tel} ? false:true}" />
+        </beginButton>
+        <endButton>
+            <Button id="addSpot" type="Reject" text="Cancelar" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition> 
