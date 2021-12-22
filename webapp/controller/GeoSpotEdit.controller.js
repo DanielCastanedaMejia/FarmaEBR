@@ -267,9 +267,6 @@ sap.ui.define([
             const oParent = oSource.getParent();
             const id = oParent.getId();
             this.byId(id).close();
-        },
-        onChange: function () {
-            console.log("cambió");
         }
     });
 });

@@ -142,7 +142,7 @@ sap.ui.define([
 			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
-		loadSpotModel: function () {
+		/*loadSpotModel: function () {
 			var spotModel = this.getOwnerComponent().getModel("spots");
 			this.getView().setModel(spotModel);
 			var spotJSON = new JSONModel(spotModel);
@@ -165,8 +165,8 @@ sap.ui.define([
 				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id);
 			}
 
-		},
-		addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id) {
+		},*/
+		/*addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id) {
 			spot.setPosition(position);
 			spot.setType(type);
 			spot.setTooltip(tooltip);
@@ -183,31 +183,21 @@ sap.ui.define([
 			if (image_r != "") {
 				var spotImg = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id + "i");
 				spotImg.setPosition(position);
-				//spotImg.setType("None");				
 				spotImg.setContentOffset("0;0");
-				//spot.setTooltip(tooltip);
-				//spot.setText(text);
 				spotImg.setAlignment(alignment);
 				spotImg.setScale(scale);
 				spotImg.setTooltip("-");
 				spotImg.setImage(image_r)
 				spotImg.invalidate();
-				//spotImg.attachClick(this.onSpotImageClick, this);				
-
 				this.getView().byId("spotsGeo").addItem(spotImg);
 			}
 			//----------------------------------------------------------
-		},
+		},*/
 		onChangeInput: function () {
-			//console.log(this.getView().byId("spotsGeo").getItems());
-			//console.log(this.getView().byId("spotsGeo").getItems()[0].getProperty("text"));
 			this.getView().byId("spotsGeo").getItems()[0].setProperty("text", this.getView().byId("testInput").getValue());
 		},
 		onLoadSpotByModel: function () {
 			var spot = new sap.ui.vbm.Spot();
-			//this.getView().byId("spotsGeo").destroyItems();
-			//console.log("a");
-			//console.log(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length);
 			var spotLength = this.getOwnerComponent().getModel("spots").getProperty("/SPOT/").length;
 			for (var i = 0; i < spotLength; i++) {
 				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID"));

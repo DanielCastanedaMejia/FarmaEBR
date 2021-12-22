@@ -9,19 +9,19 @@
             <Label text="{i18n>colSpotID}" />
             <Input id="spotidID" value="" enabled="false" />
             <Label text="{i18n>colSpotNOM}" />
-            <Input id="nombreId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" />
+            <Input id="nombreId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/nombre} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" />
+            <Input id="textoId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/texto} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotTOOLT}" />
-            <Input id="tooltipId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" />
+            <Input id="tooltipId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tooltip} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotPOS}" />
-            <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" />
+            <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubicacion} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotUBIT}" />
-            <Input id="ubitId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" />
+            <Input id="ubitId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubi_tecnica} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotPROV}" />
-            <Input id="provId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" />
+            <Input id="provId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/proveedor} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotTEL}" />
-            <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" />
+            <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tel} ? 'Error':'Success'}" />
         </VBox>
         <beginButton>
             <Button type="Accept" text="Guardar cambios" press="onSaveSpot" 
