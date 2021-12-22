@@ -83,13 +83,11 @@ sap.ui.define([
 			var oItem, oModel;
 			oItem = oEvent.getSource();
 			oModel = oItem.getModel("spots");
-			//console.log(oModel);
 			var aModel = new JSONModel(oModel);
 			this.getView().setModel(aModel, "HEADER");
 			var nModel = new JSONModel(this.getOwnerComponent().getModel("noticesModel"));
 			var aData = nModel.oData.oData;
-			var indexSpotClicked = id.at(-1);
-			//console.log(nModel);
+			var indexSpotClicked = oModel.ID;
 			var selNoticeModel = {
 				"ITEMS": []
 			};
@@ -98,6 +96,7 @@ sap.ui.define([
 				//console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
 				if (aData.ITEMS[i].spotId == indexSpotClicked) {
 					selNoticeModel.ITEMS.push(aData.ITEMS[i]);
+					break;
 				}
 			}
 			var auxModel = new JSONModel(selNoticeModel)
@@ -142,57 +141,6 @@ sap.ui.define([
 			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
-		/*loadSpotModel: function () {
-			var spotModel = this.getOwnerComponent().getModel("spots");
-			this.getView().setModel(spotModel);
-			var spotJSON = new JSONModel(spotModel);
-			var nModel = spotModel.getProperty("/SPOT").length;
-			var spot;
-			for (var i = 0; i < nModel; i++) {
-				var id = spotModel.getProperty("/SPOT/" + i + "/ID");
-				spot = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id);
-				spot.setModel(spotModel.getProperty("/SPOT/" + i), "spots");
-				var sModel = spot.getModel("spots");
-				var pos = sModel.POS;
-				var type = sModel.TYPE;
-				var tooltip = sModel.TOOLTIP;
-				var text = sModel.TEXT;
-				var icon = sModel.ICON;
-				var alignment = sModel.ALIGNMENT;
-				var contentOffset = sModel.CONTENTOFFSET;
-				var image_r = sModel.IMAGE_R;
-				var scale = sModel.SCALE;
-				this.addSpot(spot, pos, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id);
-			}
-
-		},*/
-		/*addSpot: function (spot, position, type, tooltip, text, icon, alignment, contentOffset, image_r, scale, id) {
-			spot.setPosition(position);
-			spot.setType(type);
-			spot.setTooltip(tooltip);
-			spot.setText(this.getView().getModel("spots").getProperty("")); //Solo puede asignarse texto o icono, no ambos al mismo tiempo
-			spot.setIcon(icon);
-			//spot.setAlignment(alignment);
-			spot.setContentOffset(contentOffset);
-			spot.attachClick(this.onSpotClick, this);
-			spot.attachContextMenu(this.onContextMenuSpot, this);
-
-			this.getView().byId("spotsGeo").addItem(spot);
-
-			//---------------------------------------------------------
-			if (image_r != "") {
-				var spotImg = new sap.ui.vbm.Spot(this.getView().getId() + "--" + id + "i");
-				spotImg.setPosition(position);
-				spotImg.setContentOffset("0;0");
-				spotImg.setAlignment(alignment);
-				spotImg.setScale(scale);
-				spotImg.setTooltip("-");
-				spotImg.setImage(image_r)
-				spotImg.invalidate();
-				this.getView().byId("spotsGeo").addItem(spotImg);
-			}
-			//----------------------------------------------------------
-		},*/
 		onChangeInput: function () {
 			this.getView().byId("spotsGeo").getItems()[0].setProperty("text", this.getView().byId("testInput").getValue());
 		},
