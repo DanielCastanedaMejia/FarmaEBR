@@ -9,19 +9,19 @@
             <Label text="{i18n>colSpotID}" />
             <Input id="spotAddidID" value="" enabled="false" />
             <Label text="{i18n>colSpotNOM}" />
-            <Input id="nombreAddId" value="{masterModel>/newSpot/nombre}" />
+            <Input id="nombreAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/nombre}" />
             <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoAddId" value="{masterModel>/newSpot/texto}" />
+            <Input id="textoAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/texto}" />
             <Label text="{i18n>colSpotTOOLT}" />
-            <Input id="tooltipAddId" value="{masterModel>/newSpot/tooltip}" />
+            <Input id="tooltipAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/tooltip}" />
             <Label text="{i18n>colSpotPOS}" />
-            <Input id="ubiAddId" value="{masterModel>/newSpot/ubicacion}" />
+            <Input id="ubiAddId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/newSpot/ubicacion}" />
             <Label text="{i18n>colSpotUBIT}" />
-            <Input id="ubitAddId" value="{masterModel>/newSpot/ubi_tecnica}" />
+            <Input id="ubitAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/ubi_tecnica}" />
             <Label text="{i18n>colSpotPROV}" />
-            <Input id="provAddId" value="{masterModel>/newSpot/proveedor}" />
+            <Input id="provAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/proveedor}" />
             <Label text="{i18n>colSpotTEL}" />
-            <Input id="telAddId" value="{masterModel>/newSpot/tel}" />
+            <Input id="telAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/tel}" />
             <Label text="{i18n>colSpotTYPE}" />
             <ComboBox id="comboTypes" selectedKey="{masterModel>/newSpot/typeKey}" showButton="true" />
         </VBox>
@@ -36,7 +36,7 @@
                                 !${masterModel>/newSpot/tel} ? false:true}" />
         </beginButton>
         <endButton>
-            <Button id="addSpot" type="Reject" text="Cancelar" press="onCloseDialog"/>
+            <Button id="addSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition> 

@@ -9,25 +9,25 @@
             <Label text="{i18n>colSpotID}" />
             <Input id="spotidID" value="" enabled="false" />
             <Label text="{i18n>colSpotNOM}" />
-            <Input id="nombreId" value="" />
+            <Input id="nombreId" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoId" value="" />
+            <Input id="textoId" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotTOOLT}" />
-            <Input id="tooltipId" value="" />
+            <Input id="tooltipId" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotPOS}" />
-            <Input id="ubiId" value="" />
+            <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotUBIT}" />
-            <Input id="ubitId" value="" />
+            <Input id="ubitId" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotPROV}" />
-            <Input id="provId" value="" />
+            <Input id="provId" valueLiveUpdate="true" value="" />
             <Label text="{i18n>colSpotTEL}" />
-            <Input id="telId" value="" />
+            <Input id="telId" valueLiveUpdate="true" value="" />
         </VBox>
         <beginButton>
             <Button type="Accept" text="Guardar cambios" press="onSaveSpot"/>
         </beginButton>
         <endButton>
-            <Button id="editSpot" type="Reject" text="Cancelar" press="onCloseDialog"/>
+            <Button id="editSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition> 

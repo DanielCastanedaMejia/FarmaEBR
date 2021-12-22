@@ -1,0 +1,15 @@
+<core:FragmentDefinition xmlns:vk="sap.ui.vk" id="spotConfDelFragment"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="¿Estas seguro que deseas eliminar el spot?" id="confDelSpotDialog" class="sapUiResponsiveMargin">        
+        <beginButton>
+            <Button type="Reject" text="Eliminar" press="onConfirmDelete"/>
+        </beginButton>
+        <endButton>
+            <Button id="confDelSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition> 

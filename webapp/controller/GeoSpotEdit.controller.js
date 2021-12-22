@@ -9,6 +9,7 @@ sap.ui.define([
 
     return BaseController.extend("sap.ui.demo.webapp.controller.GeoSpotEdit", {
         onInit: function () {
+            this.aItem = "";
             this.aPath = "";
             // @ts-ignore
             var oRouter = this.getRouter();
@@ -126,6 +127,7 @@ sap.ui.define([
             this.byId(id).close();
         },
         onCloseDialog: function (oEvent) {
+            this.clearNewSpotModel();
             const oSource = oEvent.getSource();
             this.byId(oSource.getId() + "Dialog").close();
         },
@@ -152,7 +154,12 @@ sap.ui.define([
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
-            var type;
+            var type = "",
+                contOffset = "0;80",
+                gasto = Number((Math.random() * (200 - 0) + 0).toFixed(0)),
+                color_gasto = "Good",
+                alerta_visible = "0",
+                mensaje_alerta = "";
             switch (this._getMasterModel("/newSpot/typeKey")) {
                 case "0":
                     type = "Success"
@@ -164,7 +171,8 @@ sap.ui.define([
                     type = "Warning"
                     break;
                 case "3":
-                    type = "None"
+                    type = "None";
+                    contOffset = "0;-24";
                     break;
                 case "4":
                     type = "Inactive"
@@ -174,6 +182,12 @@ sap.ui.define([
                     break;
                 default:
                     break;
+            }
+
+            if (gasto > 100) {
+                color_gasto = "Error";
+                alerta_visible = "1";
+                mensaje_alerta = "Alerta reportada"
             }
 
             var idNewSpot = this.byId("spotAddidID").getValue();
@@ -186,7 +200,7 @@ sap.ui.define([
                 "TEXT": this._getMasterModel("/newSpot/texto"),
                 "ICON": "sap-icon://factory",
                 "ALIGNMENT": "1",
-                "CONTENTOFFSET": "0;80",
+                "CONTENTOFFSET": contOffset,
                 "IMAGEPATH": [{
                         "PATH": "/images/plant1_1.png"
                     },
@@ -200,15 +214,15 @@ sap.ui.define([
 
                 "NOMBRE": this._getMasterModel("/newSpot/nombre"),
                 "UBICACION_TECNICA": this._getMasterModel("/newSpot/ubi_tecnica"),
-                "ALERTA": "",
-                "GASTO": Number((Math.random() * (200 - 0) + 0).toFixed(0)),
-                "COLOR_GASTO": "Error",
+                "ALERTA": mensaje_alerta,
+                "GASTO": gasto,
+                "COLOR_GASTO": color_gasto,
                 "PROVEEDOR": this._getMasterModel("/newSpot/proveedor"),
                 "CALIDAD": (Math.random() * (99 - 79) + 79).toFixed(2).toString(),
                 "DISPONIBILIDAD": (Math.random() * (95 - 65) + 65).toFixed(2).toString(),
                 "DESEMPENO": (Math.random() * (92 - 59) + 59).toFixed(2).toString(),
                 "OEE": (Math.random() * (80 - 49) + 49).toFixed(2).toString(),
-                "ALERTA_VISIBLE": "0"
+                "ALERTA_VISIBLE": alerta_visible
             };
             this.getOwnerComponent().getModel("spots").setProperty("/SPOT/" + tam + "/", newItem);
 
@@ -226,13 +240,34 @@ sap.ui.define([
             this._setMasterModel("/newSpot/typeKey", "0");
         },
         onDeleteSpot: function (oEvent) {
-            var oItem = oEvent.getParameter("listItem");
+            this.aItem = oEvent.getParameter("listItem");
+            if (!this.spotConfDelDialog) {
+                // @ts-ignore
+                this.spotConfDelDialog = this.loadFragment({
+                    name: "sap.ui.demo.webapp.fragment.confirmDeleteSpot"
+                });
+            }
+            this.spotConfDelDialog.then(function (oDialog) {
+                oDialog.open();
+            });
+        },
+        deleteSpotModel: function (oItem) {
             var sPath = oItem.getBindingContext().getPath();
             var sPathSplit = sPath.split("/", 3);
             var index = sPathSplit.at(-1);
             var oModel = this.getOwnerComponent().getModel("spots").getProperty("/SPOT");
             oModel.splice(index, 1);
             this.getOwnerComponent().getModel("spots").setProperty("/SPOT", oModel);
+        },
+        onConfirmDelete: function (oEvent) {
+            this.deleteSpotModel(this.aItem);
+            const oSource = oEvent.getSource();
+            const oParent = oSource.getParent();
+            const id = oParent.getId();
+            this.byId(id).close();
+        },
+        onChange: function () {
+            console.log("cambió");
         }
     });
 });
