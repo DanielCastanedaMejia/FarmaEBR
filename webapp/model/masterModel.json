@@ -142,11 +142,11 @@
         "3": "Rótulo",
         "4": "Instrumentos calibrados"
     },
-    "newSpot": {
+    "inputSpot": {
         "nombre": "",
         "texto": "",
         "tooltip": "",
-        "ubicacion": "-103.37;22;0",
+        "ubicacion": "",
         "ubi_tecnica": "",
         "proveedor": "",
         "tel": "",

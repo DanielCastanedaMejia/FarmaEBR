@@ -9,22 +9,29 @@
             <Label text="{i18n>colSpotID}" />
             <Input id="spotidID" value="" enabled="false" />
             <Label text="{i18n>colSpotNOM}" />
-            <Input id="nombreId" valueLiveUpdate="true" value="" />
+            <Input id="nombreId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" />
             <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoId" valueLiveUpdate="true" value="" />
+            <Input id="textoId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" />
             <Label text="{i18n>colSpotTOOLT}" />
-            <Input id="tooltipId" valueLiveUpdate="true" value="" />
+            <Input id="tooltipId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" />
             <Label text="{i18n>colSpotPOS}" />
-            <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="" />
+            <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" />
             <Label text="{i18n>colSpotUBIT}" />
-            <Input id="ubitId" valueLiveUpdate="true" value="" />
+            <Input id="ubitId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" />
             <Label text="{i18n>colSpotPROV}" />
-            <Input id="provId" valueLiveUpdate="true" value="" />
+            <Input id="provId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" />
             <Label text="{i18n>colSpotTEL}" />
-            <Input id="telId" valueLiveUpdate="true" value="" />
+            <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" />
         </VBox>
         <beginButton>
-            <Button type="Accept" text="Guardar cambios" press="onSaveSpot"/>
+            <Button type="Accept" text="Guardar cambios" press="onSaveSpot" 
+            enabled="{= !${masterModel>/inputSpot/nombre} ||
+                        !${masterModel>/inputSpot/texto} ||
+                        !${masterModel>/inputSpot/tooltip} ||
+                        !${masterModel>/inputSpot/ubicacion} ||
+                        !${masterModel>/inputSpot/ubi_tecnica} ||
+                        !${masterModel>/inputSpot/proveedor} ||
+                        !${masterModel>/inputSpot/tel} ? false:true}"/>
         </beginButton>
         <endButton>
             <Button id="editSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>

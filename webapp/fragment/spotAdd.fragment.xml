@@ -9,31 +9,31 @@
             <Label text="{i18n>colSpotID}" />
             <Input id="spotAddidID" value="" enabled="false" />
             <Label text="{i18n>colSpotNOM}" />
-            <Input id="nombreAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/nombre}" />
+            <Input id="nombreAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" />
             <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/texto}" />
+            <Input id="textoAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" />
             <Label text="{i18n>colSpotTOOLT}" />
-            <Input id="tooltipAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/tooltip}" />
+            <Input id="tooltipAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" />
             <Label text="{i18n>colSpotPOS}" />
-            <Input id="ubiAddId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/newSpot/ubicacion}" />
+            <Input id="ubiAddId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" />
             <Label text="{i18n>colSpotUBIT}" />
-            <Input id="ubitAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/ubi_tecnica}" />
+            <Input id="ubitAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" />
             <Label text="{i18n>colSpotPROV}" />
-            <Input id="provAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/proveedor}" />
+            <Input id="provAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" />
             <Label text="{i18n>colSpotTEL}" />
-            <Input id="telAddId" valueLiveUpdate="true" value="{masterModel>/newSpot/tel}" />
+            <Input id="telAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" />
             <Label text="{i18n>colSpotTYPE}" />
-            <ComboBox id="comboTypes" selectedKey="{masterModel>/newSpot/typeKey}" showButton="true" />
+            <ComboBox id="comboTypes" selectedKey="{masterModel>/inputSpot/typeKey}" showButton="true" />
         </VBox>
         <beginButton>
             <Button type="Accept" text="Guardar spot" press="onAddSpot" 
-                    enabled="{= !${masterModel>/newSpot/nombre} ||
-                                !${masterModel>/newSpot/texto} ||
-                                !${masterModel>/newSpot/tooltip} ||
-                                !${masterModel>/newSpot/ubicacion} ||
-                                !${masterModel>/newSpot/ubi_tecnica} ||
-                                !${masterModel>/newSpot/proveedor} ||
-                                !${masterModel>/newSpot/tel} ? false:true}" />
+                    enabled="{= !${masterModel>/inputSpot/nombre} ||
+                                !${masterModel>/inputSpot/texto} ||
+                                !${masterModel>/inputSpot/tooltip} ||
+                                !${masterModel>/inputSpot/ubicacion} ||
+                                !${masterModel>/inputSpot/ubi_tecnica} ||
+                                !${masterModel>/inputSpot/proveedor} ||
+                                !${masterModel>/inputSpot/tel} ? false:true}" />
         </beginButton>
         <endButton>
             <Button id="addSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>

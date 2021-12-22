@@ -124,14 +124,16 @@ sap.ui.define([
             const oParent = oSource.getParent();
             const id = oParent.getId();
             this.updateSpotValues();
+            this.clearinputSpotModel();
             this.byId(id).close();
         },
         onCloseDialog: function (oEvent) {
-            this.clearNewSpotModel();
+            this.clearinputSpotModel();
             const oSource = oEvent.getSource();
             this.byId(oSource.getId() + "Dialog").close();
         },
         setFragmentValues: function (sPath) {
+            //this._setMasterModel("inputSpot/nombre", this.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
             this.getView().byId("spotidID").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
             this.getView().byId("nombreId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
             this.getView().byId("textoId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TEXT"));
@@ -160,7 +162,7 @@ sap.ui.define([
                 color_gasto = "Good",
                 alerta_visible = "0",
                 mensaje_alerta = "";
-            switch (this._getMasterModel("/newSpot/typeKey")) {
+            switch (this._getMasterModel("/inputSpot/typeKey")) {
                 case "0":
                     type = "Success"
                     break;
@@ -190,14 +192,14 @@ sap.ui.define([
                 mensaje_alerta = "Alerta reportada"
             }
 
-            var idNewSpot = this.byId("spotAddidID").getValue();
+            var idinputSpot = this.byId("spotAddidID").getValue();
             var tam = this.getOwnerComponent().getModel("spots").getProperty("/SPOT").length;
             var newItem = {
-                "ID": idNewSpot.toString(),
-                "POS": this._getMasterModel("/newSpot/ubicacion"),
+                "ID": idinputSpot.toString(),
+                "POS": this._getMasterModel("/inputSpot/ubicacion"),
                 "TYPE": type,
-                "TOOLTIP": this._getMasterModel("/newSpot/tooltip"),
-                "TEXT": this._getMasterModel("/newSpot/texto"),
+                "TOOLTIP": this._getMasterModel("/inputSpot/tooltip"),
+                "TEXT": this._getMasterModel("/inputSpot/texto"),
                 "ICON": "sap-icon://factory",
                 "ALIGNMENT": "1",
                 "CONTENTOFFSET": contOffset,
@@ -208,16 +210,16 @@ sap.ui.define([
                         "PATH": "/images/plant1_2.jpg"
                     }
                 ],
-                "TEL": this._getMasterModel("/newSpot/tel"),
+                "TEL": this._getMasterModel("/inputSpot/tel"),
                 "IMAGE_R": "facto",
                 "SCALE": "0.2;0.2",
 
-                "NOMBRE": this._getMasterModel("/newSpot/nombre"),
-                "UBICACION_TECNICA": this._getMasterModel("/newSpot/ubi_tecnica"),
+                "NOMBRE": this._getMasterModel("/inputSpot/nombre"),
+                "UBICACION_TECNICA": this._getMasterModel("/inputSpot/ubi_tecnica"),
                 "ALERTA": mensaje_alerta,
                 "GASTO": gasto,
                 "COLOR_GASTO": color_gasto,
-                "PROVEEDOR": this._getMasterModel("/newSpot/proveedor"),
+                "PROVEEDOR": this._getMasterModel("/inputSpot/proveedor"),
                 "CALIDAD": (Math.random() * (99 - 79) + 79).toFixed(2).toString(),
                 "DISPONIBILIDAD": (Math.random() * (95 - 65) + 65).toFixed(2).toString(),
                 "DESEMPENO": (Math.random() * (92 - 59) + 59).toFixed(2).toString(),
@@ -227,17 +229,17 @@ sap.ui.define([
             this.getOwnerComponent().getModel("spots").setProperty("/SPOT/" + tam + "/", newItem);
 
             this.byId(id).close();
-            this.clearNewSpotModel();
+            this.clearinputSpotModel();
         },
-        clearNewSpotModel: function () {
-            this._setMasterModel("/newSpot/nombre", "");
-            this._setMasterModel("/newSpot/texto", "");
-            this._setMasterModel("/newSpot/tooltip", "");
-            this._setMasterModel("/newSpot/ubicacion", "");
-            this._setMasterModel("/newSpot/ubi_tecnica", "");
-            this._setMasterModel("/newSpot/proveedor", "");
-            this._setMasterModel("/newSpot/tel", "");
-            this._setMasterModel("/newSpot/typeKey", "0");
+        clearinputSpotModel: function () {
+            this._setMasterModel("/inputSpot/nombre", "");
+            this._setMasterModel("/inputSpot/texto", "");
+            this._setMasterModel("/inputSpot/tooltip", "");
+            this._setMasterModel("/inputSpot/ubicacion", "");
+            this._setMasterModel("/inputSpot/ubi_tecnica", "");
+            this._setMasterModel("/inputSpot/proveedor", "");
+            this._setMasterModel("/inputSpot/tel", "");
+            this._setMasterModel("/inputSpot/typeKey", "0");
         },
         onDeleteSpot: function (oEvent) {
             this.aItem = oEvent.getParameter("listItem");

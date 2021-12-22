@@ -30,7 +30,7 @@
 
         <Table mode="Delete" delete="onDeleteSpot" id="spotList" class="sapUiResponsiveMargin" width="auto" items="{/SPOT}">
             <columns>
-                <Column minScreenWidth="Small" demandPopin="true">
+                <Column minScreenWidth="Small" width="4em" demandPopin="true">
                     <Label text="{i18n>colSpotID}"/>
                 </Column>
                 <Column minScreenWidth="Small" demandPopin="true">
@@ -75,7 +75,7 @@
         <footer>
 			<Toolbar>
 				<ToolbarSpacer/>
-				<Button id="newSpot" text="Agregar spot" icon="sap-icon://add" press="onPressAdd" type="Accept" />
+				<Button id="inputSpot" text="Agregar spot" icon="sap-icon://add" press="onPressAdd" type="Accept" />
 				<!-- <Button id="delSpot" text="Eliminar spot" icon="sap-icon://delete" press="onPressDel" type="Reject" />-->
 			</Toolbar>
 		</footer>
