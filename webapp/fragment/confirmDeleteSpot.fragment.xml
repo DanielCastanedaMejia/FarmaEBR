@@ -4,12 +4,42 @@
     xmlns:u="sap.ui.unified"
     xmlns:f="sap.ui.layout.form"
     xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-    <Dialog title="¿Estas seguro que deseas eliminar el spot?" id="confDelSpotDialog" class="sapUiResponsiveMargin">        
+    <Dialog type="Message" state="Warning" title="¿Estas seguro que deseas eliminar el spot?" id="confDelSpotDialog" class="sapUiResponsiveMargin" contentWidth="26em">
+        <VBox class="sapUiSmallMarginBeginEnd sapUiTinyMarginBottom">
+
+            <HBox>
+                <Label text="{i18n>colSpotID}:" design="Bold" />
+                <Label width="0.3em" />
+                <Label id="idLabel" text="" />
+            </HBox>
+            <Label />
+
+            <HBox>
+                <Label text="{i18n>colSpotNOM}: " design="Bold" />
+                <Label width="0.3em" />
+                <Label id="nombreLabel" text="" />
+            </HBox>
+            <Label />
+
+            <HBox>
+                <Label text="{i18n>colSpotPOS}: " design="Bold" />
+                <Label width="0.3em" />
+                <Label id="coorLabel" text="" />
+            </HBox>
+            <Label />
+
+            <HBox>
+                <Label text="{i18n>colSpotPROV}: " design="Bold" />
+                <Label width="0.3em" />
+                <Label id="provLabel" text="" />
+            </HBox>
+
+        </VBox>
         <beginButton>
-            <Button type="Reject" text="Eliminar" press="onConfirmDelete"/>
+            <Button class="sapUiTinyMarginBottom" type="Reject" text="{i18n>deleteButton}" press="onConfirmDelete"/>
         </beginButton>
         <endButton>
-            <Button id="confDelSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
+            <Button class="sapUiTinyMarginBottom" id="confDelSpot" type="Transparent" text="{i18n>cancelButton}" press="onCloseDialog"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition> 

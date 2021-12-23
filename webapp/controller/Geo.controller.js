@@ -141,6 +141,7 @@ sap.ui.define([
 			this.byId("ubiId").setHref("");
 			this.byId(oSource.getId() + "Dialog").close();
 		},
+
 		onChangeInput: function () {
 			this.getView().byId("spotsGeo").getItems()[0].setProperty("text", this.getView().byId("testInput").getValue());
 		},

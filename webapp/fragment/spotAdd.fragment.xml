@@ -26,7 +26,7 @@
             <ComboBox id="comboTypes" width="16em" selectedKey="{masterModel>/inputSpot/typeKey}" showButton="true" />
         </VBox>
         <beginButton>
-            <Button type="Accept" text="Guardar spot" press="onAddSpot"
+            <Button type="Accept" text="{i18n>addSpot}" press="onAddSpot"
                     enabled="{= !${masterModel>/inputSpot/nombre} ||
                                 !${masterModel>/inputSpot/texto} ||
                                 !${masterModel>/inputSpot/tooltip} ||
@@ -36,7 +36,7 @@
                                 !${masterModel>/inputSpot/tel} ? false:true}" />
         </beginButton>
         <endButton>
-            <Button id="addSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
+            <Button id="addSpot" type="Transparent" text="{i18n>cancelButton}" press="onCloseDialog"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition> 

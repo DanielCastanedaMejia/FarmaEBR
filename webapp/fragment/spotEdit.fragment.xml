@@ -24,7 +24,7 @@
             <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tel} ? 'Error':'Success'}" />
         </VBox>
         <beginButton>
-            <Button type="Accept" text="Guardar cambios" press="onSaveSpot" 
+            <Button type="Accept" text="{i18n>saveSpot}" press="onSaveSpot" 
             enabled="{= !${masterModel>/inputSpot/nombre} ||
                         !${masterModel>/inputSpot/texto} ||
                         !${masterModel>/inputSpot/tooltip} ||
@@ -34,7 +34,7 @@
                         !${masterModel>/inputSpot/tel} ? false:true}"/>
         </beginButton>
         <endButton>
-            <Button id="editSpot" type="Transparent" text="Cancelar" press="onCloseDialog"/>
+            <Button id="editSpot" type="Transparent" text="{i18n>cancelButton}" press="onCloseDialog"/>
         </endButton>
     </Dialog>
 </core:FragmentDefinition> 

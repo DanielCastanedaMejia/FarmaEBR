@@ -242,6 +242,7 @@ sap.ui.define([
             this._setMasterModel("/inputSpot/typeKey", "0");
         },
         onDeleteSpot: function (oEvent) {
+            var oThis = this;
             this.aItem = oEvent.getParameter("listItem");
             if (!this.spotConfDelDialog) {
                 // @ts-ignore
@@ -250,6 +251,15 @@ sap.ui.define([
                 });
             }
             this.spotConfDelDialog.then(function (oDialog) {
+                var sPath = oThis.aItem.getBindingContext().getPath();
+                //------------------------------------------------------
+                var esp = String.fromCharCode(32);
+                console.log("a" + esp + "a")
+                oThis.byId("idLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
+                oThis.byId("nombreLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
+                oThis.byId("coorLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/POS"));
+                oThis.byId("provLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/PROVEEDOR"));
+                //-------------------------------------------------------
                 oDialog.open();
             });
         },
