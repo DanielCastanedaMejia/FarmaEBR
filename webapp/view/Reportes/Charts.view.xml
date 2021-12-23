@@ -1,0 +1,54 @@
+<mvc:View 
+    controllerName="sap.ui.demo.webapp.controller.Reportes.Charts"
+    xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m"
+	xmlns:w="sap.ui.integration.widgets"
+    xmlns:dnd="sap.ui.core.dnd">
+	<Page
+        title="{i18n>chartsPageTitle}" >
+    <content>
+        <FlexBox
+            id="dynamicFlex"
+            justifyContent="SpaceAround" >
+            <FlexBox
+                direction="Column"
+                alignItems="Center" >
+                <w:Card
+                    id="chart01"
+                    width="50rem"
+                    height="30rem"
+                    manifest="{manifest>/testa}"
+                    class="sapUiResponsiveMargin" />
+                <Button
+                    text="Abrir"
+                    press="lineChartCard" >
+                    <dragDropConfig>
+                        <dnd:DragDropInfo/>
+                    </dragDropConfig>    
+                </Button>
+                <Button
+                    id="closeChartsButton"
+                    text="{i18n>ButtonClose}"
+                    type="Reject"
+                    press=".onNavBack"
+                    class="sapUiResponsiveMargin" />
+            </FlexBox>
+            <FlexBox>
+                <List class="sapUiResponsiveMargin" >
+                    <items>
+                        <ObjectListItem>
+                            <ObjectAttribute text="grafica 1" ></ObjectAttribute>    
+                        </ObjectListItem>
+                        <ObjectListItem>
+                            <ObjectAttribute text="grafica 2" ></ObjectAttribute>    
+                        </ObjectListItem>
+                        <ObjectListItem>
+                            <ObjectAttribute text="grafica 3" ></ObjectAttribute>    
+                        </ObjectListItem>
+                    </items>
+                </List>
+            </FlexBox>
+        </FlexBox>
+    </content>
+	</Page>
+</mvc:View>
