@@ -6,32 +6,30 @@
     xmlns:core="sap.ui.core" class="sapUiSizeCompact">
     <Dialog title="Modificar spot" id="editSpotDialog" class="sapUiResponsiveMargin">
         <VBox class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom">
-            <Label text="{i18n>colSpotID}" />
+            <Label text="{i18n>colSpotID}:" required="true" />
             <Input id="spotidID" value="" enabled="false" />
-            <Label text="{i18n>colSpotNOM}" />
+            <Label text="{i18n>colSpotNOM}:" required="true" />
             <Input id="nombreId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/nombre} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotTEXT}" />
-            <Input id="textoId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/texto} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotTOOLT}" />
+            <Label text="{i18n>colSpotTEXT}:"  />
+            <Input id="textoId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" />
+            <Label text="{i18n>colSpotTOOLT}:" required="true" />
             <Input id="tooltipId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tooltip} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotPOS}" />
+            <Label text="{i18n>colSpotPOS}:" required="true" />
             <Input id="ubiId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubicacion} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotUBIT}" />
+            <Label text="{i18n>colSpotUBIT}:" required="true" />
             <Input id="ubitId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubi_tecnica} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotPROV}" />
+            <Label text="{i18n>colSpotPROV}:" required="true" />
             <Input id="provId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/proveedor} ? 'Error':'Success'}" />
-            <Label text="{i18n>colSpotTEL}" />
-            <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tel} ? 'Error':'Success'}" />
+            <Label text="{i18n>colSpotTEL}:" />
+            <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" />
         </VBox>
         <beginButton>
             <Button type="Accept" text="{i18n>saveSpot}" press="onSaveSpot" 
             enabled="{= !${masterModel>/inputSpot/nombre} ||
-                        !${masterModel>/inputSpot/texto} ||
                         !${masterModel>/inputSpot/tooltip} ||
                         !${masterModel>/inputSpot/ubicacion} ||
                         !${masterModel>/inputSpot/ubi_tecnica} ||
-                        !${masterModel>/inputSpot/proveedor} ||
-                        !${masterModel>/inputSpot/tel} ? false:true}"/>
+                        !${masterModel>/inputSpot/proveedor} ? false:true}"/>
         </beginButton>
         <endButton>
             <Button id="editSpot" type="Transparent" text="{i18n>cancelButton}" press="onCloseDialog"/>

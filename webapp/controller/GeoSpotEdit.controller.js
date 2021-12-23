@@ -253,8 +253,6 @@ sap.ui.define([
             this.spotConfDelDialog.then(function (oDialog) {
                 var sPath = oThis.aItem.getBindingContext().getPath();
                 //------------------------------------------------------
-                var esp = String.fromCharCode(32);
-                console.log("a" + esp + "a")
                 oThis.byId("idLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
                 oThis.byId("nombreLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
                 oThis.byId("coorLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/POS"));
