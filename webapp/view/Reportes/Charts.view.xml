@@ -2,7 +2,7 @@
     controllerName="sap.ui.demo.webapp.controller.Reportes.Charts"
     xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m"
-	xmlns:w="sap.ui.integration.widgets"
+    xmlns:c="sap.ui.demo.webapp.control"
     xmlns:dnd="sap.ui.core.dnd">
 	<Page
         title="{i18n>chartsPageTitle}" >
@@ -13,19 +13,19 @@
             <FlexBox
                 direction="Column"
                 alignItems="Center" >
-                <w:Card
+                <c:ChartCard
                     id="chart01"
                     width="50rem"
                     height="30rem"
                     manifest="{manifest>/testa}"
-                    class="sapUiResponsiveMargin" />
+                    class="sapUiResponsiveMargin" >
+                    <c:dragDropConfig>
+                        <dnd:DropInfo drop=".onDrop" />
+                    </c:dragDropConfig>
+                </c:ChartCard>
                 <Button
                     text="Abrir"
-                    press="lineChartCard" >
-                    <dragDropConfig>
-                        <dnd:DragDropInfo/>
-                    </dragDropConfig>    
-                </Button>
+                    press="lineChartCard" />
                 <Button
                     id="closeChartsButton"
                     text="{i18n>ButtonClose}"
@@ -37,15 +37,24 @@
                 <List class="sapUiResponsiveMargin" >
                     <items>
                         <ObjectListItem>
-                            <ObjectAttribute text="grafica 1" ></ObjectAttribute>    
+                            <ObjectAttribute
+                                title="Stats 1"
+                                text="Graficar" />
                         </ObjectListItem>
                         <ObjectListItem>
-                            <ObjectAttribute text="grafica 2" ></ObjectAttribute>    
+                            <ObjectAttribute
+                                title="Stats 2"
+                                text="Graficar" />
                         </ObjectListItem>
                         <ObjectListItem>
-                            <ObjectAttribute text="grafica 3" ></ObjectAttribute>    
+                            <ObjectAttribute
+                                title="Stats 3"
+                                text="Graficar" />
                         </ObjectListItem>
                     </items>
+                    <dragDropConfig>
+                        <dnd:DragDropInfo sourceAggregation="items" targetAggregation="items" drop=".onDrop" />
+                    </dragDropConfig>
                 </List>
             </FlexBox>
         </FlexBox>

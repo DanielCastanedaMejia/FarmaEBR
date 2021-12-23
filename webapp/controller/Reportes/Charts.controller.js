@@ -12,6 +12,10 @@ sap.ui.define([
             this.getView().setModel(oModel, "manifest");
         },
 
+        onDrop: function (oEvent) {
+            console.log("TEST", oEvent.getParameters('dragSession').draggedControl);
+        },
+
         lineChartCard: function () {
             var oModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/webapp/model/data/cardManifests.json")),
                 oChart = new Card("", {
