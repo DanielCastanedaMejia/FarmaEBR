@@ -92,13 +92,23 @@ sap.ui.define([
 		},
 		onContextMenuSpot: function (oEvent) {
 			//---------------------------------------------------
-			var oItem, oModel;
+			var oItem, oModel, aModel;
 			oItem = oEvent.getSource();
 			oModel = oItem.getModel("spots");
+			// @ts-ignore
+			aModel = this.getOwnerComponent().getModel("spots");
 			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
-			var id = oSource.getId();
+			var id = oSource.getId();			
+			var idImagePath;
+			for (var i = 0; i < aModel.getProperty("/SPOT/").length; i++) {				
+				if (aModel.getProperty("/SPOT/" + i + "/ID") == oModel.ID) {
+					idImagePath = i;					
+					break;
+				}
+
+			}
 			if (!this.contextMenuDialog) {
 				// @ts-ignore
 				this.contextMenuDialog = this.loadFragment({
@@ -114,9 +124,9 @@ sap.ui.define([
 				// @ts-ignore
 				oThis.byId("carouselImg").setActivePage("mainImg0");
 				// @ts-ignore
-				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
+				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + idImagePath + "/IMAGEPATH/0/PATH"));
 				// @ts-ignore
-				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
+				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + idImagePath + "/IMAGEPATH/1/PATH"));
 				//---------------------------------------------------
 				var posArray = oModel.POS.toString().split(";", 2);
 				var lat = posArray[0],
