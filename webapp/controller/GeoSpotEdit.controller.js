@@ -1,9 +1,6 @@
 sap.ui.define([
     "sap/ui/demo/webapp/controller/BaseController",
-    "sap/ui/core/routing/History",
-    // @ts-ignore
-    // @ts-ignore
-    // @ts-ignore
+    "sap/ui/core/routing/History"
 ], function (BaseController, History) {
     "use strict";
 
@@ -16,7 +13,6 @@ sap.ui.define([
             // @ts-ignore
             oRouter.getRoute("GeoSpotEdit").attachMatched(this._onRouteMatched, this);
         },
-        // @ts-ignore
         // @ts-ignore
         _onRouteMatched: function (oEvent) {
             this.getView().setModel(this.getOwnerComponent().getModel("spots"));
@@ -253,9 +249,13 @@ sap.ui.define([
             this.spotConfDelDialog.then(function (oDialog) {
                 var sPath = oThis.aItem.getBindingContext().getPath();
                 //------------------------------------------------------
+                // @ts-ignore
                 oThis.byId("idLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
+                // @ts-ignore
                 oThis.byId("nombreLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
+                // @ts-ignore
                 oThis.byId("coorLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/POS"));
+                // @ts-ignore
                 oThis.byId("provLabel").setText(oThis.getOwnerComponent().getModel("spots").getProperty(sPath + "/PROVEEDOR"));
                 //-------------------------------------------------------
                 oDialog.open();

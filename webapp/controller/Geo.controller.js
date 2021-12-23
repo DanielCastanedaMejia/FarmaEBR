@@ -10,22 +10,21 @@ sap.ui.define([
 	return BaseController.extend("sap.ui.demo.webapp.controller.Geo", {
 		formatter: formatter,
 		onInit: function () {
-			var oRouter = this.getRouter();			
+			var oRouter = this.getRouter();
 			oRouter.getRoute("Geo").attachMatched(this._onRouteMatched, this);
 		},
 		_onRouteMatched: function (oEvent) {
-			//console.log("Cargado");
 			var accessTokenMapbox = 'pk.eyJ1IjoiYXhlbG16IiwiYSI6ImNrd3djdHdiMDAyZGwzMW1vcnVhODNzMG4ifQ.NzMxATEqq6w-D1LPD92tqg';
-
 			var appCode = 'xqjCK7HxKbj-oYA-K6yw_w';
 			var appId = 'dhTVPAlSKvlkx5WaEWs0';
-
 			var url = "https://api.mapbox.com/styles/v1/axelmz/ckx6c614e5dlu14mkn9o89cdq/tiles/256/{LOD}/{X}/{Y}@2x?access_token=";
 
 			// If you have not set up any Map Provider keys, then we will set a default map for one of the providers so that you can see something
 			//var defaultUrlHA = appCode === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://1.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
 			//var defaultUrlHB = appCode === "NOT CONFIGURED" | undefined ? "https://b.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : "https://2.aerial.maps.cit.api.here.com/maptile/2.1/maptile/newest/satellite.day/{LOD}/{X}/{Y}/256/png8?app_code=" + appCode + "&app_id=" + appId;
+			// @ts-ignore
 			var defaultUrlMBA = accessTokenMapbox === "NOT CONFIGURED" | undefined ? "https://a.tile.openstreetmap.org/{LOD}/{X}/{Y}.png" : url + accessTokenMapbox;
+			// @ts-ignore
 			var defaultCopyright = appCode === "NOT CONFIGURED" | undefined ? "Tile courtesy of OpenStreetMap" : "Tiles Courtesy of HERE Maps";
 
 			var oMapConfig = {
@@ -56,30 +55,19 @@ sap.ui.define([
 
 			var geoMap = this.getView().byId("geoMap");
 			geoMap.setMapConfiguration(oMapConfig);
-
-			//this._base_onloadTable("PMComponentList", aData, "GIM/DatosTransaccionales/Mantenimiento/Orden/Visualizar/Transaction/get_components", "Componentes", "");  
 			this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots")
 			var tam = this.getView().byId("spotsGeo").getItems().length;
-			//this.onLoadSpotByModel();
-			//console.log(this.getView().byId("spotsGeo").getItems()[0]);
-			//console.log(this.getView().byId("spotsGeo").getItems().length);
 			if (tam > 0) {
 				var spotItems = this.getView().byId("spotsGeo").getItems();
-				//console.log(spotItems);
 				this.getView().byId("spotsGeo").removeAllItems();
-				//console.log(this.getView().byId("spotsGeo").getItems());
-				for(var i = 0; i < tam; i++){
-					
+				for (var i = 0; i < tam; i++) {
 					spotItems[i].destroy();
-					//console.log(spotItems);
-					//console.log(this.getView().byId("spotsGeo").getItems().length);
-				}				
+				}
 			}
 			this.onLoadSpotByModel();
 		},
 		onSpotClick: function (oEvent) {
 			const oSource = oEvent.getSource();
-			var id = oSource.getId();
 			var oItem, oModel;
 			oItem = oEvent.getSource();
 			oModel = oItem.getModel("spots");
@@ -112,25 +100,32 @@ sap.ui.define([
 			const oSource = oEvent.getSource();
 			var id = oSource.getId();
 			if (!this.contextMenuDialog) {
+				// @ts-ignore
 				this.contextMenuDialog = this.loadFragment({
 					name: "sap.ui.demo.webapp.fragment.geoContextMenu"
 				});
 			}
 			this.contextMenuDialog.then(function (oDialog) {
 				//-------------------------------------------------
+				// @ts-ignore
 				var title = oThis.byId(id).getTooltip();
 				oDialog.setTitle(title);
 				//--------------------------------------------------
+				// @ts-ignore
 				oThis.byId("carouselImg").setActivePage("mainImg0");
+				// @ts-ignore
 				oThis.byId("mainImg0").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/0/PATH"));
+				// @ts-ignore
 				oThis.byId("mainImg1").setSrc(oThis.getView().getModel("spots").getProperty("/SPOT/" + oModel.ID + "/IMAGEPATH/1/PATH"));
 				//---------------------------------------------------
 				var posArray = oModel.POS.toString().split(";", 2);
 				var lat = posArray[0],
 					lon = posArray[1];
+				// @ts-ignore
 				oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@" + lon + "," + lat + ",13.1z");
 				//-----------------------------------------------------
 				var tel = oModel.TEL;
+				// @ts-ignore
 				oThis.byId("telId").setHref("tel://" + tel);
 				//-----------------------------------------------------
 				oDialog.open();
@@ -156,7 +151,6 @@ sap.ui.define([
 				spot.setType(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/TYPE"));
 				spot.setTooltip(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/TOOLTIP"));
 				spot.setIcon(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ICON"));
-				//spot.setAlignment(alignment);
 				spot.setContentOffset(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/CONTENTOFFSET"));
 				spot.attachClick(this.onSpotClick, this);
 				spot.attachContextMenu(this.onContextMenuSpot, this);
@@ -165,13 +159,11 @@ sap.ui.define([
 				if (this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/IMAGE_R") != "") {
 					var spotImg = new sap.ui.vbm.Spot(this.getView().getId() + "--" + this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID") + "i");
 					spotImg.setPosition(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/POS"));
-					//spotImg.setType("None");				
 					spotImg.setContentOffset("0;0");
 					spotImg.setAlignment(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ALIGNMENT"));
 					spotImg.setScale(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/SCALE"));
 					spotImg.setTooltip("-");
 					spotImg.setImage(this.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/IMAGE_R"))
-					//spotImg.invalidate();
 					this.getView().byId("spotsGeo").addItem(spotImg);
 				}
 				//----------------------------------------------------------
