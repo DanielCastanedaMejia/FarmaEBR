@@ -22,6 +22,8 @@
             <Input id="provId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/proveedor} ? 'Error':'Success'}" />
             <Label text="{i18n>colSpotTEL}:" />
             <Input id="telId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" />
+            <Label text="{i18n>colSpotTYPE}:" />
+            <ComboBox id="comboTypesEdit" width="16em" selectedKey="{masterModel>/inputSpot/typeKey}" showButton="true" />
         </VBox>
         <beginButton>
             <Button type="Accept" text="{i18n>saveSpot}" press="onSaveSpot" 

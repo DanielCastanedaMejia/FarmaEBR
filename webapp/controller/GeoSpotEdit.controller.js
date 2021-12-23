@@ -12,49 +12,49 @@ sap.ui.define([
             var oRouter = this.getRouter();
             // @ts-ignore
             oRouter.getRoute("GeoSpotEdit").attachMatched(this._onRouteMatched, this);
-        },
+        },        
         // @ts-ignore
         _onRouteMatched: function (oEvent) {
             this.getView().setModel(this.getOwnerComponent().getModel("spots"));
         },
-        fillTypeComboBox: function () {
+        fillTypeComboBox: function (idComboBox) {
             var oThis = this;
 
             var itemTest = new sap.ui.core.Item();
             itemTest.setText("Success");
             itemTest.setKey("0");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
 
             itemTest = new sap.ui.core.Item();
             itemTest.setText("Default");
             itemTest.setKey("1");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
 
             itemTest = new sap.ui.core.Item();
             itemTest.setText("Warning");
             itemTest.setKey("2");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
 
             itemTest = new sap.ui.core.Item();
             itemTest.setText("None");
             itemTest.setKey("3");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
 
             itemTest = new sap.ui.core.Item();
             itemTest.setText("Inactive");
             itemTest.setKey("4");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
 
             itemTest = new sap.ui.core.Item();
             itemTest.setText("Error");
             itemTest.setKey("5");
             // @ts-ignore
-            oThis.byId("comboTypes").addItem(itemTest);
+            oThis.byId(idComboBox).addItem(itemTest);
         },
         onSpotRowClicked: function (oEvent) {
             var oThis = this;
@@ -73,6 +73,11 @@ sap.ui.define([
                 oThis.aPath = sPath;
                 // @ts-ignore
                 oThis.setFragmentValues(sPath);
+                var idCombo = "comboTypesEdit";
+                // @ts-ignore
+                if (oThis.byId(idCombo).getItems().length == 0)
+                    // @ts-ignore
+                    oThis.fillTypeComboBox(idCombo);
                 oDialog.open();
             });
         },
@@ -96,8 +101,7 @@ sap.ui.define([
                     if (oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID") == tam) {
                         existeId = true;
                     }
-                    if (existeId == true) {
-                        //tam++;
+                    if (existeId == true) {                        
                         // @ts-ignore
                         if (tam <= oThis.getOwnerComponent().getModel("spots").getProperty("/SPOT/" + i + "/ID")) {
                             // @ts-ignore
@@ -109,27 +113,31 @@ sap.ui.define([
                 // @ts-ignore
                 oThis.byId("spotAddidID").setValue(tam);
                 // @ts-ignore
-                if (oThis.byId("comboTypes").getItems().length == 0)
+                var idCombo = "comboTypes";
+                // @ts-ignore
+                if (oThis.byId(idCombo).getItems().length == 0)
                     // @ts-ignore
-                    oThis.fillTypeComboBox();
+                    oThis.fillTypeComboBox(idCombo);
                 oDialog.open();
             });
         },
         onSaveSpot: function (oEvent) {
+            var oThis = this;
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
-            this.updateSpotValues();
-            this.clearinputSpotModel();
-            this.byId(id).close();
+            this.updateSpotValues();            
+            this.byId(id).close();            
+            setTimeout(function() {
+                oThis.clearinputSpotModel();
+              }, 60);
         },
         onCloseDialog: function (oEvent) {
             this.clearinputSpotModel();
             const oSource = oEvent.getSource();
             this.byId(oSource.getId() + "Dialog").close();
         },
-        setFragmentValues: function (sPath) {
-            //this._setMasterModel("inputSpot/nombre", this.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
+        setFragmentValues: function (sPath) {            
             this.getView().byId("spotidID").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/ID"));
             this.getView().byId("nombreId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/NOMBRE"));
             this.getView().byId("textoId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TEXT"));
@@ -137,9 +145,57 @@ sap.ui.define([
             this.getView().byId("ubiId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/POS"));
             this.getView().byId("ubitId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/UBICACION_TECNICA"));
             this.getView().byId("provId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/PROVEEDOR"));
-            this.getView().byId("telId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TEL"));
+            this.getView().byId("telId").setValue(this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TEL"));            
+            var typeKey;
+            switch (this.getOwnerComponent().getModel("spots").getProperty(sPath + "/TYPE")) {
+                case "Success":
+                    typeKey = 0
+                    break;
+                case "Default":
+                    typeKey = 1
+                    break;
+                case "Warning":
+                    typeKey = 2
+                    break;
+                case "None":
+                    typeKey = 3;                    
+                    break;
+                case "Inactive":
+                    typeKey = 4
+                    break;
+                case "Error":
+                    typeKey = 5
+                    break;
+                default:
+                    break;
+            }
+            this.getView().byId("comboTypesEdit").setSelectedKey(typeKey);
         },
         updateSpotValues: function () {
+            var type, contOffset = "0;80";
+            switch (this._getMasterModel("/inputSpot/typeKey")) {
+                case "0":
+                    type = "Success"
+                    break;
+                case "1":
+                    type = "Default"
+                    break;
+                case "2":
+                    type = "Warning"
+                    break;
+                case "3":
+                    type = "None";
+                    contOffset = "0;-24";
+                    break;
+                case "4":
+                    type = "Inactive"
+                    break;
+                case "5":
+                    type = "Error"
+                    break;
+                default:
+                    break;
+            }
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/NOMBRE", this.getView().byId("nombreId").getValue());
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/TEXT", this.getView().byId("textoId").getValue());
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/TOOLTIP", this.getView().byId("tooltipId").getValue());
@@ -147,8 +203,11 @@ sap.ui.define([
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/UBICACION_TECNICA", this.getView().byId("ubitId").getValue());
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/PROVEEDOR", this.getView().byId("provId").getValue());
             this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/TEL", this.getView().byId("telId").getValue());
+            this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/TYPE", type);
+            this.getOwnerComponent().getModel("spots").setProperty(this.aPath + "/CONTENTOFFSET", contOffset);
         },
         onAddSpot: function (oEvent) {
+            var oThis = this;
             const oSource = oEvent.getSource();
             const oParent = oSource.getParent();
             const id = oParent.getId();
@@ -225,7 +284,11 @@ sap.ui.define([
             this.getOwnerComponent().getModel("spots").setProperty("/SPOT/" + tam + "/", newItem);
 
             this.byId(id).close();
-            this.clearinputSpotModel();
+            
+            setTimeout(function() {
+                oThis.clearinputSpotModel();
+                console.log("Listo");
+              }, 70);
         },
         clearinputSpotModel: function () {
             this._setMasterModel("/inputSpot/nombre", "");
