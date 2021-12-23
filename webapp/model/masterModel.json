@@ -142,6 +142,9 @@
         "3": "Rótulo",
         "4": "Instrumentos calibrados"
     },
+    "geoContextMenu": {
+        "tel": ""
+    },
     "inputSpot": {
         "nombre": "",
         "texto": "",

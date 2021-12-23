@@ -100,11 +100,11 @@ sap.ui.define([
 			//---------------------------------------------------
 			var oThis = this;
 			const oSource = oEvent.getSource();
-			var id = oSource.getId();			
+			var id = oSource.getId();
 			var idImagePath;
-			for (var i = 0; i < aModel.getProperty("/SPOT/").length; i++) {				
+			for (var i = 0; i < aModel.getProperty("/SPOT/").length; i++) {
 				if (aModel.getProperty("/SPOT/" + i + "/ID") == oModel.ID) {
-					idImagePath = i;					
+					idImagePath = i;
 					break;
 				}
 
@@ -135,8 +135,13 @@ sap.ui.define([
 				oThis.byId("ubiId").setHref("https://www.google.com.mx/maps/dir//" + lon + "," + lat + "/@" + lon + "," + lat + ",13.1z");
 				//-----------------------------------------------------
 				var tel = oModel.TEL;
-				// @ts-ignore
-				oThis.byId("telId").setHref("tel://" + tel);
+				if (tel != "") {
+					// @ts-ignore
+					oThis.byId("telId").setHref("tel://" + tel);
+				} else {
+					// @ts-ignore
+					oThis.byId("telId").setHref("");
+				}
 				//-----------------------------------------------------
 				oDialog.open();
 			});

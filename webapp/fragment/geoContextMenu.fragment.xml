@@ -26,7 +26,7 @@
 
                         <HBox>
                             <core:Icon src="sap-icon://outgoing-call" class="sapUiSmallMarginTop"></core:Icon>
-                            <Link id="telId" text="Llamar" href="" target="_blank" class="sapUiSmallMargin"></Link>
+                            <Link id="telId" text="Llamar" href="{masterModel>/geoContextMenu/tel}" enabled="{= !${masterModel>/geoContextMenu/tel} ? false:true}" target="_blank" class="sapUiSmallMargin"></Link>
                         </HBox>
 
                         <layoutData>
