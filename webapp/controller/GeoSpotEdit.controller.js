@@ -286,8 +286,7 @@ sap.ui.define([
             this.byId(id).close();
             
             setTimeout(function() {
-                oThis.clearinputSpotModel();
-                console.log("Listo");
+                oThis.clearinputSpotModel();                
               }, 70);
         },
         clearinputSpotModel: function () {

@@ -27,3 +27,6 @@ server:
     configuration:
      port: 35729
      path: webapp
+framework:
+  name: SAPUI5
+  version: "1.97.1"
