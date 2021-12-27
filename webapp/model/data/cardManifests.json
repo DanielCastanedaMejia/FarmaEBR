@@ -1,4 +1,6 @@
 ﻿{
+  "width": "20rem",
+  "height": "auto",
   "test": {
     "sap.app": {
       "id": "test_sample_card",
@@ -74,7 +76,7 @@
       }
     }
   },
-  "testa": {
+  "manifest": {
     "sap.app": {
       "id": "test_sample_card",
       "type": "card"
@@ -138,6 +140,61 @@
               },
               {
                 "Store Name": "Cambio de troquel2",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel3",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel4",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel5",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel6",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel7",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel8",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel9",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel10",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel11",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel12",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel13",
                 "Revenue": 245609.486884,
                 "Fat Percentage": "1 Percent"
               }

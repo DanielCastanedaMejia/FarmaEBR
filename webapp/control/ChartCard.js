@@ -5,7 +5,8 @@ sap.ui.define([
     return Card.extend("sap.ui.demo.webapp.control.ChartCard", {
         metadata: {
             dnd: {
-                droppable:true
+                droppable:true,
+                draggable:true
             }
         },
         renderer: {}

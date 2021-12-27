@@ -15,23 +15,23 @@
                 alignItems="Center" >
                 <c:ChartCard
                     id="chart01"
-                    width="50rem"
-                    height="30rem"
-                    manifest="{manifest>/testa}"
+                    manifest="{manifest>/manifest}"
                     class="sapUiResponsiveMargin" >
                     <c:dragDropConfig>
-                        <dnd:DropInfo drop=".onDrop" />
+                        <dnd:DragDropInfo drop=".onDrop" />
                     </c:dragDropConfig>
                 </c:ChartCard>
-                <Button
-                    text="Abrir"
-                    press="lineChartCard" />
-                <Button
-                    id="closeChartsButton"
-                    text="{i18n>ButtonClose}"
-                    type="Reject"
-                    press=".onNavBack"
-                    class="sapUiResponsiveMargin" />
+                <HBox justifyContent="Center">
+                    <Button
+                        text="Abrir"
+                        press="onCreate" />
+                    <Button
+                        id="closeChartsButton"
+                        text="{i18n>ButtonClose}"
+                        type="Reject"
+                        press=".onNavBack"
+                        class="sapUiResponsiveMargin" />
+                </HBox>
             </FlexBox>
             <FlexBox>
                 <List class="sapUiResponsiveMargin" >

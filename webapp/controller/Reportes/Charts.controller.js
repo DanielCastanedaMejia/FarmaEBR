@@ -7,6 +7,7 @@ sap.ui.define([
         onInit: function () {
             this.getRouter().getRoute("chartView").attachMatched(this._onRouteMatched, this);
         },
+
         _onRouteMatched: function () {
             const oModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/webapp/model/data/cardManifests.json"));
             this.getView().setModel(oModel, "manifest");
@@ -16,17 +17,24 @@ sap.ui.define([
             console.log("TEST", oEvent.getParameters('dragSession').draggedControl);
         },
 
-        lineChartCard: function () {
+        onCreate: function () {
             var oModel = new JSONModel(sap.ui.require.toUrl("sap/ui/demo/webapp/model/data/cardManifests.json")),
-                oChart = new Card("", {
-                    width:"20rem",
-                    manifest:"{/testa}"
+                oContainer = this.byId("dynamicFlex");
+
+            this.lineChartCard(oModel, oContainer);
+        },
+
+        lineChartCard: function (oModel, oContainer) {
+            var oChart = new Card("", {
+                    width:"{/width}",
+                    height:"{/height}",
+                    manifest:"{/manifest}"
                 });
             
             
 
             oChart.setModel(oModel);
-            this.byId("dynamicFlex").addItem(oChart);
+            oContainer.addItem(oChart);
         }
     });
 });
