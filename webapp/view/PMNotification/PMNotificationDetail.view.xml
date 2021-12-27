@@ -116,8 +116,8 @@
               <Text text="{/textDamage}" />
               <Label text="{i18n>Cause}" />
               <Text text="{/catCause} {/cause} {/descCause}" />
-              <Label text="{i18n>TextCause}" />
-              <Text text="{/textCause}" />
+              <!-- <Label text="{i18n>TextCause}" />
+              <Text text="{/textCause}" />-->
             </f:content>
           </f:SimpleForm>
         </content>

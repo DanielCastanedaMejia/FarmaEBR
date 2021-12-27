@@ -19,8 +19,8 @@ sap.ui.define([
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
             oModel = this.getOwnerComponent().getModel("noticesModel");
-            this._onBindingChange(oModel, oArgs);
-            var jModel = new JSONModel(oModel.oData.ITEMS[oArgs.id]);
+            var idNotice = this.findIdNotice(oArgs.id, oModel);            
+            var jModel = new JSONModel(oModel.oData.ITEMS[idNotice]);
             this.getView().setModel(jModel)
 
         },
@@ -29,7 +29,16 @@ sap.ui.define([
                 this.getRouter().getTargets().display("notFound");
             }
         },
-
+        findIdNotice: function (idAux, oModel) {
+            var idR = -1;
+            for(var i = 0; i < oModel.oData.ITEMS.length; i++) {
+                if(oModel.oData.ITEMS[i].id == idAux) {                     
+                    idR = i;
+                    break;
+                }
+            }
+            return idR;
+        },
         onRelease: function (oEvent) {
             var oItem, oCtx;
             oItem = oEvent.getSource();
