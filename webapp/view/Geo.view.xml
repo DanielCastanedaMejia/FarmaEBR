@@ -181,7 +181,7 @@
                                     </columns>
 
                                     <items>
-                                        <ColumnListItem type="Navigation" press="onPMNotificationDetail">
+                                        <ColumnListItem type="Navigation" press="onNoticesPress" vAlign="Middle">
                                             <cells>
                                                 <ObjectIdentifier title="{id}"/>
                                                 <Text text="{type}"/>

@@ -84,7 +84,6 @@ sap.ui.define([
 				//console.log("iItems = " + i + " | spotId = " + aData.ITEMS[i].spotId + " -> Spot Clicked: " + indexSpotClicked);
 				if (aData.ITEMS[i].spotId == indexSpotClicked) {
 					selNoticeModel.ITEMS.push(aData.ITEMS[i]);
-					break;
 				}
 			}
 			var auxModel = new JSONModel(selNoticeModel)
@@ -186,6 +185,15 @@ sap.ui.define([
 		},
 		onNavToEditSpot: function () {
 			this.getRouter().navTo("GeoSpotEdit");
+		},
+		onNoticesPress: function (oEvent) {
+			var oSource = oEvent.getSource();
+			var bCtx = oSource.getBindingContext();
+			var sPath = bCtx.getPath();
+			var oModel = bCtx.getModel();
+			var notiId = oModel.getProperty(sPath + "/id");
+			console.log(notiId);
+			console.log(oModel.getProperty(sPath + "/description"));
 		}
 	});
 });
