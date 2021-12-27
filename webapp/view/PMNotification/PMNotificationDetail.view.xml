@@ -126,8 +126,8 @@
     <footer>
       <OverflowToolbar>
         <ToolbarSpacer/>
-        <Button text="Crear Orden" type="Emphasized" press="onShowCreatePMOrder"/>
-        <Button text="{i18n>ReleaseNotification}" type="Accept" press="onRelease"/>
+        <!-- <Button text="Crear Orden" type="Emphasized" press="onShowCreatePMOrder"/>
+        <Button text="{i18n>ReleaseNotification}" type="Accept" press="onRelease"/>-->
       </OverflowToolbar>
     </footer>
   </Page>

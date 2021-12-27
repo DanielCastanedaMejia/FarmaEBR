@@ -189,9 +189,7 @@ sap.ui.define([
 		onNoticesPress: function (oEvent) {
 			var oSource = oEvent.getSource();
 			var bCtx = oSource.getBindingContext();
-			var sPath = bCtx.getPath();						
-			console.log(bCtx.getProperty(sPath + "/id"));			
-			//this.getRouter().navTo("PMNotificationDetail");
+			var sPath = bCtx.getPath();														
 			this.getRouter().navTo("PMNotificationDetail", {
 				id: bCtx.getProperty(sPath + "/id")
 			});

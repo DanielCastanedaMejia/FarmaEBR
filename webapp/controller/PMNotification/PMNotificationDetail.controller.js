@@ -15,14 +15,10 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-            console.log(oEvent);
             var oArgs, oView, oModel;
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
-            console.log(oArgs.id);
-            console.log(oArgs);
             oModel = this.getOwnerComponent().getModel("noticesModel");
-            console.log(oModel);
             this._onBindingChange(oModel, oArgs);
             var jModel = new JSONModel(oModel.oData.ITEMS[oArgs.id]);
             this.getView().setModel(jModel)
@@ -42,8 +38,6 @@ sap.ui.define([
             var oData = {
                 "AVISO": oCtx.getProperty("id")
             };
-
-            //this.putInProgress(oData, "EquipandoXXI/DatosTransaccionales/Mantenimiento/Avisos/EnTratamiento/Transaction/poner_en_tratamiento");
         },
 
         onShowCreatePMOrder: function (oEvent) {
@@ -64,9 +58,8 @@ sap.ui.define([
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             this.getRouter().navTo("PMOrderDetail", {
-                id: oCtx.getProperty("order")
+                id: "01"
             });
-
         },
 
     });
