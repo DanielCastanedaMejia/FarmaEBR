@@ -16,12 +16,12 @@
         press="goToHome"/>
     </headerContent>
     <ObjectHeader        
-        title="{i18n>headerPMNotiDetail}"
+        title="{i18n>headerPMNotiDetail} {/id}"
         number="{/id}">
       <statuses>
         <ObjectStatus
           text="Estatus"
-          state="Error" />
+          state="None" />
         <ObjectStatus
           text="{/status}"
           state="Success" />
@@ -51,7 +51,7 @@
 						columnsL="1" columnsM="1">
             <f:content>
               <Label text="{i18n>Equipment}" />
-              <Text text="{/equipment} {/descEquipment}" />
+              <Text text="{/equipment} {/description}" />
               <Label text="{i18n>PMFunctionalLocation}" />
               <Text text="{/functionalLocation} {/descFunctionalLocation}" />
             </f:content>
@@ -81,7 +81,7 @@
               <Label text="{i18n>columnDate}" />
               <Text text="{/createdDate}" />
               <Label text="{i18n>columnOrder}" />
-              <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
+              <Link text="{/order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
               <Label text="{i18n>PMReportedBy}" />
               <Text text="{/reportedby}" />
               <Label text="{i18n>PMWorkCenter}" />

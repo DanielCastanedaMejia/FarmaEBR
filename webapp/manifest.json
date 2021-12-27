@@ -432,7 +432,7 @@
                     "target": "viewPMOrdersAGRO"
                 },
                 {
-                    "pattern": "NotificationDetail/{id}",
+                    "pattern": "Geo/NotificationDetail/{id}",
                     "name": "PMNotificationDetail",
                     "target": "PMNotificationDetail"
                 },
