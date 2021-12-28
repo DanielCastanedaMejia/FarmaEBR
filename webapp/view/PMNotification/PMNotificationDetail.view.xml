@@ -51,9 +51,9 @@
 						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
 						columnsL="1" columnsM="1">
             <f:content>
-              <Label text="{i18n>Equipment}" />
+              <Label design="Bold" text="{i18n>Equipment}" />
               <Text text="{/equipment} {/description}" />
-              <Label text="{i18n>PMFunctionalLocation}" />
+              <Label design="Bold" text="{i18n>PMFunctionalLocation}" />
               <Text text="{/functionalLocation} {/descFunctionalLocation}" />
             </f:content>
           </f:SimpleForm>
@@ -77,15 +77,15 @@
 						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
 						columnsL="1" columnsM="1">
             <f:content>
-              <Label text="{i18n>columnUser}" />
+              <Label design="Bold" text="{i18n>columnUser}" />
               <Text text="{/createdby}" />
-              <Label text="{i18n>columnDate}" />
+              <Label design="Bold" text="{i18n>columnDate}" />
               <Text text="{/createdDate}" />
-              <Label text="{i18n>columnOrder}" />
+              <Label design="Bold" text="{i18n>columnOrder}" />
               <Link text="{/order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
-              <Label text="{i18n>PMReportedBy}" />
+              <Label design="Bold" text="{i18n>PMReportedBy}" />
               <Text text="{/reportedby}" />
-              <Label text="{i18n>PMWorkCenter}" />
+              <Label design="Bold" text="{i18n>PMWorkCenter}" />
               <Text text="{/workCenter} {/plant} {/descPuesto}" />
             </f:content>
           </f:SimpleForm>
@@ -109,13 +109,13 @@
 						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
 						columnsL="1" columnsM="1">
             <f:content>
-              <Label text="{i18n>ObjectPart}" />
+              <Label design="Bold" text="{i18n>ObjectPart}" />
               <Text text="{/catObjectPart} {/objectPart} {/descObjectPart}" />
-              <Label text="{i18n>Damage}" />
+              <Label design="Bold" text="{i18n>Damage}" />
               <Text text="{/catDamage} {/damage} {/descDamage}" />
-              <Label text="{i18n>TextDamage}" />
+              <Label design="Bold" text="{i18n>TextDamage}" />
               <Text text="{/textDamage}" />
-              <Label text="{i18n>Cause}" />
+              <Label design="Bold" text="{i18n>Cause}" />
               <Text text="{/catCause} {/cause} {/descCause}" />
               <!-- <Label text="{i18n>TextCause}" />
               <Text text="{/textCause}" />-->
