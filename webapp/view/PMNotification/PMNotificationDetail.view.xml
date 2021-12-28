@@ -12,6 +12,7 @@
 		class="sapUiResponsiveContentPadding">
     <headerContent>
       <Button
+      visible="false"
         icon="sap-icon://home"
         press="goToHome"/>
     </headerContent>

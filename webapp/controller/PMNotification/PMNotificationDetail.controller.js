@@ -18,18 +18,19 @@ sap.ui.define([
             var oArgs, oView, oModel;
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
-            oModel = this.getOwnerComponent().getModel("noticesModel");
-            var idNotice = this.findIdNotice(oArgs.id, oModel);            
+            oModel = this.getOwnerComponent().getModel("noticesModel");            
+            var idNotice = this.findIdNotice(oModel, oArgs.id);
             var jModel = new JSONModel(oModel.oData.ITEMS[idNotice]);
+            this._onBindingChange(oModel, idNotice);
             this.getView().setModel(jModel)
 
         },
-        _onBindingChange: function (oModel, oArgs) {
-            if (!oModel.oData.ITEMS[oArgs.id]) {
+        _onBindingChange: function (oModel, idNotice) {
+            if (!oModel.oData.ITEMS[idNotice]) {
                 this.getRouter().getTargets().display("notFound");
             }
         },
-        findIdNotice: function (idAux, oModel) {
+        findIdNotice: function (oModel, idAux) {
             var idR = -1;
             for(var i = 0; i < oModel.oData.ITEMS.length; i++) {
                 if(oModel.oData.ITEMS[i].id == idAux) {                     
