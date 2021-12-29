@@ -1,31 +1,37 @@
-﻿<mvc:View
-	controllerName="sap.ui.demo.webapp.controller.PMNotification.PMNotificationDetail"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:f="sap.ui.layout.form"
-	busyIndicatorDelay="0">
-  <Page
-		id="PMNotificationDetail"
-		title="{i18n>viewPMNotification}"
-		showNavButton="true"
-		navButtonPress="onNavBack"
-		class="sapUiResponsiveContentPadding">
-    <headerContent>
-      <Button
-      visible="false"
-        icon="sap-icon://home"
-        press="goToHome"/>
-    </headerContent>
-    <ObjectHeader        
-        title="{i18n>headerPMNotiDetail} {/id}"
-        number="{/id}">
+﻿<mvc:View controllerName="sap.ui.demo.webapp.controller.PMNotification.PMNotificationDetail"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:f="sap.ui.layout.form" busyIndicatorDelay="0">
+  <Page id="PMNotificationDetail">
+    <customHeader>
+      <Toolbar class="toolbar_default">
+        <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+        <Image src="images/SAP_Logo.png"/>
+        <core:Icon src="sap-icon://map-2" class="toolbar_title sapUiSmallMarginBegin">
+          <core:layoutData>
+            <FlexItemData growFactor="1" />
+          </core:layoutData>
+        </core:Icon>
+        <MenuButton text="Detalle de aviso" class="customtitle">
+          <menu>
+            <Menu>
+              <items>
+                <MenuItem text="Página Inicial" icon="sap-icon://home" press="goToHome"/>
+              </items>
+            </Menu>
+          </menu>
+        </MenuButton>
+        <ToolbarSpacer/>
+        <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color" />
+        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false" />
+        <!-- <Button visible="false" icon="sap-icon://home" press="goToHome"/>-->
+      </Toolbar>
+    </customHeader>
+    <ObjectHeader title="{i18n>headerPMNotiDetail} {/id}" number="{/id}">
       <statuses>
-        <ObjectStatus
-          text="Estatus"
-          state="None" />
-        <ObjectStatus
-          text="{/status}"
-          state="Success" />
+        <ObjectStatus text="Estatus" state="None" />
+        <ObjectStatus text="{/status}" state="Success" />
       </statuses>
       <attributes>
         <ObjectAttribute text="{/short_text}" />
@@ -33,10 +39,7 @@
       </attributes>
     </ObjectHeader>
     <content>
-      <Panel
-				id="PMObjectReference"
-				width="auto"
-				class="sapUiResponsiveMargin sapUiNoContentPadding">
+      <Panel id="PMObjectReference" width="auto" class="sapUiResponsiveMargin sapUiNoContentPadding">
         <headerToolbar>
           <Toolbar>
             <Title text="{i18n>PMObjectReference}" level="H2"/>
@@ -44,12 +47,7 @@
           </Toolbar>
         </headerToolbar>
         <content>
-          <f:SimpleForm
-						minWidth="1024"
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
-						columnsL="1" columnsM="1">
+          <f:SimpleForm minWidth="1024" editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
             <f:content>
               <Label design="Bold" text="{i18n>Equipment}" />
               <Text text="{/equipment} {/description}" />
@@ -59,10 +57,7 @@
           </f:SimpleForm>
         </content>
       </Panel>
-      <Panel
-				id="PMResponsabilities"
-				width="auto"
-				class="sapUiResponsiveMargin sapUiNoContentPadding">
+      <Panel id="PMResponsabilities" width="auto" class="sapUiResponsiveMargin sapUiNoContentPadding">
         <headerToolbar>
           <Toolbar>
             <Title text="{i18n>PMResponsabilities}" level="H2"/>
@@ -70,12 +65,7 @@
           </Toolbar>
         </headerToolbar>
         <content>
-          <f:SimpleForm
-						minWidth="1024"
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
-						columnsL="1" columnsM="1">
+          <f:SimpleForm minWidth="1024" editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
             <f:content>
               <Label design="Bold" text="{i18n>columnUser}" />
               <Text text="{/createdby}" />
@@ -91,10 +81,7 @@
           </f:SimpleForm>
         </content>
       </Panel>
-      <Panel
-  id="PMPosition"
-  width="auto"
-  class="sapUiResponsiveMargin sapUiNoContentPadding">
+      <Panel id="PMPosition" width="auto" class="sapUiResponsiveMargin sapUiNoContentPadding">
         <headerToolbar>
           <Toolbar>
             <Title text="{i18n>PMPosition}" level="H2"/>
@@ -102,12 +89,7 @@
           </Toolbar>
         </headerToolbar>
         <content>
-          <f:SimpleForm
-						minWidth="1024"
-						editable="false"
-						layout="ResponsiveGridLayout"
-						labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4"
-						columnsL="1" columnsM="1">
+          <f:SimpleForm minWidth="1024" editable="false" layout="ResponsiveGridLayout" labelSpanL="3" labelSpanM="3" emptySpanL="4" emptySpanM="4" columnsL="1" columnsM="1">
             <f:content>
               <Label design="Bold" text="{i18n>ObjectPart}" />
               <Text text="{/catObjectPart} {/objectPart} {/descObjectPart}" />
