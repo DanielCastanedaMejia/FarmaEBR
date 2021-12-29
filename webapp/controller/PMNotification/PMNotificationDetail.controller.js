@@ -3,12 +3,13 @@ sap.ui.define([
     "sap/ui/demo/webapp/controller/BaseController",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
-    'sap/ui/model/json/JSONModel'
-
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel) {
+    'sap/ui/model/json/JSONModel',
+    "sap/ui/demo/webapp/model/formatter"
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, formatter) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.PMNotification.PMNotificationDetail", {
+        formatter: formatter,
         onInit: function () {
             var oRouter = this.getRouter();
             oRouter.getRoute("PMNotificationDetail").attachMatched(this._onRouteMatched, this);

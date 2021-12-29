@@ -184,6 +184,19 @@ sap.ui.define([], function () {
                 return false;
             else
                 return true;
+        },
+        noticeStatus: function (sState) {
+            console.log("Simon");
+            switch (sState) {
+                case "Warning":
+                    return "Warning";
+                case "Good":
+                    return "Success";
+                case "Critical":
+                    return "Error";
+                default:
+                    return "None"
+            }
         }
     };
 });

@@ -8,7 +8,7 @@
       <Toolbar class="toolbar_default">
         <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
         <Image src="images/SAP_Logo.png"/>
-        <core:Icon src="sap-icon://map-2" class="toolbar_title sapUiSmallMarginBegin">
+        <core:Icon src="sap-icon://alert" class="toolbar_title sapUiSmallMarginBegin">
           <core:layoutData>
             <FlexItemData growFactor="1" />
           </core:layoutData>
@@ -29,9 +29,13 @@
       </Toolbar>
     </customHeader>
     <ObjectHeader title="{i18n>headerPMNotiDetail} {/id}" number="{/id}">
-      <statuses>
-        <ObjectStatus text="Estatus" state="None" />
-        <ObjectStatus text="{/status}" state="Success" />
+      <statuses>        
+        <ObjectStatus class="customStatus" text="Estatus" state="None" />
+        <ObjectStatus text="{/status}" 
+                      state="{
+                        path: '/status',
+                        formatter: '.formatter.noticeStatus'
+                      }" />
       </statuses>
       <attributes>
         <ObjectAttribute text="{/short_text}" />

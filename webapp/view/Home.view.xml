@@ -192,13 +192,14 @@
   <Title
     titleStyle="H4"
     text="Área de prueba"
-    class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop" />
+    class="sapUiMediumMarginBegin sapUiTinyMarginBottom sapUiSmallMarginTop"
+    visible="false" />
   <layout:HorizontalLayout allowWrapping="true">
     <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" 
                   header="Geolocalización"
                   subheader="Prueba"
                   press="onVerGeo"
-                  visible="true">
+                  visible="false">
       <TileContent>
         <ImageContent src="sap-icon://choropleth-chart"></ImageContent>
       </TileContent>
