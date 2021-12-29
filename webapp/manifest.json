@@ -571,7 +571,7 @@
                 "notFound": {
                     "viewId": "notFound",
                     "viewName": "NotFound",
-                    "transition": "show",
+                    "transition": "slide",
                     "viewLevel": 4
                 },
                 "loginUserPP": {
