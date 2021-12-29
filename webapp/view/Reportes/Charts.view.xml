@@ -1,63 +1,60 @@
-<mvc:View 
-    controllerName="sap.ui.demo.webapp.controller.Reportes.Charts"
-    xmlns:mvc="sap.ui.core.mvc"
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Reportes.Charts"
 	xmlns="sap.m"
-    xmlns:c="sap.ui.demo.webapp.control"
-    xmlns:dnd="sap.ui.core.dnd">
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:dnd2="sap.f.dnd"
+	xmlns:w="sap.ui.integration.widgets"
+	xmlns:mvc="sap.ui.core.mvc">
 	<Page
-        title="{i18n>chartsPageTitle}" >
-    <content>
-        <FlexBox
-            id="dynamicFlex"
-            justifyContent="SpaceAround" >
-            <FlexBox
-                direction="Column"
-                alignItems="Center" >
-                <c:ChartCard
-                    id="chart01"
-                    manifest="{manifest>/manifest}"
-                    class="sapUiResponsiveMargin" >
-                    <c:dragDropConfig>
-                        <dnd:DragDropInfo drop=".onDrop" />
-                    </c:dragDropConfig>
-                </c:ChartCard>
-                <HBox justifyContent="Center">
-                    <Button
-                        text="Abrir"
-                        press="onCreate" />
-                    <Button
-                        id="closeChartsButton"
-                        text="{i18n>ButtonClose}"
-                        type="Reject"
-                        press=".onNavBack"
-                        class="sapUiResponsiveMargin" />
-                </HBox>
-            </FlexBox>
-            <FlexBox>
-                <List class="sapUiResponsiveMargin" >
-                    <items>
-                        <ObjectListItem>
-                            <ObjectAttribute
-                                title="Stats 1"
-                                text="Graficar" />
-                        </ObjectListItem>
-                        <ObjectListItem>
-                            <ObjectAttribute
-                                title="Stats 2"
-                                text="Graficar" />
-                        </ObjectListItem>
-                        <ObjectListItem>
-                            <ObjectAttribute
-                                title="Stats 3"
-                                text="Graficar" />
-                        </ObjectListItem>
-                    </items>
-                    <dragDropConfig>
-                        <dnd:DragDropInfo sourceAggregation="items" targetAggregation="items" drop=".onDrop" />
-                    </dragDropConfig>
-                </List>
-            </FlexBox>
-        </FlexBox>
-    </content>
+		id="page"
+		title="{i18n>title}">
+		<content>
+		
+		<FlexBox justifyContent="Center" class="sapUiSmallMargin" >
+        <w:Card id="first" manifest="{/manifest}" />
+			<f:GridContainer
+				id="grid"
+				items="{/}"
+				snapToRow="true" >
+
+				<f:dragDropConfig>
+					<dnd:DragDropInfo
+						sourceAggregation="items" />
+					<dnd2:GridDropInfo
+						targetAggregation="items"
+						dropPosition="Between"
+						dropLayout="Horizontal"
+						drop=".onDrop" />
+				</f:dragDropConfig>
+                
+				<f:layout>
+					<f:GridContainerSettings
+						columns="9"
+						rowSize="6rem"
+						columnSize="6rem"
+						gap="0.5rem" />
+				</f:layout>
+
+				<f:Card>
+					<f:layoutData>
+						<f:GridContainerItemLayoutData minRows="{rows}" columns="{columns}" />
+					</f:layoutData>
+
+					<f:header>
+						<card:Header title="{title}" />
+					</f:header>
+
+                    <f:content>
+                        <w:Card manifest="{manifest}" />
+                    </f:content>
+
+				</f:Card>
+
+			</f:GridContainer>
+		</FlexBox>
+
+		</content>
 	</Page>
 </mvc:View>
