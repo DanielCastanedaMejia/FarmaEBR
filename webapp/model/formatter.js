@@ -186,7 +186,6 @@ sap.ui.define([], function () {
                 return true;
         },
         noticeStatus: function (sState) {
-            console.log("Simon");
             switch (sState) {
                 case "Warning":
                     return "Warning";
