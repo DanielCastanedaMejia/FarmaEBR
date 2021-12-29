@@ -14,7 +14,8 @@ sap.ui.define([
                 this._oData = oEvent.getParameter("data"); //store the data
                 var complete_url = window.location.href;
                 // @ts-ignore
-                id = complete_url.split("/", 7).at(-1);
+                id = complete_url.split("=", 2).at(-1);
+                console.log(id);
                 var idNumber  = Number(id)
                 //Si es un ID numerico lo que encontró
                 if(idNumber) {                    

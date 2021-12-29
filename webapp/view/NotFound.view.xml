@@ -1,12 +1,32 @@
 ﻿<mvc:View
   controllerName="sap.ui.demo.webapp.controller.NotFound"
-   xmlns="sap.m"
-   xmlns:mvc="sap.ui.core.mvc">
-  <MessagePage
-    id="notFoundMsg"
-     title="{i18n>NotFound}"
-     text="{i18n>NotFound.text}"
-     description="{i18n>NotFound.description}"
-     showNavButton="true"
-		 navButtonPress="onNavBack"/>
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core"  
+  xmlns:f="sap.ui.layout.form"
+  xmlns:mvc="sap.ui.core.mvc">
+    <Toolbar id="toolbarNF" class="toolbar_default">
+      <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
+        <Image src="images/SAP_Logo.png"/>
+        <core:Icon src="sap-icon://alert" visible="false" class="toolbar_title sapUiSmallMarginBegin">
+          <core:layoutData>
+            <FlexItemData growFactor="1" />
+          </core:layoutData>
+        </core:Icon>        
+        <ToolbarSpacer/>
+        <Title text="{i18n>NotFound}" textAlign="Center" />
+        <ToolbarSpacer/>
+        <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color" />
+        <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false" />        
+    </Toolbar>  
+    <MessagePage
+      id="notFoundMsg"
+      title="{i18n>NotFound}"
+      text="{i18n>NotFound.text}"
+      description="{i18n>NotFound.description}"
+      icon="sap-icon://broken-link"     
+      showNavButton="true"
+      showHeader="false"
+      navButtonPress="onNavBack">
+    </MessagePage>   
+         
 </mvc:View>

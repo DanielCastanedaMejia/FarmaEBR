@@ -3,7 +3,7 @@
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:f="sap.ui.layout.form" busyIndicatorDelay="0">
-  <Page id="PMNotificationDetail">
+  <Page id="PMNotificationDetail" class="sapUiBody" >
     <customHeader>
       <Toolbar class="toolbar_default">
         <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
@@ -35,7 +35,8 @@
                       state="{
                         path: '/status',
                         formatter: '.formatter.noticeStatus'
-                      }" />
+                      }"
+                      inverted="true"/>                                           
       </statuses>
       <attributes>
         <ObjectAttribute text="{/short_text}" />
