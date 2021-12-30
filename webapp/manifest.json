@@ -267,7 +267,7 @@
                     "target": "GeoSpotEdit"
                 },
                 {
-                    "pattern": "verAvisos",
+                    "pattern": "home/ver-avisos",
                     "name": "verAvisos",
                     "target": "verAvisos"
                 },

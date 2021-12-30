@@ -32,52 +32,48 @@
             wrapping="true"
         />
           <ToolbarSpacer/>
-          <Label
-              id ="username"
-              text=""
-              class="toolbar_color"></Label>
-          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd">
-          </Button>
+          <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color"  ></Label>
+                <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false"/>
         </Toolbar>
-        <fb:FilterBar header="Avisos"
+        <fb:FilterBar header="Avisos" id="filterBar" showFilterConfiguration="false"
                       reset="onReset" search="onFilterSearch" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
-          <fb:filterItems>
+          <fb:filterGroupItems>
 
-            <fb:FilterItem name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
+            <fb:FilterGroupItem visibleInFilterBar="true" groupName="plant" name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
               <fb:control>
                 <ComboBox id="planta">
                   <items>
-                    <core:Item key="1710" text="Planta 1710"/>
+                    <!-- <core:Item key="1710" text="Planta 1710"/>-->
                   </items>
                 </ComboBox>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="A" label="{i18n>StartDate}">
+            <fb:FilterGroupItem visibleInFilterBar="true" groupName="dateA" name="A" label="{i18n>StartDate}">
               <fb:control>
                 <DatePicker
                   id="start_date"
                   valueFormat="dd-MM-yyyy"
                   displayFormat="dd-MM-yyyy"/>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="B" label="{i18n>EndDate}">
+            <fb:FilterGroupItem visibleInFilterBar="true" groupName="dateB" name="B" label="{i18n>EndDate}">
               <fb:control>
                 <DatePicker
                   id="end_date"
                   valueFormat="dd-MM-yyyy"
                   displayFormat="dd-MM-yyyy"/>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="C" label="Parada">
+            <fb:FilterGroupItem groupName="checkC" name="C" label="Parada">
               <fb:control>
                 <CheckBox valueState="Error" id="PMStop"/>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="D" label="Proceso">
+            <fb:FilterGroupItem groupName="comboD" name="D" label="Proceso">
               <fb:control>
                 <ComboBox
                     id="listPMProceso"
@@ -90,9 +86,9 @@
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="E" label="SubProceso">
+            <fb:FilterGroupItem groupName="comboE" name="E" label="SubProceso">
               <fb:control>
                 <ComboBox
                       id="listPMSubProceso"
@@ -104,9 +100,9 @@
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
 
-            <fb:FilterItem name="F" label="Funcion">
+            <fb:FilterGroupItem groupName="comboF" name="F" label="Funcion">
               <fb:control>
                 <ComboBox
                       id="listPMFunction"
@@ -119,9 +115,9 @@
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
-            </fb:FilterItem>
+            </fb:FilterGroupItem>
             
-          </fb:filterItems>
+          </fb:filterGroupItems>
          
         </fb:FilterBar>
         <content>

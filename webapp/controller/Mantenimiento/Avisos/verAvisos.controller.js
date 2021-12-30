@@ -4,8 +4,9 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     'sap/ui/model/Filter',
-    "sap/ui/model/FilterOperator"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator) {
+    "sap/ui/model/FilterOperator",
+    "sap/ui/core/Item"
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, Item) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos", {
@@ -16,10 +17,9 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-            this._getUsuario("username");
+            //his._getUsuario("username");
 
-            var 
-                oArgs = oEvent.getParameter("arguments"),
+            var oArgs = oEvent.getParameter("arguments"),
                 oView = this.getView(),
                 oTable = oView.byId('PMNotificationList'),
                 oStats = oView.byId('IconTabBar_Notifications'),
@@ -27,7 +27,7 @@ sap.ui.define([
                 oThis = this;
 
             //clear table
-            oModel_empty.setData({});
+            /*oModel_empty.setData({});
             oTable.setModel(oModel_empty);
             oStats.setModel(oModel_empty);
 
@@ -56,15 +56,18 @@ sap.ui.define([
             };
 
             this._base_onloadCOMBO("listPMSubProceso", oData3, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
-
-        },  
+            */
+            var filterbar = this.getView().byId("filterBar");
+            console.log(filterbar);
+            this.fillTypeComboBox("planta");
+        },
 
         onChangePMProceso: function (oEvent) {
             var oData = {
                 "TIPO_FILTRO": "SUBPRO",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMSubProceso", oData, "EquipandoXXI/DatosTransaccionales/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
+            //this._base_onloadCOMBO("listPMSubProceso", oData, "EquipandoXXI/DatosTransaccionales/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
         },
 
         onChangePMSubProceso: function (oEvent) {
@@ -73,7 +76,7 @@ sap.ui.define([
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
             console.log(oData);
-            this._base_onloadCOMBO("listPMFunction", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "Funciones");     
+            //this._base_onloadCOMBO("listPMFunction", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "Funciones");     
         },
 
         onPMNotificationDetail: function (oEvent) {
@@ -96,7 +99,7 @@ sap.ui.define([
 
         },
 
-        onFilterSearch: function (oEvent) {      
+        onFilterSearch: function (oEvent) {
             var oItem, oCtx;
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
@@ -104,11 +107,11 @@ sap.ui.define([
             var oComboProcess = this.byId("listPMProceso");
             var oComboSubProcess = this.byId("listPMSubProceso");
             var oComboFunction = this.byId("listPMFunction");
-            var oCheckStop = this.byId("PMStop"); 
-            var oInputStarDate = this.byId("start_date"); 
+            var oCheckStop = this.byId("PMStop");
+            var oInputStarDate = this.byId("start_date");
             var oInputEndDate = this.byId("end_date");
 
-            var oStop = 0;
+            var oStop = '0';
             if (oCheckStop.getSelected() == true)
                 oStop = 'X';
             else
@@ -127,8 +130,8 @@ sap.ui.define([
                 "START_DATE": oInputStarDate.getValue(),
                 "SUBPROCESS": oComboSubProcess.getSelectedKey()
             };
-            
-            this._base_onloadTable("PMNotificationList", oData, "GIM/DatosTransaccionales/Mantenimiento/Avisos/Buscar/Transaction/get_avisos", "Avisos","IconTabBar_Notifications");
+
+            //this._base_onloadTable("PMNotificationList", oData, "GIM/DatosTransaccionales/Mantenimiento/Avisos/Buscar/Transaction/get_avisos", "Avisos","IconTabBar_Notifications");
         },
 
         onClear: function () {
@@ -146,12 +149,54 @@ sap.ui.define([
                     aFilter.push(new Filter("status", FilterOperator.Contains, sKey));
                 else
                     aFilter.push(new Filter("noras", FilterOperator.Contains, sKey));
-            }                
-            
+            }
+
             oBinding.filter(aFilter);
+        },
+        fillTypeComboBox: function (idComboBox) {
+            var oThis = this;
+
+            var itemCombo = new Item();
+            itemCombo.setText("Test");
+            itemCombo.setKey("0");
+            console.log(oThis.getView().byId(idComboBox));
+            oThis.getView().byId(idComboBox).addItem(itemCombo);
+            /*var itemTest = new sap.ui.core.Item();
+            itemTest.setText("Success");
+            itemTest.setKey("0");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);
+
+            itemTest = new sap.ui.core.Item();
+            itemTest.setText("Default");
+            itemTest.setKey("1");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);
+
+            itemTest = new sap.ui.core.Item();
+            itemTest.setText("Warning");
+            itemTest.setKey("2");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);
+
+            itemTest = new sap.ui.core.Item();
+            itemTest.setText("None");
+            itemTest.setKey("3");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);
+
+            itemTest = new sap.ui.core.Item();
+            itemTest.setText("Inactive");
+            itemTest.setKey("4");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);
+
+            itemTest = new sap.ui.core.Item();
+            itemTest.setText("Error");
+            itemTest.setKey("5");
+            // @ts-ignore
+            oThis.byId(idComboBox).addItem(itemTest);*/
         }
 
     });
-}
-);
-
+});

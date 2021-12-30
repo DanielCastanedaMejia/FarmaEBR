@@ -30,7 +30,7 @@
     </customHeader>
     <ObjectHeader title="{i18n>headerPMNotiDetail} {/id}" number="{/id}">
       <statuses>        
-        <ObjectStatus class="customStatus" text="Estatus" state="None" />
+        <ObjectStatus class="customStatus" icon="sap-icon://information" text="Estatus" state="None" />
         <ObjectStatus text="{/status}" 
                       state="{
                         path: '/status',
