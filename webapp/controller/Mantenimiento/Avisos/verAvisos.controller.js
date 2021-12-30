@@ -57,9 +57,10 @@ sap.ui.define([
 
             this._base_onloadCOMBO("listPMSubProceso", oData3, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
             */
-            var filterbar = this.getView().byId("filterBar");
-            console.log(filterbar);
-            this.fillTypeComboBox("planta");
+            this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
+            if (this.getView().byId("planta").getItems().length == 0) {
+                this.fillTypeComboBox("planta");
+            }
         },
 
         onChangePMProceso: function (oEvent) {
@@ -156,11 +157,25 @@ sap.ui.define([
         fillTypeComboBox: function (idComboBox) {
             var oThis = this;
 
-            var itemCombo = new Item();
-            itemCombo.setText("Test");
-            itemCombo.setKey("0");
-            console.log(oThis.getView().byId(idComboBox));
-            oThis.getView().byId(idComboBox).addItem(itemCombo);
+            //var itemCombo = new Item();
+            //var nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/0/NOMBRE");
+            //var keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/0/ID");
+            var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
+            //console.log(nombrePlanta);
+            //console.log(keyPlanta);
+            console.log(length);
+            /*itemCombo.setText(nombrePlanta);
+            itemCombo.setKey(keyPlanta);
+            oThis.getView().byId(idComboBox).addItem(itemCombo);*/
+
+            for (var i = 0; i < length; i++) {
+                var itemCombo = new Item();
+                var nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
+                var keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/ID");
+                itemCombo.setText(nombrePlanta);
+                itemCombo.setKey(keyPlanta);
+                this.getView().byId(idComboBox).addItem(itemCombo);
+            }
             /*var itemTest = new sap.ui.core.Item();
             itemTest.setText("Success");
             itemTest.setKey("0");

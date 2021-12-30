@@ -41,7 +41,7 @@
 
             <fb:FilterGroupItem visibleInFilterBar="true" groupName="plant" name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
               <fb:control>
-                <ComboBox id="planta">
+                <ComboBox id="planta" selectedKey="{masterModel>/plantComboKeyNotices}">
                   <items>
                     <!-- <core:Item key="1710" text="Planta 1710"/>-->
                   </items>
@@ -54,7 +54,8 @@
                 <DatePicker
                   id="start_date"
                   valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"/>
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false" />
               </fb:control>
             </fb:FilterGroupItem>
 
@@ -63,7 +64,8 @@
                 <DatePicker
                   id="end_date"
                   valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"/>
+                  displayFormat="dd-MM-yyyy"
+                  enabled="false"  />
               </fb:control>
             </fb:FilterGroupItem>
 

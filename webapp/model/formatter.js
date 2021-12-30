@@ -187,11 +187,11 @@ sap.ui.define([], function () {
         },
         noticeStatus: function (sState) {
             switch (sState) {
-                case "Warning":
+                case "Pendiente":
                     return "Warning";
-                case "Good":
+                case "En tratamiento":
                     return "Success";
-                case "Critical":
+                case "Cerrada":
                     return "Error";
                 default:
                     return "None"

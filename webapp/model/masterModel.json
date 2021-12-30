@@ -144,7 +144,7 @@
     },
     "geoContextMenu": {
         "tel": ""
-    },
+    },    
     "inputSpot": {
         "nombre": "",
         "texto": "",
@@ -154,5 +154,6 @@
         "proveedor": "",
         "tel": "",
         "typeKey": "0"
-    }
+    },
+    "plantComboKeyNotices": "0"
 }
