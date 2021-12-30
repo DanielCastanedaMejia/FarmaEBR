@@ -257,17 +257,17 @@
                     "target": "QA"
                 },
                 {
-                    "pattern": "Geo",
+                    "pattern": "home/geo",
                     "name": "Geo",
                     "target": "Geo"
                 },
                 {
-                    "pattern": "Geo/GeoSpotEdit",
+                    "pattern": "home/geo/spot-edit",
                     "name": "GeoSpotEdit",
                     "target": "GeoSpotEdit"
                 },
                 {
-                    "pattern": "home/ver-avisos",
+                    "pattern": "home/notifications",
                     "name": "verAvisos",
                     "target": "verAvisos"
                 },
@@ -432,7 +432,7 @@
                     "target": "viewPMOrdersAGRO"
                 },
                 {
-                    "pattern": "Geo/NotificationDetail?id={id}",
+                    "pattern": "home/notifications/notification-detail?id={id}",
                     "name": "PMNotificationDetail",
                     "target": "PMNotificationDetail"
                 },

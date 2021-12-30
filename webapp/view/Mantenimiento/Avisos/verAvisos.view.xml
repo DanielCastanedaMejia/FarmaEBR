@@ -96,8 +96,8 @@
             <items>
               <IconTabFilter showAll="true" count="{/total}" text="{i18n>PMAvisos}" key="All" />
               <IconTabSeparator />
-              <IconTabFilter icon="sap-icon://begin" iconColor="Positive" count="{/METR}" text="{i18n>InTreatment}" key="METR" />
-              <IconTabFilter icon="sap-icon://create-entry-time" iconColor="Critical" count="{/MEAB}" text="{i18n>Pending}" key="MEAB" />
+              <IconTabFilter icon="sap-icon://begin" iconColor="Positive" count="{/METR}" text="{i18n>InTreatment}" key="EN TRAT" />
+              <IconTabFilter icon="sap-icon://create-entry-time" iconColor="Critical" count="{/MEAB}" text="{i18n>Pending}" key="PEND" />
               <IconTabFilter icon="sap-icon://complete" iconColor="Negative" count="{/CERR}" text="{i18n>Finished}" key="CERR" />
               <IconTabFilter icon="sap-icon://connected" iconColor="Neutral" count="{/ORAS}" text="{i18n>OrderAssigned}" key="ORAS" />
               <IconTabFilter icon="sap-icon://cancel-share" iconColor="Default" count="{/NORAS}" text="{i18n>NotOrderAssigned}" key="NORAS" />
@@ -129,13 +129,13 @@
               <Column minScreenWidth="Tablet" demandPopin="false">
                 <Label text="{i18n>Status}"/>
               </Column>
-              <Column minScreenWidth="Tablet" demandPopin="false" width="4em">
+              <Column minScreenWidth="Tablet" demandPopin="false" width="5em">
                 <Label text="{i18n>Stop}"/>
               </Column>
             </columns>
 
             <items>
-              <ColumnListItem type="Navigation" press="onPMNotificationDetail">
+              <ColumnListItem type="Navigation" press="onPMNotificationDetail" vAlign="Middle" >
                 <cells>
                   <ObjectIdentifier title="{id}"/>
                   <Text text="{type}"/>
@@ -144,7 +144,11 @@
                   <Text text="{reportedby}"/>
                   <Text text="{date}"/>
                   <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
-                  <Text text="{status}"/>
+                  <ObjectStatus text="{status}" state="{
+                    path: 'status',
+                    formatter: '.formatter.noticeStatus'
+                  }"
+                  inverted="true" />
                   <Text text="{stop}"/>
                 </cells>
               </ColumnListItem>

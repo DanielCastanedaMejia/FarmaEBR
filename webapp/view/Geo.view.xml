@@ -189,7 +189,11 @@
                                                 <Text text="{reportedby}"/>
                                                 <Text text="{date}"/>
                                                 <Link text="{order}" tooltip="{i18n>PMNotiDetail.tooltipToOrder}" press="onShowOrder" />
-                                                <Text text="{status}"/>
+                                                    <ObjectStatus text="{status}" state="{
+                                                        path: 'status',
+                                                        formatter: '.formatter.noticeStatus'
+                                                      }"
+                                                      inverted="true" />
                                                 <Text text="{stop}"/>
                                             </cells>
                                         </ColumnListItem>

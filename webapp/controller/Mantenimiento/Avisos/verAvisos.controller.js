@@ -6,11 +6,13 @@ sap.ui.define([
     'sap/ui/model/Filter',
     "sap/ui/model/FilterOperator",
     "sap/ui/core/Item",
-    "sap/ui/model/json/JSONModel"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, Item, JSONModel) {
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/demo/webapp/model/formatter"
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, Item, JSONModel, formatter) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos", {
+        formatter: formatter,
         onInit: function () {
             var oRouter = this.getRouter();
             oRouter.getRoute("verAvisos").attachMatched(this._onRouteMatched, this);
@@ -47,11 +49,17 @@ sap.ui.define([
         },
 
         onPMNotificationDetail: function (oEvent) {
-            var oItem, oCtx;
+            /*var oItem, oCtx;
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             this.getRouter().navTo("avisoDetalle", {
                 id: oCtx.getProperty("id")
+            });*/
+            var oSource = oEvent.getSource();
+            var bCtx = oSource.getBindingContext();
+            var sPath = bCtx.getPath();
+            this.getRouter().navTo("PMNotificationDetail", {
+                id: bCtx.getProperty(sPath + "/id")
             });
 
         },
@@ -80,6 +88,7 @@ sap.ui.define([
             }
             var auxModel = new JSONModel(selNoticeModel)
             this.getView().byId("PMNotificationList").setModel(auxModel);
+            this.getView().byId("IconTabBar_Notifications").setSelectedKey("All");
         },
 
         onClear: function () {
