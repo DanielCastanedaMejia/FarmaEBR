@@ -19,16 +19,18 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-            var oArgs = oEvent.getParameter("arguments"),
-                oView = this.getView(),
-                oTable = oView.byId('PMNotificationList'),
-                oStats = oView.byId('IconTabBar_Notifications'),
-                oModel_empty = new sap.ui.model.json.JSONModel(),
-                oThis = this;
             this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
-            if (this.getView().byId("planta").getItems().length == 0) {
-                this.fillTypeComboBox("planta");
+            var tam = this.getView().byId("planta").getItems().length;
+            console.log(tam);
+            if (tam > 0) {
+                var comboItems = this.getView().byId("planta").getItems();
+                this.getView().byId("planta").removeAllItems();
+                for (var i = 0; i < tam; i++) {
+                    comboItems[i].destroy();
+                }
             }
+            this.fillTypeComboBox("planta");
+            var initkey = this.getView().byId("planta").getItems()[0].getProperty("key");
         },
 
         onChangePMProceso: function (oEvent) {
@@ -112,16 +114,16 @@ sap.ui.define([
         },
         fillTypeComboBox: function (idComboBox) {
             var oThis = this;
+            var keyPlanta, nombrePlanta;
             var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
             for (var i = 0; i < length; i++) {
                 var itemCombo = new Item();
-                var nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
-                var keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/ID");
+                nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
+                keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/ID");
                 itemCombo.setText(nombrePlanta);
                 itemCombo.setKey(keyPlanta);
                 this.getView().byId(idComboBox).addItem(itemCombo);
-            }
+            }            
         }
-
     });
 });

@@ -99,8 +99,8 @@
               <IconTabFilter icon="sap-icon://begin" iconColor="Positive" count="{/METR}" text="{i18n>InTreatment}" key="EN TRAT" />
               <IconTabFilter icon="sap-icon://create-entry-time" iconColor="Critical" count="{/MEAB}" text="{i18n>Pending}" key="PEND" />
               <IconTabFilter icon="sap-icon://complete" iconColor="Negative" count="{/CERR}" text="{i18n>Finished}" key="CERR" />
-              <IconTabFilter icon="sap-icon://connected" iconColor="Neutral" count="{/ORAS}" text="{i18n>OrderAssigned}" key="ORAS" />
-              <IconTabFilter icon="sap-icon://cancel-share" iconColor="Default" count="{/NORAS}" text="{i18n>NotOrderAssigned}" key="NORAS" />
+              <IconTabFilter icon="sap-icon://connected" iconColor="Neutral" count="{/ORAS}" text="{i18n>OrderAssigned}" key="ORAS" visible="false" />
+              <IconTabFilter icon="sap-icon://cancel-share" iconColor="Default" count="{/NORAS}" text="{i18n>NotOrderAssigned}" key="NORAS" visible="false" />
             </items>
           </IconTabBar>
           <Table id="PMNotificationList" class="sapUiResponsiveMargin" width="auto" items="{/ITEMS}">
