@@ -5,58 +5,24 @@ sap.ui.define([
     "sap/m/MessageBox",
     'sap/ui/model/Filter',
     "sap/ui/model/FilterOperator",
-    "sap/ui/core/Item"
-], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, Item) {
+    "sap/ui/core/Item",
+    "sap/ui/model/json/JSONModel"
+], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, Item, JSONModel) {
     "use strict";
 
     return BaseController.extend("sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos", {
         onInit: function () {
-            //jQuery.sap.getUriParameters().get("Plant")
             var oRouter = this.getRouter();
             oRouter.getRoute("verAvisos").attachMatched(this._onRouteMatched, this);
         },
 
         _onRouteMatched: function (oEvent) {
-            //his._getUsuario("username");
-
             var oArgs = oEvent.getParameter("arguments"),
                 oView = this.getView(),
                 oTable = oView.byId('PMNotificationList'),
                 oStats = oView.byId('IconTabBar_Notifications'),
                 oModel_empty = new sap.ui.model.json.JSONModel(),
                 oThis = this;
-
-            //clear table
-            /*oModel_empty.setData({});
-            oTable.setModel(oModel_empty);
-            oStats.setModel(oModel_empty);
-
-            var oModel = new sap.ui.model.json.JSONModel();
-            oModel.setData({ plant: oArgs.Plant });
-            oView.setModel(oModel);
-
-            this.byId("planta").setSelectedKey(1710);
-
-            oView.bindElement({
-                path: "/"
-            });
-
-            var oData2 = {
-                "TIPO_FILTRO": "CE",
-                "FILTRO": "1710",
-                "TIPO_UBI": ""
-            };
-
-            this._base_onloadCOMBO("listPMProceso", oData2, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "1710-PRD", "Proceso");    
-
-            var oData3 = {
-                "TIPO_FILTRO": "FAB",
-                "FILTRO": "1710-PRD",
-                "TIPO_UBI": ""
-            };
-
-            this._base_onloadCOMBO("listPMSubProceso", oData3, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
-            */
             this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
             if (this.getView().byId("planta").getItems().length == 0) {
                 this.fillTypeComboBox("planta");
@@ -101,38 +67,19 @@ sap.ui.define([
         },
 
         onFilterSearch: function (oEvent) {
-            var oItem, oCtx;
-            oItem = oEvent.getSource();
-            oCtx = oItem.getBindingContext();
-
-            var oComboProcess = this.byId("listPMProceso");
-            var oComboSubProcess = this.byId("listPMSubProceso");
-            var oComboFunction = this.byId("listPMFunction");
-            var oCheckStop = this.byId("PMStop");
-            var oInputStarDate = this.byId("start_date");
-            var oInputEndDate = this.byId("end_date");
-
-            var oStop = '0';
-            if (oCheckStop.getSelected() == true)
-                oStop = 'X';
-            else
-                oStop = '';
-
-            var plant = "1710";
-
-            plant = plant.split('-')[1];
-
-            var oData = {
-                "BREAKDOWN": oStop,
-                "END_DATE": oInputEndDate.getValue(),
-                "FUNCTION": oComboFunction.getSelectedKey(),
-                "PLANT": plant,
-                "PROCESS": oComboProcess.getSelectedKey(),
-                "START_DATE": oInputStarDate.getValue(),
-                "SUBPROCESS": oComboSubProcess.getSelectedKey()
+            var nModel = new JSONModel(this.getOwnerComponent().getModel("noticesModel"));
+            var aData = nModel.oData.oData;
+            var indexSpotClicked = this.getView().byId("planta").getSelectedKey();
+            var selNoticeModel = {
+                "ITEMS": []
             };
-
-            //this._base_onloadTable("PMNotificationList", oData, "GIM/DatosTransaccionales/Mantenimiento/Avisos/Buscar/Transaction/get_avisos", "Avisos","IconTabBar_Notifications");
+            for (var i = 0; i < aData.ITEMS.length; i++) {
+                if (aData.ITEMS[i].spotId == indexSpotClicked) {
+                    selNoticeModel.ITEMS.push(aData.ITEMS[i]);
+                }
+            }
+            var auxModel = new JSONModel(selNoticeModel)
+            this.getView().byId("PMNotificationList").setModel(auxModel);
         },
 
         onClear: function () {
@@ -156,18 +103,7 @@ sap.ui.define([
         },
         fillTypeComboBox: function (idComboBox) {
             var oThis = this;
-
-            //var itemCombo = new Item();
-            //var nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/0/NOMBRE");
-            //var keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/0/ID");
             var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
-            //console.log(nombrePlanta);
-            //console.log(keyPlanta);
-            console.log(length);
-            /*itemCombo.setText(nombrePlanta);
-            itemCombo.setKey(keyPlanta);
-            oThis.getView().byId(idComboBox).addItem(itemCombo);*/
-
             for (var i = 0; i < length; i++) {
                 var itemCombo = new Item();
                 var nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
@@ -176,41 +112,6 @@ sap.ui.define([
                 itemCombo.setKey(keyPlanta);
                 this.getView().byId(idComboBox).addItem(itemCombo);
             }
-            /*var itemTest = new sap.ui.core.Item();
-            itemTest.setText("Success");
-            itemTest.setKey("0");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);
-
-            itemTest = new sap.ui.core.Item();
-            itemTest.setText("Default");
-            itemTest.setKey("1");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);
-
-            itemTest = new sap.ui.core.Item();
-            itemTest.setText("Warning");
-            itemTest.setKey("2");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);
-
-            itemTest = new sap.ui.core.Item();
-            itemTest.setText("None");
-            itemTest.setKey("3");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);
-
-            itemTest = new sap.ui.core.Item();
-            itemTest.setText("Inactive");
-            itemTest.setKey("4");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);
-
-            itemTest = new sap.ui.core.Item();
-            itemTest.setText("Error");
-            itemTest.setKey("5");
-            // @ts-ignore
-            oThis.byId(idComboBox).addItem(itemTest);*/
         }
 
     });

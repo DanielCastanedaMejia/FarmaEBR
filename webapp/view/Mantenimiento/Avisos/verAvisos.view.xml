@@ -1,42 +1,29 @@
-<mvc:View
-   controllerName="sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos"
-		xmlns:form="sap.ui.layout.form"
-    xmlns:l="sap.ui.layout"
-		xmlns:core="sap.ui.core"
-		xmlns:u="sap.ui.unified"
-    xmlns:fb="sap.ui.comp.filterbar"
-		xmlns:mvc="sap.ui.core.mvc"
-		xmlns="sap.m">
+<mvc:View controllerName="sap.ui.demo.webapp.controller.Mantenimiento.Avisos.verAvisos"
+  xmlns:form="sap.ui.layout.form"
+  xmlns:l="sap.ui.layout"
+  xmlns:core="sap.ui.core"
+  xmlns:u="sap.ui.unified"
+  xmlns:fb="sap.ui.comp.filterbar"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
   <NavContainer id="wizardNavContainer">
     <pages>
-      <Page
-      id="wizardContentPage"
-      title="{i18n>pageViewPMNotification}"
-      backgroundDesign="Solid"
-      showHeader="false">
-        <Toolbar
-        class="toolbar_default">
+      <Page id="wizardContentPage" title="{i18n>pageViewPMNotification}" backgroundDesign="Solid" showHeader="false">
+        <Toolbar class="toolbar_default">
           <Button icon="sap-icon://nav-back" type="Transparent" class="sapUiMediumMarginBegin" press="onNavBack"></Button>
           <Image src="images/SAP_Logo.png">
           </Image>
-          <core:Icon
-          src="sap-icon://grid"
-          class="toolbar_title sapUiSmallMarginBegin">
+          <core:Icon src="sap-icon://grid" class="toolbar_title sapUiSmallMarginBegin">
             <core:layoutData>
               <FlexItemData growFactor="1" />
             </core:layoutData>
           </core:Icon>
-          <Label labelFor="myColumn"
-            class="toolbar_title"
-            text="Avisos de Mantenimiento"
-            wrapping="true"
-        />
+          <Label labelFor="myColumn" class="toolbar_title" text="Avisos de Mantenimiento" wrapping="true" />
           <ToolbarSpacer/>
-          <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color"  ></Label>
-                <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false"/>
+          <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color"></Label>
+          <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false"/>
         </Toolbar>
-        <fb:FilterBar header="Avisos" id="filterBar" showFilterConfiguration="false"
-                      reset="onReset" search="onFilterSearch" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
+        <fb:FilterBar header="Avisos" id="filterBar" showFilterConfiguration="false" reset="onReset" search="onFilterSearch" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact">
           <fb:filterGroupItems>
 
             <fb:FilterGroupItem visibleInFilterBar="true" groupName="plant" name="A1" label="Planta" labelTooltip="Tooltip Example" mandatory="true">
@@ -51,21 +38,13 @@
 
             <fb:FilterGroupItem visibleInFilterBar="true" groupName="dateA" name="A" label="{i18n>StartDate}">
               <fb:control>
-                <DatePicker
-                  id="start_date"
-                  valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"
-                  enabled="false" />
+                <DatePicker id="start_date" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy" enabled="false" />
               </fb:control>
             </fb:FilterGroupItem>
 
             <fb:FilterGroupItem visibleInFilterBar="true" groupName="dateB" name="B" label="{i18n>EndDate}">
               <fb:control>
-                <DatePicker
-                  id="end_date"
-                  valueFormat="dd-MM-yyyy"
-                  displayFormat="dd-MM-yyyy"
-                  enabled="false"  />
+                <DatePicker id="end_date" valueFormat="dd-MM-yyyy" displayFormat="dd-MM-yyyy" enabled="false" />
               </fb:control>
             </fb:FilterGroupItem>
 
@@ -77,14 +56,10 @@
 
             <fb:FilterGroupItem groupName="comboD" name="D" label="Proceso">
               <fb:control>
-                <ComboBox
-                    id="listPMProceso"
-                    items="{
+                <ComboBox id="listPMProceso" items="{
 					                path: '/',
 					                sorter: { path: 'desc' }
-			        	        }"
-                    enabled="false"
-                    selectionChange="onChangePMProceso">
+			        	        }" enabled="false" selectionChange="onChangePMProceso">
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
@@ -92,13 +67,10 @@
 
             <fb:FilterGroupItem groupName="comboE" name="E" label="SubProceso">
               <fb:control>
-                <ComboBox
-                      id="listPMSubProceso"
-                      items="{
+                <ComboBox id="listPMSubProceso" items="{
 					                path: '/',
 					                sorter: { path: 'desc' }
-			        	        }"
-                      selectionChange="onChangePMSubProceso">
+			        	        }" selectionChange="onChangePMSubProceso">
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
@@ -106,127 +78,64 @@
 
             <fb:FilterGroupItem groupName="comboF" name="F" label="Funcion">
               <fb:control>
-                <ComboBox
-                      id="listPMFunction"
-                      items="{
+                <ComboBox id="listPMFunction" items="{
 					                path: '/',
 					                sorter: { path: 'desc' }
-			        	        }"
-                       change="onchangeModules"
-                      selectionChange="onselectionChangeModules">
+			        	        }" change="onchangeModules" selectionChange="onselectionChangeModules">
                   <core:Item key="{id}" text="{desc}" />
                 </ComboBox>
               </fb:control>
             </fb:FilterGroupItem>
-            
+
           </fb:filterGroupItems>
-         
+
         </fb:FilterBar>
         <content>
-          
-  <IconTabBar
-		id="IconTabBar_Notifications"
-		select="handleIconTabBarSelect"
-		class="sapUiResponsiveContentPadding">
-		<items>
-			<IconTabFilter
-				showAll="true"
-				count="{/total}"
-				text="{i18n>PMAvisos}"
-				key="All" />
-			<IconTabSeparator />
-			<IconTabFilter
-				icon="sap-icon://begin"
-				iconColor="Positive"
-				count="{/METR}"
-				text="{i18n>InTreatment}"
-				key="METR" />
-			<IconTabFilter
-				icon="sap-icon://create-entry-time"
-				iconColor="Critical"
-				count="{/MEAB}"
-				text="{i18n>Pending}"
-				key="MEAB" />
-			<IconTabFilter
-				icon="sap-icon://complete"
-				iconColor="Negative"
-				count="{/CERR}"
-				text="{i18n>Finished}"
-				key="CERR" />
-      <IconTabFilter
-				icon="sap-icon://connected"
-				iconColor="Neutral"
-				count="{/ORAS}"
-				text="{i18n>OrderAssigned}"
-				key="ORAS" />
-      <IconTabFilter
-				icon="sap-icon://cancel-share"
-				iconColor="Default"
-				count="{/NORAS}"
-				text="{i18n>NotOrderAssigned}"
-				key="NORAS" />
-		</items>
-	</IconTabBar>
-          <Table
-  id="PMNotificationList"
-  class="sapUiResponsiveMargin"
-  width="auto"
-  items="{/ITEMS}">
+
+          <IconTabBar id="IconTabBar_Notifications" select="handleIconTabBarSelect" class="sapUiResponsiveContentPadding">
+            <items>
+              <IconTabFilter showAll="true" count="{/total}" text="{i18n>PMAvisos}" key="All" />
+              <IconTabSeparator />
+              <IconTabFilter icon="sap-icon://begin" iconColor="Positive" count="{/METR}" text="{i18n>InTreatment}" key="METR" />
+              <IconTabFilter icon="sap-icon://create-entry-time" iconColor="Critical" count="{/MEAB}" text="{i18n>Pending}" key="MEAB" />
+              <IconTabFilter icon="sap-icon://complete" iconColor="Negative" count="{/CERR}" text="{i18n>Finished}" key="CERR" />
+              <IconTabFilter icon="sap-icon://connected" iconColor="Neutral" count="{/ORAS}" text="{i18n>OrderAssigned}" key="ORAS" />
+              <IconTabFilter icon="sap-icon://cancel-share" iconColor="Default" count="{/NORAS}" text="{i18n>NotOrderAssigned}" key="NORAS" />
+            </items>
+          </IconTabBar>
+          <Table id="PMNotificationList" class="sapUiResponsiveMargin" width="auto" items="{/ITEMS}">
             <columns>
-              <Column
-                minScreenWidth="Small"
-                demandPopin="true"
-                width="8em">
+              <Column minScreenWidth="Small" demandPopin="true" width="8em">
                 <Label text="{i18n>columnID}"/>
               </Column>
-              <Column
-                minScreenWidth="Small"
-                demandPopin="true"
-                width="4em">
+              <Column minScreenWidth="Small" demandPopin="true" width="4em">
                 <Label text="{i18n>columnType}"/>
               </Column>
-              <Column
-                minScreenWidth="Small"
-                demandPopin="true">
+              <Column minScreenWidth="Small" demandPopin="true">
                 <Label text="{i18n>columnDesc}"/>
               </Column>
-              <Column
-                minScreenWidth="Small"
-                demandPopin="true">
+              <Column minScreenWidth="Small" demandPopin="true">
                 <Label text="{i18n>columnCreatedby}"/>
               </Column>
-              <Column
-                minScreenWidth="Small"
-                demandPopin="true">
+              <Column minScreenWidth="Small" demandPopin="true">
                 <Label text="{i18n>columnReportedby}"/>
               </Column>
-              <Column
-                minScreenWidth="Tablet"
-                demandPopin="false">
+              <Column minScreenWidth="Tablet" demandPopin="false">
                 <Label text="{i18n>columnDate}"/>
               </Column>
-              <Column
-                minScreenWidth="Tablet"
-                demandPopin="false">
+              <Column minScreenWidth="Tablet" demandPopin="false">
                 <Label text="{i18n>columnOrder}"/>
               </Column>
-            <Column
-                minScreenWidth="Tablet"
-                demandPopin="false">
+              <Column minScreenWidth="Tablet" demandPopin="false">
                 <Label text="{i18n>Status}"/>
               </Column>
-            <Column
-                minScreenWidth="Tablet"
-                demandPopin="false"
-                width="4em">
+              <Column minScreenWidth="Tablet" demandPopin="false" width="4em">
                 <Label text="{i18n>Stop}"/>
               </Column>
             </columns>
-            
+
             <items>
-              <ColumnListItem
-                type="Navigation"
-				        press="onPMNotificationDetail">
+              <ColumnListItem type="Navigation" press="onPMNotificationDetail">
                 <cells>
                   <ObjectIdentifier title="{id}"/>
                   <Text text="{type}"/>
