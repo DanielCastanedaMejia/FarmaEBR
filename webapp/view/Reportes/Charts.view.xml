@@ -9,11 +9,10 @@
 	xmlns:mvc="sap.ui.core.mvc">
 	<Page
 		id="page"
-		title="{i18n>title}">
+		title="{i18n>chartsPageTitle}">
 		<content>
 		
 		<FlexBox justifyContent="Center" class="sapUiSmallMargin" >
-        <w:Card id="first" manifest="{/manifest}" />
 			<f:GridContainer
 				id="grid"
 				items="{/}"
@@ -37,20 +36,20 @@
 						gap="0.5rem" />
 				</f:layout>
 
-				<f:Card>
+				<f:Card  >
 					<f:layoutData>
 						<f:GridContainerItemLayoutData minRows="{rows}" columns="{columns}" />
 					</f:layoutData>
 
-					<f:header>
-						<card:Header title="{title}" />
-					</f:header>
-
                     <f:content>
-                        <w:Card manifest="{manifest}" />
+                        <w:Card manifest="{/manifest}" />
                     </f:content>
 
 				</f:Card>
+
+				<!-- <f:items>
+					<w:Card manifest="manifest" />
+				</f:items> -->
 
 			</f:GridContainer>
 		</FlexBox>
