@@ -42,7 +42,7 @@
 					</f:layoutData>
 
                     <f:content>
-                        <w:Card manifest="{/manifest}" />
+                        <w:Card manifest="{/}" />
                     </f:content>
 
 				</f:Card>
