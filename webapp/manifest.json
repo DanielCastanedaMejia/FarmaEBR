@@ -277,7 +277,7 @@
                     "target": "avisoDetalle"
                 },
                 {
-                    "pattern": "crearAviso",
+                    "pattern": "home/notifications/create",
                     "name": "crearAviso",
                     "target": "crearAviso"
                 },

@@ -20,8 +20,7 @@ sap.ui.define([
 
         _onRouteMatched: function (oEvent) {
             this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
-            var tam = this.getView().byId("planta").getItems().length;
-            console.log(tam);
+            var tam = this.getView().byId("planta").getItems().length;            
             if (tam > 0) {
                 var comboItems = this.getView().byId("planta").getItems();
                 this.getView().byId("planta").removeAllItems();

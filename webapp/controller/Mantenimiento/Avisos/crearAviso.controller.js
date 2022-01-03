@@ -1,69 +1,76 @@
 sap.ui.define([
-    'jquery.sap.global',
+    "jquery.sap.global",
     "sap/ui/demo/webapp/controller/BaseController",
     "sap/m/MessageToast",
-    "sap/m/MessageBox"
+    "sap/m/MessageBox",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/core/BusyIndicator"
+    // @ts-ignore
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, BusyIndicator) {
 
-], function (JQuery, BaseController, MessageToast, MessageBox) {
     "use strict";
 
-    return BaseController.extend("sap.ui.demo.webapp.controller.Mantenimiento.Avisos.crearAviso", {        
+    return BaseController.extend("sap.ui.demo.webapp.controller.Mantenimiento.Avisos.crearAviso", {
 
         onInit: function () {
-            //jQuery.sap.getUriParameters().get("Plant")
+            // @ts-ignore
             var oRouter = this.getRouter();
-            
+            // @ts-ignore
             oRouter.getRoute("crearAviso").attachMatched(this._onRouteMatched, this);
-            
+            // @ts-ignore
             this._wizard = this.getView().byId("CreateNotificationWizard");
+            // @ts-ignore
             this._oNavContainer = this.getView().byId("wizardNavContainer");
+            // @ts-ignore
             this._oWizardContentPage = this.getView().byId("wizardContentPage");
 
-            this.model = new sap.ui.model.json.JSONModel();
+            this.model = new JSONModel();
             this.model.setData({
                 NotiDescState: "Error",
                 NotiAuthorState: "Error"
             });
+            // @ts-ignore
             this.getView().setModel(this.model);
-            this.onloadPriority();
-            this.setReportedBy("PMNotiAuthor");
-            
+            //this.onloadPriority();
+            //this.setReportedBy("PMNotiAuthor");
+
         },
 
         _onRouteMatched: function (oEvent) {
-            this._getUsuario("username");
-            this.clearAll();
-
             var oArgs, oView;
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
 
             var tipo_ubi = '';
+            // @ts-ignore
             var plant = "1710";
 
+            // @ts-ignore
             var oData = {
                 "TIPO_FILTRO": "PA",
                 "FILTRO": ""
             };
-            this._base_onloadCOMBO("listPMPlanta", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", 1710, "Plantas");
+            //this._base_onloadCOMBO("listPMPlanta", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", 1710, "Plantas");
 
+            // @ts-ignore
             var oData2 = {
                 "TIPO_FILTRO": "CE",
                 "FILTRO": "1710",
                 "TIPO_UBI": tipo_ubi
             };
 
-            this._base_onloadCOMBO("listPMProceso", oData2, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "1710-PRD", "Proceso");
+            //this._base_onloadCOMBO("listPMProceso", oData2, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "1710-PRD", "Proceso");
 
+            // @ts-ignore
             var oData3 = {
                 "TIPO_FILTRO": "FAB",
                 "FILTRO": "1710-PRD",
                 "TIPO_UBI": tipo_ubi
             };
 
-            this._base_onloadCOMBO("listPMSubProceso", oData3, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
+            //this._base_onloadCOMBO("listPMSubProceso", oData3, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProceso");
 
-        },  
+        },
 
         setReportedBy: function (id) {
             var oThis = this;
@@ -77,6 +84,7 @@ sap.ui.define([
                     var user = $(xml).find('Profile').attr('IllumLoginName');
                     oThis.byId(id).setValue(user);
                 },
+                // @ts-ignore
                 error: function (XMLHttpRequest, textStatus, errorThrown) {
                     console.log("ERROR");
                 }
@@ -84,13 +92,13 @@ sap.ui.define([
         },
 
         validateStep1: function () {
-            var oCombo = this.byId("listPMEquipment");            
+            var oCombo = this.byId("listPMEquipment");
 
             if (oCombo.getSelectedKey() === "") {
                 this._wizard.invalidateStep(this.getView().byId("TecnicalLocationStep"));
             } else {
                 this._wizard.validateStep(this.getView().byId("TecnicalLocationStep"));
-            }          
+            }
         },
 
         descValidation: function () {
@@ -128,28 +136,28 @@ sap.ui.define([
                 key = oEqui.getSelectedKey();
 
             var aData = {
-                "CATALOGO": "B",     
+                "CATALOGO": "B",
                 "EQUIPO": key
             };
             console.log(aData);
-            this._base_onloadCOMBO("listPMCategoriaParteObjeto", aData, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos","","Parte Objeto");
+            //this._base_onloadCOMBO("listPMCategoriaParteObjeto", aData, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos", "", "Parte Objeto");
 
             var aData2 = {
                 "CATALOGO": "C",
                 "EQUIPO": key
             };
-            this._base_onloadCOMBO("listPMCatSintoma", aData2, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos","","Sintomas");
+            //this._base_onloadCOMBO("listPMCatSintoma", aData2, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos", "", "Sintomas");
 
             var aData3 = {
                 "CATALOGO": "5",
                 "EQUIPO": key
             };
-            this._base_onloadCOMBO("listPMCatCausa", aData3, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos","","Causas");
+            //this._base_onloadCOMBO("listPMCatCausa", aData3, "GIM/DatosMaestros/Mantenimiento/GrupoCodigos/Transaction/get_GrupoCodigos", "", "Causas");
         },
 
         discardNoti: function () {
             var resourceModel = this.getView().getModel("i18n");
-            this._handleMessageBoxOpen(resourceModel.getResourceBundle().getText("DiscardPMNoti"), "warning");  
+            this._handleMessageBoxOpen(resourceModel.getResourceBundle().getText("DiscardPMNoti"), "warning");
         },
 
         backToWizardContent: function () {
@@ -184,19 +192,30 @@ sap.ui.define([
             };
             clearContent(this._wizard.getSteps());
 
+            // @ts-ignore
             var JSON_E = {};
             var oThis = this;
             var numCombo = 0;
 
-            var JSONListas =
-                [
-                    { "Lista": "listPMCategoriaParteObjeto" },
-                    { "Lista": "listPMParteObjeto" },
-                    { "Lista": "listPMCatSintoma" },
-                    { "Lista": "listPMCatCausa" },
-                    { "Lista": "listPMAveria" },
-                    { "Lista": "listPMCausa" }
-                ];
+            var JSONListas = [{
+                    "Lista": "listPMCategoriaParteObjeto"
+                },
+                {
+                    "Lista": "listPMParteObjeto"
+                },
+                {
+                    "Lista": "listPMCatSintoma"
+                },
+                {
+                    "Lista": "listPMCatCausa"
+                },
+                {
+                    "Lista": "listPMAveria"
+                },
+                {
+                    "Lista": "listPMCausa"
+                }
+            ];
 
             $.each(JSONListas, function (i, x) {
                 if (i >= numCombo) {
@@ -204,11 +223,13 @@ sap.ui.define([
                 }
             });
 
-            var JSONInput =
-                [
-                    { "Input": "PMSintomaText" },
-                    { "Input": "PMCauseText" }
-                ];
+            var JSONInput = [{
+                    "Input": "PMSintomaText"
+                },
+                {
+                    "Input": "PMCauseText"
+                }
+            ];
 
             $.each(JSONInput, function (i, x) {
                 if (i >= numCombo) {
@@ -241,10 +262,10 @@ sap.ui.define([
             this.repeaterCombosUBI(0);
             var oCombo = this.byId("listPMProceso");
             oCombo.setSelectedKey("");
-        },        
+        },
 
         clearElement: function (idObject, tipo) {
-            var oModel = new sap.ui.model.json.JSONModel();
+            var oModel = new JSONModel();
             var JSON_E = {};
 
             var oObject = this.byId(idObject);
@@ -258,19 +279,25 @@ sap.ui.define([
                     oObject.setValue("");
                     break;
             }
-            
+
         },
 
-        repeaterCombosUBI: function(numCombo) {
+        repeaterCombosUBI: function (numCombo) {
             var oThis = this;
 
-            var JSONListas =
-                [
-                    { "Lista": "listPMSubProceso" },
-                    { "Lista": "listPMFunction" },
-                    { "Lista": "listPMEquipment" },
-                    { "Lista": "listPMSubEquipment" }
-                ];
+            var JSONListas = [{
+                    "Lista": "listPMSubProceso"
+                },
+                {
+                    "Lista": "listPMFunction"
+                },
+                {
+                    "Lista": "listPMEquipment"
+                },
+                {
+                    "Lista": "listPMSubEquipment"
+                }
+            ];
 
             $.each(JSONListas, function (i, x) {
                 if (i >= numCombo) {
@@ -299,7 +326,7 @@ sap.ui.define([
             var oComboFunction = this.byId("listPMFunction");
             var oComboPriority = this.byId("priority");
 
-            var oStop = 0;
+            var oStop = '0';
             if (oCheckStop.getSelected() === true)
                 oStop = 'X';
             else
@@ -308,82 +335,81 @@ sap.ui.define([
             var oEqui = "";
 
             if (oComboEqui.getSelectedKey() === '')
-                this.getOwnerComponent().openHelloDialog("Debes seleccionar un equipo");     
+                this.getOwnerComponent().openHelloDialog("Debes seleccionar un equipo");
             else if (oInputDesc.getValue().length < 10)
                 this.getOwnerComponent().openHelloDialog("Ingresa una descripci\u00F3n de al menos 10 caracteres");
             else
-                if (oInputAuthor.getValue() === '')
-                    this.getOwnerComponent().openHelloDialog("Ingresa un responsable");
-                else {
-                    if (oComboSubEqui.getSelectedKey() !== "")
-                        oEqui = oComboSubEqui.getSelectedKey();
-                    else
-                        oEqui = oComboEqui.getSelectedKey();
+            if (oInputAuthor.getValue() === '')
+                this.getOwnerComponent().openHelloDialog("Ingresa un responsable");
+            else {
+                if (oComboSubEqui.getSelectedKey() !== "")
+                    oEqui = oComboSubEqui.getSelectedKey();
+                else
+                    oEqui = oComboEqui.getSelectedKey();
 
-                    var oData = {
-                        "AUTOR": oInputAuthor.getValue(),
-                        "CAT_CAUSA": oComboCatCause.getSelectedKey(),
-                        "CAT_PARTE_OBJETO": oComboCatObj.getSelectedKey(),
-                        "CAT_SINTOMA": oComboCatSint.getSelectedKey(),
-                        "CAUSA": oComboCause.getSelectedKey(),
-                        "PRIORIDAD": oComboPriority.getSelectedKey(),
-                        "EQUIPO": oEqui,
-                        "PARADA": oStop,
-                        "PARTE_OBJETO": oComboObj.getSelectedKey(),
-                        "SINTOMA": oComboSint.getSelectedKey(),
-                        "TEXTO_AVERIA": oInputSintText.getValue(),
-                        "TEXTO_BREVE": oInputDesc.getValue(),
-                        "TEXTO_CAUSA": oInputCauseText.getValue(),
-                        "TEXTO_LARGO": oInputTexte.getValue(),
-                        "TIPO_AVISO": "M2",
-                        "UBICACION_TECNICA": oComboFunction.getSelectedKey()
-                    };
-                    console.log(oData);
-                    this.createNoti(oData,"GIM/DatosTransaccionales/Mantenimiento/Avisos/Crear/Transaction/crear_aviso");  
-                }
-                      
-        }, 
+                var oData = {
+                    "AUTOR": oInputAuthor.getValue(),
+                    "CAT_CAUSA": oComboCatCause.getSelectedKey(),
+                    "CAT_PARTE_OBJETO": oComboCatObj.getSelectedKey(),
+                    "CAT_SINTOMA": oComboCatSint.getSelectedKey(),
+                    "CAUSA": oComboCause.getSelectedKey(),
+                    "PRIORIDAD": oComboPriority.getSelectedKey(),
+                    "EQUIPO": oEqui,
+                    "PARADA": oStop,
+                    "PARTE_OBJETO": oComboObj.getSelectedKey(),
+                    "SINTOMA": oComboSint.getSelectedKey(),
+                    "TEXTO_AVERIA": oInputSintText.getValue(),
+                    "TEXTO_BREVE": oInputDesc.getValue(),
+                    "TEXTO_CAUSA": oInputCauseText.getValue(),
+                    "TEXTO_LARGO": oInputTexte.getValue(),
+                    "TIPO_AVISO": "M2",
+                    "UBICACION_TECNICA": oComboFunction.getSelectedKey()
+                };
+                console.log(oData);
+                this.createNoti(oData, "GIM/DatosTransaccionales/Mantenimiento/Avisos/Crear/Transaction/crear_aviso");
+            }
+
+        },
 
         createNoti(oData, path) {
             var uri = "http://" + this.getOwnerComponent().getManifestEntry("/sap.ui5/initData/server") + "/XMII/Runner?Transaction=" + path + "&OutputParameter=JsonOutput&Content-Type=text/xml"
             uri = uri.replace(/\s+/g, '');
 
-            sap.ui.core.BusyIndicator.show(0);
+            BusyIndicator.show(0);
             var oThis = this;
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
-                    var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild                    
- 
+                    var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild
+
                     if (opElement.firstChild != null) {
                         var aData = eval(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             //Create  the JSON model and set the data                                                                                                
                             MessageToast.show(aData[0].message);
                             oThis.clearAll();
                         }
 
-                    }    
-                    else {
-                        oThis.getOwnerComponent().openHelloDialog("La solicitud ha fallado: ¿Hay conexión de red?");
-                    }     
+                    } else {
+                        oThis.getOwnerComponent().openHelloDialog("La solicitud ha fallado: ï¿½Hay conexiï¿½n de red?");
+                    }
 
-                    sap.ui.core.BusyIndicator.hide();                    
+                    BusyIndicator.hide();
 
                 })
+                // @ts-ignore
                 .fail(function (jqXHR, textStatus, errorThrown) {
                     if (console && console.log) {
                         MessageToast.show("La solicitud a fallado: " + textStatus);
                     }
-                    sap.ui.core.BusyIndicator.hide();
+                    BusyIndicator.hide();
                 });
         },
 
@@ -397,7 +423,7 @@ sap.ui.define([
                 "TIPO_FILTRO": "SUBPRO",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMSubProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH","","SubProcesos");
+            this._base_onloadCOMBO("listPMSubProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProcesos");
         },
 
         onChangePMPlant: function (oEvent) {
@@ -405,13 +431,14 @@ sap.ui.define([
                 "TIPO_FILTRO": "PRO",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMProceso", oData,"GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH","","Procesos");            
+            this._base_onloadCOMBO("listPMProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "Procesos");
         },
 
+        // @ts-ignore
         onloadPriority: function (oEvent) {
             var oData = {};
 
-            this._base_onloadCOMBO("priority", oData, 'GIM/DatosMaestros/Mantenimiento/Prioridad/Transaction/priority',"","Prioridades");                
+            //this._base_onloadCOMBO("priority", oData, 'GIM/DatosMaestros/Mantenimiento/Prioridad/Transaction/priority', "", "Prioridades");
         },
 
         onChangePMSubProceso: function (oEvent) {
@@ -421,7 +448,7 @@ sap.ui.define([
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
             console.log(oData);
-            this._base_onloadCOMBO("listPMFunction", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH","","Funciones");                   
+            //this._base_onloadCOMBO("listPMFunction", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "Funciones");
         },
 
         onChangePMFunction: function (oEvent) {
@@ -430,7 +457,7 @@ sap.ui.define([
                 "TIPO_FILTRO": "EQUI",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMEquipment", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Equipos_SubEquipos_CEMH","","Equipos");            
+            //this._base_onloadCOMBO("listPMEquipment", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Equipos_SubEquipos_CEMH", "", "Equipos");
         },
 
         onChangePMEquipment: function (oEvent) {
@@ -439,7 +466,7 @@ sap.ui.define([
                 "TIPO_FILTRO": "SUBEQUI",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMSubEquipment", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Equipos_SubEquipos_CEMH","","SubEquipos");            
+            //this._base_onloadCOMBO("listPMSubEquipment", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Equipos_SubEquipos_CEMH", "", "SubEquipos");
         },
 
         onChangeObjectCategory: function (oEvent) {
@@ -447,7 +474,7 @@ sap.ui.define([
                 "CATALOGO": "B",
                 "CODEGRUPPE": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMParteObjeto", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos","Parte Objetos");
+            //this._base_onloadCOMBO("listPMParteObjeto", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "Parte Objetos");
         },
 
         onChangeSintCategory: function (oEvent) {
@@ -455,7 +482,7 @@ sap.ui.define([
                 "CATALOGO": "C",
                 "CODEGRUPPE": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMAveria", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "" , "Averias");
+            //this._base_onloadCOMBO("listPMAveria", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "", "Averias");
         },
 
         onChangeCauseCategory: function (oEvent) {
@@ -463,7 +490,7 @@ sap.ui.define([
                 "CATALOGO": "5",
                 "CODEGRUPPE": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMCausa", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "", "Causas");
+            //this._base_onloadCOMBO("listPMCausa", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "", "Causas");
         }
     });
 });
