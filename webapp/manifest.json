@@ -91,6 +91,10 @@
             "noticesModel": {
                 "uri": "model/noticesModel.json",
                 "type": "JSON"
+            },
+            "plantProcessModel": {
+                "uri": "model/plantProcessModel.json",
+                "type": "JSON"
             }
         }
     },
@@ -205,6 +209,10 @@
             "noticesModel": {
                 "type": "sap.ui.model.json.JSONModel",
                 "dataSource": "noticesModel"
+            },
+            "plantProcessModel": {
+                "type": "sap.ui.model.json.JSONModel",
+                "dataSource": "plantProcessModel"
             }
         },
         "resources": {

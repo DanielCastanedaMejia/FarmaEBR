@@ -42,7 +42,8 @@ sap.ui.define([
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
             this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
-            this.fillTypeComboBox("listPMPlanta");
+            this.getView().setModel(this.getOwnerComponent().getModel("plantProcessModel"), "plantProcess");
+            this.fillPlantComboBox("listPMPlanta");
             var tipo_ubi = '';
             // @ts-ignore
             var plant = "1710";
@@ -429,11 +430,14 @@ sap.ui.define([
         },
 
         onChangePMPlant: function (oEvent) {
-            var oData = {
-                "TIPO_FILTRO": "PRO",
-                "FILTRO": oEvent.getParameter("selectedItem").getKey()
-            };
-            this._base_onloadCOMBO("listPMProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "Procesos");
+            var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
+            var select = this.getView().byId("listPMPlanta");
+            console.log(select.getItems().length);
+            if (select.getItems().length > length) {
+                this.getView().byId("listPMPlanta").removeItem(select.getFirstItem());
+            }
+            var key = oEvent.getParameter("selectedItem").getKey();
+            this.fillProcessComboBox("listPMProceso", key)
         },
 
         // @ts-ignore
@@ -494,7 +498,7 @@ sap.ui.define([
             };
             //this._base_onloadCOMBO("listPMCausa", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "", "Causas");
         },
-        fillTypeComboBox: function (idComboBox) {
+        fillPlantComboBox: function (idComboBox) {
             var oThis = this;
             var keyPlanta, nombrePlanta;
             var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
@@ -505,6 +509,28 @@ sap.ui.define([
                 itemCombo.setText(nombrePlanta);
                 itemCombo.setKey(keyPlanta);
                 this.getView().byId(idComboBox).addItem(itemCombo);
+            }
+        },
+        fillProcessComboBox: function (idComboBox, key) {
+            var oThis = this;
+            //var keyPlanta, nombrePlanta;
+            var keyProcess, textProcess;
+            var prolength = this.getView().getModel("plantProcess").getProperty("/process/").length;
+            console.log(prolength);
+            for (var i = 0; i < prolength; i++) {
+                var itemCombo = new Item();
+                console.log(this.getView().getModel("plantProcess").getProperty("/process/" + i + "/SPOTID"));
+                if (this.getView().getModel("plantProcess").getProperty("/process/" + i + "/SPOTID") == key) {
+                    keyProcess = this.getView().getModel("plantProcess").getProperty("/process/" + i + "/PROID");
+                    textProcess = this.getView().getModel("plantProcess").getProperty("/process/" + i + "/PROCESS");
+                    itemCombo.setText(textProcess);
+                    itemCombo.setKey(keyProcess);
+                    this.getView().byId(idComboBox).addItem(itemCombo);
+                }
+                console.log(keyProcess);
+                console.log(textProcess);
+                //nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
+                //keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/ID");                
             }
         }
     });

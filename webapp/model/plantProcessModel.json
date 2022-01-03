@@ -1,0 +1,31 @@
+{
+    "process": [
+        {
+            "PROID": "0",
+            "SPOTID": "0",
+            "PROCESS": "Medida de mantenimiento"
+        },
+        {
+            "PROID": "2",
+            "SPOTID": "1",
+            "PROCESS": "Medida de mantenimiento"
+        }
+    ],
+    "subProcess": [
+        {
+            "SUBID": "0",
+            "PROID": "0",
+            "SUBPRO": "Ajuste de agitador"
+        },
+        {
+            "SUBID": "1",
+            "PROID": "0",
+            "SUBPRO": "Revisión de tubo"
+        },
+        {
+            "SUBID": "2",
+            "PROID": "2",
+            "SUBPRO": "Calibración de Touch Screen"
+        }
+    ]
+}

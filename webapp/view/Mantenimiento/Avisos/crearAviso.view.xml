@@ -81,8 +81,10 @@
                       id="listPMPlanta"
                       class="sapUiTinyMarginBegin"                      
                        change="onChangePMPlant"
-                       enabled="true">
-                      
+                       enabled="true"
+                       width="13.2em"
+                       selectedKey="-1" >
+                       <core:Item key="-1" text="{desc}" />
                     </Select>
                     
                     <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
@@ -109,13 +111,9 @@
                         id="listPMProceso"                        
                         class="sapUiTinyMarginBegin"
                         showSecondaryValues= "true"
-                        items="{
-					                path: '/',
-					                sorter: { path: 'desc' }
-			        	        }"
-                        enabled="false"
+                        enabled="true"
                         selectionChange="onChangePMProceso">
-                        <core:ListItem key="{id}" text="{desc}" additionalText = "{id}"/>
+                        <core:ListItem key="{id}" text="{desc}"/>
                       </ComboBox>
                       <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
                         text="{i18n>Equipment}"></Label>
