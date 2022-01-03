@@ -4,9 +4,10 @@ sap.ui.define([
     "sap/m/MessageToast",
     "sap/m/MessageBox",
     "sap/ui/model/json/JSONModel",
-    "sap/ui/core/BusyIndicator"
+    "sap/ui/core/BusyIndicator",
+    "sap/ui/core/Item"
     // @ts-ignore
-], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, BusyIndicator) {
+], function (JQuery, BaseController, MessageToast, MessageBox, JSONModel, BusyIndicator, Item) {
 
     "use strict";
 
@@ -40,7 +41,8 @@ sap.ui.define([
             var oArgs, oView;
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
-
+            this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
+            this.fillTypeComboBox("listPMPlanta");
             var tipo_ubi = '';
             // @ts-ignore
             var plant = "1710";
@@ -491,6 +493,19 @@ sap.ui.define([
                 "CODEGRUPPE": oEvent.getParameter("selectedItem").getKey()
             };
             //this._base_onloadCOMBO("listPMCausa", aData, "GIM/DatosMaestros/Mantenimiento/Codigos/Transaction/get_Codigos", "", "Causas");
+        },
+        fillTypeComboBox: function (idComboBox) {
+            var oThis = this;
+            var keyPlanta, nombrePlanta;
+            var length = this.getView().getModel("spots").getProperty("/SPOT/").length;
+            for (var i = 0; i < length; i++) {
+                var itemCombo = new Item();
+                nombrePlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/NOMBRE");
+                keyPlanta = this.getView().getModel("spots").getProperty("/SPOT/" + i + "/ID");
+                itemCombo.setText(nombrePlanta);
+                itemCombo.setKey(keyPlanta);
+                this.getView().byId(idComboBox).addItem(itemCombo);
+            }
         }
     });
 });

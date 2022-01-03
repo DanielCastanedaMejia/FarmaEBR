@@ -79,14 +79,10 @@
                        ></Label>
                     <Select
                       id="listPMPlanta"
-                      class="sapUiTinyMarginBegin"
-                      items="{
-					                path: '/',
-					                sorter: { path: 'desc' }
-			        	      }"                       
+                      class="sapUiTinyMarginBegin"                      
                        change="onChangePMPlant"
-                       enabled="false">
-                      <core:Item key="{id}" text="{desc}" />
+                       enabled="true">
+                      
                     </Select>
                     
                     <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
