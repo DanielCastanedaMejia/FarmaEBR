@@ -177,8 +177,7 @@ sap.ui.define([
                 oModel = this.getOwnerComponent().getModel("QAModel"),
                 i = id.split("-", 13);            
             var limInf = oModel.getProperty("/items" + sPath + "/limiteinf"),
-                limSup = oModel.getProperty("/items" + sPath + "/limitesup");
-                console.log(limInf + " > " + limSup + " -> " + this.byId(id).getValue());
+                limSup = oModel.getProperty("/items" + sPath + "/limitesup");                
             if (this.byId(id).getValue() == "") {
                 this.byId("webapp---QA--sgBtn-webapp---QA--charListQM-" + i.at(12)).setSelectedKey("0");
             } else if (this.byId(id).getValue() >= limInf && this.byId(id).getValue() <= limSup) {
