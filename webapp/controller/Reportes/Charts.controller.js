@@ -493,8 +493,6 @@ sap.ui.define([
 			for (let i = 0, oChart; i < iItems; i++) {
 				oChart = oGrid.getItems()[i].getContent();
 				oChart.setModel(new JSONModel(oModelData[i].manifest));
-				oChart.getModel().refresh();
-				console.log(oChart.getModel().getData());
 			}
 		},
 
