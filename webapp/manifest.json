@@ -242,6 +242,11 @@
                     "target": "geoView"
                 },
                 {
+                    "pattern": "chartView",
+                    "name": "chartView",
+                    "target": "chartView"
+                },
+                {
                     "pattern": "",
                     "name": "appHome",
                     "target": "loginUserPP"
@@ -557,6 +562,12 @@
                     "viewId": "geoMap",
                     "viewName": "geoMap",
                     "viewLevel": 2
+                },
+                "chartView": {
+                    "viewId": "charts",
+                    "viewName": "Charts",
+                    "viewPath": "sap.ui.demo.webapp.view.Reportes",
+                    "viewLevel": 3
                 },
                 "GeoSpotEdit": {
                     "viewId": "spotEdit",

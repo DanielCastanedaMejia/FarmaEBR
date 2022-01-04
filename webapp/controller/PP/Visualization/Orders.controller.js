@@ -1054,6 +1054,9 @@ sap.ui.define([
                 oDialog2.open();
             });
         },
+        onNavToCharts: function (oEvent) {
+            this.getRouter().navTo("chartView");
+        },
         onCloseCharts: function () {
             this.byId("oDialogReport").close();
         }

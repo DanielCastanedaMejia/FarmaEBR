@@ -1,4 +1,222 @@
 ﻿{
+  "width": "20rem",
+  "height": "auto",
+  "test": {
+    "sap.app": {
+      "id": "test_sample_card",
+      "type": "card",
+      "applicationVersion": {
+        "version": "1.0.0"
+      }
+    },
+    "sap.card": {
+      "type": "List",
+      "header": {
+        "title": "My Sales Orders",
+        "subTitle": "New sales orders",
+        "icon": {
+          "src": "sap-icon://sales-order"
+        },
+        "actions": [
+          {
+            "type": "Navigation",
+            "url": "http://www.sap.com"
+          }
+        ]
+      },
+      "content": {
+        "data": {
+          "json": {
+            "milk": [
+              {
+                "Store Name": "Preparación",
+                "Revenue": 345292.06,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Falla en banda",
+                "Revenue": 1564235.29,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel",
+                "Revenue": 1085567.22,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Preparación",
+                "Revenue": 82922.07,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Falla en banda",
+                "Revenue": 157913.07,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              }
+            ]
+          },
+          "path": "/milk"
+        },
+        "item": {
+          "title": {
+            "value": "{Store Name}"
+          },
+          "description": {
+            "value": "{Revenue}"
+          },
+          "icon": {
+            "src": "sap-icon://sales-order"
+          }
+        }
+      }
+    }
+  },
+  "manifest": {
+    "sap.app": {
+      "id": "test_sample_card",
+      "type": "card"
+    },
+    "sap.card": {
+      "type": "Analytical",
+      "header": {
+        "title": "Titulo",
+        "subTitle": "subtitulo",
+        "icon": {
+          "src": "sap-icon://home"
+        }
+      },
+      "content": {
+        "title": {
+          "text": "",
+          "visible": false,
+          "alignment": "Center"
+        },
+        "plotArea": {
+          "dataLabel": {
+            "visible": true
+          },
+          "categoryAxisText": {
+            "visible": false
+          },
+          "valueAxisText": {
+            "visible": false
+          }
+        },
+        "chartType": "line",
+        "measureAxis": "valueAxis",
+        "dimensionAxis": "categoryAxis",
+        "data": {
+          "json": {
+            "milk": [
+              {
+                "Store Name": "Preparación",
+                "Revenue": 345292.06,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Falla en banda",
+                "Revenue": 1564235.29,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel",
+                "Revenue": 1085567.22,
+                "Fat Percentage": "2 Percent"
+              },
+              {
+                "Store Name": "Preparación2",
+                "Revenue": 82922.07,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Falla en banda2",
+                "Revenue": 157913.07,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel2",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel3",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel4",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel5",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel6",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel7",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel8",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel9",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel10",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel11",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel12",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              },
+              {
+                "Store Name": "Cambio de troquel13",
+                "Revenue": 245609.486884,
+                "Fat Percentage": "1 Percent"
+              }
+            ]
+          },
+          "path": "/milk"
+        },
+        "dimensions": [
+          {
+            "label": "Store Name",
+            "value": "{Store Name}"
+          }
+        ],
+        "measures": [
+          {
+            "label": "Revenue",
+            "value": "{Revenue}"
+          }
+        ]
+      }
+    }
+  },
   "line": {
     "sap.app": {
       "type": "card"
@@ -355,6 +573,7 @@
   },
   "donut": {
     "sap.app": {
+      "id": "donut_sample",
       "type": "card"
     },
     "sap.card": {

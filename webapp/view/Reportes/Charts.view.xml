@@ -1,0 +1,84 @@
+<mvc:View
+	controllerName="sap.ui.demo.webapp.controller.Reportes.Charts"
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:card="sap.f.cards"
+	xmlns:dnd="sap.ui.core.dnd"
+	xmlns:dnd2="sap.f.dnd"
+	xmlns:w="sap.ui.integration.widgets"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page
+		id="page"
+		title="{i18n>chartsPageTitle}">
+		<content>
+		
+		<FlexBox justifyContent="Center" class="sapUiSmallMargin" >
+			<f:GridContainer
+				id="grid"
+				items="{/}"
+				snapToRow="true" >
+
+				<f:dragDropConfig>
+					<dnd:DragDropInfo
+						sourceAggregation="items" />
+					<dnd2:GridDropInfo
+						targetAggregation="items"
+						dropPosition="Between"
+						dropLayout="Horizontal"
+						drop=".onDrop" />
+				</f:dragDropConfig>
+                
+				<f:layout>
+					<f:GridContainerSettings
+						columns="9" />
+				</f:layout>
+
+				<f:layoutM>
+					<f:GridContainerSettings
+						columns="6" />
+				</f:layoutM>
+				
+				<f:layoutS>
+					<f:GridContainerSettings
+						columns="3" />
+				</f:layoutS>
+
+				<f:layoutXS>
+					<f:GridContainerSettings
+						columns="2" />
+				</f:layoutXS>
+
+				<f:Card  >
+					<f:layoutData>
+						<f:GridContainerItemLayoutData minRows="{rows}" columns="{columns}" />
+					</f:layoutData>
+
+                    <f:content>
+                        <w:Card manifest="{/}" />
+                    </f:content>
+
+				</f:Card>
+
+				<!-- <f:items>
+					<w:Card manifest="manifest" />
+				</f:items> -->
+
+			</f:GridContainer>
+		</FlexBox>
+
+		</content>
+		
+		<footer>
+		
+			<Toolbar >
+				<ToolbarSpacer />
+				<Button
+					text="Cerrar"
+					type="Reject"
+					press=".onNavBack" />
+				<ToolbarSpacer />
+			</Toolbar>
+
+		</footer>
+	</Page>
+</mvc:View>

@@ -139,7 +139,7 @@
           </Toolbar> -->
           <Toolbar >
             <ToolbarSpacer/>
-            <f:Avatar src="sap-icon://business-objects-experience" displayShape="Square" press="onChart" id="chartDemo"></f:Avatar>
+            <f:Avatar src="sap-icon://business-objects-experience" displayShape="Square" press="onNavToCharts" id="chartDemo2"></f:Avatar>
             <ToolbarSeparator/>
           </Toolbar>          
                   

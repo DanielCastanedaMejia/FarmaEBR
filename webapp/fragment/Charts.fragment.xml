@@ -12,9 +12,9 @@
 	xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
 	xmlns:viz.data="sap.viz.ui5.data"
 	xmlns:vm="sap.ui.comp.variants"
-	xmlns:core="sap.ui.core" class="sapUiSizeCompact">
-	<Dialog id="oDialogReport" icon="sap-icon://move" afterClose="onCloseCharts" draggable="true" horizontalScrolling="false" >
-
+	xmlns:core="sap.ui.core" class="sapUiSizeCompact"
+	xmlns:mc="sap.suite.ui.microchart">
+	<Dialog id="oDialogReport" draggable="true" afterClose="onCloseCharts" showHeader="true" icon="sap-icon://move" horizontalScrolling="false" >
 		<!-- <viz:VizFrame xmlns:viz="sap.viz.ui5.controls" id="oLineChart" uiConfig="{applicationSet:'fiori'}" vizType="column" width="100%">
 			<viz:dataset>
 				<dataSet:FlattenedDataset xmlns:dataSet="sap.viz.ui5.data" data="{salesModel>/SalesShare}">
@@ -54,16 +54,26 @@
 			</viz:feeds>
 		</viz:VizFrame>-->
 
-			<f:GridContainer class="sapUiSmallMargin" width="100%">
+			<!-- <f:GridContainer class="sapUiSmallMargin" width="100%">
 				<w:Card height="21rem" manifest="{manifests>/donut}">
 					<w:layoutData>
 						<f:GridContainerItemLayoutData columns="3" />
 					</w:layoutData>
 				</w:Card>
-			</f:GridContainer>		
-
+			</f:GridContainer>
 		<HBox justifyContent="Center" alignContent="Center" class="sapUiSmallMarginBeginEnd sapUiSmallMarginTopBottom">
 			<Button text="{i18n>btnCloseGraphics}" class="sapUiSmallMarginEnd" width="100px" id="btnExit" type="Reject" press=".onCloseCharts" />
+		</HBox> -->
+
+		<VBox>
+		<HBox>
+		<w:Card class="sapUiResponsiveMargin" width="20rem" height="auto" manifest="{manifests>/test}" />
+		<w:Card class="sapUiResponsiveMargin" width="20rem" height="auto" manifest="{manifests>/testa}" />
+		<w:Card class="sapUiResponsiveMargin" width="20rem" height="auto" manifest="{manifests>/donut}" />
 		</HBox>
+		</VBox>
+		<endButton>
+			<Button text="{i18n>btnCloseGraphics}" class="sapUiSmallMarginEnd" width="100px" id="btnExit" type="Reject" press=".onCloseCharts" />
+		</endButton>
 	</Dialog>
 </core:FragmentDefinition>
