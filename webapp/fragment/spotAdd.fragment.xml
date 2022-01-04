@@ -1,0 +1,40 @@
+<core:FragmentDefinition xmlns:vk="sap.ui.vk" id="spotAddFragment"
+    xmlns="sap.m"
+    xmlns:l="sap.ui.layout"
+    xmlns:u="sap.ui.unified"
+    xmlns:f="sap.ui.layout.form"
+    xmlns:core="sap.ui.core" class="sapUiSizeCompact">
+    <Dialog title="Agregar spot" id="addSpotDialog" class="sapUiResponsiveMargin">
+        <VBox class="sapUiMediumMarginBeginEnd sapUiSmallMarginBottom">
+            <Label text="{i18n>colSpotID}:" required="true" />
+            <Input id="spotAddidID" value="" enabled="false" />
+            <Label text="{i18n>colSpotNOM}:" required="true" />
+            <Input id="nombreAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/nombre}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/nombre} ? 'Information':'Success'}" />
+            <Label text="{i18n>colSpotTEXT}:" />
+            <Input id="textoAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/texto}" />
+            <Label text="{i18n>colSpotTOOLT}:" required="true" />
+            <Input id="tooltipAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tooltip}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/tooltip} ? 'Information':'Success'}" />
+            <Label text="{i18n>colSpotPOS}:" required="true" />
+            <Input id="ubiAddId" placeholder="0;0;0" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubicacion}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubicacion} ? 'Information':'Success'}" />
+            <Label text="{i18n>colSpotUBIT}:" required="true" />
+            <Input id="ubitAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/ubi_tecnica}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/ubi_tecnica} ? 'Information':'Success'}" />
+            <Label text="{i18n>colSpotPROV}:" required="true" />
+            <Input id="provAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/proveedor}" valueStateText="{i18n>inputValueStateMessage}" valueState="{= !${masterModel>/inputSpot/proveedor} ? 'Information':'Success'}" />
+            <Label text="{i18n>colSpotTEL}:" />
+            <Input id="telAddId" valueLiveUpdate="true" value="{masterModel>/inputSpot/tel}" type="Number" />
+            <Label text="{i18n>colSpotTYPE}:" />
+            <ComboBox id="comboTypes" width="16em" selectedKey="{masterModel>/inputSpot/typeKey}" showButton="true" />
+        </VBox>
+        <beginButton>
+            <Button type="Accept" text="{i18n>addSpot}" press="onAddSpot"
+                    enabled="{= !${masterModel>/inputSpot/nombre} ||
+                                !${masterModel>/inputSpot/tooltip} ||
+                                !${masterModel>/inputSpot/ubicacion} ||
+                                !${masterModel>/inputSpot/ubi_tecnica} ||
+                                !${masterModel>/inputSpot/proveedor} ? false:true}" />
+        </beginButton>
+        <endButton>
+            <Button id="addSpot" type="Transparent" text="{i18n>cancelButton}" press="onCloseDialog"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition> 

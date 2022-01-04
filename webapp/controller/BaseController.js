@@ -15,10 +15,10 @@ sap.ui.define([
             sPreviousHash = oHistory.getPreviousHash();
             if (sPreviousHash !== undefined) {
                 window.history.go(-1);
-                console.log("History")
+                //console.log("History")
             } else {
                 this.getRouter().navTo("appHome", {}, true /*no history*/ );
-                console.log("no History")
+                //console.log("no History")
             }
         },
         goToHome: function () {

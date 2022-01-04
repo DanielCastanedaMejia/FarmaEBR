@@ -46,6 +46,11 @@ html[dir="rtl"] .myAppDemoWT .myCustomButton.sapMBtn {
     border-bottom: 0 !important;
 }
 
+.customStatus {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
 .customtitle .sapMBtnInner {
     vertical-align: top;
     -webkit-appearance: none;

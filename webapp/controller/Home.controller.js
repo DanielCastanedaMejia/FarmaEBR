@@ -244,7 +244,7 @@ sap.ui.define([
         },
         // @ts-ignore
         onGeolocalizacion: function (oEvent) {
-            
+            this.getRouter().navTo("Geo");
         },
         onVerAvisos() {
             this.getRouter().navTo("verAvisos");

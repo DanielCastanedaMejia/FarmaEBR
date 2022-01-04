@@ -32,9 +32,9 @@
                 </MenuButton>
                 <ToolbarSpacer/>
                 <Label id ="username" text="{masterModel>/view/login/username}" class="toolbar_color"  ></Label>
-                <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">
-                </Button>
-                <Button id="geoSpotEdit" text="Modificar Spots" type="Emphasized" press="onNavToEditSpot" ></Button>
+                <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false"/>
+                <Input visible="false" change="onChangeInput" class="sapUiResponsiveMargin" id="testInput" value="{spots>/SPOT/0/TEXT}" width="25%" />
+                    <Button id="geoSpotEdit" text="Modificar Spots" type="Emphasized" press="onNavToEditSpot" ></Button>
             </Toolbar>
         </customHeader>
 
@@ -180,7 +180,7 @@
                                     </columns>
 
                                     <items>
-                                        <ColumnListItem type="Navigation" press="onPMNotificationDetail">
+                                        <ColumnListItem type="Navigation" press="onNoticesPress" vAlign="Middle">
                                             <cells>
                                                 <ObjectIdentifier title="{id}"/>
                                                 <Text text="{type}"/>

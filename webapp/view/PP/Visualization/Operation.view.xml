@@ -142,7 +142,7 @@
 
       <TileContent unit="" footer="Producido">
         <content>
-          <NumericContent  truncateValueTo="7" value="{/PRODUCIDO}" valueColor="Error" indicator="" press="press"/>
+          <NumericContent  truncateValueTo="7" value="{/PRODUCIDO}" valueColor="Error" indicator="None" press="press"/>
         </content>
       </TileContent>
       <TileContent footer="Faltante">

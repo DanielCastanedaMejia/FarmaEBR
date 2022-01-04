@@ -272,7 +272,7 @@
                     "target": "GeoSpotEdit"
                 },
                 {
-                    "pattern": "verAvisos",
+                    "pattern": "home/ver-avisos",
                     "name": "verAvisos",
                     "target": "verAvisos"
                 },
@@ -437,7 +437,7 @@
                     "target": "viewPMOrdersAGRO"
                 },
                 {
-                    "pattern": "NotificationDetail/{id}",
+                    "pattern": "Geo/NotificationDetail?id={id}",
                     "name": "PMNotificationDetail",
                     "target": "PMNotificationDetail"
                 },
@@ -582,7 +582,8 @@
                 "notFound": {
                     "viewId": "notFound",
                     "viewName": "NotFound",
-                    "transition": "show"
+                    "transition": "slide",
+                    "viewLevel": 4
                 },
                 "loginUserPP": {
                     "viewId": "login",
@@ -593,7 +594,7 @@
                 "Geo": {
                     "viewId": "geo",
                     "viewName": "Geo",
-                    "transition": "flip",
+                    "transition": "slide",
                     "viewPath": "sap.ui.demo.webapp.view"
                 },
                 "QA": {

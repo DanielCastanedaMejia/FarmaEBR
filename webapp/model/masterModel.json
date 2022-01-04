@@ -141,5 +141,18 @@
         "2": "Elementos innecesarios",
         "3": "Rótulo",
         "4": "Instrumentos calibrados"
+    },
+    "geoContextMenu": {
+        "tel": ""
+    },
+    "inputSpot": {
+        "nombre": "",
+        "texto": "",
+        "tooltip": "",
+        "ubicacion": "",
+        "ubi_tecnica": "",
+        "proveedor": "",
+        "tel": "",
+        "typeKey": "0"
     }
 }
