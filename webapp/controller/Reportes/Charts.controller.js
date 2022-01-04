@@ -11,7 +11,7 @@ sap.ui.define([
 
 			oGrid.setModel(new JSONModel([ {
 				"rows": 1,
-				"columns": 3,
+				"columns": 4,
 				"manifest": {
 					"sap.app": {
 						"type": "card"
@@ -146,7 +146,7 @@ sap.ui.define([
 				}
 			}, {
 				"rows": 1,
-				"columns": 3,
+				"columns": 4,
 				"manifest": {
 					"sap.app": {
 						"type": "card"
@@ -245,7 +245,7 @@ sap.ui.define([
 				}
 			}, {
 				"rows": 1,
-				"columns": 3,
+				"columns": 4,
 				"manifest": {
 					"sap.app": {
 						"id": "donut_sample",
@@ -344,7 +344,7 @@ sap.ui.define([
 				}
 			}, {
 				"rows": 1,
-				"columns": 3,
+				"columns": 4,
 				"manifest": {
 					"sap.app": {
 						"type": "card"

@@ -30,22 +30,26 @@
                 
 				<f:layout>
 					<f:GridContainerSettings
-						columns="9" />
+						columns="12"
+						columnSize="4rem" />
 				</f:layout>
 
 				<f:layoutM>
 					<f:GridContainerSettings
-						columns="6" />
+						columns="8"
+						columnSize="4rem" />
 				</f:layoutM>
 				
 				<f:layoutS>
 					<f:GridContainerSettings
-						columns="3" />
+						columns="4"
+						columnSize="4rem" />
 				</f:layoutS>
 
 				<f:layoutXS>
 					<f:GridContainerSettings
-						columns="2" />
+						columns="2"
+						columnSize="8rem" />
 				</f:layoutXS>
 
 				<f:Card  >
