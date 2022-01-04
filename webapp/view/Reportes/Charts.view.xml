@@ -55,5 +55,18 @@
 		</FlexBox>
 
 		</content>
+		
+		<footer>
+		
+			<Toolbar >
+				<ToolbarSpacer />
+				<Button
+					text="Cerrar"
+					type="Reject"
+					press=".onNavBack" />
+				<ToolbarSpacer />
+			</Toolbar>
+
+		</footer>
 	</Page>
 </mvc:View>
