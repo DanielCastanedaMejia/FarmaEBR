@@ -113,7 +113,7 @@
                         showSecondaryValues= "true"
                         enabled="true"
                         selectionChange="onChangePMProceso">
-                        <core:ListItem key="{id}" text="{desc}"/>
+                        <core:ListItem key="-1" text="{desc}"/>
                       </ComboBox>
                       <Label class="sapMTitleStyleH6 sapUiTinyMarginTopBottom"
                         text="{i18n>Equipment}"></Label>

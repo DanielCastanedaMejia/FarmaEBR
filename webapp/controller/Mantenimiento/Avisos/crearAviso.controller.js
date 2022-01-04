@@ -512,6 +512,15 @@ sap.ui.define([
             }
         },
         fillProcessComboBox: function (idComboBox, key) {
+            console.log(this.getView().byId(idComboBox).getItems().length);
+            if(this.getView().byId(idComboBox).getItems().length > 1) {
+                //this.getView().byId(idComboBox)
+                console.log("a");
+                var itemAux = this.getView().byId(idComboBox).getFirstItem();
+                this.getView().byId(idComboBox).removeAllItems();
+                this.getView().byId(idComboBox).addItem(itemAux);
+                this.getView().byId(idComboBox).setSelectedKey("-1");
+            }
             var oThis = this;
             //var keyPlanta, nombrePlanta;
             var keyProcess, textProcess;
