@@ -15,7 +15,7 @@ sap.ui.define([
             var oRouter = this.getRouter();
             oRouter.getRoute("QA").attachMatched(this._onRouteMatched, this);
             const oMatModel = this.getOwnerComponent().getModel("materialModel"),
-               oNewModel = new JSONModel(oMatModel.getProperty("/items"));
+                oNewModel = new JSONModel(oMatModel.getProperty("/items"));
 
             var oQAModel = this.getOwnerComponent().getModel("QAModel"),
                 qNewModel = new JSONModel(oQAModel.getProperty("/items"));
@@ -116,22 +116,22 @@ sap.ui.define([
 
             this._setColumns(columns, "columnList", "PMComponentList");
         },
-        onButtonChange: function(oEvent) {
+        onButtonChange: function (oEvent) {
             var oModel = this.getOwnerComponent().getModel("QAModel"),
                 oSource = oEvent.getSource(),
                 oContext = oSource.getBindingContext(),
                 sPath = oContext.getPath(),
                 bFlag = oSource.getSelectedKey();
-            
-            if(bFlag == "1") {
+
+            if (bFlag == "1") {
                 oModel.setProperty(sPath + "/estatus", "APROBADO");
-                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "APROBADO");                
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "APROBADO");
             } else {
-                oModel.setProperty(sPath + "/estatus", "DESAPROBADO"); 
-                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "DESAPROBADO");   
+                oModel.setProperty(sPath + "/estatus", "DESAPROBADO");
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "DESAPROBADO");
             }
         },
-        confirmRegister: function() {
+        confirmRegister: function () {
             MessageBox["warning"]("¿Seguro que desea registrar los resultados?", {
                 actions: [MessageBox.Action.YES, MessageBox.Action.NO],
                 onClose: function (oAction) {
@@ -146,20 +146,20 @@ sap.ui.define([
                 }.bind(this)
             });
         },
-        job: function(){
+        job: function () {
             if (!this.jD) {
                 this.jD = this.loadFragment({
                     name: "sap.ui.demo.webapp.fragment.ConfirmJob"
                 });
             }
-            this.jD.then(function(oD) {
+            this.jD.then(function (oD) {
                 oD.open();
             });
         },
-        onCancelJob: function() {
+        onCancelJob: function () {
             this.byId("jobDialog").close();
         },
-        onCloseJob: function() {
+        onCloseJob: function () {
             MessageToast.show("Decisión de empleo grabada");
             this.onCancelJob();
         },
@@ -168,6 +168,42 @@ sap.ui.define([
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel");
 
             oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
+        },
+        onQARangeChange: function (oEvent) {
+            var oSource = oEvent.getSource(),
+                oContext = oSource.getBindingContext(),
+                sPath = oContext.getPath(),
+                id = oSource.getId(),
+                oModel = this.getOwnerComponent().getModel("QAModel"),
+                i = id.split("-", 13);            
+            var limInf = oModel.getProperty("/items" + sPath + "/limiteinf"),
+                limSup = oModel.getProperty("/items" + sPath + "/limitesup");
+                console.log(limInf + " > " + limSup + " -> " + this.byId(id).getValue());
+            if (this.byId(id).getValue() == "") {
+                this.byId("webapp---QA--sgBtn-webapp---QA--charListQM-" + i.at(12)).setSelectedKey("0");
+            } else if (this.byId(id).getValue() >= limInf && this.byId(id).getValue() <= limSup) {
+                this.byId("webapp---QA--sgBtn-webapp---QA--charListQM-" + i.at(12)).setSelectedKey("1");
+            } else {
+                this.byId("webapp---QA--sgBtn-webapp---QA--charListQM-" + i.at(12)).setSelectedKey("0");
+            }
+            this.byId("webapp---QA--sgBtn-webapp---QA--charListQM-" + i.at(12)).fireSelectionChange();
+        },
+        btn: function (oEvent) {
+            var oModel = this.getOwnerComponent().getModel("QAModel"),
+                oSource = oEvent.getSource(),
+                oContext = oSource.getBindingContext(),
+                sPath = oContext.getPath(),
+                bFlag = oSource.getSelectedKey();
+            console.log(oSource);
+            console.log(sPath);
+
+            if (bFlag == "1") {
+                oModel.setProperty(sPath + "/estatus", "APROBADO");
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "APROBADO");
+            } else {
+                oModel.setProperty(sPath + "/estatus", "DESAPROBADO");
+                this.byId("charListQM").getModel().setProperty(sPath + "/estatus", "DESAPROBADO");
+            }
         }
     });
 

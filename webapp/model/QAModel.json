@@ -13,7 +13,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -28,7 +29,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -43,7 +45,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -58,7 +61,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -73,7 +77,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -88,7 +93,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -103,22 +109,25 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
-            "desc": "¿Están todos los comprimidos libres de roturas, grietas o huecos? ",
+            "desc": "¿Cuántos comprimidos presentan roturas, grietas o huecos? ",
             "valor": [{
                 "0": "Si",
                 "1": "No"
             }],
-            "limiteinf": "",
-            "limitesup": "",
+            "limiteinf": 0,
+            "limitesup": 3,
             "valorteo": "",
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": true,
+            "enabled": false
         },
         {
             "secuencia": "PHARMA_R01",
@@ -133,22 +142,25 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         },
         {
             "secuencia": "PHARMA_R01",
-            "desc": "Posee la muestra examinada, alguna cápsula vacía?",
+            "desc": "¿Cúantas capsulas vacías posee la muestra examinada?",
             "valor": [{
                 "0": "Si",
                 "1": "No"
             }],
-            "limiteinf": "",
-            "limitesup": "",
+            "limiteinf": 0,
+            "limitesup": 5,
             "valorteo": "",
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "enabled": false,
+            "visible": true            
         },
         {
             "secuencia": "PHARMA_R01",
@@ -163,7 +175,8 @@
             "um": "",
             "estatus": "DESAPROBADO",
             "maestro": "0000122",
-            "grupo": "000289"
+            "grupo": "000289",
+            "visible": false
         }
     ]
 }

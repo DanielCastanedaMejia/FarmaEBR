@@ -129,7 +129,7 @@
                            id="charListQM"
                            class="sapUiResponsiveMargin"
                            width="auto"
-                           items="{/}">
+                           items="{/}" >
                     <columns>
                       <Column>
                         <Label text="Secuencia"/>
@@ -137,28 +137,28 @@
                       <Column width="15%">
                         <Label text="Descripción"/>
                       </Column>
-                      <Column width="5%">
+                      <Column hAlign="Center" width="5%">
                         <Label text="Tipo"/>
                       </Column>                      
-                      <Column width="10em">
-                        <Label text="Valor"/>
+                      <Column hAlign="Center" width="10em">
+                        <Label text="Validación"/>
                       </Column>                      
-                      <Column>
+                      <Column vAlign="Middle" hAlign="Center">
                         <Label text="Lim. Inf." tooltip="Límite Inferior"/>
                       </Column>
-                      <Column>
+                      <Column vAlign="Middle" hAlign="Center">
                         <Label text="Val. teórico" tooltip="Valor teórico"/>
-                      </Column>
-                      <Column>
+                      </Column >
+                      <Column vAlign="Middle" hAlign="Center">
                         <Label text="Lim. Sup." tooltip="Límite Superior"/>
                       </Column>
-                      <Column width="15%">
+                      <Column hAlign="Center" width="15%">
                         <Label text="Estatus"/>
                       </Column>
-                    <Column>
+                    <Column hAlign="Center">
                         <Label text="Maestro"/>
                       </Column>
-                       <Column>
+                       <Column hAlign="Center">
                         <Label text="Grupo"/>
                       </Column>
                     </columns>
@@ -169,10 +169,10 @@
                           <Text text="{desc}"/>
                           <Text text="{um}"/>                          
                           <HBox>
-                          <SegmentedButton selectedKey="0" selectionChange="onButtonChange" width="8rem" >
+                          <SegmentedButton id="sgBtn" selectedKey="0" selectionChange="onButtonChange" width="8rem" >
                             <items>
-                              <SegmentedButtonItem key="1" text="Si" />
-                              <SegmentedButtonItem key="0" text="No" />
+                              <SegmentedButtonItem id="yes" enabled="{enabled}" key="1" text="Si" />
+                              <SegmentedButtonItem id="no" enabled="{enabled}" key="0" text="No" />
                             </items>
                           </SegmentedButton>
                           <!-- <Text text="! {OPTIONS>/valor/0/TEXT};" />
@@ -186,17 +186,18 @@
                               <core:Item key="{OPTIONS>/KEY}" text="{OPTIONS>/TEXT}"/>
                             </ComboBox> -->
                             <Input
-                            type="Text"
-                            id="inputValue"
+                            type="Number"
+                            id="aaa"
                             placeholder="Valor"
                             value="{value}"
                             liveChange="onVerifyValue"
                             visible="false">
                             </Input>
                           </HBox>                                                    
-                          <Text text="{LW_TO_LMT}"/>
-                          <Text text="{TARGET_VAL}"/>
-                          <Text text="{UP_TOL_LMT}"/>
+                          <Text id="limInf" text="{limiteinf}"/>
+                          <!-- <Text text="{TARGET_VAL}"/>-->
+                          <Input type="Number" id="inputVale" liveChange="onQARangeChange" visible="{visible}" value="{valorteo}" ></Input>
+                          <Text id="limSup" text="{limitesup}"/>
                           <ObjectStatus
                             text="{estatus}"
                             state="{
