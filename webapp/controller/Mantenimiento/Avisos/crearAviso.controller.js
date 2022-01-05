@@ -43,6 +43,15 @@ sap.ui.define([
             oView = this.getView();
             this.getView().setModel(this.getOwnerComponent().getModel("spots"), "spots");
             this.getView().setModel(this.getOwnerComponent().getModel("plantProcessModel"), "plantProcess");
+            var tam = this.getView().byId("listPMPlanta").getItems().length;            
+            if (tam > 1) {
+                var comboItems = this.getView().byId("listPMPlanta").getItems();
+                this.getView().byId("listPMPlanta").removeAllItems();
+                for (var i = 0; i < tam; i++) {
+                    comboItems[i].destroy();
+                }
+            }
+            //this.fillTypeComboBox("planta");
             this.fillPlantComboBox("listPMPlanta");
             var tipo_ubi = '';
             // @ts-ignore
@@ -426,7 +435,7 @@ sap.ui.define([
                 "TIPO_FILTRO": "SUBPRO",
                 "FILTRO": oEvent.getParameter("selectedItem").getKey()
             };
-            this._base_onloadCOMBO("listPMSubProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProcesos");
+            //this._base_onloadCOMBO("listPMSubProceso", oData, "GIM/DatosMaestros/Mantenimiento/UbicacionesTecnicas/Transaction/Ubicaciones_CEMH", "", "SubProcesos");
         },
 
         onChangePMPlant: function (oEvent) {
