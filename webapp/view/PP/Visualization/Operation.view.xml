@@ -119,11 +119,13 @@
                icon="sap-icon://add"
                type="Transparent"
                text="MAF"
-               press="onOpenModalInstall"/>
+               press="onOpenModalInstall"
+               visible="false"/>
               <Button
                type="Transparent"
                text="Quitar MAF"
-               press="onCheckMAFInstall"/>
+               press="onCheckMAFInstall"
+               visible="false"/>
             </uxap:actions>
           </uxap:ObjectPageDynamicHeaderTitle>
         </uxap:headerTitle>
@@ -142,7 +144,7 @@
 
       <TileContent unit="" footer="Producido">
         <content>
-          <NumericContent  truncateValueTo="7" value="{/PRODUCIDO}" valueColor="Error" indicator="None" press="press"/>
+          <NumericContent  truncateValueTo="7" value="{/PRODUCIDO}" valueColor="Error" indicator="" press="press"/>
         </content>
       </TileContent>
       <TileContent footer="Faltante">
@@ -237,7 +239,7 @@ growing="true"
                     <Column>
                       <Label text="UM"/>
                     </Column>
-                    <Column>
+                    <Column visible="false">
                       <Label text="Estado Mat"/>
                     </Column>
                   </columns>
@@ -288,7 +290,7 @@ growing="true"
             </uxap:subSections>
           </uxap:ObjectPageSection>
 
-          <uxap:ObjectPageSection title="MAF">
+          <uxap:ObjectPageSection title="MAF" visible="false" >
             <uxap:subSections>
               <uxap:ObjectPageSubSection>
                 <uxap:blocks>

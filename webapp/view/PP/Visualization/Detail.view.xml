@@ -108,15 +108,12 @@
               icon="sap-icon://step" 
               press="onOpenProcessFlow"
               id="ProcessFlow"
-              text="Ver flujo de la orden" />
+              text="Ver flujo de la orden"
+              visible="false" />
             <ToolbarSpacer/>
               <Button
                 class="sapUiSmallMargin"
-                text="{= !${masterModel>/validations/vStep1} ||
-                  !${masterModel>/validations/vStep2} ||
-                  !${masterModel>/validations/vStep3} ? 
-                  ${i18n>processStartButton} : ${i18n>processShowButton}
-                }"
+                text="Instrucciones de trabajo"
                 icon="{= !${masterModel>/validations/vStep1} ||
                   !${masterModel>/validations/vStep2} ||
                   !${masterModel>/validations/vStep3} ? 
