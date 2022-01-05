@@ -43,12 +43,15 @@ sap.ui.define([
                 sOpePath = oMasterModel.getProperty("/selectedFase"),
                 iDone = oOpeModel.getProperty(sOpePath + "/producido"),
                 iLeft, fDone;
+            console.log(oOpeModel);
 
             const sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN"),
                 iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
                 sOpe = oOpeModel.getProperty(sOpePath + "/Ope");
-            
+
             fDone = (iDone / iQty) * 100;
+            console.log(iQty);
+            console.log(iDone);
             iLeft = iQty - iDone;
             var model = {
                 "FALTANTE": iLeft,
@@ -65,8 +68,7 @@ sap.ui.define([
             //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/operation_header", "Cabecera");
 
             var columns = {
-                columns: [
-                    {
+                columns: [{
                         Column: "Res no",
                         Visible: 0
                     },
@@ -144,13 +146,13 @@ sap.ui.define([
                     "id": sId,
                     "desc": sDesc
                 });
-                console.log("Data", oProdData)
+            console.log("Data", oProdData)
 
             oView.byId('inputQuantity').setValue('');
             oView.byId('inputBatch').setValue(sLote);
             //this.byId("mov_101").setModel(oProdData, "orderModel");
             oView.setModel(oProdData, "orderModel");
-            
+
             //this._base_onloadCOMBO("mov_101", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/get_101", " ", "Materiales notificar");
             oDialog.open();
         },
@@ -249,20 +251,20 @@ sap.ui.define([
             if (material.getSelectedKey() === " ")
                 this.getOwnerComponent().openHelloDialog("Selecciona un material");
             else if (cantidad.getValue() === '0' || cantidad.getValue() === '')
-                this.getOwnerComponent().openHelloDialog("Ingresa una cantidad");
+                this.getOwnerComponent().openHelloDialog("Ingresa una cantidad válida");
             else {
 
                 var sDate = Date(),
                     oData = {
-                    "date": sDate,
-                    "MATERIAL": material.getSelectedKey(),
-                    //"MOV": material.getSelectedItem().getAdditionalText(),
-                    "CANTIDAD": cantidad.getValue(),
-                    "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
-                    "OPERACION": oView.getModel().getProperty('/OPERACION'),
-                    "LOTE": lote.getValue()
-                };
-                
+                        "date": sDate,
+                        "MATERIAL": material.getSelectedKey(),
+                        //"MOV": material.getSelectedItem().getAdditionalText(),
+                        "CANTIDAD": cantidad.getValue(),
+                        "NUM_ORDEN": oView.getModel().getProperty('/ORDEN'),
+                        "OPERACION": oView.getModel().getProperty('/OPERACION'),
+                        "LOTE": lote.getValue()
+                    };
+
                 var oModel = this.getOwnerComponent().getModel("notifyProd"),
                     oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
                     oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
@@ -305,12 +307,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
@@ -318,13 +320,11 @@ sap.ui.define([
                         var aData = JSON.parse(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                         }
 
-                    }
-                    else {
+                    } else {
                         oThis.getOwnerComponent().openHelloDialog("No se recibio informacion");
                     }
 
@@ -387,12 +387,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -401,8 +401,7 @@ sap.ui.define([
                         if (aData !== undefined) {
                             if (aData.error !== undefined) {
                                 oThis.getOwnerComponent().openHelloDialog(aData.error);
-                            }
-                            else {
+                            } else {
                                 //Create  the JSON model and set the data                                                                                                
                                 var oModel = new sap.ui.model.json.JSONModel();
                                 oModel.setData(aData);
@@ -410,12 +409,10 @@ sap.ui.define([
                                 //oThis.getView().setModel(oModel);
                                 oThis.getView().getModel().setProperty("/componentes", aData);
                             }
-                        }
-                        else {
+                        } else {
                             MessageToast.show("No se han recibido " + name);
                         }
-                    }
-                    else {
+                    } else {
                         MessageToast.show("No se han recibido datos");
                     }
 
@@ -469,7 +466,7 @@ sap.ui.define([
                 sPath = oContext.getPath(),
                 iQty = oContext.getModel().getProperty(sPath + "/CANTIDAD");
 
-            if(!iQty) {
+            if (!iQty) {
                 MessageToast.show("Ingrese la cantidad a consumir");
                 return;
             }
@@ -504,8 +501,7 @@ sap.ui.define([
 
                 }
 
-            }
-            else {
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.consumptionempty"));
             }
         },
@@ -538,14 +534,14 @@ sap.ui.define([
                             "qty": iQty,
                             "date": sDate
                         };
-                        for(var i = 0; i < iConsLength; i++) {
-                            if(oConsModel.getProperty("/items/" + i + "/id") == sId) {
+                        for (var i = 0; i < iConsLength; i++) {
+                            if (oConsModel.getProperty("/items/" + i + "/id") == sId) {
                                 iQty += parseInt(oConsModel.getProperty("/items/" + i + "/qty"));
                                 oConsModel.setProperty("/items/" + i + "/qty", iQty);
                                 return;
                             }
                         }
-                        if(i == iConsLength) {
+                        if (i == iConsLength) {
                             aConsData.push(oNewModel);
                             oConsModel.setProperty("/items", aConsData);
                         }
@@ -569,12 +565,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -582,8 +578,7 @@ sap.ui.define([
                         var aData = eval(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             //Create  the JSON model and set the data                                                                                                                            
                             oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                             var oView = oThis.getView(),
@@ -594,8 +589,7 @@ sap.ui.define([
                             oThis._base_onloadTable2("PMComponentList", xData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
                         }
 
-                    }
-                    else {
+                    } else {
                         oThis.getOwnerComponent().openHelloDialog("No se recibio informacion");
                     }
 
@@ -668,8 +662,7 @@ sap.ui.define([
 
                 }
 
-            }
-            else {
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.installMafEmpty"));
             }
         },
@@ -695,12 +688,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -708,8 +701,7 @@ sap.ui.define([
                         var aData = eval(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             //Create  the JSON model and set the data                                                                                                                            
                             oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                             var oView = oThis.getView(),
@@ -721,8 +713,7 @@ sap.ui.define([
                             oThis.onCloseDialogInstallMaf();
                         }
 
-                    }
-                    else {
+                    } else {
                         oThis.getOwnerComponent().openHelloDialog("No se recibio informacion");
                     }
 
@@ -771,8 +762,7 @@ sap.ui.define([
 
                 }
 
-            }
-            else {
+            } else {
                 this.getOwnerComponent().openHelloDialog(resourceModel.getResourceBundle().getText("message.installMafEmpty"));
             }
         },
@@ -798,12 +788,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -811,8 +801,7 @@ sap.ui.define([
                         var aData = eval(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             //Create  the JSON model and set the data                                                                                                                            
                             oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                             var oView = oThis.getView(),
@@ -823,8 +812,7 @@ sap.ui.define([
                             oThis._base_onloadTable("PMMAFList", aData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
                         }
 
-                    }
-                    else {
+                    } else {
                         oThis.getOwnerComponent().openHelloDialog("No se recibio informacion");
                     }
 
@@ -914,12 +902,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
@@ -927,8 +915,7 @@ sap.ui.define([
                         var aData = JSON.parse(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].error);
-                        }
-                        else {
+                        } else {
                             oThis.getOwnerComponent().openHelloDialog(aData[0].message);
                             var
                                 oView = oThis.getView(),
@@ -941,8 +928,7 @@ sap.ui.define([
                             oThis._base_onloadTable("PMMAFList", xData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
                         }
 
-                    }
-                    else {
+                    } else {
                         oThis.getOwnerComponent().openHelloDialog("No se recibio informacion");
                     }
 
@@ -996,7 +982,15 @@ sap.ui.define([
                 orden: "001",
                 operacion: "010"
             });
+        },
+        onQtyChange: function (oEvent) {
+            var val = Number(this.byId("inputQuantity").getValue());
+            var max = Number(this.getView().getModel().getProperty("/FALTANTE"));
+            if (val > max) {
+                this.byId("inputQuantity").setValue(max);
+            } else if (val < 0) {
+                this.byId("inputQuantity").setValue("0")
+            }
         }
     });
-}
-);
+});

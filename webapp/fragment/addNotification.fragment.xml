@@ -28,7 +28,9 @@
         <Label text="{i18n>PPOperationDetail.quantity}"/>
         <Input
         id="inputQuantity"
-				class="sapUiSmallMarginBottom" />
+				class="sapUiSmallMarginBottom"
+        type="Number"
+        liveChange="onQtyChange" />
         <Label text="{i18n>PPOperationDetail.batch}"/>
         <Input
         id="inputBatch"
