@@ -43,15 +43,12 @@ sap.ui.define([
                 sOpePath = oMasterModel.getProperty("/selectedFase"),
                 iDone = oOpeModel.getProperty(sOpePath + "/producido"),
                 iLeft, fDone;
-            console.log(oOpeModel);
 
             const sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN"),
                 iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
                 sOpe = oOpeModel.getProperty(sOpePath + "/Ope");
 
             fDone = (iDone / iQty) * 100;
-            console.log(iQty);
-            console.log(iDone);
             iLeft = iQty - iDone;
             var model = {
                 "FALTANTE": iLeft,
@@ -298,15 +295,14 @@ sap.ui.define([
         },
 
         checkRemaining: function (iLeft) {
+            console.log("ENTRA", iLeft);
             if (!iLeft) {
                 const oViewModel = this.getView().getModel(),
                     sOpePath = this._getMasterModel("/selectedFase"),
                     oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
                     oOpeData = oOpeModel.getProperty("/ITEMS"),
-                    iLastItem = oOpeData.length - 1,
-                    sCentro = oViewModel.getProperty("/WORK_CENTER"),
-                    sOrden = oViewModel.getProperty("/ORDEN"),
-                    sOpe = oViewModel.getProperty("/OPERACION");
+                    iLastItem = oOpeData.length,
+                    sOrden = oViewModel.getProperty("/ORDEN");
 
                 var sOpeIndex = sOpePath.split("/"),
                     iCurrentItem = parseInt(sOpeIndex[sOpeIndex.length - 1]) + 1;
@@ -315,15 +311,16 @@ sap.ui.define([
                     sOpeIndex[sOpeIndex.length - 1] = iCurrentItem;
                     sOpeIndex = sOpeIndex.join("/");
                     this._setMasterModel("/selectedFase", sOpeIndex);
-
-                    console.log("Orden - ope", sOrden, oOpeData[iCurrentItem].Ope);
                     this.getRouter().navTo("operationDetail", {
                         orden: sOrden,
                         operacion: oOpeData[iCurrentItem].Ope
                     });
                     return;
+                } else {
+                    this.getRouter().navTo("orderDetail", {
+                        orden: sOrden
+                    });
                 }
-                this.onNavBack();
             }
         },
 
@@ -345,7 +342,6 @@ sap.ui.define([
             })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
-                    console.log(opElement);
                     if (opElement.firstChild !== null) {
                         var aData = JSON.parse(opElement.firstChild.data);
                         if (aData[0].error !== undefined) {
@@ -526,7 +522,6 @@ sap.ui.define([
                     var oData = {
                         "RECORDS": xml_completo
                     };
-                    console.log(xml_completo);
                     this._handleMessageBoxOpenConsumption(resourceModel.getResourceBundle().getText("message.consumptionConfirm"), "warning", oData, this);
 
                 }
