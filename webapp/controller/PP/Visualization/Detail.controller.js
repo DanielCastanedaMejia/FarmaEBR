@@ -105,10 +105,10 @@ sap.ui.define([
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             sPath = oCtx.getPath();
-            console.log(oCtx);
-            console.log(oCtx.getProperty("orden"),);
-            console.log(oCtx.getProperty("Ope"),);
-            console.log(oCtx.getProperty('1710'));
+            //console.log(oCtx);
+            //console.log(oCtx.getProperty("orden"),);
+            //console.log(oCtx.getProperty("Ope"),);
+            //console.log(oCtx.getProperty('1710'));
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedFase", sPath);
             this.getRouter().navTo("operationDetail", {
                 orden: oCtx.getProperty("orden"),

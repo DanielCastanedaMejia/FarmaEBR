@@ -119,7 +119,7 @@ sap.ui.define([
         onDisplayViewQMOrders: function () {
             //var oList = this.byId("listPMPlantaBlock");
             //var oKey = oList.getSelectedKey();
-            var oKey = "PLANTA";
+            var oKey = "1710";
             if (oKey === '')
                 console.log("Empty");
             else {
@@ -132,13 +132,19 @@ sap.ui.define([
         onDisplayOrder: function () {
             //var oList = this.byId("listPMPlantaBlock");
             //var oKey = oList.getSelectedKey();
-            var oKey = "PLANTA";
+            var oKey = "1710";
             if (oKey === '')
                 console.log("Empty");
             else {
-                this.getRouter().navTo("viewPPOrders", {
+                /*this.getRouter().navTo("viewPPOrders", {
                     "plant": oKey
-                });
+                });*/
+                this.getRouter().navTo("viewPPOrders", {					
+					"?query": {
+						plant: oKey
+					}
+				});
+			
             }
         },
 

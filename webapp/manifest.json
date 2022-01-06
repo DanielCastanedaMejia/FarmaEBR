@@ -322,7 +322,7 @@
                     "target": "verParos"
                 },
                 {
-                    "pattern": "Ordenes_PP/{plant}",
+                    "pattern": "home/PP/ordenes:?query:",
                     "name": "viewPPOrders",
                     "target": "viewPPOrders"
                 },
