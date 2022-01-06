@@ -295,9 +295,9 @@ sap.ui.define([
         },
 
         checkRemaining: function (iLeft) {
-            console.log("ENTRA", iLeft);
             if (!iLeft) {
-                const oViewModel = this.getView().getModel(),
+                const oThis = this,
+                    oViewModel = this.getView().getModel(),
                     sOpePath = this._getMasterModel("/selectedFase"),
                     oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
                     oOpeData = oOpeModel.getProperty("/ITEMS"),
@@ -308,21 +308,38 @@ sap.ui.define([
                     iCurrentItem = parseInt(sOpeIndex[sOpeIndex.length - 1]) + 1;
 
                 if (iLastItem > iCurrentItem) {
-                    sOpeIndex[sOpeIndex.length - 1] = iCurrentItem;
-                    sOpeIndex = sOpeIndex.join("/");
-                    this._setMasterModel("/selectedFase", sOpeIndex);
-                    this.getRouter().navTo("operationDetail", {
-                        orden: sOrden,
-                        operacion: oOpeData[iCurrentItem].Ope
+                    MessageBox.confirm("¿Continuar a la siguiente fase?", {
+                        title: "Fase finalizada",
+                        initialFocus: sap.m.MessageBox.Action.OK,
+                        onClose: function (sButton) {
+                            if (sButton === MessageBox.Action.OK) {
+                                sOpeIndex[sOpeIndex.length - 1] = iCurrentItem;
+                                sOpeIndex = sOpeIndex.join("/");
+                                oThis._setMasterModel("/selectedFase", sOpeIndex);
+                                oThis.getRouter().navTo("operationDetail", {
+                                    orden: sOrden,
+                                    operacion: oOpeData[iCurrentItem].Ope
+                                });
+                                return;
+                            }
+                        }
                     });
-                    return;
                 } else {
-                    this.getRouter().navTo("orderDetail", {
-                        orden: sOrden
+                    MessageBox.confirm("¿Desea regresar a los detalles de la orden?", {
+                        title: "Fase finalizada",
+                        initialFocus: sap.m.MessageBox.Action.OK,
+                        onClose: function (sButton) {
+                            if (sButton === MessageBox.Action.OK) {
+                                oThis.getRouter().navTo("orderDetail", {
+                                    orden: sOrden
+                                });
+                            }
+                        }
                     });
                 }
             }
         },
+
 
         createNotification: function (oData, path) {
 
