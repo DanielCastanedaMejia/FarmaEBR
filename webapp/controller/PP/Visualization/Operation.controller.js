@@ -69,45 +69,45 @@ sap.ui.define([
 
             var columns = {
                 columns: [{
-                        Column: "Res no",
-                        Visible: 0
-                    },
-                    {
-                        Column: "Res Item",
-                        Visible: 0
-                    },
-                    {
-                        Column: "Codigo",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Material",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Planta",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Almacen",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Lote",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Cantidad",
-                        Visible: 1
-                    },
-                    {
-                        Column: "UM",
-                        Visible: 1
-                    },
-                    {
-                        Column: "Mov",
-                        Visible: 0
-                    }
+                    Column: "Res no",
+                    Visible: 0
+                },
+                {
+                    Column: "Res Item",
+                    Visible: 0
+                },
+                {
+                    Column: "Codigo",
+                    Visible: 1
+                },
+                {
+                    Column: "Material",
+                    Visible: 1
+                },
+                {
+                    Column: "Planta",
+                    Visible: 1
+                },
+                {
+                    Column: "Almacen",
+                    Visible: 1
+                },
+                {
+                    Column: "Lote",
+                    Visible: 1
+                },
+                {
+                    Column: "Cantidad",
+                    Visible: 1
+                },
+                {
+                    Column: "UM",
+                    Visible: 1
+                },
+                {
+                    Column: "Mov",
+                    Visible: 0
+                }
                 ]
             };
 
@@ -146,7 +146,6 @@ sap.ui.define([
                     "id": sId,
                     "desc": sDesc
                 });
-            console.log("Data", oProdData)
 
             oView.byId('inputQuantity').setValue('');
             oView.byId('inputBatch').setValue(sLote);
@@ -293,8 +292,39 @@ sap.ui.define([
 
                 //this.createNotification(oData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Notificar/Transaction/mov_101');
                 this.onCloseDialogAddNotification();
+                this.checkRemaining(iLeft);
             }
 
+        },
+
+        checkRemaining: function (iLeft) {
+            if (!iLeft) {
+                const oViewModel = this.getView().getModel(),
+                    sOpePath = this._getMasterModel("/selectedFase"),
+                    oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
+                    oOpeData = oOpeModel.getProperty("/ITEMS"),
+                    iLastItem = oOpeData.length - 1,
+                    sCentro = oViewModel.getProperty("/WORK_CENTER"),
+                    sOrden = oViewModel.getProperty("/ORDEN"),
+                    sOpe = oViewModel.getProperty("/OPERACION");
+
+                var sOpeIndex = sOpePath.split("/"),
+                    iCurrentItem = parseInt(sOpeIndex[sOpeIndex.length - 1]) + 1;
+
+                if (iLastItem > iCurrentItem) {
+                    sOpeIndex[sOpeIndex.length - 1] = iCurrentItem;
+                    sOpeIndex = sOpeIndex.join("/");
+                    this._setMasterModel("/selectedFase", sOpeIndex);
+
+                    console.log("Orden - ope", sOrden, oOpeData[iCurrentItem].Ope);
+                    this.getRouter().navTo("operationDetail", {
+                        orden: sOrden,
+                        operacion: oOpeData[iCurrentItem].Ope
+                    });
+                    return;
+                }
+                this.onNavBack();
+            }
         },
 
         createNotification: function (oData, path) {
@@ -307,12 +337,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "GET",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "GET",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
@@ -387,12 +417,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "GET",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "GET",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -565,12 +595,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "POST",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "POST",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -688,12 +718,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "POST",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "POST",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -788,12 +818,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "POST",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "POST",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -902,12 +932,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                    type: "GET",
-                    dataType: "xml",
-                    cache: false,
-                    url: uri,
-                    data: oData
-                })
+                type: "GET",
+                dataType: "xml",
+                cache: false,
+                url: uri,
+                data: oData
+            })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);
