@@ -21,33 +21,40 @@ sap.ui.define([
         },
 
         _onRouteMatched: function (oEvent) {
-            var
-                oArgs = oEvent.getParameter("arguments"),
+            var oArgs = oEvent.getParameter("arguments"),
                 oView = this.getView();
-
             var aData = {
                 "NUM_ORDEN": oArgs.orden,
                 "OPERACION": oArgs.operacion
             };
-
             this.byId("PMComponentList").setModel(this.getOwnerComponent().getModel("componentsModel"));
             //this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
             this.byId("PMMAFList").setModel(this.getOwnerComponent().getModel("mafModel"));
             //this._base_onloadTable("PMMAFList", aData, "GIM/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/maf_operation_BD", "MAF", "");
 
             var oMasterModel = this.getOwnerComponent().getModel("masterModel"),
-                oHeadModel = this.getOwnerComponent().getModel("headModel"),
-                oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
                 oOpeModel = this.getOwnerComponent().getModel("fasesModel"),
-                sOrderPath = oMasterModel.getProperty("/selectedOrder"),
                 sOpePath = oMasterModel.getProperty("/selectedFase"),
-                iDone = oOpeModel.getProperty(sOpePath + "/producido"),
+                ordModel = this.getOwnerComponent().getModel("ordersModel"),
                 iLeft, fDone;
 
-            const sOrder = oOrderModel.getProperty(sOrderPath + "/NUM_ORDEN"),
-                iQty = oOrderModel.getProperty(sOrderPath + "/CANTIDAD_PROGRAMADA"),
-                sOpe = oOpeModel.getProperty(sOpePath + "/Ope");
+            var iDone;
+            var sOrder = oArgs.orden,
+                iQty = 0,
+                sOpe = oArgs.operacion;
+            for (var i = 0; i < oOpeModel.oData.ITEMS.length; i++) {
+                if (oOpeModel.oData.ITEMS[i].Ope == oArgs.operacion) {
+                    oMasterModel.setProperty("/selectedFase", "/ITEMS/" + i);
+                    iDone = oOpeModel.getProperty("/ITEMS/" + i + "/producido");
 
+                }
+            }
+            for (var i = 0; i < ordModel.oData.ITEMS.length; i++) {
+                if (ordModel.oData.ITEMS[i].NUM_ORDEN == oArgs.orden) {
+                    oMasterModel.setProperty("/selectedOrder", "/ITEMS/" + i);
+                    iQty = ordModel.getProperty("/ITEMS/" + i + "/CANTIDAD_PROGRAMADA")
+                }
+            }
             fDone = (iDone / iQty) * 100;
             iLeft = iQty - iDone;
             var model = {
@@ -66,45 +73,45 @@ sap.ui.define([
 
             var columns = {
                 columns: [{
-                    Column: "Res no",
-                    Visible: 0
-                },
-                {
-                    Column: "Res Item",
-                    Visible: 0
-                },
-                {
-                    Column: "Codigo",
-                    Visible: 1
-                },
-                {
-                    Column: "Material",
-                    Visible: 1
-                },
-                {
-                    Column: "Planta",
-                    Visible: 1
-                },
-                {
-                    Column: "Almacen",
-                    Visible: 1
-                },
-                {
-                    Column: "Lote",
-                    Visible: 1
-                },
-                {
-                    Column: "Cantidad",
-                    Visible: 1
-                },
-                {
-                    Column: "UM",
-                    Visible: 1
-                },
-                {
-                    Column: "Mov",
-                    Visible: 0
-                }
+                        Column: "Res no",
+                        Visible: 0
+                    },
+                    {
+                        Column: "Res Item",
+                        Visible: 0
+                    },
+                    {
+                        Column: "Codigo",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Material",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Planta",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Almacen",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Lote",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Cantidad",
+                        Visible: 1
+                    },
+                    {
+                        Column: "UM",
+                        Visible: 1
+                    },
+                    {
+                        Column: "Mov",
+                        Visible: 0
+                    }
                 ]
             };
 
@@ -307,6 +314,9 @@ sap.ui.define([
                 var sOpeIndex = sOpePath.split("/"),
                     iCurrentItem = parseInt(sOpeIndex[sOpeIndex.length - 1]) + 1;
 
+                var oMasterModel = this.getOwnerComponent().getModel("masterModel");
+                var ordSPath = oMasterModel.getProperty("/selectedOrder");
+                var pl = this.getOwnerComponent().getModel("fasesModel").getProperty(ordSPath + "/planta");
                 if (iLastItem > iCurrentItem) {
                     MessageBox.confirm("¿Continuar a la siguiente fase?", {
                         title: "Fase finalizada",
@@ -318,8 +328,9 @@ sap.ui.define([
                                 oThis._setMasterModel("/selectedFase", sOpeIndex);
                                 oThis.getRouter().navTo("operationDetail", {
                                     orden: sOrden,
-                                    operacion: oOpeData[iCurrentItem].Ope
-                                }, true /* no history*/);
+                                    operacion: oOpeData[iCurrentItem].Ope,
+                                    plant: pl
+                                }, true /* no history*/ );
                                 return;
                             }
                         }
@@ -331,7 +342,8 @@ sap.ui.define([
                         onClose: function (sButton) {
                             if (sButton === MessageBox.Action.OK) {
                                 oThis.getRouter().navTo("orderDetail", {
-                                    orden: sOrden
+                                    orden: sOrden,
+                                    plant: pl
                                 }, true);
                             }
                         }
@@ -351,12 +363,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     if (opElement.firstChild !== null) {
@@ -430,12 +442,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -607,12 +619,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -730,12 +742,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -830,12 +842,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "POST",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "POST",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
 
@@ -944,12 +956,12 @@ sap.ui.define([
             sap.ui.core.BusyIndicator.show(0);
 
             $.ajax({
-                type: "GET",
-                dataType: "xml",
-                cache: false,
-                url: uri,
-                data: oData
-            })
+                    type: "GET",
+                    dataType: "xml",
+                    cache: false,
+                    url: uri,
+                    data: oData
+                })
                 .done(function (xmlDOM) {
                     var opElement = xmlDOM.getElementsByTagName("Row")[0].firstChild;
                     console.log(opElement);

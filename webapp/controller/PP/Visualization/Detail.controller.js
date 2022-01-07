@@ -41,7 +41,6 @@ sap.ui.define([
 
             var oModel = this.getOwnerComponent().getModel("ordersModel");
             var newModel = this.loadOrder(oArgs.orden);
-            console.log(newModel);
             this._onBindingChange(oModel, oArgs.orden);
             this.getView().setModel(newModel);
             for (var i = 0; i < 3; i++) {
@@ -54,7 +53,6 @@ sap.ui.define([
         },
         _onBindingChange: function (oModel, idOrder) {
             var existeOrden = false;
-            console.log(idOrder);
             for (var i = 0; i < oModel.oData.ITEMS.length; i++) {
                 if (oModel.oData.ITEMS[i].NUM_ORDEN == idOrder) {
                     existeOrden = true;
@@ -132,7 +130,7 @@ sap.ui.define([
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             sPath = oCtx.getPath();
-            var planta = this.getView().getModel().getProperty("/PLANTA");            
+            var planta = this.getView().getModel().getProperty("/PLANTA");
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedFase", sPath);
             this.getRouter().navTo("operationDetail", {
                 orden: oCtx.getProperty("orden"),
