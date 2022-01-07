@@ -33,7 +33,7 @@ sap.ui.define([
             var oArgs;
             oArgs = oEvent.getParameter("arguments");
             this.loadOrders(oArgs.plant);
-            console.log();
+            this.getView().byId("planta").setSelectedKey(oArgs.plant);
             var columns = {
                 columns: [{
                         Column: "Orden",

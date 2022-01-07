@@ -316,7 +316,9 @@ sap.ui.define([
 
                 var oMasterModel = this.getOwnerComponent().getModel("masterModel");
                 var ordSPath = oMasterModel.getProperty("/selectedOrder");
-                var pl = this.getOwnerComponent().getModel("fasesModel").getProperty(ordSPath + "/planta");
+                console.log(ordSPath);
+                var pl = this.getOwnerComponent().getModel("ordersModel").getProperty(ordSPath + "/PLANTA");
+                console.log(pl);
                 if (iLastItem > iCurrentItem) {
                     MessageBox.confirm("¿Continuar a la siguiente fase?", {
                         title: "Fase finalizada",
