@@ -257,7 +257,7 @@
                     "target": "home"
                 },
                 {
-                    "pattern": "QA",
+                    "pattern": "home/PP/ordenes?plant={plant}/detalle?orden={orden}/operacion?ope={operacion}/QA",
                     "name": "QA",
                     "target": "QA"
                 },
@@ -600,8 +600,8 @@
                 "QA": {
                     "viewId": "QA",
                     "viewName": "QA",
-                    "viewPath": "sap.ui.demo.webapp.view.PP.Visualization",
-                    "viewLevel": 2
+                    "transition": "slide",
+                    "viewPath": "sap.ui.demo.webapp.view.PP.Visualization"                    
                 },
                 "viewPPOrders": {
                     "viewId": "Orders",

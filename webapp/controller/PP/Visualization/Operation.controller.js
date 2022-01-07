@@ -23,9 +23,10 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             var oArgs = oEvent.getParameter("arguments"),
                 oView = this.getView();
-            var aData = {
+            this.aData = {
                 "NUM_ORDEN": oArgs.orden,
-                "OPERACION": oArgs.operacion
+                "OPERACION": oArgs.operacion,
+                "PLANTA": oArgs.plant
             };
             this.byId("PMComponentList").setModel(this.getOwnerComponent().getModel("componentsModel"));
             //this._base_onloadTable2("PMComponentList", aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/components_raiz", "Componentes", "");
@@ -1031,12 +1032,10 @@ sap.ui.define([
             });
         },
         onQA: function () {
-            var
-                oView = this.getView();
-
             this.getRouter().navTo("QA", {
-                orden: "001",
-                operacion: "010"
+                orden: this.aData.NUM_ORDEN,
+                operacion: this.aData.OPERACION,
+                plant: this.aData.PLANTA
             });
         },
         onQtyChange: function (oEvent) {
