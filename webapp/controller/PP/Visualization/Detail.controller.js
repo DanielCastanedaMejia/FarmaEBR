@@ -35,13 +35,13 @@ sap.ui.define([
             //Setear al model la selectedOrder
             //var sPath = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
 
-            if(!this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder")){
-                console.log("Setear selectedOrder");
-                
+            if (!this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder")) {
+
             }
 
             var oModel = this.getOwnerComponent().getModel("ordersModel");
             var newModel = this.loadOrder(oArgs.orden);
+            console.log(newModel);
             this._onBindingChange(oModel, oArgs.orden);
             this.getView().setModel(newModel);
             for (var i = 0; i < 3; i++) {
@@ -132,15 +132,12 @@ sap.ui.define([
             oItem = oEvent.getSource();
             oCtx = oItem.getBindingContext();
             sPath = oCtx.getPath();
-            //console.log(oCtx);
-            //console.log(oCtx.getProperty("orden"),);
-            //console.log(oCtx.getProperty("Ope"),);
-            //console.log(oCtx.getProperty('1710'));
+            var planta = this.getView().getModel().getProperty("/PLANTA");            
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedFase", sPath);
             this.getRouter().navTo("operationDetail", {
                 orden: oCtx.getProperty("orden"),
                 operacion: oCtx.getProperty("Ope"),
-                planta: oCtx.getProperty('1710')
+                plant: planta
             });
         },
         onOpenDialog: function () {

@@ -75,7 +75,7 @@ sap.ui.define([
                 // "withCredentials" only exists on XMLHTTPRequest2 objects.
                 xhr.open(method, url, true);
 
-            // @ts-ignore
+                // @ts-ignore
             } else if (typeof XDomainRequest != "undefined") {
 
                 // Otherwise, check if XDomainRequest.
@@ -139,12 +139,10 @@ sap.ui.define([
                 /*this.getRouter().navTo("viewPPOrders", {
                     "plant": oKey
                 });*/
-                this.getRouter().navTo("viewPPOrders", {					
-					"?query": {
-						plant: oKey
-					}
-				});
-			
+                this.getRouter().navTo("viewPPOrders", {
+                    plant: oKey
+                });
+
             }
         },
 

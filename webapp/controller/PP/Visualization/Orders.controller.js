@@ -32,7 +32,7 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             var oArgs;
             oArgs = oEvent.getParameter("arguments");
-            this.loadOrders(oArgs["?query"].plant);
+            this.loadOrders(oArgs.plant);
             console.log();
             var columns = {
                 columns: [{
@@ -86,9 +86,7 @@ sap.ui.define([
 
             var oKey = this.getView().byId("planta").getSelectedKey();
             this.getRouter().navTo("viewPPOrders", {
-                "?query": {
-                    plant: oKey
-                }
+                plant: oKey
             }, true /*no history*/ );
             /*var oData = {
                 "END_DATE": this.byId("end_date").getValue(),
@@ -1046,7 +1044,7 @@ sap.ui.define([
             if (estatus !== "PENDIENTE" && estatus !== "ABIERTA") {
                 this.getOwnerComponent().openHelloDialog("Seleccione una orden abierta o pendiente");
             } else {
-                this.getRouter().navTo("orderDetail", {                    
+                this.getRouter().navTo("orderDetail", {
                     orden: oCtx.getProperty("NUM_ORDEN"),
                     plant: oKey
                 });

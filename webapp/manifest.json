@@ -322,12 +322,12 @@
                     "target": "verParos"
                 },
                 {
-                    "pattern": "home/PP/ordenes:?query:",
+                    "pattern": "home/PP/ordenes?plant={plant}",
                     "name": "viewPPOrders",
                     "target": "viewPPOrders"
                 },
                 {
-                    "pattern": "home/PP/ordenes/detalle?orden={orden}",
+                    "pattern": "home/PP/ordenes?plant={plant}/detalle?orden={orden}",
                     "name": "orderDetail",
                     "target": "orderDetail"
                 },
@@ -342,7 +342,7 @@
                     "target": "QMRecordCapture"
                 },
                 {
-                    "pattern": "home/PP/ordenes/detalle?orden={orden}/operacion?ope={operacion}",
+                    "pattern": "home/PP/ordenes?plant={plant}/detalle?orden={orden}/operacion?ope={operacion}",
                     "name": "operationDetail",
                     "target": "operationDetail"
                 },
