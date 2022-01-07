@@ -24,29 +24,26 @@ sap.ui.define([
             var oArgs, oView;
             oArgs = oEvent.getParameter("arguments");
             oView = this.getView();
-
             var oTable = oView.byId("PMOperationList");
             var oModel_empty = new sap.ui.model.json.JSONModel();
             oModel_empty.setData({});
             oTable.setModel(oModel_empty);
-
             oView.bindElement({
                 path: "/"
             });
 
-            var aData = {
-                "NUM_ORDEN": oArgs.orden,
-                "FILTRO": oArgs.orden
-            };
+            //Setear al model la selectedOrder
+            //var sPath = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
 
-            var sPath = this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder");
+            if(!this.getOwnerComponent().getModel("masterModel").getProperty("/selectedOrder")){
+                console.log("Setear selectedOrder");
+                
+            }
 
-            var orderModel = this.getOwnerComponent().getModel("ordersModel").getProperty(sPath);
-
-            var newModel = new JSONModel(orderModel);
+            var oModel = this.getOwnerComponent().getModel("ordersModel");
+            var newModel = this.loadOrder(oArgs.orden);
+            this._onBindingChange(oModel, oArgs.orden);
             this.getView().setModel(newModel);
-            //this._base_onloadHeader(aData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/header", "Cabecera");
-
             for (var i = 0; i < 3; i++) {
                 this.getOwnerComponent().getModel("fasesModel").setProperty("/ITEMS/" + i.toString() + "/orden", newModel.getProperty("/NUM_ORDEN"));
                 this.getOwnerComponent().getModel("fasesModel").setProperty("/ITEMS/" + i.toString() + "/ctdopera", newModel.getProperty("/CANTIDAD_PROGRAMADA"));
@@ -54,6 +51,36 @@ sap.ui.define([
             this.byId("PMOperationList").setModel(this.getOwnerComponent().getModel("fasesModel"));
 
             //this._base_onloadTable('PMOperationList', aData, 'FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/Operaciones_componentes_RESPALDO_', "Operaciones", "");
+        },
+        _onBindingChange: function (oModel, idOrder) {
+            var existeOrden = false;
+            console.log(idOrder);
+            for (var i = 0; i < oModel.oData.ITEMS.length; i++) {
+                if (oModel.oData.ITEMS[i].NUM_ORDEN == idOrder) {
+                    existeOrden = true;
+                }
+            }
+            if (!existeOrden)
+                this.getRouter().getTargets().display("notFound");
+        },
+        loadOrder: function (order) {
+            var auxJSON = {
+                "ITEMS": [{}]
+            };
+            var oModel = this.getOwnerComponent().getModel("ordersModel");
+            var aModel = new JSONModel();
+            var existeItem = false;
+            var j = 0;
+            for (var i = 0; i < oModel.oData.ITEMS.length; i++) {
+                if (oModel.getProperty("/ITEMS/" + i + "/NUM_ORDEN") == order) {
+                    existeItem = true;
+                    aModel.setProperty("/", oModel.getProperty("/ITEMS/" + i));
+                }
+            }
+            //this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));
+            //if (existeItem)
+            //  this.byId("PPOrders_list").setModel(aModel);
+            return aModel;
         },
         onOpenDialogAddOperation: function (oEvent) {
             var oView = this.getView();
@@ -297,8 +324,8 @@ sap.ui.define([
                     name: "sap.ui.demo.webapp.fragment.videoDetail"
                 });
             }
-            this.videoDetailDialog.then(function (oDialog) {                
-                oDialog.open();                
+            this.videoDetailDialog.then(function (oDialog) {
+                oDialog.open();
             });
         },
         onCloseVideoDialog: function (oEvent) {
@@ -408,8 +435,8 @@ sap.ui.define([
                 bState = this.byId("switch" + sId).getState(),
                 timer_isPressed = this.getOwnerComponent().getModel("masterModel").getProperty("/buttonTimer/" + sId + "/started");
 
-            if(bState) {
-                if(timer_isPressed === "0") {
+            if (bState) {
+                if (timer_isPressed === "0") {
                     this._setMasterModel("/buttonTimer/" + sId + "/started", "1");
                     this._setMasterModel("/buttonTimer/" + sId + "/timeValue", "0:00");
                 } else {
@@ -639,7 +666,7 @@ sap.ui.define([
 
             oOrderModel.setProperty(sPath + "/EBR_STATUS", sStatus);
         },
-        onOpenProcessFlow: function() {
+        onOpenProcessFlow: function () {
             const othis = this;
             this.getView().setBusy(true);
             if (!this.proFlowDialog) {
@@ -658,7 +685,7 @@ sap.ui.define([
                 oDialog.open();
             });
         },
-        constructProcessFlow: function() {
+        constructProcessFlow: function () {
             console.log("Construyendo");
             const sPath = this._getMasterModel("/selectedOrder"),
                 oOrderModel = this.getOwnerComponent().getModel("ordersModel"),
@@ -670,7 +697,7 @@ sap.ui.define([
                 sQty = oOrderModel.getProperty(sPath + "/CANTIDAD_PROGRAMADA"),
                 sLote = oOrderModel.getProperty(sPath + "/LOTE");
 
-                // ORDEN
+            // ORDEN
             var sTitle = "Orden: " + sNum,
                 sDate = oOrderModel.getProperty(sPath + "/FECHA_INS").substring(0, 10),
                 sState = "Positive",
@@ -683,15 +710,15 @@ sap.ui.define([
 
             // STEP 1
             sTitle = "Preparación de área de trabajo";
-            
-            if(this._getMasterModel("/validations/vStep1")) {
+
+            if (this._getMasterModel("/validations/vStep1")) {
                 sState = "Positive";
                 sStateText = "OK";
                 sDate = this._getMasterModel("/validations/step1/date").substring(4, 15);
                 sTime = this._getMasterModel("/validations/step1/date").substring(16, 21);
                 sFirst = sDate + " " + sTime;
                 sUser = "Usuario: " + this._getMasterModel("/validations/step1/user");
-                sSecond = sUser; 
+                sSecond = sUser;
             } else {
                 sState = "Negative";
                 sDate = "";
@@ -706,14 +733,14 @@ sap.ui.define([
 
             // STEP 2
             sTitle = "Cambio de formato";
-            if(this._getMasterModel("/validations/vStep2")) {
+            if (this._getMasterModel("/validations/vStep2")) {
                 sState = "Positive";
                 sStateText = "OK";
                 sDate = this._getMasterModel("/validations/step2/date").substring(4, 15);
                 sTime = this._getMasterModel("/validations/step2/date").substring(16, 21);
                 sFirst = sDate + " " + sTime;
                 sUser = "Usuario: " + this._getMasterModel("/validations/step2/user");
-                sSecond = sUser; 
+                sSecond = sUser;
             } else {
                 sState = "Negative";
                 sDate = "";
@@ -727,14 +754,14 @@ sap.ui.define([
 
             // STEP 3
             sTitle = "Parámetros del equipo";
-            if(this._getMasterModel("/validations/vStep3")) {
+            if (this._getMasterModel("/validations/vStep3")) {
                 sState = "Positive";
                 sStateText = "OK";
                 sDate = this._getMasterModel("/validations/step3/date").substring(4, 15);
                 sTime = this._getMasterModel("/validations/step3/date").substring(16, 21);
                 sFirst = sDate + " " + sTime;
                 sUser = "Usuario: " + this._getMasterModel("/validations/step3/user");
-                sSecond = sUser; 
+                sSecond = sUser;
             } else {
                 sState = "Negative";
                 sDate = "";
@@ -748,14 +775,14 @@ sap.ui.define([
 
             // FIRMA
             sTitle = "Firma supervisor";
-            if(this._getMasterModel("/validations/supervisorValidation")) {
+            if (this._getMasterModel("/validations/supervisorValidation")) {
                 sState = "Positive";
                 sStateText = "OK";
                 sDate = this._getMasterModel("/validations/step3/date").substring(4, 15);
                 sTime = this._getMasterModel("/validations/step3/date").substring(16, 21);
                 sFirst = sDate + " " + sTime;
                 sUser = "Usuario: " + this._getMasterModel("/view/supervisorLogin/username");
-                sSecond = sUser; 
+                sSecond = sUser;
             } else {
                 sState = "Negative";
             }
@@ -765,7 +792,7 @@ sap.ui.define([
             aData = oConsModel.getProperty("/items");
             iIndex = 20;
 
-            for(var i = 0; i < aData.length; i++, iIndex++) {
+            for (var i = 0; i < aData.length; i++, iIndex++) {
 
                 sTitle = oConsModel.getProperty("/items/" + i + "/desc");
                 sState = "Positive";
@@ -774,7 +801,7 @@ sap.ui.define([
                 sTime = oConsModel.getProperty("/items/" + i + "/date").substring(16, 21);
                 sUser = "";
                 sFirst = sDate + " " + sTime + "\n" + sUser;
-                sSecond = "Lote: " + oOrderModel.getProperty(sPath + "/LOTE") + "\nCantidad: " + oConsModel.getProperty("/items/" + i + "/qty"); 
+                sSecond = "Lote: " + oOrderModel.getProperty(sPath + "/LOTE") + "\nCantidad: " + oConsModel.getProperty("/items/" + i + "/qty");
 
                 this.createNewNode(iIndex.toString(), "2", sTitle, sState, sStateText, sFirst, sSecond);
             }
@@ -782,16 +809,16 @@ sap.ui.define([
             // CALIDAD
             var bFlag = oQAModel.getProperty("/register");
 
-            if(bFlag) {
+            if (bFlag) {
                 var aux;
                 aData = oQAModel.getProperty("/items");
                 iIndex = 30;
 
-                for(var i = 0; i < aData.length; i++, iIndex++) {
+                for (var i = 0; i < aData.length; i++, iIndex++) {
 
                     sTitle = oQAModel.getProperty("/items/" + i + "/desc");
                     aux = oQAModel.getProperty("/items/" + i + "/estatus");
-                    if(aux == "APROBADO") {
+                    if (aux == "APROBADO") {
                         sState = "Positive";
                         sStateText = "OK";
                     } else {
@@ -800,10 +827,10 @@ sap.ui.define([
                     }
                     sUser = "";
                     sFirst = "";
-                    sSecond = ""; 
+                    sSecond = "";
 
                     this.createNewNode(iIndex.toString(), "3", sTitle, sState, sStateText, sFirst, sSecond);
-                    
+
                 }
             }
 
@@ -811,7 +838,7 @@ sap.ui.define([
             aData = oProdModel.getProperty("/items");
             iIndex = 40;
 
-            for(var i = 0; i < aData.length; i++, iIndex++) {
+            for (var i = 0; i < aData.length; i++, iIndex++) {
 
                 sTitle = oProdModel.getProperty("/items/" + i + "/MATERIAL");
                 sState = "Positive";
@@ -820,7 +847,7 @@ sap.ui.define([
                 sTime = oProdModel.getProperty("/items/" + i + "/date").substring(16, 21);
                 sUser = "";
                 sFirst = sDate + " " + sTime + "\n" + sUser;
-                sSecond = "Lote: " + oProdModel.getProperty("/items/" + i + "/LOTE") + "\nCantidad: " + oProdModel.getProperty("/items/" + i + "/CANTIDAD"); 
+                sSecond = "Lote: " + oProdModel.getProperty("/items/" + i + "/LOTE") + "\nCantidad: " + oProdModel.getProperty("/items/" + i + "/CANTIDAD");
 
                 this.createNewNode(iIndex.toString(), "4", sTitle, sState, sStateText, sFirst, sSecond);
             }
@@ -828,7 +855,7 @@ sap.ui.define([
             // CIERRE
             var bStatus = oOrderModel.getProperty(sPath + "ESTATUS_MII");
 
-            if(bStatus === "CERRADA") {
+            if (bStatus === "CERRADA") {
                 sTitle = "Orden: " + oOrderModel.getProperty(sPath + "/NUM_ORDEN");
                 sState = "Positive";
                 sStateText = "Cerrada";
@@ -842,19 +869,19 @@ sap.ui.define([
             }
 
         },
-        onCloseProcessFlow: function() {
+        onCloseProcessFlow: function () {
             this.byId("ProcessFlowDialog").close();
             this.byId("processflow1").removeAllNodes();
         },
         createNewNode: function (nodeId, laneId, sTitle, sState, sStateText, sFirst, sSecond) {
-            var oNewNode =  new ProcessFlowNode({
+            var oNewNode = new ProcessFlowNode({
                 nodeId: nodeId,
                 laneId: laneId,
                 title: sTitle,
-                children: [ ],
+                children: [],
                 state: sState,
                 stateText: sStateText,
-                texts: [ sFirst, sSecond ]
+                texts: [sFirst, sSecond]
             });
             this.byId("processflow1").insertNode(oNewNode, 0);
         }

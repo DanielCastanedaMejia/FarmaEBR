@@ -319,7 +319,7 @@ sap.ui.define([
                                 oThis.getRouter().navTo("operationDetail", {
                                     orden: sOrden,
                                     operacion: oOpeData[iCurrentItem].Ope
-                                });
+                                }, true /* no history*/);
                                 return;
                             }
                         }
@@ -332,7 +332,7 @@ sap.ui.define([
                             if (sButton === MessageBox.Action.OK) {
                                 oThis.getRouter().navTo("orderDetail", {
                                     orden: sOrden
-                                });
+                                }, true);
                             }
                         }
                     });

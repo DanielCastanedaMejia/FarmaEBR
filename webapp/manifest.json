@@ -327,7 +327,7 @@
                     "target": "viewPPOrders"
                 },
                 {
-                    "pattern": "Detalle/{orden}",
+                    "pattern": "home/PP/ordenes/detalle?orden={orden}",
                     "name": "orderDetail",
                     "target": "orderDetail"
                 },
@@ -342,7 +342,7 @@
                     "target": "QMRecordCapture"
                 },
                 {
-                    "pattern": "Operacion/{orden}/{operacion}",
+                    "pattern": "home/PP/ordenes/detalle?orden={orden}/operacion?ope={operacion}",
                     "name": "operationDetail",
                     "target": "operationDetail"
                 },

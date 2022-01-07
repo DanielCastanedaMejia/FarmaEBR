@@ -85,11 +85,11 @@ sap.ui.define([
         PPOrders_view: function () {
 
             var oKey = this.getView().byId("planta").getSelectedKey();
-            this.getRouter().navTo("viewPPOrders", {					
+            this.getRouter().navTo("viewPPOrders", {
                 "?query": {
                     plant: oKey
                 }
-            }, true /*no history*/);
+            }, true /*no history*/ );
             /*var oData = {
                 "END_DATE": this.byId("end_date").getValue(),
                 "PLANT": plant_gb,
@@ -1037,19 +1037,18 @@ sap.ui.define([
 
         onDetal_view: function (oEvent) {
             var oItem, oCtx, estatus, sPath;
+            var oKey = this.getView().byId("planta").getSelectedKey();
             oItem = oEvent.getSource();
-            console.log(oItem);
             oCtx = oItem.getBindingContext();
-            console.log(oCtx);
             sPath = oCtx.getPath();
-            console.log(sPath);
             this.getOwnerComponent().getModel("masterModel").setProperty("/selectedOrder", sPath);
             estatus = oCtx.getProperty("ESTATUS_MII");
             if (estatus !== "PENDIENTE" && estatus !== "ABIERTA") {
                 this.getOwnerComponent().openHelloDialog("Seleccione una orden abierta o pendiente");
             } else {
-                this.getRouter().navTo("orderDetail", {
-                    orden: oCtx.getProperty("NUM_ORDEN")
+                this.getRouter().navTo("orderDetail", {                    
+                    orden: oCtx.getProperty("NUM_ORDEN"),
+                    plant: oKey
                 });
             }
         },
