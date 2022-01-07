@@ -338,7 +338,7 @@ sap.ui.define([
             this._setMasterModel("/selectedOrder", "");
             this._setMasterModel("/view/startedOrder", false);
             this._setMasterModel("/view/prepProcessFinished", false);
-            const resetValidations = new JSONModel({
+            const resetValidations = {
                 "values": {
                     "sfc": "0000102429-025",
                     "date": "2021-11-01",
@@ -386,7 +386,7 @@ sap.ui.define([
                     "v11": false,
                     "v12": false
                 }
-            });
+            };
             this._setMasterModel("/validations", resetValidations);
             this.closeDialog("finishOrderDialog");
             this.closeDialog("FinishOrderConfirmationDialog");
