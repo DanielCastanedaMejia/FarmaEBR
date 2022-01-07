@@ -16,8 +16,6 @@ sap.ui.define([
 ], function (JQuery, BaseController, MessageToast, MessageBox, Filter, FilterOperator, formatter, syncStyleClass, JSONModel) {
     "use strict";
 
-    var plant_gb = '';
-
     return BaseController.extend("sap.ui.demo.webapp.controller.PP.Visualization.Orders", {
 
         formatter: formatter,
@@ -34,11 +32,8 @@ sap.ui.define([
         _onRouteMatched: function (oEvent) {
             var oArgs;
             oArgs = oEvent.getParameter("arguments");
-
-            plant_gb = 'PLANTA';
-            //this.PPOrders_view();  
-            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));
-
+            this.loadOrders(oArgs["?query"].plant);
+            console.log();
             var columns = {
                 columns: [{
                         Column: "Orden",
@@ -88,15 +83,23 @@ sap.ui.define([
         },
 
         PPOrders_view: function () {
+
+            var oKey = this.getView().byId("planta").getSelectedKey();
+            this.getRouter().navTo("viewPPOrders", {					
+                "?query": {
+                    plant: oKey
+                }
+            }, true /*no history*/);
             /*var oData = {
                 "END_DATE": this.byId("end_date").getValue(),
                 "PLANT": plant_gb,
                 "START_DATE": this.byId("start_date").getValue()
             };
-
+            
             this._base_onloadTable("PPOrders_list", oData, "FARMA/DatosTransaccionales/Produccion/Ordenes/Visualizar/Transaction/sel_ordenes", "Ordenes", "IconTabBar_Orders");*/
-            this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("filterDateOrdersModel"));
-
+            //this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("filterDateOrdersModel"));            
+            /*var plant = this.getView().byId("planta").getSelectedItem().getKey();
+            this.loadOrders(plant);
             var columns = {
                 columns: [{
                         Column: "Orden",
@@ -141,7 +144,25 @@ sap.ui.define([
                 ]
             };
 
-            this._setColumns(columns, "columnList", "PPOrders_list");
+            this._setColumns(columns, "columnList", "PPOrders_list");*/
+        },
+        loadOrders: function (plant) {
+            var auxJSON = {
+                "ITEMS": [{}]
+            };
+            var oModel = this.getOwnerComponent().getModel("ordersModel");
+            var aModel = new JSONModel(auxJSON);
+            var existeItem = false;
+            var j = 0;
+            for (var i = 0; i < oModel.oData.ITEMS.length; i++) {
+                if (oModel.getProperty("/ITEMS/" + i + "/PLANTA") == plant) {
+                    existeItem = true;
+                    aModel.setProperty("/ITEMS/" + j++, oModel.getProperty("/ITEMS/" + i));
+                }
+            }
+            //this.byId("PPOrders_list").setModel(this.getOwnerComponent().getModel("ordersModel"));
+            if (existeItem)
+                this.byId("PPOrders_list").setModel(aModel);
         },
 
         viewStartOrder: function (oEvent) {

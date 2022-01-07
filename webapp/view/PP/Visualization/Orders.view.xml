@@ -44,8 +44,8 @@
           <Button icon="sap-icon://person-placeholder" type="Transparent" class="sapUiLargeMarginEnd" enabled="false">
           </Button>
         </Toolbar>
-        <fb:FilterBar header="Órdenes"
-                      reset="_onRouteMatched" search="PPOrders_view" clear="onClear" showRestoreButton="true" showClearButton="true" class="sapUiSizeCompact" showRestoreOnFB="true">
+        <fb:FilterBar header="Órdenes" 
+                      search="PPOrders_view" clear="onClear" showRestoreButton="false" showClearButton="false" class="sapUiSizeCompact" showRestoreOnFB="false">
 
           <fb:filterItems>
 
@@ -54,6 +54,7 @@
                 <ComboBox id="planta" selectedKey="1710">
                   <items>
                     <core:Item key="1710" text="Planta 1710"/>
+                    <core:Item key="La Plata" text="Planta La Plata"/>
                   </items>
                 </ComboBox>
               </fb:control>
