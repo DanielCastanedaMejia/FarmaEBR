@@ -79,6 +79,7 @@ sap.ui.define([
             };
 
             this._setColumns(columns, "columnList", "PPOrders_list");
+            console.log(sap.ui.getCore().getComponent( "webapp").getMetadata().getComponentName());
 
         },
 
