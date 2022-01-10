@@ -43,6 +43,7 @@ sap.ui.define([
             var sOrder = oArgs.orden,
                 iQty = 0,
                 sOpe = oArgs.operacion;
+            this._onBindingChange(oOpeModel, oArgs.operacion);
             for (var i = 0; i < oOpeModel.oData.ITEMS.length; i++) {
                 if (oOpeModel.oData.ITEMS[i].Ope == oArgs.operacion) {
                     oMasterModel.setProperty("/selectedFase", "/ITEMS/" + i);
@@ -121,6 +122,16 @@ sap.ui.define([
 
         onCloseDialogHideColumns: function () {
             this.getView().byId("hideColumns_fragment").close();
+        },
+        _onBindingChange: function (oModel, idOrder) {
+            var existeOrden = false;
+            for (var i = 0; i < oModel.oData.ITEMS.length; i++) {
+                if (oModel.oData.ITEMS[i].Ope == idOrder) {
+                    existeOrden = true;
+                }
+            }
+            if (!existeOrden)
+                this.getRouter().getTargets().display("notFound");
         },
 
         /****************************** START NOTIFICATION ***************************************/

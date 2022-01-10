@@ -15,7 +15,7 @@ sap.ui.define([
                 var complete_url = window.location.href;
                 // @ts-ignore
                 id = complete_url.split("=", 2).at(-1);
-                console.log(id);
+                //console.log(id);
                 var idNumber  = Number(id)
                 //Si es un ID numerico lo que encontró
                 if(idNumber) {                    
